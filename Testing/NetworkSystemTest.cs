@@ -11,14 +11,14 @@ using P2PNet.Widescan;
 namespace Testing
 {
     [TestFixture]
-    public class NetworkRevTest
+    public class NetworkSystemTest
     {
         [SetUp]
         public void Setup()
         {
             // Initialize any required resources before tests
         }
-
+        
         private bool IsNpcapAvailable()
         {
             string dllPath = Path.Combine(Environment.CurrentDirectory, "wpcap.dll");
@@ -27,14 +27,14 @@ namespace Testing
 
         [Test]
         public async Task PeerNetworkStartupTest()
-        {
+        {           
             if (!IsNpcapAvailable())
             {
                 Assert.Warn("Npcap DLL not found. Skipping network capture tests.");
                 Assert.Inconclusive("Npcap DLL not found. Skipping test.");
                 return;
             }
-
+            
             DebugMessage("Starting PeerNetwork tests.", MessageType.General);
 
             // Load local addresses
@@ -67,19 +67,24 @@ namespace Testing
         public async Task WidescanTest()
         {
             // Set hardware mode
-            SetHardwareMode(P2PNet.Widescan.HardwareMode.CPU);
+       //     SetHardwareMode(P2PNet.Widescan.HardwareMode.GPU);
 
+            
             // Add address prefixes
             AddAddressPrefix("2001:0db8:85a3:0000");
 
             // Start Widescan
             StartWidescan();
 
+            worker.Start();
+            reader.Start();
+
             // Wait for a short period to simulate scanning
-            await Task.Delay(5000);
+            Thread.Sleep(5000);
 
             // Stop Widescan
             StopWidescan();
+            
 
             // Since Widescan runs asynchronously, we assume it starts and stops without exceptions
             NUnit.Framework.Assert.Pass("Widescan started and stopped successfully");

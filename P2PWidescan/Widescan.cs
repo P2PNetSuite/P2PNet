@@ -17,7 +17,9 @@ using OpenCL.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Testing")]
 namespace P2PNet.Widescan
 {
     public enum HardwareMode
@@ -26,7 +28,6 @@ namespace P2PNet.Widescan
         Accelerator,
         CPU
     }
-
     public enum MaximumMemoryAllocation
     {
         NoLimit,
@@ -49,6 +50,10 @@ namespace P2PNet.Widescan
         private static bool processing = true;
         private static List<string> addressPrefixes = new List<string>();
         private static int currentAddress = 0; // used to track which address prefix we're currently on
+
+        internal static Thread worker = new Thread(() => { });
+        internal static Thread reader = new Thread(() => { });
+        internal static Thread broadcaster = new Thread(() => { });
 
         /// <summary>
         /// Gets the hardware mode for the IPv6 address generation.
@@ -120,7 +125,7 @@ namespace P2PNet.Widescan
         private static MaximumMemoryAllocation maximummemoryallowed = MaximumMemoryAllocation.NoLimit;
         private static readonly Dictionary<MaximumMemoryAllocation, int> MemoryAllocations = new Dictionary<MaximumMemoryAllocation, int>
                 {
-                        {MaximumMemoryAllocation.NoLimit, 99999999 },
+                    { MaximumMemoryAllocation.NoLimit, 99999999 },
                     { MaximumMemoryAllocation.TwoHundredFiftyMegabytes, 250 },
                     { MaximumMemoryAllocation.FiveHundredMegabytes, 500 },
                     { MaximumMemoryAllocation.OneGigabyte, 1024 },
@@ -225,17 +230,21 @@ namespace P2PNet.Widescan
         {
             return segment.Length <= 4 && BigInteger.TryParse(segment, System.Globalization.NumberStyles.HexNumber, null, out _);
         }
-        private static BigInteger ParsePrefix(string[] segments, int missingSegments)
+        private static BigInteger ParsePrefix(string[] segments)
         {
-            BigInteger address = 0;
+            byte[] addressBytes = new byte[16]; // 16 bytes for IPv6
+
             for (int i = 0; i < segments.Length; i++)
             {
-                address <<= 16; // Shift left by 16 bits
-                address += BigInteger.Parse(segments[i], System.Globalization.NumberStyles.HexNumber);
+                ushort segmentValue = ushort.Parse(segments[i], System.Globalization.NumberStyles.HexNumber);
+                // Big-endian order: place the high byte first
+                addressBytes[2 * i] = (byte)((segmentValue >> 8) & 0xFF);
+                addressBytes[2 * i + 1] = (byte)(segmentValue & 0xFF);
             }
+            // Remaining bytes are initialized to 0 by default
 
-            // Adjust address based on missingSegments
-            address <<= 16 * missingSegments;
+            // Convert the byte array to BigInteger
+            BigInteger address = new BigInteger(addressBytes, isUnsigned: true, isBigEndian: true);
 
             return address;
         }
@@ -261,6 +270,12 @@ namespace P2PNet.Widescan
         {
             Thread packetcapture = new Thread(() => PacketIntercept.StartCapturing(cancelAddressGeneration.Token));
 
+            // Determine which hard task to run. If memory limit is on, then use the override that
+            // accepts a bool value (this one will automatically throttle).
+            worker = new Thread(() => CPUWorker(cancelAddressGeneration.Token));
+            reader = new Thread(() => ReadAddressesFromPipe(cancelAddressGeneration.Token));
+            broadcaster = new Thread(() => SendOutboundPing(cancelAddressGeneration.Token));
+
             if (P2PNet.PeerNetwork.PublicIPV6Address == null)
             {
 
@@ -275,12 +290,6 @@ namespace P2PNet.Widescan
 
                 return;
             }
-
-            // Determine which hard task to run. If memory limit is on, then use the override that
-            // accepts a bool value (this one will automatically throttle).
-            Thread worker = new Thread(() => GPUWorker(cancelAddressGeneration.Token));
-            Thread reader = new Thread(() => ReadAddressesFromPipe(cancelAddressGeneration.Token));
-            Thread broadcaster = new Thread(() => SendOutboundPing(cancelAddressGeneration.Token));
 
             switch (HardwareMode)
             {
@@ -542,33 +551,43 @@ namespace P2PNet.Widescan
             foreach (string addressPrefix in addressPrefixes)
             {
                 string[] segments = addressPrefix.Split(':');
-                BigInteger startAddress = ParsePrefix(segments, 4);
-                BigInteger endAddress = startAddress + BigInteger.Pow(2, 4 * 16) - 1;
+                int prefixLength = segments.Length;
+
+                BigInteger startAddress = ParsePrefix(segments);
+
+                // Calculate the number of addresses to generate based on the prefix length
+                int suffixBits = (8 - prefixLength) * 16; // Each segment is 16 bits
+                BigInteger addressCount = BigInteger.Pow(2, suffixBits);
+
+                BigInteger endAddress = startAddress + addressCount - 1;
 
                 // Parallel Processing
-                int numberOfTasks = System.Environment.ProcessorCount; // Use the number of available CPU cores
+                int numberOfTasks = System.Environment.ProcessorCount;
 
-                Parallel.For(0, numberOfTasks, taskIndex =>
+                Parallel.For(0, numberOfTasks, (taskIndex, state) =>
                 {
                     if (cancellationToken.IsCancellationRequested)
                     {
-                        return;
-                    } // cheeck for cancellation call
-                    BigInteger rangeSize = (endAddress - startAddress + 1) / numberOfTasks;
+                        state.Stop();
+                    }
+
+                    BigInteger rangeSize = addressCount / numberOfTasks;
                     BigInteger taskStart = startAddress + taskIndex * rangeSize;
                     BigInteger taskEnd = (taskIndex == numberOfTasks - 1) ? endAddress : taskStart + rangeSize - 1;
 
                     for (BigInteger address = taskStart; address <= taskEnd; address++)
                     {
-                        ipv6Collection.Add(address.ToString());
-
-                            // This happens so rapidly it will flood the debug message queue and make it impossible to see what's going on
-                            DebugMessage($"Generated IPv6 Address: {address.ToString()}", MessageType.General); // Log read address
-
                         if (cancellationToken.IsCancellationRequested)
                         {
-                            return;
-                        } // cheeck for cancellation call
+                            state.Stop();
+                            break;
+                        }
+
+                        string ipv6Address = BigIntegerToIPv6Address(address);
+
+                        ipv6Collection.Add(ipv6Address);
+
+                        DebugMessage($"Generated IPv6 Address: {ipv6Address}", MessageType.General);
                     }
                 });
             }
@@ -578,16 +597,27 @@ namespace P2PNet.Widescan
             foreach (string addressPrefix in addressPrefixes)
             {
                 string[] segments = addressPrefix.Split(':');
-                BigInteger startAddress = ParsePrefix(segments, 4);
-                BigInteger endAddress = startAddress + BigInteger.Pow(2, 4 * 16) - 1;
+                int prefixLength = segments.Length;
+
+                BigInteger startAddress = ParsePrefix(segments);
+
+                // Calculate the number of addresses to generate based on the prefix length
+                int suffixBits = (8 - prefixLength) * 16; // Each segment is 16 bits
+                BigInteger addressCount = BigInteger.Pow(2, suffixBits);
+
+                BigInteger endAddress = startAddress + addressCount - 1;
 
                 // Parallel Processing
-                int numberOfTasks = System.Environment.ProcessorCount; // Use the number of available CPU cores
+                int numberOfTasks = System.Environment.ProcessorCount;
 
-                Parallel.For(0, numberOfTasks, taskIndex =>
+                Parallel.For(0, numberOfTasks, (taskIndex, state) =>
                 {
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        state.Stop();
+                    }
 
-                    BigInteger rangeSize = (endAddress - startAddress + 1) / numberOfTasks;
+                    BigInteger rangeSize = addressCount / numberOfTasks;
                     BigInteger taskStart = startAddress + taskIndex * rangeSize;
                     BigInteger taskEnd = (taskIndex == numberOfTasks - 1) ? endAddress : taskStart + rangeSize - 1;
 
@@ -596,16 +626,51 @@ namespace P2PNet.Widescan
                         while (MbUsage <= MaxMB)
                         {
                             Thread.Sleep(15); // pause
+                            if (cancellationToken.IsCancellationRequested)
+                            {
+                                state.Stop();
+                                break;
+                            }
                         }
-                        ipv6Collection.Add(address.ToString());
 
-                            // This happens so rapidly it will flood the debug message queue and make it impossible to see what's going on
-                            DebugMessage($"Generated IPv6 Address: {address.ToString()}", MessageType.General); // Log read address
+                        if (cancellationToken.IsCancellationRequested)
+                        {
+                            state.Stop();
+                            break;
+                        }
 
+                        string ipv6Address = BigIntegerToIPv6Address(address);
+
+                        ipv6Collection.Add(ipv6Address);
+
+                        DebugMessage($"Generated IPv6 Address: {ipv6Address}", MessageType.General);
                     }
                 });
             }
         }
+
+        static string BigIntegerToIPv6Address(BigInteger address)
+        {
+            byte[] addressBytes = address.ToByteArray(isUnsigned: true, isBigEndian: true);
+
+            if (addressBytes.Length < 16)
+            {
+                byte[] paddedBytes = new byte[16];
+                Array.Copy(addressBytes, 0, paddedBytes, 16 - addressBytes.Length, addressBytes.Length);
+                addressBytes = paddedBytes;
+            }
+            else if (addressBytes.Length > 16)
+            {
+                byte[] trimmedBytes = new byte[16];
+                Array.Copy(addressBytes, addressBytes.Length - 16, trimmedBytes, 0, 16);
+                addressBytes = trimmedBytes;
+            }
+
+            IPAddress ipAddress = new IPAddress(addressBytes);
+            return ipAddress.ToString();
+        }
+
+
 
         static void AcceleratorWorker(CancellationToken cancellationToken)
         {

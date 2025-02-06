@@ -310,7 +310,7 @@ namespace P2PNet
                 ActiveLocalChannels.Remove(badChannels.Dequeue());
                 }
             }
-        private static void InitializeMulticaseChannels()
+        private static void InitializeMulticastChannels()
             {
             Queue<MulticastChannel> badChannels = new Queue<MulticastChannel>();
             foreach (MulticastChannel multicastChannel in ActiveMulticastChannels)
@@ -741,7 +741,7 @@ namespace P2PNet
                     MulticastChannel multicastChannel = new MulticastChannel(multicaster);
                     ActiveMulticastChannels.Add(multicastChannel);
                     }
-                InitializeMulticaseChannels();
+                InitializeMulticastChannels();
                 }
             catch (Exception e)
                 {

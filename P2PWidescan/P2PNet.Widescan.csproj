@@ -14,4 +14,10 @@
     <ProjectReference Include="..\P2PNet\P2PNet.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>Testing</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+
 </Project>
