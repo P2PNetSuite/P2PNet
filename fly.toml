@@ -1,12 +1,9 @@
-# fly.toml app configuration file generated for p2pnet on 2025-02-17T22:08:32Z
+# fly.toml app configuration file generated for p2pbootstrap on 2025-03-15T02:32:18Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
-app = "p2pnet"
 
-[build]
-image = "ghcr.io/realchrisdebon/p2pnet/p2pbootstrap:latest"
-
+app = 'p2pbootstrap'
 primary_region = 'dfw'
 
 [http_service]
