@@ -188,8 +188,7 @@ namespace P2PBootstrap
                 app.MapGet("/api/Bootstrap/publicip", async (HttpContext context) =>
                 {
                     var headers = context.Request.Headers.ToDictionary(h => h.Key, h => h.Value.ToString());
-                    return Results.Json(headers);
-
+                    return Results.Text(headers.ToString());
                     
                     string ip = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
                     return Results.Text(ip, "text/plain");
