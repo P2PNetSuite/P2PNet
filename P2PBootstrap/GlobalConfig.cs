@@ -117,7 +117,6 @@ namespace P2PBootstrap
             }
 
         }
-
         public static string PublicKeyPath()
         {
             string ENVVAR = "PUBLIC_KEY_PATH";
@@ -135,7 +134,6 @@ namespace P2PBootstrap
                     return Path.Combine(AppContext.BaseDirectory, KeysDirectory(), AppSettings["Configuration:AuthorityKey:PublicKey"]);
                 }
         }
-
         public static string PrivateKeyPath()
         {
             string ENVVAR = "PRIVATE_KEY_PATH";
@@ -153,7 +151,6 @@ namespace P2PBootstrap
                     return Path.Combine(AppContext.BaseDirectory, KeysDirectory(), AppSettings["Configuration:AuthorityKey:PrivateKey"]);
                 }
         }
-
         public static string NetworkName()
         {
             // Matches the 'Configuration:NetworkName' value in appsettings.json
@@ -175,7 +172,6 @@ namespace P2PBootstrap
                 return AppSettings["Configuration:NetworkName"];
             }
         }
-
         public static string DbFileName()
         {
             // Matches the 'Database:DbFileName' value in appsettings.json
@@ -197,6 +193,33 @@ namespace P2PBootstrap
                 return AppSettings["Database:DbFileName"];
             }
         }
+
+        /// --- Optional Endpoints ---
+        public static bool ServePublicIP()
+        {
+            string ENVVAR = "ENDPOINT_PUBLICIP";
+            if (!_containerized)
+            {
+                string configValue = AppSettings["Configuration:OptionalEndpoints:PublicIP"];
+                return bool.TryParse(configValue, out bool configResult) && configResult;
+            }
+            else
+            {
+                string envVar = Environment.GetEnvironmentVariable(ENVVAR, EnvironmentVariableTarget.Process);
+                if (!string.IsNullOrEmpty(envVar))
+                {
+                    return bool.TryParse(envVar, out bool envResult) && envResult;
+                }
+                string configValue = AppSettings["Configuration:OptionalEndpoints:PublicIP"];
+                return bool.TryParse(configValue, out bool configResult) && configResult;
+            }
+        }
+
+
+
+
+
+        /// --------------------------
 
         #endregion
 
