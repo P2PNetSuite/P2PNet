@@ -185,10 +185,10 @@ namespace P2PBootstrap
 
             if(GlobalConfig.ServePublicIP() == true)
             {
-                app.UseForwardedHeaders(new ForwardedHeadersOptions
+                var forwardedOptions = new ForwardedHeadersOptions
                 {
                     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-                });
+                };
             
                 // Accept forwarded headers from any proxy
                 forwardedOptions.KnownNetworks.Clear();
