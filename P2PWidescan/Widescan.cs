@@ -806,7 +806,7 @@ namespace P2PNet.Widescan
 
                             DebugMessage($"ICMP packet from {ipPacket.SourceAddress} to {ipPacket.DestinationAddress}");
 
-                            if (ipPacket.SourceAddress !=P2PNet.PeerNetwork.PublicIPV4Address)
+                            if ((ipPacket.SourceAddress != P2PNet.PeerNetwork.LocalIPV4Address)||(ipPacket.SourceAddress != P2PNet.PeerNetwork.PublicIPV6Address))
                             {
                                 LogPacketDetails(ipPacket, icmpPacket);
                             }

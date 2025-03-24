@@ -48,7 +48,8 @@ namespace Testing
             // Boot discovery channels
             StartBroadcastingLAN();
 
-            // Assert that the public IP addresses are not null
+            // Assert that the local IP addresses are not null
+            Xunit.Assert.NotNull(LocalIPV4Address);
             Xunit.Assert.NotNull(PublicIPV4Address);
             Xunit.Assert.NotNull(PublicIPV6Address);
 

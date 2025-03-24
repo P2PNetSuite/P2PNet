@@ -62,7 +62,7 @@ namespace P2PNet.DicoveryChannels.WAN
                 throw new InitialAuthorityLockedException("First and locking authority is already set. Cannot open additional bootstrap channel.");
             }
 
-            var idPacket = new IdentifierPacket("discovery", PeerNetwork.ListeningPort, PeerNetwork.PublicIPV4Address);
+            var idPacket = new IdentifierPacket("discovery", PeerNetwork.ListeningPort, PeerNetwork.PublicIPV6Address == null ? PeerNetwork.PublicIPV4Address : PeerNetwork.PublicIPV6Address);
             string idPacketJson = Serialize(idPacket);
 
             // wrap the IdentifierPacker in a DataTransmissionPacket

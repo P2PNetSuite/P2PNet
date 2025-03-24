@@ -10,6 +10,7 @@ namespace ExampleApplication
     internal class Program
     {
         static List<int> targerPorts;
+        static bool broadcastPortProvided = false;
         static void Main(string[] args)
         {
 
@@ -18,12 +19,14 @@ namespace ExampleApplication
                 targerPorts = args.ToArray().Select(x => int.Parse(x)).ToList();
                 PeerNetwork.DesignatedPorts = targerPorts;
                 PeerNetwork.BroadcasterPort = targerPorts[0]; // we'll chain these together
+                broadcastPortProvided = true;
             } else if (Environment.GetEnvironmentVariables(EnvironmentVariableTarget.Process).Contains("BROADCASTPORT"))
             {
                 if (int.TryParse(Environment.GetEnvironmentVariable("BROADCASTPORT"), out int port))
                 {
                     Console.WriteLine($"Using environment variable for broadcast port: {port}");
                     PeerNetwork.BroadcasterPort = port;
+                    broadcastPortProvided = true;
                 }
             }
 
@@ -37,10 +40,17 @@ namespace ExampleApplication
             PeerNetwork.IncomingPeerConnectionAttempt += NewPeerChannel;
 
             PeerNetwork.BeginAcceptingInboundPeers();
-            PeerNetwork.StartBroadcastingLAN(false);
+            if (broadcastPortProvided == true)
+            {
+                PeerNetwork.StartBroadcastingLAN(false);
+            }
+            else
+            {
+                PeerNetwork.StartBroadcastingLAN(true);
+            }
 
             Console.WriteLine("Hello, p2p world!");
-            Console.WriteLine($"Listening port: {ListeningPort}, local IP: {PublicIPV4Address}");
+            Console.WriteLine($"Listening port: {ListeningPort}, local IP: {LocalIPV4Address}");
             Console.WriteLine($"Broadcasting on port: {PeerNetwork.BroadcasterPort}");
             Task.Run(() => { WaitForPeers(); });
             while (true)

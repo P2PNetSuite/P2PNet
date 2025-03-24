@@ -1,55 +1,67 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0" version="26.0.16">
-  <diagram name="Page-1" id="UxxddDOxbtOHlwxeoN-J">
-    <mxGraphModel dx="914" dy="1449" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0" version="26.1.1">
+  <diagram name="Page-1" id="BpE3_lpSMCLxKBNczJT9">
+    <mxGraphModel dx="680" dy="1735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-17" value="Bootstrap" style="swimlane;fillColor=#647687;strokeColor=#314354;labelBackgroundColor=none;startSize=23;fontColor=#ffffff;swimlaneFillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="100" y="-10" width="790" height="490" as="geometry" />
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-1" value="Bootstrap" style="swimlane;fillColor=#647687;strokeColor=#314354;labelBackgroundColor=none;startSize=23;fontColor=#ffffff;swimlaneFillColor=default;" vertex="1" parent="1">
+          <mxGeometry x="100" y="-10" width="540" height="620" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-2" value="Endpoints" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;horizontal=1;startSize=20;horizontalStack=0;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="w9wIN5AZh1zGM-yqhCPk-17" vertex="1">
-          <mxGeometry x="20" y="210" width="490" height="260" as="geometry" />
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-2" value="Endpoints" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;horizontal=1;startSize=20;horizontalStack=0;html=1;fillColor=#d5e8d4;strokeColor=#000000;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-1">
+          <mxGeometry x="20" y="210" width="490" height="380" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-3" value="&amp;nbsp;GetPeers" style="swimlane;startSize=20;horizontal=0;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-2" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-3" value="&amp;nbsp;GetPeers" style="swimlane;startSize=20;horizontal=0;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-2">
           <mxGeometry y="20" width="490" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-4" value="" style="swimlane;childLayout=stackLayout;horizontal=1;fillColor=none;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;strokeColor=none;stackBorder=10;stackSpacing=-12;resizable=1;align=center;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-3" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-4" value="" style="swimlane;childLayout=stackLayout;horizontal=1;fillColor=none;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;strokeColor=none;stackBorder=10;stackSpacing=-12;resizable=1;align=center;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-3">
           <mxGeometry x="20" width="450" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-5" value="&lt;div&gt;Inbound Peer GET&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-4" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-5" value="&lt;div&gt;Inbound Peer PUT&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-4">
           <mxGeometry x="10" y="33" width="150" height="77" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-6" value="&lt;div&gt;GET gives Identifying&lt;/div&gt;&lt;div&gt;information, which&lt;/div&gt;&lt;div&gt;is stored in network&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-4" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-6" value="&lt;div&gt;PUT gives Identifying&lt;/div&gt;&lt;div&gt;information, which&lt;/div&gt;&lt;div&gt;is stored in network&lt;/div&gt;&lt;div&gt;as new peer&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-4">
           <mxGeometry x="148" y="33" width="152" height="77" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-7" value="&lt;div&gt;Returns information&lt;/div&gt;&lt;div&gt;for connecting to&lt;/div&gt;&lt;div&gt;other peers on network&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-4" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-7" value="&lt;div&gt;Returns information&lt;/div&gt;&lt;div&gt;for connecting to&lt;/div&gt;&lt;div&gt;other peers on network&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-4">
           <mxGeometry x="288" y="33" width="152" height="77" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-8" value="&amp;nbsp;Heartbeart" style="swimlane;startSize=20;horizontal=0;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-2" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-8" value="&amp;nbsp;Heartbeart" style="swimlane;startSize=20;horizontal=0;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-2">
           <mxGeometry y="140" width="490" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-9" value="" style="swimlane;childLayout=stackLayout;horizontal=1;fillColor=none;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;strokeColor=none;stackBorder=10;stackSpacing=-12;resizable=1;align=center;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-8" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-9" value="" style="swimlane;childLayout=stackLayout;horizontal=1;fillColor=none;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;strokeColor=none;stackBorder=10;stackSpacing=-12;resizable=1;align=center;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-8">
           <mxGeometry x="29" width="310" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-10" value="Inbound Peer PUT" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-9" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-10" value="Inbound Peer PUT" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-9">
           <mxGeometry x="10" y="33" width="150" height="77" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-11" value="&lt;div&gt;Updates most recent&lt;/div&gt;&lt;div&gt;DateTime of the&lt;/div&gt;&lt;div&gt;hearbeat for the &lt;br&gt;&lt;/div&gt;&lt;div&gt;specified peer.&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-9" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-11" value="&lt;div&gt;Updates most recent&lt;/div&gt;&lt;div&gt;DateTime of the&lt;/div&gt;&lt;div&gt;hearbeat for the &lt;br&gt;&lt;/div&gt;&lt;div&gt;specified peer.&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-9">
           <mxGeometry x="148" y="33" width="152" height="77" as="geometry" />
         </mxCell>
-        <mxCell id="2XsZ3-2RcNuuZB7fnExw-2" value="&lt;div&gt;Most current network&lt;/div&gt;&lt;div&gt;information is &lt;br&gt;&lt;/div&gt;&lt;div&gt;returned to peer&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="w9wIN5AZh1zGM-yqhCPk-8">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-12" value="&lt;div&gt;Most current network&lt;/div&gt;&lt;div&gt;information is &lt;br&gt;&lt;/div&gt;&lt;div&gt;returned to peer&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-8">
           <mxGeometry x="320" y="33" width="152" height="77" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-13" value="Startup" style="swimlane;childLayout=stackLayout;horizontal=1;fillColor=none;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;strokeColor=none;stackBorder=10;stackSpacing=-12;resizable=1;align=center;points=[];whiteSpace=wrap;html=1;startSize=23;" parent="w9wIN5AZh1zGM-yqhCPk-17" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-17" value="&lt;div&gt;VerifyHash&lt;/div&gt;" style="swimlane;startSize=20;horizontal=0;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-2">
+          <mxGeometry y="260" width="490" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-18" value="Inbound Peer PUT" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-17">
+          <mxGeometry x="39" y="30" width="150" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-19" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Cross checks provided&lt;/div&gt;&lt;div&gt;hash with DB table&lt;/div&gt;&lt;div&gt;`SigningHistory` to&lt;/div&gt;&lt;div&gt;verify existence of entry&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-17">
+          <mxGeometry x="177" y="30" width="152" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-20" value="&lt;div&gt;Returns&amp;nbsp;&lt;/div&gt;&lt;div&gt;yes/no response&amp;nbsp;&lt;/div&gt;&lt;div&gt;for existence&lt;/div&gt;&lt;div&gt;of the hash&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-17">
+          <mxGeometry x="320" y="30" width="152" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-13" value="Startup" style="swimlane;childLayout=stackLayout;horizontal=1;fillColor=none;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;strokeColor=none;stackBorder=10;stackSpacing=-12;resizable=1;align=center;points=[];whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-1">
           <mxGeometry x="18" y="60" width="510" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-14" value="Server&amp;nbsp; is started" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-13" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-14" value="Server&amp;nbsp; is started" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-13">
           <mxGeometry x="10" y="33" width="170" height="77" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-15" value="&lt;div&gt;Administrative page is&lt;/div&gt;&lt;div&gt;served at */index.html&lt;br&gt; &lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-13" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-15" value="&lt;div&gt;Administrative page is&lt;/div&gt;&lt;div&gt;served at */index.html&lt;br&gt; &lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-13">
           <mxGeometry x="168" y="33" width="172" height="77" as="geometry" />
         </mxCell>
-        <mxCell id="w9wIN5AZh1zGM-yqhCPk-16" value="&lt;div&gt;REST API endpoints are&lt;/div&gt;&lt;div&gt;served&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" parent="w9wIN5AZh1zGM-yqhCPk-13" vertex="1">
+        <mxCell id="4eRXQI7TkmCaAus5UfjQ-16" value="&lt;div&gt;REST API endpoints are&lt;/div&gt;&lt;div&gt;served&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="4eRXQI7TkmCaAus5UfjQ-13">
           <mxGeometry x="328" y="33" width="172" height="77" as="geometry" />
         </mxCell>
       </root>

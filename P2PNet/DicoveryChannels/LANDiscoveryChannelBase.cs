@@ -60,7 +60,7 @@ namespace P2PNet.DicoveryChannels
 
         public static Queue<int> dutypackets = new Queue<int>();
         internal static Random randomizer = new Random();
-        public readonly IdentifierPacket packet_ = new IdentifierPacket("discovery", ListeningPort, PeerNetwork.PublicIPV4Address);
+        public readonly IdentifierPacket packet_ = new IdentifierPacket("discovery", ListeningPort, PeerNetwork.LocalIPV4Address);
         public static CollectionSharePacket collectionpacket_;
 
         public static IPEndPoint listenerendpoint;

@@ -10,6 +10,7 @@ using SharpPcap.LibPcap;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace P2PNet
 {
@@ -40,9 +41,14 @@ namespace P2PNet
         public static int BroadcasterPort { get; set; } = 0;
 
         /// <summary>
+        /// Gets the local IPv4 IP address.
+        /// </summary>
+        public static IPAddress LocalIPV4Address { get; private set; } = null;
+
+        /// <summary>
         /// Gets the public IPv4 IP address.
         /// </summary>
-        public static IPAddress PublicIPV4Address;
+        public static IPAddress PublicIPV4Address { get; private set; } = null;
 
         /// <summary>
         /// Gets the public IPv6 IP address.
@@ -360,7 +366,7 @@ namespace P2PNet
             //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
                 return;
             }
-            else if (peer.IP.ToString() == PublicIPV4Address.ToString() && peer.Port == ListeningPort)
+            else if (peer.IP.ToString() == LocalIPV4Address.ToString() && peer.Port == ListeningPort)
             {
             //    DebugMessage("Listener broadcast to itself.");
                 return;
@@ -510,19 +516,27 @@ namespace P2PNet
         public static void LoadLocalAddresses()
         {
             localAddressesLoaded = true; // tell the application that we have loaded the local information
+            // get public ipv6 address
             PublicIPV6Address = GetLocalIPv6Address();
             if (PublicIPV6Address != null)
             {
                 IPv6AddressFound = true; // this will signal to us later if IPv6 is usable or not
-
                 DebugMessage($"IPv6 IP address: {PublicIPV6Address.ToString()}");
-
             }
             else
             {
 
                 DebugMessage("IPv6 IP address not found. IPv6 features will not be available.", MessageType.Warning);
-
+            }
+            // get public ipv4 address
+            PublicIPV4Address = GetPublicIPv4Address();
+            if (PublicIPV4Address != null)
+            {
+                DebugMessage($"Public-facing IPv4 address: {PublicIPV4Address}");
+            }
+            else
+            {
+                DebugMessage("Failed to fetch public-facing IPv4 address.", MessageType.Warning);
             }
 
             // Get the first available network interface
@@ -557,7 +571,7 @@ namespace P2PNet
 
                 foreach (IPAddress ip in ipv4Addresses)
                 {
-                    PublicIPV4Address = ip; // grab public IP, typically the last/only one is true
+                    LocalIPV4Address = ip; // grab public IP, typically the last/only one is true
                     MAC = primaryInterface.GetPhysicalAddress();
                 }
             }
@@ -597,6 +611,25 @@ namespace P2PNet
             }
             // Ensure there's no duplicates
             multicast_addresses = multicast_addresses.Distinct().ToList();
+        }
+        private static IPAddress GetPublicIPv4Address()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string ipString = client.GetStringAsync("https://api.ipify.org").Result;
+                    if (IPAddress.TryParse(ipString, out IPAddress publicIP))
+                    {
+                        return publicIP;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DebugMessage($"Error fetching public IP address: {ex.Message}", MessageType.Warning);
+            }
+            return null;
         }
 
 
@@ -984,7 +1017,7 @@ namespace P2PNet
                             // we have established trust, but peer is still waiting for pings
                             PureMessagePacket pingMessage = new PureMessagePacket
                             {
-                                Message = $"Ping from {PeerNetwork.PublicIPV4Address}"
+                                Message = $"Ping from {PeerNetwork.LocalIPV4Address}"
                             };
                             string outgoing = Serialize(pingMessage);
                             WrapPacket(PacketType.PureMessage, ref outgoing);
@@ -1021,7 +1054,7 @@ namespace P2PNet
                     {
                         PureMessagePacket pingMessage = new PureMessagePacket
                         {
-                            Message = $"Ping from {PeerNetwork.PublicIPV4Address}"
+                            Message = $"Ping from {PeerNetwork.LocalIPV4Address}"
                         };
                         string outgoing = Serialize(pingMessage);
                         WrapPacket(PacketType.PureMessage, ref outgoing);

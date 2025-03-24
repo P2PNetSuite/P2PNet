@@ -4741,6 +4741,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.LocalAreaNetworkManagement.LANIdentifierPreference
   nameWithType: PeerNetwork.LocalAreaNetworkManagement.LANIdentifierPreference
+- uid: P2PNet.PeerNetwork.LocalIPV4Address
+  name: LocalIPV4Address
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_LocalIPV4Address
+  commentId: P:P2PNet.PeerNetwork.LocalIPV4Address
+  fullName: P2PNet.PeerNetwork.LocalIPV4Address
+  nameWithType: PeerNetwork.LocalIPV4Address
+- uid: P2PNet.PeerNetwork.LocalIPV4Address*
+  name: LocalIPV4Address
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_LocalIPV4Address_
+  commentId: Overload:P2PNet.PeerNetwork.LocalIPV4Address
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.LocalIPV4Address
+  nameWithType: PeerNetwork.LocalIPV4Address
 - uid: P2PNet.PeerNetwork.MAC
   name: MAC
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_MAC
@@ -4826,7 +4839,14 @@ references:
 - uid: P2PNet.PeerNetwork.PublicIPV4Address
   name: PublicIPV4Address
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_PublicIPV4Address
-  commentId: F:P2PNet.PeerNetwork.PublicIPV4Address
+  commentId: P:P2PNet.PeerNetwork.PublicIPV4Address
+  fullName: P2PNet.PeerNetwork.PublicIPV4Address
+  nameWithType: PeerNetwork.PublicIPV4Address
+- uid: P2PNet.PeerNetwork.PublicIPV4Address*
+  name: PublicIPV4Address
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_PublicIPV4Address_
+  commentId: Overload:P2PNet.PeerNetwork.PublicIPV4Address
+  isSpec: "True"
   fullName: P2PNet.PeerNetwork.PublicIPV4Address
   nameWithType: PeerNetwork.PublicIPV4Address
 - uid: P2PNet.PeerNetwork.PublicIPV6Address

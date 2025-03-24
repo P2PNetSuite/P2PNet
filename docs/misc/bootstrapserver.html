@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/blob/docs/misc/bootstrapserver.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/blob/master/misc/bootstrapserver.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -93,26 +93,68 @@
 <hr>
 <p>The <code>P2PBootstrap</code> project initializes by setting up the necessary configurations and services required for the bootstrap server to operate. The main entry point is the <code>Program.cs</code> file, which configures the application and starts the web server.</p>
 <ol>
-<li><strong>Configuration</strong>: The application reads configuration settings from the <code>appsettings.json</code> file. This includes settings for encryption keys, database paths, and other essential configurations.</li>
-<li><strong>Logging</strong>: Logging is configured to use a plain text format and is activated to capture important events and errors.</li>
+<li><strong>Configuration</strong>: The application reads configuration settings from the <code>appsettings.json</code> file. This includes settings for encryption key directory, primary key names, database path, and other essential configurations. In order to ease the deployment process for containerized instances, all configuration settings in the configuration file <code>appsettings.json</code> have an environmental variable equivalent that can be used. In order to tell the application to use these, the environmental variable <code>CONTAINERIZED_ENVIRONMENT</code> must be set to to <code>true</code>. In the table below, you can see each configuration key alongside its corresponding environment variable name and a brief description of its purpose.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>AppSettings Key</th>
+<th>Environment Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configuration:KeysDirectory</td>
+<td>KEYS_DIRECTORY</td>
+<td>Specifies the directory where encryption keys are stored.</td>
+</tr>
+<tr>
+<td>Configuration:BootstrapMode</td>
+<td>BOOTSTRAP_MODE</td>
+<td>Determines whether the bootstrap server runs in Authority or Trustless mode.</td>
+</tr>
+<tr>
+<td>Configuration:AuthorityKey:PublicKey</td>
+<td>PUBLIC_KEY_PATH</td>
+<td>The filename (or path, relative to the base directory) for the public key used by the bootstrap server.</td>
+</tr>
+<tr>
+<td>Configuration:AuthorityKey:PrivateKey</td>
+<td>PRIVATE_KEY_PATH</td>
+<td>The filename (or path) for the private key used by the bootstrap server.</td>
+</tr>
+<tr>
+<td>Configuration:NetworkName</td>
+<td>NETWORK_NAME</td>
+<td>The identifier for the P2P network, used to distinguish this network from others.</td>
+</tr>
+<tr>
+<td>Database:DbFileName</td>
+<td>DB_FILENAME</td>
+<td>The filename for the local database file storing bootstrap server data.</td>
+</tr>
+</tbody>
+</table>
+<p>When running in a containerized environment, the configuration management first attempts to retrieve these values from their respective environment variables (e.g., &quot;KEYS_DIRECTORY&quot; for the keys folder). If an environment variable isn't set, it falls back to the values specified in appsettings.json. This design allows for flexible configuration management during deployment, especially in environments like Docker containers where runtime settings might differ from development.</p>
+<p>This side-by-side mapping ensures that you can maintain consistent configuration across different deployment scenarios with minimal code changes.</p>
+<ol start="2">
+<li><strong>Logging</strong>: Logging is handled using the <code>ConsoleDebugger</code> package.</li>
 <li><strong>Web Server Setup</strong>: The application uses ASP.NET Core to set up the web server. It configures the HTTP request pipeline, enabling default files, static files, and routing. This is an AOT compatible application, as is most of the P2PNet library.</li>
 </ol>
 <h3 id="operation">Operation</h3>
 <hr>
 <p>The <code>P2PBootstrap</code> project operates by providing several key functionalities:</p>
 <ol>
-<li><p><strong>Peer Distribution</strong>: The bootstrap server provides an HTTP endpoint (<code>/api/Bootstrap/peers</code>) to distribute the list of known peers to new peers joining the network. This endpoint can operate in two modes:</p>
+<li><strong>Peer Distribution</strong>: The bootstrap server provides an HTTP endpoint (<code>/api/Bootstrap/peers</code>) to distribute the list of known peers to new peers joining the network. This endpoint can operate in two modes:
 <ul>
 <li><strong>Trustless Mode</strong>: Returns the list of known peers directly.</li>
 <li><strong>Authority Mode</strong>: Requires the client to receive and store a public key from the bootstrap server before returning the peer list.</li>
 </ul>
 </li>
-<li><p><strong>Parser Integration</strong>: The server integrates with a parser to handle input and output operations. It provides endpoints to get parser output (<code>/api/parser/output</code>) and to submit parser input (<code>/api/parser/input</code>).</p>
-</li>
-<li><p><strong>Encryption Service</strong>: The server initializes an encryption service to handle secure communication. This includes generating and loading PGP keys from the specified directory.</p>
-</li>
-<li><p><strong>Database Initialization</strong>: The server initializes a local database to store necessary data. It ensures the database directory exists and sets up the required files.</p>
-</li>
+<li><strong>Admin Terminal Integration</strong>: The server integrates an admin terminal to easily execute commands.</li>
+<li><strong>Encryption Service</strong>: The server initializes an encryption service to handle secure communication. This includes generating and loading PGP keys, generating new keys, clear signing messages, generating hashes of objects, and more.</li>
+<li><strong>Database Initialization</strong>: The server initializes a local database to store necessary data. It ensures the database directory exists and sets up the required files.</li>
 </ol>
 <h3 id="user-control-panel">User Control Panel</h3>
 <hr>
@@ -122,12 +164,12 @@
 <li><strong>Settings</strong>: Allows users to modify server settings, such as encryption keys and database paths.</li>
 <li><strong>Peers</strong>: Displays the list of known peers and provides options to perform actions on them, such as disconnecting or blocking peers.</li>
 </ol>
-<h3 id="diagrams">Diagrams</h3>
+<h3 id="overview">Overview</h3>
 <hr>
 <p>To supplement the information visually, the following diagrams are provided:</p>
 <ol>
-<li><strong>Bootstrap Server Architecture</strong>: Shows the overall architecture of the bootstrap server, including its interaction with the P2P network and the user control panel.</li>
-<li><strong>Peer Distribution Flow</strong>: Illustrates the flow of peer distribution, from a new peer requesting the peer list to the server returning the list based on the configured trust policy.</li>
+<li><strong>Bootstrap Server Architecture</strong>: Shows a broad architecture of the bootstrap server.</li>
+<li><strong>Endpoints</strong>: Illustrates the flow of endpoints, from initial request to response.</li>
 </ol>
 <p>
     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/Bootstrap.png" width="500" height="325" alt="bootstrap chart">
