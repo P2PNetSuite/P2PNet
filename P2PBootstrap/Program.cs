@@ -184,18 +184,7 @@ namespace P2PBootstrap
             });
 
             if(GlobalConfig.ServePublicIP() == true)
-            {
-                var forwardedOptions = new ForwardedHeadersOptions
-                {
-                    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-                };
-            
-                // Accept forwarded headers from any proxy
-                forwardedOptions.KnownNetworks.Clear();
-                forwardedOptions.KnownProxies.Clear();
-                
-                app.UseForwardedHeaders(forwardedOptions);
-                
+            {                
                 app.MapGet("/api/Bootstrap/publicip", async (HttpContext context) =>
                 {
                     string ip = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
