@@ -187,6 +187,21 @@ namespace P2PBootstrap
             {                
                 app.MapGet("/api/Bootstrap/publicip", async (HttpContext context) =>
                 {
+                    var headerInfo = context.Request.Headers.Select(header =>
+                    {
+                        // Try parsing the complete header value; note that some headers (like X-Forwarded-For)
+                        // may contain multiple comma-separated IPs, so this is a basic example.
+                        bool parsed = IPAddress.TryParse(header.Value.ToString(), out IPAddress ip);
+                        return new 
+                        {
+                            Header = header.Key,
+                            Value = header.Value.ToString(),
+                            ParsedIP = parsed ? ip.ToString() : "Not an IP"
+                        };
+                    });
+                    return Results.Json(headerInfo);
+
+                    
                     string ip = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
                     return Results.Text(ip, "text/plain");
                 });
