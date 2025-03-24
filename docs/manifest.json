@@ -12,26 +12,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "P2PBootstrap/bin/Debug/net9.0/wwwroot/node_modules/xterm/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "P2PBootstrap/bin/Debug/net9.0/wwwroot/node_modules/xterm/README.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "P2PBootstrap/bin/Debug/net9.0/wwwroot/node_modules/xterm/src/browser/renderer/shared/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "P2PBootstrap/bin/Debug/net9.0/wwwroot/node_modules/xterm/src/browser/renderer/shared/README.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "P2PBootstrap/bin/Release/net9.0/wwwroot/node_modules/xterm/README.md",
       "output": {
         ".html": {
@@ -396,6 +376,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/P2PBootstrap.Database.Tables.Table_SigningHistory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PBootstrap.Database.Tables.Table_SigningHistory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PBootstrap.Database.Tables.Table_SigningHistory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/P2PBootstrap.Database.Tables.yml",
       "output": {
         ".html": {
@@ -606,6 +600,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions",
+      "Summary": "<p sourcefile=\"api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.yml\" sourcestartlinenumber=\"1\">Represents the configuration options for establishing a connection to a bootstrap server.\nThe bootstrap server is used for peer discovery and identity establishment within the network.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/P2PNet.DicoveryChannels.WAN.BootstrapPeer.yml",
       "output": {
         ".html": {
@@ -760,6 +768,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.EncryptionAndSecurityHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.EncryptionAndSecurityHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.EncryptionAndSecurityHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/P2PNet.Distribution.GenericPeerContext.yml",
       "output": {
         ".html": {
@@ -844,6 +866,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.NetworkTaskHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.NetworkTaskHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.NetworkTaskHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/P2PNet.Distribution.NetworkTasks.NetworkTask.yml",
       "output": {
         ".html": {
@@ -914,6 +950,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.PGPKeyInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.PGPKeyInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.PGPKeyInfo",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/P2PNet.Distribution.PureMessagePacketContext.yml",
       "output": {
         ".html": {
@@ -938,6 +988,48 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.Distribution",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Exceptions.InitialAuthorityLockedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Exceptions.InitialAuthorityLockedException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Exceptions.InitialAuthorityLockedException",
+      "Summary": "<p sourcefile=\"api/P2PNet.Exceptions.InitialAuthorityLockedException.yml\" sourcestartlinenumber=\"1\">Represents an exception thrown when the initial bootstrap authority is locked in and another action conflicts with the initial locked in authority.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Exceptions.TrustPolicyConflictException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Exceptions.TrustPolicyConflictException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Exceptions.TrustPolicyConflictException",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Exceptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Exceptions",
       "Summary": null
     },
     {
@@ -1148,6 +1240,104 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.PeerNetwork.NewPeerEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy",
+      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.yml\" sourcestartlinenumber=\"1\">Handles trust and permissions in regards to bootstrap connections.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode",
+      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.yml\" sourcestartlinenumber=\"1\">Values for <xref href=\"P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement\" data-throw-if-not-resolved=\"false\"></xref></p>\n<ul><li><span class=\"term\">QueueBased</span>The inbound peer will be directed to the inbound peer queue.</li><li><span class=\"term\">EventBased</span>An event is triggered and the peer is passed to the event args.</li><li><span class=\"term\">QueueAndEventBased</span>The peer is directed to the inbound peer queue, and an event is triggered where the peer is passed to the event args.</li></ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy",
+      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.yml\" sourcestartlinenumber=\"1\">Handles trust and permissions in regards to incoming peer connections.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes",
+      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.yml\" sourcestartlinenumber=\"1\">Specifies the policy for initializing and managing the identifier of a peer member in the P2P network.\nThis policy determines whether the identifier can be set locally, remotely, or both, and whether it can be changed after initial assignment.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.PeerNetwork.TrustPolicies",
       "Summary": null
     },
     {

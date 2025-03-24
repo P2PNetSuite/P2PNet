@@ -508,6 +508,19 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.Database.DatabaseService.LogsCLI_table
   nameWithType: DatabaseService.LogsCLI_table
+- uid: P2PBootstrap.Database.DatabaseService.SigningHistory_table
+  name: SigningHistory_table
+  href: api/P2PBootstrap.Database.DatabaseService.html#P2PBootstrap_Database_DatabaseService_SigningHistory_table
+  commentId: P:P2PBootstrap.Database.DatabaseService.SigningHistory_table
+  fullName: P2PBootstrap.Database.DatabaseService.SigningHistory_table
+  nameWithType: DatabaseService.SigningHistory_table
+- uid: P2PBootstrap.Database.DatabaseService.SigningHistory_table*
+  name: SigningHistory_table
+  href: api/P2PBootstrap.Database.DatabaseService.html#P2PBootstrap_Database_DatabaseService_SigningHistory_table_
+  commentId: Overload:P2PBootstrap.Database.DatabaseService.SigningHistory_table
+  isSpec: "True"
+  fullName: P2PBootstrap.Database.DatabaseService.SigningHistory_table
+  nameWithType: DatabaseService.SigningHistory_table
 - uid: P2PBootstrap.Database.DatabaseService.UpdateMostRecentLogProcessed(System.Boolean)
   name: UpdateMostRecentLogProcessed(bool)
   href: api/P2PBootstrap.Database.DatabaseService.html#P2PBootstrap_Database_DatabaseService_UpdateMostRecentLogProcessed_System_Boolean_
@@ -524,6 +537,22 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.Database.DatabaseService.UpdateMostRecentLogProcessed
   nameWithType: DatabaseService.UpdateMostRecentLogProcessed
+- uid: P2PBootstrap.Database.DatabaseService.VerifyHashRecord(System.String)
+  name: VerifyHashRecord(string)
+  href: api/P2PBootstrap.Database.DatabaseService.html#P2PBootstrap_Database_DatabaseService_VerifyHashRecord_System_String_
+  commentId: M:P2PBootstrap.Database.DatabaseService.VerifyHashRecord(System.String)
+  name.vb: VerifyHashRecord(String)
+  fullName: P2PBootstrap.Database.DatabaseService.VerifyHashRecord(string)
+  fullName.vb: P2PBootstrap.Database.DatabaseService.VerifyHashRecord(String)
+  nameWithType: DatabaseService.VerifyHashRecord(string)
+  nameWithType.vb: DatabaseService.VerifyHashRecord(String)
+- uid: P2PBootstrap.Database.DatabaseService.VerifyHashRecord*
+  name: VerifyHashRecord
+  href: api/P2PBootstrap.Database.DatabaseService.html#P2PBootstrap_Database_DatabaseService_VerifyHashRecord_
+  commentId: Overload:P2PBootstrap.Database.DatabaseService.VerifyHashRecord
+  isSpec: "True"
+  fullName: P2PBootstrap.Database.DatabaseService.VerifyHashRecord
+  nameWithType: DatabaseService.VerifyHashRecord
 - uid: P2PBootstrap.Database.Tables
   name: P2PBootstrap.Database.Tables
   href: api/P2PBootstrap.Database.Tables.html
@@ -580,6 +609,15 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.Database.Tables.TableBase.GetCreateTableCommand
   nameWithType: TableBase.GetCreateTableCommand
+- uid: P2PBootstrap.Database.Tables.TableBase.RunInsertCommand(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: RunInsertCommand(Dictionary<string, string>)
+  href: api/P2PBootstrap.Database.Tables.TableBase.html#P2PBootstrap_Database_Tables_TableBase_RunInsertCommand_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:P2PBootstrap.Database.Tables.TableBase.RunInsertCommand(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: RunInsertCommand(Dictionary(Of String, String))
+  fullName: P2PBootstrap.Database.Tables.TableBase.RunInsertCommand(System.Collections.Generic.Dictionary<string, string>)
+  fullName.vb: P2PBootstrap.Database.Tables.TableBase.RunInsertCommand(System.Collections.Generic.Dictionary(Of String, String))
+  nameWithType: TableBase.RunInsertCommand(Dictionary<string, string>)
+  nameWithType.vb: TableBase.RunInsertCommand(Dictionary(Of String, String))
 - uid: P2PBootstrap.Database.Tables.TableBase.RunInsertCommand(System.String,System.String)
   name: RunInsertCommand(string, string)
   href: api/P2PBootstrap.Database.Tables.TableBase.html#P2PBootstrap_Database_Tables_TableBase_RunInsertCommand_System_String_System_String_
@@ -1001,6 +1039,31 @@ references:
   fullName.vb: P2PBootstrap.Database.Tables.Table_LogsCLI.New
   nameWithType: Table_LogsCLI.Table_LogsCLI
   nameWithType.vb: Table_LogsCLI.New
+- uid: P2PBootstrap.Database.Tables.Table_SigningHistory
+  name: Table_SigningHistory
+  href: api/P2PBootstrap.Database.Tables.Table_SigningHistory.html
+  commentId: T:P2PBootstrap.Database.Tables.Table_SigningHistory
+  fullName: P2PBootstrap.Database.Tables.Table_SigningHistory
+  nameWithType: Table_SigningHistory
+- uid: P2PBootstrap.Database.Tables.Table_SigningHistory.#ctor
+  name: Table_SigningHistory()
+  href: api/P2PBootstrap.Database.Tables.Table_SigningHistory.html#P2PBootstrap_Database_Tables_Table_SigningHistory__ctor
+  commentId: M:P2PBootstrap.Database.Tables.Table_SigningHistory.#ctor
+  name.vb: New()
+  fullName: P2PBootstrap.Database.Tables.Table_SigningHistory.Table_SigningHistory()
+  fullName.vb: P2PBootstrap.Database.Tables.Table_SigningHistory.New()
+  nameWithType: Table_SigningHistory.Table_SigningHistory()
+  nameWithType.vb: Table_SigningHistory.New()
+- uid: P2PBootstrap.Database.Tables.Table_SigningHistory.#ctor*
+  name: Table_SigningHistory
+  href: api/P2PBootstrap.Database.Tables.Table_SigningHistory.html#P2PBootstrap_Database_Tables_Table_SigningHistory__ctor_
+  commentId: Overload:P2PBootstrap.Database.Tables.Table_SigningHistory.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PBootstrap.Database.Tables.Table_SigningHistory.Table_SigningHistory
+  fullName.vb: P2PBootstrap.Database.Tables.Table_SigningHistory.New
+  nameWithType: Table_SigningHistory.Table_SigningHistory
+  nameWithType.vb: Table_SigningHistory.New
 - uid: P2PBootstrap.Encryption
   name: P2PBootstrap.Encryption
   href: api/P2PBootstrap.Encryption.html
@@ -1042,6 +1105,22 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.Encryption.EncryptionService.Initialize
   nameWithType: EncryptionService.Initialize
+- uid: P2PBootstrap.Encryption.EncryptionService.SignOffOnNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask@)
+  name: SignOffOnNetworkTask(ref NetworkTask)
+  href: api/P2PBootstrap.Encryption.EncryptionService.html#P2PBootstrap_Encryption_EncryptionService_SignOffOnNetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTask__
+  commentId: M:P2PBootstrap.Encryption.EncryptionService.SignOffOnNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask@)
+  name.vb: SignOffOnNetworkTask(NetworkTask)
+  fullName: P2PBootstrap.Encryption.EncryptionService.SignOffOnNetworkTask(ref P2PNet.Distribution.NetworkTasks.NetworkTask)
+  fullName.vb: P2PBootstrap.Encryption.EncryptionService.SignOffOnNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  nameWithType: EncryptionService.SignOffOnNetworkTask(ref NetworkTask)
+  nameWithType.vb: EncryptionService.SignOffOnNetworkTask(NetworkTask)
+- uid: P2PBootstrap.Encryption.EncryptionService.SignOffOnNetworkTask*
+  name: SignOffOnNetworkTask
+  href: api/P2PBootstrap.Encryption.EncryptionService.html#P2PBootstrap_Encryption_EncryptionService_SignOffOnNetworkTask_
+  commentId: Overload:P2PBootstrap.Encryption.EncryptionService.SignOffOnNetworkTask
+  isSpec: "True"
+  fullName: P2PBootstrap.Encryption.EncryptionService.SignOffOnNetworkTask
+  nameWithType: EncryptionService.SignOffOnNetworkTask
 - uid: P2PBootstrap.Encryption.Pgp
   name: P2PBootstrap.Encryption.Pgp
   href: api/P2PBootstrap.Encryption.Pgp.html
@@ -1095,13 +1174,13 @@ references:
   fullName.vb: P2PBootstrap.Encryption.Pgp.KeyPair.New()
   nameWithType: KeyPair.KeyPair()
   nameWithType.vb: KeyPair.New()
-- uid: P2PBootstrap.Encryption.Pgp.KeyPair.#ctor(P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo,P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo)
+- uid: P2PBootstrap.Encryption.Pgp.KeyPair.#ctor(P2PNet.Distribution.PGPKeyInfo,P2PNet.Distribution.PGPKeyInfo)
   name: KeyPair(PGPKeyInfo, PGPKeyInfo)
-  href: api/P2PBootstrap.Encryption.Pgp.KeyPair.html#P2PBootstrap_Encryption_Pgp_KeyPair__ctor_P2PBootstrap_Encryption_Pgp_Keys_PGPKeyInfo_P2PBootstrap_Encryption_Pgp_Keys_PGPKeyInfo_
-  commentId: M:P2PBootstrap.Encryption.Pgp.KeyPair.#ctor(P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo,P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo)
+  href: api/P2PBootstrap.Encryption.Pgp.KeyPair.html#P2PBootstrap_Encryption_Pgp_KeyPair__ctor_P2PNet_Distribution_PGPKeyInfo_P2PNet_Distribution_PGPKeyInfo_
+  commentId: M:P2PBootstrap.Encryption.Pgp.KeyPair.#ctor(P2PNet.Distribution.PGPKeyInfo,P2PNet.Distribution.PGPKeyInfo)
   name.vb: New(PGPKeyInfo, PGPKeyInfo)
-  fullName: P2PBootstrap.Encryption.Pgp.KeyPair.KeyPair(P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo, P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo)
-  fullName.vb: P2PBootstrap.Encryption.Pgp.KeyPair.New(P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo, P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo)
+  fullName: P2PBootstrap.Encryption.Pgp.KeyPair.KeyPair(P2PNet.Distribution.PGPKeyInfo, P2PNet.Distribution.PGPKeyInfo)
+  fullName.vb: P2PBootstrap.Encryption.Pgp.KeyPair.New(P2PNet.Distribution.PGPKeyInfo, P2PNet.Distribution.PGPKeyInfo)
   nameWithType: KeyPair.KeyPair(PGPKeyInfo, PGPKeyInfo)
   nameWithType.vb: KeyPair.New(PGPKeyInfo, PGPKeyInfo)
 - uid: P2PBootstrap.Encryption.Pgp.KeyPair.#ctor*
@@ -1274,6 +1353,19 @@ references:
   commentId: T:P2PBootstrap.Encryption.Pgp.PgpService
   fullName: P2PBootstrap.Encryption.Pgp.PgpService
   nameWithType: PgpService
+- uid: P2PBootstrap.Encryption.Pgp.PgpService.AllKeysList
+  name: AllKeysList
+  href: api/P2PBootstrap.Encryption.Pgp.PgpService.html#P2PBootstrap_Encryption_Pgp_PgpService_AllKeysList
+  commentId: P:P2PBootstrap.Encryption.Pgp.PgpService.AllKeysList
+  fullName: P2PBootstrap.Encryption.Pgp.PgpService.AllKeysList
+  nameWithType: PgpService.AllKeysList
+- uid: P2PBootstrap.Encryption.Pgp.PgpService.AllKeysList*
+  name: AllKeysList
+  href: api/P2PBootstrap.Encryption.Pgp.PgpService.html#P2PBootstrap_Encryption_Pgp_PgpService_AllKeysList_
+  commentId: Overload:P2PBootstrap.Encryption.Pgp.PgpService.AllKeysList
+  isSpec: "True"
+  fullName: P2PBootstrap.Encryption.Pgp.PgpService.AllKeysList
+  nameWithType: PgpService.AllKeysList
 - uid: P2PBootstrap.Encryption.Pgp.PgpService.ClearSignString(System.String@)
   name: ClearSignString(ref string)
   href: api/P2PBootstrap.Encryption.Pgp.PgpService.html#P2PBootstrap_Encryption_Pgp_PgpService_ClearSignString_System_String__
@@ -1290,6 +1382,19 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.Encryption.Pgp.PgpService.ClearSignString
   nameWithType: PgpService.ClearSignString
+- uid: P2PBootstrap.Encryption.Pgp.PgpService.CurrentPGPPassphrase
+  name: CurrentPGPPassphrase
+  href: api/P2PBootstrap.Encryption.Pgp.PgpService.html#P2PBootstrap_Encryption_Pgp_PgpService_CurrentPGPPassphrase
+  commentId: P:P2PBootstrap.Encryption.Pgp.PgpService.CurrentPGPPassphrase
+  fullName: P2PBootstrap.Encryption.Pgp.PgpService.CurrentPGPPassphrase
+  nameWithType: PgpService.CurrentPGPPassphrase
+- uid: P2PBootstrap.Encryption.Pgp.PgpService.CurrentPGPPassphrase*
+  name: CurrentPGPPassphrase
+  href: api/P2PBootstrap.Encryption.Pgp.PgpService.html#P2PBootstrap_Encryption_Pgp_PgpService_CurrentPGPPassphrase_
+  commentId: Overload:P2PBootstrap.Encryption.Pgp.PgpService.CurrentPGPPassphrase
+  isSpec: "True"
+  fullName: P2PBootstrap.Encryption.Pgp.PgpService.CurrentPGPPassphrase
+  nameWithType: PgpService.CurrentPGPPassphrase
 - uid: P2PBootstrap.Encryption.Pgp.PgpService.GeneratePGPKeyPair(System.String,System.String@,System.String,System.String)
   name: GeneratePGPKeyPair(string, out string, string, string)
   href: api/P2PBootstrap.Encryption.Pgp.PgpService.html#P2PBootstrap_Encryption_Pgp_PgpService_GeneratePGPKeyPair_System_String_System_String__System_String_System_String_
@@ -1332,6 +1437,22 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.Encryption.Pgp.PgpService.LoadPGPKeysFromDirectory
   nameWithType: PgpService.LoadPGPKeysFromDirectory
+- uid: P2PBootstrap.Encryption.Pgp.PgpService.SetPGPPassphrase(System.String)
+  name: SetPGPPassphrase(string)
+  href: api/P2PBootstrap.Encryption.Pgp.PgpService.html#P2PBootstrap_Encryption_Pgp_PgpService_SetPGPPassphrase_System_String_
+  commentId: M:P2PBootstrap.Encryption.Pgp.PgpService.SetPGPPassphrase(System.String)
+  name.vb: SetPGPPassphrase(String)
+  fullName: P2PBootstrap.Encryption.Pgp.PgpService.SetPGPPassphrase(string)
+  fullName.vb: P2PBootstrap.Encryption.Pgp.PgpService.SetPGPPassphrase(String)
+  nameWithType: PgpService.SetPGPPassphrase(string)
+  nameWithType.vb: PgpService.SetPGPPassphrase(String)
+- uid: P2PBootstrap.Encryption.Pgp.PgpService.SetPGPPassphrase*
+  name: SetPGPPassphrase
+  href: api/P2PBootstrap.Encryption.Pgp.PgpService.html#P2PBootstrap_Encryption_Pgp_PgpService_SetPGPPassphrase_
+  commentId: Overload:P2PBootstrap.Encryption.Pgp.PgpService.SetPGPPassphrase
+  isSpec: "True"
+  fullName: P2PBootstrap.Encryption.Pgp.PgpService.SetPGPPassphrase
+  nameWithType: PgpService.SetPGPPassphrase
 - uid: P2PBootstrap.GlobalConfig
   name: GlobalConfig
   href: api/P2PBootstrap.GlobalConfig.html
@@ -1357,12 +1478,90 @@ references:
   commentId: F:P2PBootstrap.GlobalConfig.AppSettings
   fullName: P2PBootstrap.GlobalConfig.AppSettings
   nameWithType: GlobalConfig.AppSettings
+- uid: P2PBootstrap.GlobalConfig.CheckContainerEnvironment
+  name: CheckContainerEnvironment()
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_CheckContainerEnvironment
+  commentId: M:P2PBootstrap.GlobalConfig.CheckContainerEnvironment
+  fullName: P2PBootstrap.GlobalConfig.CheckContainerEnvironment()
+  nameWithType: GlobalConfig.CheckContainerEnvironment()
+- uid: P2PBootstrap.GlobalConfig.CheckContainerEnvironment*
+  name: CheckContainerEnvironment
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_CheckContainerEnvironment_
+  commentId: Overload:P2PBootstrap.GlobalConfig.CheckContainerEnvironment
+  isSpec: "True"
+  fullName: P2PBootstrap.GlobalConfig.CheckContainerEnvironment
+  nameWithType: GlobalConfig.CheckContainerEnvironment
 - uid: P2PBootstrap.GlobalConfig.ConfigFile
   name: ConfigFile
   href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_ConfigFile
   commentId: F:P2PBootstrap.GlobalConfig.ConfigFile
   fullName: P2PBootstrap.GlobalConfig.ConfigFile
   nameWithType: GlobalConfig.ConfigFile
+- uid: P2PBootstrap.GlobalConfig.DbFileName
+  name: DbFileName()
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_DbFileName
+  commentId: M:P2PBootstrap.GlobalConfig.DbFileName
+  fullName: P2PBootstrap.GlobalConfig.DbFileName()
+  nameWithType: GlobalConfig.DbFileName()
+- uid: P2PBootstrap.GlobalConfig.DbFileName*
+  name: DbFileName
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_DbFileName_
+  commentId: Overload:P2PBootstrap.GlobalConfig.DbFileName
+  isSpec: "True"
+  fullName: P2PBootstrap.GlobalConfig.DbFileName
+  nameWithType: GlobalConfig.DbFileName
+- uid: P2PBootstrap.GlobalConfig.KeysDirectory
+  name: KeysDirectory()
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_KeysDirectory
+  commentId: M:P2PBootstrap.GlobalConfig.KeysDirectory
+  fullName: P2PBootstrap.GlobalConfig.KeysDirectory()
+  nameWithType: GlobalConfig.KeysDirectory()
+- uid: P2PBootstrap.GlobalConfig.KeysDirectory*
+  name: KeysDirectory
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_KeysDirectory_
+  commentId: Overload:P2PBootstrap.GlobalConfig.KeysDirectory
+  isSpec: "True"
+  fullName: P2PBootstrap.GlobalConfig.KeysDirectory
+  nameWithType: GlobalConfig.KeysDirectory
+- uid: P2PBootstrap.GlobalConfig.NetworkName
+  name: NetworkName()
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_NetworkName
+  commentId: M:P2PBootstrap.GlobalConfig.NetworkName
+  fullName: P2PBootstrap.GlobalConfig.NetworkName()
+  nameWithType: GlobalConfig.NetworkName()
+- uid: P2PBootstrap.GlobalConfig.NetworkName*
+  name: NetworkName
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_NetworkName_
+  commentId: Overload:P2PBootstrap.GlobalConfig.NetworkName
+  isSpec: "True"
+  fullName: P2PBootstrap.GlobalConfig.NetworkName
+  nameWithType: GlobalConfig.NetworkName
+- uid: P2PBootstrap.GlobalConfig.PrivateKeyPath
+  name: PrivateKeyPath()
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_PrivateKeyPath
+  commentId: M:P2PBootstrap.GlobalConfig.PrivateKeyPath
+  fullName: P2PBootstrap.GlobalConfig.PrivateKeyPath()
+  nameWithType: GlobalConfig.PrivateKeyPath()
+- uid: P2PBootstrap.GlobalConfig.PrivateKeyPath*
+  name: PrivateKeyPath
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_PrivateKeyPath_
+  commentId: Overload:P2PBootstrap.GlobalConfig.PrivateKeyPath
+  isSpec: "True"
+  fullName: P2PBootstrap.GlobalConfig.PrivateKeyPath
+  nameWithType: GlobalConfig.PrivateKeyPath
+- uid: P2PBootstrap.GlobalConfig.PublicKeyPath
+  name: PublicKeyPath()
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_PublicKeyPath
+  commentId: M:P2PBootstrap.GlobalConfig.PublicKeyPath
+  fullName: P2PBootstrap.GlobalConfig.PublicKeyPath()
+  nameWithType: GlobalConfig.PublicKeyPath()
+- uid: P2PBootstrap.GlobalConfig.PublicKeyPath*
+  name: PublicKeyPath
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_PublicKeyPath_
+  commentId: Overload:P2PBootstrap.GlobalConfig.PublicKeyPath
+  isSpec: "True"
+  fullName: P2PBootstrap.GlobalConfig.PublicKeyPath
+  nameWithType: GlobalConfig.PublicKeyPath
 - uid: P2PBootstrap.GlobalConfig.SetTargetKeys
   name: SetTargetKeys()
   href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_SetTargetKeys
@@ -1377,11 +1576,24 @@ references:
   fullName: P2PBootstrap.GlobalConfig.SetTargetKeys
   nameWithType: GlobalConfig.SetTargetKeys
 - uid: P2PBootstrap.GlobalConfig.TrustPolicy
-  name: TrustPolicy
+  name: TrustPolicy()
   href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_TrustPolicy
-  commentId: F:P2PBootstrap.GlobalConfig.TrustPolicy
+  commentId: M:P2PBootstrap.GlobalConfig.TrustPolicy
+  fullName: P2PBootstrap.GlobalConfig.TrustPolicy()
+  nameWithType: GlobalConfig.TrustPolicy()
+- uid: P2PBootstrap.GlobalConfig.TrustPolicy*
+  name: TrustPolicy
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_TrustPolicy_
+  commentId: Overload:P2PBootstrap.GlobalConfig.TrustPolicy
+  isSpec: "True"
   fullName: P2PBootstrap.GlobalConfig.TrustPolicy
   nameWithType: GlobalConfig.TrustPolicy
+- uid: P2PBootstrap.GlobalConfig._containerized
+  name: _containerized
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig__containerized
+  commentId: F:P2PBootstrap.GlobalConfig._containerized
+  fullName: P2PBootstrap.GlobalConfig._containerized
+  nameWithType: GlobalConfig._containerized
 - uid: P2PBootstrap.Program
   name: Program
   href: api/P2PBootstrap.Program.html
@@ -1404,6 +1616,32 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.Program.Main
   nameWithType: Program.Main
+- uid: P2PBootstrap.Program.PublicKeyToString
+  name: PublicKeyToString
+  href: api/P2PBootstrap.Program.html#P2PBootstrap_Program_PublicKeyToString
+  commentId: P:P2PBootstrap.Program.PublicKeyToString
+  fullName: P2PBootstrap.Program.PublicKeyToString
+  nameWithType: Program.PublicKeyToString
+- uid: P2PBootstrap.Program.PublicKeyToString*
+  name: PublicKeyToString
+  href: api/P2PBootstrap.Program.html#P2PBootstrap_Program_PublicKeyToString_
+  commentId: Overload:P2PBootstrap.Program.PublicKeyToString
+  isSpec: "True"
+  fullName: P2PBootstrap.Program.PublicKeyToString
+  nameWithType: Program.PublicKeyToString
+- uid: P2PBootstrap.Program.Test
+  name: Test()
+  href: api/P2PBootstrap.Program.html#P2PBootstrap_Program_Test
+  commentId: M:P2PBootstrap.Program.Test
+  fullName: P2PBootstrap.Program.Test()
+  nameWithType: Program.Test()
+- uid: P2PBootstrap.Program.Test*
+  name: Test
+  href: api/P2PBootstrap.Program.html#P2PBootstrap_Program_Test_
+  commentId: Overload:P2PBootstrap.Program.Test
+  isSpec: "True"
+  fullName: P2PBootstrap.Program.Test
+  nameWithType: Program.Test
 - uid: P2PNet
   name: P2PNet
   href: api/P2PNet.html
@@ -1422,6 +1660,15 @@ references:
   commentId: T:P2PNet.DicoveryChannels.WAN.BootstrapChannel
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel
   nameWithType: BootstrapChannel
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.#ctor(P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions)
+  name: BootstrapChannel(BootstrapChannelConnectionOptions)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel__ctor_P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannel.#ctor(P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions)
+  name.vb: New(BootstrapChannelConnectionOptions)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.BootstrapChannel(P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannel.New(P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions)
+  nameWithType: BootstrapChannel.BootstrapChannel(BootstrapChannelConnectionOptions)
+  nameWithType.vb: BootstrapChannel.New(BootstrapChannelConnectionOptions)
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.#ctor(System.String,System.Boolean)
   name: BootstrapChannel(string, bool)
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel__ctor_System_String_System_Boolean_
@@ -1454,19 +1701,6 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.BootstrapServer
   nameWithType: BootstrapChannel.BootstrapServer
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.ConnectAsync
-  name: ConnectAsync()
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_ConnectAsync
-  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannel.ConnectAsync
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.ConnectAsync()
-  nameWithType: BootstrapChannel.ConnectAsync()
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.ConnectAsync*
-  name: ConnectAsync
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_ConnectAsync_
-  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannel.ConnectAsync
-  isSpec: "True"
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.ConnectAsync
-  nameWithType: BootstrapChannel.ConnectAsync
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.IsAuthorityMode
   name: IsAuthorityMode
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_IsAuthorityMode
@@ -1480,6 +1714,123 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.IsAuthorityMode
   nameWithType: BootstrapChannel.IsAuthorityMode
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel
+  name: OpenBootstrapChannel()
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_OpenBootstrapChannel
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel()
+  nameWithType: BootstrapChannel.OpenBootstrapChannel()
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel*
+  name: OpenBootstrapChannel
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_OpenBootstrapChannel_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel
+  nameWithType: BootstrapChannel.OpenBootstrapChannel
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
+  name: PublicKey
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_PublicKey
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
+  nameWithType: BootstrapChannel.PublicKey
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey*
+  name: PublicKey
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_PublicKey_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
+  nameWithType: BootstrapChannel.PublicKey
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions
+  name: BootstrapChannelConnectionOptions
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html
+  commentId: T:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions
+  nameWithType: BootstrapChannelConnectionOptions
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.String)
+  name: BootstrapChannelConnectionOptions(string)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_System_String_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.String)
+  name.vb: New(String)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(string)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New(String)
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(string)
+  nameWithType.vb: BootstrapChannelConnectionOptions.New(String)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.String,P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  name: BootstrapChannelConnectionOptions(string, BootstrapPeer)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_System_String_P2PNet_DicoveryChannels_WAN_BootstrapPeer_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.String,P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  name.vb: New(String, BootstrapPeer)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(string, P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New(String, P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(string, BootstrapPeer)
+  nameWithType.vb: BootstrapChannelConnectionOptions.New(String, BootstrapPeer)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.String,System.Boolean)
+  name: BootstrapChannelConnectionOptions(string, bool)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_System_String_System_Boolean_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.String,System.Boolean)
+  name.vb: New(String, Boolean)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(string, bool)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New(String, Boolean)
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(string, bool)
+  nameWithType.vb: BootstrapChannelConnectionOptions.New(String, Boolean)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.String,System.Boolean,P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  name: BootstrapChannelConnectionOptions(string, bool, BootstrapPeer)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_System_String_System_Boolean_P2PNet_DicoveryChannels_WAN_BootstrapPeer_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.String,System.Boolean,P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  name.vb: New(String, Boolean, BootstrapPeer)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(string, bool, P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New(String, Boolean, P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(string, bool, BootstrapPeer)
+  nameWithType.vb: BootstrapChannelConnectionOptions.New(String, Boolean, BootstrapPeer)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor*
+  name: BootstrapChannelConnectionOptions
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions
+  nameWithType.vb: BootstrapChannelConnectionOptions.New
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapPeer
+  name: BootstrapPeer
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_BootstrapPeer
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapPeer
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapPeer
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapPeer
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapPeer*
+  name: BootstrapPeer
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_BootstrapPeer_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapPeer
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapPeer
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapPeer
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.Endpoint
+  name: Endpoint
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_Endpoint
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.Endpoint
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.Endpoint
+  nameWithType: BootstrapChannelConnectionOptions.Endpoint
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.Endpoint*
+  name: Endpoint
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_Endpoint_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.Endpoint
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.Endpoint
+  nameWithType: BootstrapChannelConnectionOptions.Endpoint
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.IsAuthorityMode
+  name: IsAuthorityMode
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_IsAuthorityMode
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.IsAuthorityMode
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.IsAuthorityMode
+  nameWithType: BootstrapChannelConnectionOptions.IsAuthorityMode
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.IsAuthorityMode*
+  name: IsAuthorityMode
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_IsAuthorityMode_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.IsAuthorityMode
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.IsAuthorityMode
+  nameWithType: BootstrapChannelConnectionOptions.IsAuthorityMode
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapPeer
   name: BootstrapPeer
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapPeer.html
@@ -2276,6 +2627,28 @@ references:
   isSpec: "True"
   fullName: P2PNet.Distribution.DistributionProtocol.WrapPacket
   nameWithType: DistributionProtocol.WrapPacket
+- uid: P2PNet.Distribution.EncryptionAndSecurityHandler
+  name: EncryptionAndSecurityHandler
+  href: api/P2PNet.Distribution.EncryptionAndSecurityHandler.html
+  commentId: T:P2PNet.Distribution.EncryptionAndSecurityHandler
+  fullName: P2PNet.Distribution.EncryptionAndSecurityHandler
+  nameWithType: EncryptionAndSecurityHandler
+- uid: P2PNet.Distribution.EncryptionAndSecurityHandler.VerifySignature(System.String,System.String)
+  name: VerifySignature(string, string)
+  href: api/P2PNet.Distribution.EncryptionAndSecurityHandler.html#P2PNet_Distribution_EncryptionAndSecurityHandler_VerifySignature_System_String_System_String_
+  commentId: M:P2PNet.Distribution.EncryptionAndSecurityHandler.VerifySignature(System.String,System.String)
+  name.vb: VerifySignature(String, String)
+  fullName: P2PNet.Distribution.EncryptionAndSecurityHandler.VerifySignature(string, string)
+  fullName.vb: P2PNet.Distribution.EncryptionAndSecurityHandler.VerifySignature(String, String)
+  nameWithType: EncryptionAndSecurityHandler.VerifySignature(string, string)
+  nameWithType.vb: EncryptionAndSecurityHandler.VerifySignature(String, String)
+- uid: P2PNet.Distribution.EncryptionAndSecurityHandler.VerifySignature*
+  name: VerifySignature
+  href: api/P2PNet.Distribution.EncryptionAndSecurityHandler.html#P2PNet_Distribution_EncryptionAndSecurityHandler_VerifySignature_
+  commentId: Overload:P2PNet.Distribution.EncryptionAndSecurityHandler.VerifySignature
+  isSpec: "True"
+  fullName: P2PNet.Distribution.EncryptionAndSecurityHandler.VerifySignature
+  nameWithType: EncryptionAndSecurityHandler.VerifySignature
 - uid: P2PNet.Distribution.GenericPeerContext
   name: GenericPeerContext
   href: api/P2PNet.Distribution.GenericPeerContext.html
@@ -3013,6 +3386,24 @@ references:
   isSpec: "True"
   fullName: P2PNet.Distribution.NetworkTaskContext.TaskType
   nameWithType: NetworkTaskContext.TaskType
+- uid: P2PNet.Distribution.NetworkTaskHandler
+  name: NetworkTaskHandler
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html
+  commentId: T:P2PNet.Distribution.NetworkTaskHandler
+  fullName: P2PNet.Distribution.NetworkTaskHandler
+  nameWithType: NetworkTaskHandler
+- uid: P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks
+  name: incomingNetworkTasks
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_incomingNetworkTasks
+  commentId: F:P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks
+  fullName: P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks
+  nameWithType: NetworkTaskHandler.incomingNetworkTasks
+- uid: P2PNet.Distribution.NetworkTaskHandler.outgoingNetworkTasks
+  name: outgoingNetworkTasks
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_outgoingNetworkTasks
+  commentId: F:P2PNet.Distribution.NetworkTaskHandler.outgoingNetworkTasks
+  fullName: P2PNet.Distribution.NetworkTaskHandler.outgoingNetworkTasks
+  nameWithType: NetworkTaskHandler.outgoingNetworkTasks
 - uid: P2PNet.Distribution.NetworkTasks
   name: P2PNet.Distribution.NetworkTasks
   href: api/P2PNet.Distribution.NetworkTasks.html
@@ -3089,12 +3480,6 @@ references:
   commentId: T:P2PNet.Distribution.NetworkTasks.TaskType
   fullName: P2PNet.Distribution.NetworkTasks.TaskType
   nameWithType: TaskType
-- uid: P2PNet.Distribution.NetworkTasks.TaskType.AcceptIdentifier
-  name: AcceptIdentifier
-  href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_AcceptIdentifier
-  commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.AcceptIdentifier
-  fullName: P2PNet.Distribution.NetworkTasks.TaskType.AcceptIdentifier
-  nameWithType: TaskType.AcceptIdentifier
 - uid: P2PNet.Distribution.NetworkTasks.TaskType.AssignIdentifierToPeer
   name: AssignIdentifierToPeer
   href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_AssignIdentifierToPeer
@@ -3119,6 +3504,12 @@ references:
   commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.BlockIP
   fullName: P2PNet.Distribution.NetworkTasks.TaskType.BlockIP
   nameWithType: TaskType.BlockIP
+- uid: P2PNet.Distribution.NetworkTasks.TaskType.BootstrapInitialization
+  name: BootstrapInitialization
+  href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_BootstrapInitialization
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.BootstrapInitialization
+  fullName: P2PNet.Distribution.NetworkTasks.TaskType.BootstrapInitialization
+  nameWithType: TaskType.BootstrapInitialization
 - uid: P2PNet.Distribution.NetworkTasks.TaskType.DisconnectPeer
   name: DisconnectPeer
   href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_DisconnectPeer
@@ -3149,6 +3540,18 @@ references:
   commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.RequestPublicKey
   fullName: P2PNet.Distribution.NetworkTasks.TaskType.RequestPublicKey
   nameWithType: TaskType.RequestPublicKey
+- uid: P2PNet.Distribution.NetworkTasks.TaskType.RequestVerifyHashRecord
+  name: RequestVerifyHashRecord
+  href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_RequestVerifyHashRecord
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.RequestVerifyHashRecord
+  fullName: P2PNet.Distribution.NetworkTasks.TaskType.RequestVerifyHashRecord
+  nameWithType: TaskType.RequestVerifyHashRecord
+- uid: P2PNet.Distribution.NetworkTasks.TaskType.RequestVerifySignature
+  name: RequestVerifySignature
+  href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_RequestVerifySignature
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.RequestVerifySignature
+  fullName: P2PNet.Distribution.NetworkTasks.TaskType.RequestVerifySignature
+  nameWithType: TaskType.RequestVerifySignature
 - uid: P2PNet.Distribution.NetworkTasks.TaskType.RevokePeerAuthorization
   name: RevokePeerAuthorization
   href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_RevokePeerAuthorization
@@ -3167,12 +3570,12 @@ references:
   commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.SendMessage
   fullName: P2PNet.Distribution.NetworkTasks.TaskType.SendMessage
   nameWithType: TaskType.SendMessage
-- uid: P2PNet.Distribution.NetworkTasks.TaskType.SendPublicKey
-  name: SendPublicKey
-  href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_SendPublicKey
-  commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.SendPublicKey
-  fullName: P2PNet.Distribution.NetworkTasks.TaskType.SendPublicKey
-  nameWithType: TaskType.SendPublicKey
+- uid: P2PNet.Distribution.NetworkTasks.TaskType.SetLocalIdentifier
+  name: SetLocalIdentifier
+  href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_SetLocalIdentifier
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.SetLocalIdentifier
+  fullName: P2PNet.Distribution.NetworkTasks.TaskType.SetLocalIdentifier
+  nameWithType: TaskType.SetLocalIdentifier
 - uid: P2PNet.Distribution.NetworkTasks.TaskType.SynchronizeData
   name: SynchronizeData
   href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_SynchronizeData
@@ -3185,12 +3588,6 @@ references:
   commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.UpdateSettings
   fullName: P2PNet.Distribution.NetworkTasks.TaskType.UpdateSettings
   nameWithType: TaskType.UpdateSettings
-- uid: P2PNet.Distribution.NetworkTasks.TaskType.VerifySignature
-  name: VerifySignature
-  href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_VerifySignature
-  commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.VerifySignature
-  fullName: P2PNet.Distribution.NetworkTasks.TaskType.VerifySignature
-  nameWithType: TaskType.VerifySignature
 - uid: P2PNet.Distribution.P2PNet.Distribution
   name: P2PNet.Distribution.P2PNet.Distribution
   href: api/P2PNet.Distribution.P2PNet.Distribution.html
@@ -3268,6 +3665,66 @@ references:
   isSpec: "True"
   fullName: P2PNet.Distribution.P2PNet.Distribution.PacketHandleProtocol.HandlePureMessagePacketAction
   nameWithType: PacketHandleProtocol.HandlePureMessagePacketAction
+- uid: P2PNet.Distribution.PGPKeyInfo
+  name: PGPKeyInfo
+  href: api/P2PNet.Distribution.PGPKeyInfo.html
+  commentId: T:P2PNet.Distribution.PGPKeyInfo
+  fullName: P2PNet.Distribution.PGPKeyInfo
+  nameWithType: PGPKeyInfo
+- uid: P2PNet.Distribution.PGPKeyInfo.#ctor
+  name: PGPKeyInfo()
+  href: api/P2PNet.Distribution.PGPKeyInfo.html#P2PNet_Distribution_PGPKeyInfo__ctor
+  commentId: M:P2PNet.Distribution.PGPKeyInfo.#ctor
+  name.vb: New()
+  fullName: P2PNet.Distribution.PGPKeyInfo.PGPKeyInfo()
+  fullName.vb: P2PNet.Distribution.PGPKeyInfo.New()
+  nameWithType: PGPKeyInfo.PGPKeyInfo()
+  nameWithType.vb: PGPKeyInfo.New()
+- uid: P2PNet.Distribution.PGPKeyInfo.#ctor(System.String,System.Byte[])
+  name: PGPKeyInfo(string, byte[])
+  href: api/P2PNet.Distribution.PGPKeyInfo.html#P2PNet_Distribution_PGPKeyInfo__ctor_System_String_System_Byte___
+  commentId: M:P2PNet.Distribution.PGPKeyInfo.#ctor(System.String,System.Byte[])
+  name.vb: New(String, Byte())
+  fullName: P2PNet.Distribution.PGPKeyInfo.PGPKeyInfo(string, byte[])
+  fullName.vb: P2PNet.Distribution.PGPKeyInfo.New(String, Byte())
+  nameWithType: PGPKeyInfo.PGPKeyInfo(string, byte[])
+  nameWithType.vb: PGPKeyInfo.New(String, Byte())
+- uid: P2PNet.Distribution.PGPKeyInfo.#ctor*
+  name: PGPKeyInfo
+  href: api/P2PNet.Distribution.PGPKeyInfo.html#P2PNet_Distribution_PGPKeyInfo__ctor_
+  commentId: Overload:P2PNet.Distribution.PGPKeyInfo.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PNet.Distribution.PGPKeyInfo.PGPKeyInfo
+  fullName.vb: P2PNet.Distribution.PGPKeyInfo.New
+  nameWithType: PGPKeyInfo.PGPKeyInfo
+  nameWithType.vb: PGPKeyInfo.New
+- uid: P2PNet.Distribution.PGPKeyInfo.KeyData
+  name: KeyData
+  href: api/P2PNet.Distribution.PGPKeyInfo.html#P2PNet_Distribution_PGPKeyInfo_KeyData
+  commentId: P:P2PNet.Distribution.PGPKeyInfo.KeyData
+  fullName: P2PNet.Distribution.PGPKeyInfo.KeyData
+  nameWithType: PGPKeyInfo.KeyData
+- uid: P2PNet.Distribution.PGPKeyInfo.KeyData*
+  name: KeyData
+  href: api/P2PNet.Distribution.PGPKeyInfo.html#P2PNet_Distribution_PGPKeyInfo_KeyData_
+  commentId: Overload:P2PNet.Distribution.PGPKeyInfo.KeyData
+  isSpec: "True"
+  fullName: P2PNet.Distribution.PGPKeyInfo.KeyData
+  nameWithType: PGPKeyInfo.KeyData
+- uid: P2PNet.Distribution.PGPKeyInfo.Name
+  name: Name
+  href: api/P2PNet.Distribution.PGPKeyInfo.html#P2PNet_Distribution_PGPKeyInfo_Name
+  commentId: P:P2PNet.Distribution.PGPKeyInfo.Name
+  fullName: P2PNet.Distribution.PGPKeyInfo.Name
+  nameWithType: PGPKeyInfo.Name
+- uid: P2PNet.Distribution.PGPKeyInfo.Name*
+  name: Name
+  href: api/P2PNet.Distribution.PGPKeyInfo.html#P2PNet_Distribution_PGPKeyInfo_Name_
+  commentId: Overload:P2PNet.Distribution.PGPKeyInfo.Name
+  isSpec: "True"
+  fullName: P2PNet.Distribution.PGPKeyInfo.Name
+  nameWithType: PGPKeyInfo.Name
 - uid: P2PNet.Distribution.PureMessagePacketContext
   name: PureMessagePacketContext
   href: api/P2PNet.Distribution.PureMessagePacketContext.html
@@ -3367,6 +3824,98 @@ references:
   isSpec: "True"
   fullName: P2PNet.Distribution.PureMessagePacketContext.String
   nameWithType: PureMessagePacketContext.String
+- uid: P2PNet.Exceptions
+  name: P2PNet.Exceptions
+  href: api/P2PNet.Exceptions.html
+  commentId: N:P2PNet.Exceptions
+  fullName: P2PNet.Exceptions
+  nameWithType: P2PNet.Exceptions
+- uid: P2PNet.Exceptions.InitialAuthorityLockedException
+  name: InitialAuthorityLockedException
+  href: api/P2PNet.Exceptions.InitialAuthorityLockedException.html
+  commentId: T:P2PNet.Exceptions.InitialAuthorityLockedException
+  fullName: P2PNet.Exceptions.InitialAuthorityLockedException
+  nameWithType: InitialAuthorityLockedException
+- uid: P2PNet.Exceptions.InitialAuthorityLockedException.#ctor
+  name: InitialAuthorityLockedException()
+  href: api/P2PNet.Exceptions.InitialAuthorityLockedException.html#P2PNet_Exceptions_InitialAuthorityLockedException__ctor
+  commentId: M:P2PNet.Exceptions.InitialAuthorityLockedException.#ctor
+  name.vb: New()
+  fullName: P2PNet.Exceptions.InitialAuthorityLockedException.InitialAuthorityLockedException()
+  fullName.vb: P2PNet.Exceptions.InitialAuthorityLockedException.New()
+  nameWithType: InitialAuthorityLockedException.InitialAuthorityLockedException()
+  nameWithType.vb: InitialAuthorityLockedException.New()
+- uid: P2PNet.Exceptions.InitialAuthorityLockedException.#ctor(System.String)
+  name: InitialAuthorityLockedException(string)
+  href: api/P2PNet.Exceptions.InitialAuthorityLockedException.html#P2PNet_Exceptions_InitialAuthorityLockedException__ctor_System_String_
+  commentId: M:P2PNet.Exceptions.InitialAuthorityLockedException.#ctor(System.String)
+  name.vb: New(String)
+  fullName: P2PNet.Exceptions.InitialAuthorityLockedException.InitialAuthorityLockedException(string)
+  fullName.vb: P2PNet.Exceptions.InitialAuthorityLockedException.New(String)
+  nameWithType: InitialAuthorityLockedException.InitialAuthorityLockedException(string)
+  nameWithType.vb: InitialAuthorityLockedException.New(String)
+- uid: P2PNet.Exceptions.InitialAuthorityLockedException.#ctor(System.String,System.Exception)
+  name: InitialAuthorityLockedException(string, Exception)
+  href: api/P2PNet.Exceptions.InitialAuthorityLockedException.html#P2PNet_Exceptions_InitialAuthorityLockedException__ctor_System_String_System_Exception_
+  commentId: M:P2PNet.Exceptions.InitialAuthorityLockedException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: P2PNet.Exceptions.InitialAuthorityLockedException.InitialAuthorityLockedException(string, System.Exception)
+  fullName.vb: P2PNet.Exceptions.InitialAuthorityLockedException.New(String, System.Exception)
+  nameWithType: InitialAuthorityLockedException.InitialAuthorityLockedException(string, Exception)
+  nameWithType.vb: InitialAuthorityLockedException.New(String, Exception)
+- uid: P2PNet.Exceptions.InitialAuthorityLockedException.#ctor*
+  name: InitialAuthorityLockedException
+  href: api/P2PNet.Exceptions.InitialAuthorityLockedException.html#P2PNet_Exceptions_InitialAuthorityLockedException__ctor_
+  commentId: Overload:P2PNet.Exceptions.InitialAuthorityLockedException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PNet.Exceptions.InitialAuthorityLockedException.InitialAuthorityLockedException
+  fullName.vb: P2PNet.Exceptions.InitialAuthorityLockedException.New
+  nameWithType: InitialAuthorityLockedException.InitialAuthorityLockedException
+  nameWithType.vb: InitialAuthorityLockedException.New
+- uid: P2PNet.Exceptions.TrustPolicyConflictException
+  name: TrustPolicyConflictException
+  href: api/P2PNet.Exceptions.TrustPolicyConflictException.html
+  commentId: T:P2PNet.Exceptions.TrustPolicyConflictException
+  fullName: P2PNet.Exceptions.TrustPolicyConflictException
+  nameWithType: TrustPolicyConflictException
+- uid: P2PNet.Exceptions.TrustPolicyConflictException.#ctor
+  name: TrustPolicyConflictException()
+  href: api/P2PNet.Exceptions.TrustPolicyConflictException.html#P2PNet_Exceptions_TrustPolicyConflictException__ctor
+  commentId: M:P2PNet.Exceptions.TrustPolicyConflictException.#ctor
+  name.vb: New()
+  fullName: P2PNet.Exceptions.TrustPolicyConflictException.TrustPolicyConflictException()
+  fullName.vb: P2PNet.Exceptions.TrustPolicyConflictException.New()
+  nameWithType: TrustPolicyConflictException.TrustPolicyConflictException()
+  nameWithType.vb: TrustPolicyConflictException.New()
+- uid: P2PNet.Exceptions.TrustPolicyConflictException.#ctor(System.String)
+  name: TrustPolicyConflictException(string)
+  href: api/P2PNet.Exceptions.TrustPolicyConflictException.html#P2PNet_Exceptions_TrustPolicyConflictException__ctor_System_String_
+  commentId: M:P2PNet.Exceptions.TrustPolicyConflictException.#ctor(System.String)
+  name.vb: New(String)
+  fullName: P2PNet.Exceptions.TrustPolicyConflictException.TrustPolicyConflictException(string)
+  fullName.vb: P2PNet.Exceptions.TrustPolicyConflictException.New(String)
+  nameWithType: TrustPolicyConflictException.TrustPolicyConflictException(string)
+  nameWithType.vb: TrustPolicyConflictException.New(String)
+- uid: P2PNet.Exceptions.TrustPolicyConflictException.#ctor(System.String,System.Exception)
+  name: TrustPolicyConflictException(string, Exception)
+  href: api/P2PNet.Exceptions.TrustPolicyConflictException.html#P2PNet_Exceptions_TrustPolicyConflictException__ctor_System_String_System_Exception_
+  commentId: M:P2PNet.Exceptions.TrustPolicyConflictException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: P2PNet.Exceptions.TrustPolicyConflictException.TrustPolicyConflictException(string, System.Exception)
+  fullName.vb: P2PNet.Exceptions.TrustPolicyConflictException.New(String, System.Exception)
+  nameWithType: TrustPolicyConflictException.TrustPolicyConflictException(string, Exception)
+  nameWithType.vb: TrustPolicyConflictException.New(String, Exception)
+- uid: P2PNet.Exceptions.TrustPolicyConflictException.#ctor*
+  name: TrustPolicyConflictException
+  href: api/P2PNet.Exceptions.TrustPolicyConflictException.html#P2PNet_Exceptions_TrustPolicyConflictException__ctor_
+  commentId: Overload:P2PNet.Exceptions.TrustPolicyConflictException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PNet.Exceptions.TrustPolicyConflictException.TrustPolicyConflictException
+  fullName.vb: P2PNet.Exceptions.TrustPolicyConflictException.New
+  nameWithType: TrustPolicyConflictException.TrustPolicyConflictException
+  nameWithType.vb: TrustPolicyConflictException.New
 - uid: P2PNet.NetworkPackets
   name: P2PNet.NetworkPackets
   href: api/P2PNet.NetworkPackets.html
@@ -3743,6 +4292,34 @@ references:
   commentId: F:P2PNet.PeerNetwork.ActivePeerChannels
   fullName: P2PNet.PeerNetwork.ActivePeerChannels
   nameWithType: PeerNetwork.ActivePeerChannels
+- uid: P2PNet.PeerNetwork.AddBootstrapChannel(P2PNet.DicoveryChannels.WAN.BootstrapChannel)
+  name: AddBootstrapChannel(BootstrapChannel)
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_AddBootstrapChannel_P2PNet_DicoveryChannels_WAN_BootstrapChannel_
+  commentId: M:P2PNet.PeerNetwork.AddBootstrapChannel(P2PNet.DicoveryChannels.WAN.BootstrapChannel)
+  fullName: P2PNet.PeerNetwork.AddBootstrapChannel(P2PNet.DicoveryChannels.WAN.BootstrapChannel)
+  nameWithType: PeerNetwork.AddBootstrapChannel(BootstrapChannel)
+- uid: P2PNet.PeerNetwork.AddBootstrapChannel(P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions)
+  name: AddBootstrapChannel(BootstrapChannelConnectionOptions)
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_AddBootstrapChannel_P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_
+  commentId: M:P2PNet.PeerNetwork.AddBootstrapChannel(P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions)
+  fullName: P2PNet.PeerNetwork.AddBootstrapChannel(P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions)
+  nameWithType: PeerNetwork.AddBootstrapChannel(BootstrapChannelConnectionOptions)
+- uid: P2PNet.PeerNetwork.AddBootstrapChannel(System.String,P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType)
+  name: AddBootstrapChannel(string, BootstrapTrustPolicyType)
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_AddBootstrapChannel_System_String_P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicyType_
+  commentId: M:P2PNet.PeerNetwork.AddBootstrapChannel(System.String,P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType)
+  name.vb: AddBootstrapChannel(String, BootstrapTrustPolicyType)
+  fullName: P2PNet.PeerNetwork.AddBootstrapChannel(string, P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType)
+  fullName.vb: P2PNet.PeerNetwork.AddBootstrapChannel(String, P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType)
+  nameWithType: PeerNetwork.AddBootstrapChannel(string, PeerNetwork.TrustPolicies.BootstrapTrustPolicyType)
+  nameWithType.vb: PeerNetwork.AddBootstrapChannel(String, PeerNetwork.TrustPolicies.BootstrapTrustPolicyType)
+- uid: P2PNet.PeerNetwork.AddBootstrapChannel*
+  name: AddBootstrapChannel
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_AddBootstrapChannel_
+  commentId: Overload:P2PNet.PeerNetwork.AddBootstrapChannel
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.AddBootstrapChannel
+  nameWithType: PeerNetwork.AddBootstrapChannel
 - uid: P2PNet.PeerNetwork.AddPeer(P2PNet.Peers.IPeer,System.Net.Sockets.TcpClient)
   name: AddPeer(IPeer, TcpClient)
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_AddPeer_P2PNet_Peers_IPeer_System_Net_Sockets_TcpClient_
@@ -3861,7 +4438,14 @@ references:
 - uid: P2PNet.PeerNetwork.BroadcasterPort
   name: BroadcasterPort
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_BroadcasterPort
-  commentId: F:P2PNet.PeerNetwork.BroadcasterPort
+  commentId: P:P2PNet.PeerNetwork.BroadcasterPort
+  fullName: P2PNet.PeerNetwork.BroadcasterPort
+  nameWithType: PeerNetwork.BroadcasterPort
+- uid: P2PNet.PeerNetwork.BroadcasterPort*
+  name: BroadcasterPort
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_BroadcasterPort_
+  commentId: Overload:P2PNet.PeerNetwork.BroadcasterPort
+  isSpec: "True"
   fullName: P2PNet.PeerNetwork.BroadcasterPort
   nameWithType: PeerNetwork.BroadcasterPort
 - uid: P2PNet.PeerNetwork.DequeueInboundPeer
@@ -3903,6 +4487,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.ElevatePeerPermission
   nameWithType: PeerNetwork.ElevatePeerPermission
+- uid: P2PNet.PeerNetwork.Identifier
+  name: Identifier
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_Identifier
+  commentId: P:P2PNet.PeerNetwork.Identifier
+  fullName: P2PNet.PeerNetwork.Identifier
+  nameWithType: PeerNetwork.Identifier
+- uid: P2PNet.PeerNetwork.Identifier*
+  name: Identifier
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_Identifier_
+  commentId: Overload:P2PNet.PeerNetwork.Identifier
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.Identifier
+  nameWithType: PeerNetwork.Identifier
 - uid: P2PNet.PeerNetwork.InboundConnectingPeers
   name: InboundConnectingPeers
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_InboundConnectingPeers
@@ -4144,6 +4741,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.LocalAreaNetworkManagement.LANIdentifierPreference
   nameWithType: PeerNetwork.LocalAreaNetworkManagement.LANIdentifierPreference
+- uid: P2PNet.PeerNetwork.LocalIPV4Address
+  name: LocalIPV4Address
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_LocalIPV4Address
+  commentId: P:P2PNet.PeerNetwork.LocalIPV4Address
+  fullName: P2PNet.PeerNetwork.LocalIPV4Address
+  nameWithType: PeerNetwork.LocalIPV4Address
+- uid: P2PNet.PeerNetwork.LocalIPV4Address*
+  name: LocalIPV4Address
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_LocalIPV4Address_
+  commentId: Overload:P2PNet.PeerNetwork.LocalIPV4Address
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.LocalIPV4Address
+  nameWithType: PeerNetwork.LocalIPV4Address
 - uid: P2PNet.PeerNetwork.MAC
   name: MAC
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_MAC
@@ -4229,7 +4839,14 @@ references:
 - uid: P2PNet.PeerNetwork.PublicIPV4Address
   name: PublicIPV4Address
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_PublicIPV4Address
-  commentId: F:P2PNet.PeerNetwork.PublicIPV4Address
+  commentId: P:P2PNet.PeerNetwork.PublicIPV4Address
+  fullName: P2PNet.PeerNetwork.PublicIPV4Address
+  nameWithType: PeerNetwork.PublicIPV4Address
+- uid: P2PNet.PeerNetwork.PublicIPV4Address*
+  name: PublicIPV4Address
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_PublicIPV4Address_
+  commentId: Overload:P2PNet.PeerNetwork.PublicIPV4Address
+  isSpec: "True"
   fullName: P2PNet.PeerNetwork.PublicIPV4Address
   nameWithType: PeerNetwork.PublicIPV4Address
 - uid: P2PNet.PeerNetwork.PublicIPV6Address
@@ -4251,12 +4868,34 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.RemovePeer
   nameWithType: PeerNetwork.RemovePeer
+- uid: P2PNet.PeerNetwork.StartBootstrapConnections
+  name: StartBootstrapConnections()
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_StartBootstrapConnections
+  commentId: M:P2PNet.PeerNetwork.StartBootstrapConnections
+  fullName: P2PNet.PeerNetwork.StartBootstrapConnections()
+  nameWithType: PeerNetwork.StartBootstrapConnections()
+- uid: P2PNet.PeerNetwork.StartBootstrapConnections*
+  name: StartBootstrapConnections
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_StartBootstrapConnections_
+  commentId: Overload:P2PNet.PeerNetwork.StartBootstrapConnections
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.StartBootstrapConnections
+  nameWithType: PeerNetwork.StartBootstrapConnections
 - uid: P2PNet.PeerNetwork.StartBroadcastingLAN
   name: StartBroadcastingLAN()
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_StartBroadcastingLAN
   commentId: M:P2PNet.PeerNetwork.StartBroadcastingLAN
   fullName: P2PNet.PeerNetwork.StartBroadcastingLAN()
   nameWithType: PeerNetwork.StartBroadcastingLAN()
+- uid: P2PNet.PeerNetwork.StartBroadcastingLAN(System.Boolean)
+  name: StartBroadcastingLAN(bool)
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_StartBroadcastingLAN_System_Boolean_
+  commentId: M:P2PNet.PeerNetwork.StartBroadcastingLAN(System.Boolean)
+  name.vb: StartBroadcastingLAN(Boolean)
+  fullName: P2PNet.PeerNetwork.StartBroadcastingLAN(bool)
+  fullName.vb: P2PNet.PeerNetwork.StartBroadcastingLAN(Boolean)
+  nameWithType: PeerNetwork.StartBroadcastingLAN(bool)
+  nameWithType.vb: PeerNetwork.StartBroadcastingLAN(Boolean)
 - uid: P2PNet.PeerNetwork.StartBroadcastingLAN*
   name: StartBroadcastingLAN
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_StartBroadcastingLAN_
@@ -4303,6 +4942,290 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.ThrottleBroadcastingDown
   nameWithType: PeerNetwork.ThrottleBroadcastingDown
+- uid: P2PNet.PeerNetwork.TrustPolicies
+  name: PeerNetwork.TrustPolicies
+  href: api/P2PNet.PeerNetwork.TrustPolicies.html
+  commentId: T:P2PNet.PeerNetwork.TrustPolicies
+  fullName: P2PNet.PeerNetwork.TrustPolicies
+  nameWithType: PeerNetwork.TrustPolicies
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy
+  name: PeerNetwork.TrustPolicies.BootstrapTrustPolicy
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html
+  commentId: T:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapAuthorityConnection
+  name: AllowBootstrapAuthorityConnection
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_AllowBootstrapAuthorityConnection
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapAuthorityConnection
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapAuthorityConnection
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapAuthorityConnection
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapAuthorityConnection*
+  name: AllowBootstrapAuthorityConnection
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_AllowBootstrapAuthorityConnection_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapAuthorityConnection
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapAuthorityConnection
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapAuthorityConnection
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapTrustlessConnection
+  name: AllowBootstrapTrustlessConnection
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_AllowBootstrapTrustlessConnection
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapTrustlessConnection
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapTrustlessConnection
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapTrustlessConnection
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapTrustlessConnection*
+  name: AllowBootstrapTrustlessConnection
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_AllowBootstrapTrustlessConnection_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapTrustlessConnection
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapTrustlessConnection
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.AllowBootstrapTrustlessConnection
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthority
+  name: FirstSingleLockingAuthority
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_FirstSingleLockingAuthority
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthority
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthority
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthority
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthority*
+  name: FirstSingleLockingAuthority
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_FirstSingleLockingAuthority_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthority
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthority
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthority
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet
+  name: FirstSingleLockingAuthoritySet
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_FirstSingleLockingAuthoritySet
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet*
+  name: FirstSingleLockingAuthoritySet
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_FirstSingleLockingAuthoritySet_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.MustBeAuthority
+  name: MustBeAuthority
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_MustBeAuthority
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.MustBeAuthority
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.MustBeAuthority
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.MustBeAuthority
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.MustBeAuthority*
+  name: MustBeAuthority
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_MustBeAuthority_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.MustBeAuthority
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.MustBeAuthority
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.MustBeAuthority
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.SetFirstLockingAuthority(P2PNet.DicoveryChannels.WAN.BootstrapChannel)
+  name: SetFirstLockingAuthority(BootstrapChannel)
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_SetFirstLockingAuthority_P2PNet_DicoveryChannels_WAN_BootstrapChannel_
+  commentId: M:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.SetFirstLockingAuthority(P2PNet.DicoveryChannels.WAN.BootstrapChannel)
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.SetFirstLockingAuthority(P2PNet.DicoveryChannels.WAN.BootstrapChannel)
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.SetFirstLockingAuthority(BootstrapChannel)
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.SetFirstLockingAuthority*
+  name: SetFirstLockingAuthority
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicy_SetFirstLockingAuthority_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.SetFirstLockingAuthority
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.SetFirstLockingAuthority
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicy.SetFirstLockingAuthority
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType
+  name: PeerNetwork.TrustPolicies.BootstrapTrustPolicyType
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.html
+  commentId: T:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicyType
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.Authority
+  name: Authority
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicyType_Authority
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.Authority
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.Authority
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.Authority
+- uid: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.Trustless
+  name: Trustless
+  href: api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.html#P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicyType_Trustless
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.Trustless
+  fullName: P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.Trustless
+  nameWithType: PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.Trustless
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy
+  name: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html
+  commentId: T:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowDefaultCommunication
+  name: AllowDefaultCommunication
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_AllowDefaultCommunication
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowDefaultCommunication
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowDefaultCommunication
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowDefaultCommunication
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowDefaultCommunication*
+  name: AllowDefaultCommunication
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_AllowDefaultCommunication_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowDefaultCommunication
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowDefaultCommunication
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowDefaultCommunication
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange
+  name: AllowEnhancedPacketExchange
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_AllowEnhancedPacketExchange
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange*
+  name: AllowEnhancedPacketExchange
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_AllowEnhancedPacketExchange_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs
+  name: BlockedIPs
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_BlockedIPs
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs*
+  name: BlockedIPs
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_BlockedIPs_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIdentifiers
+  name: BlockedIdentifiers
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_BlockedIdentifiers
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIdentifiers
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIdentifiers
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIdentifiers
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIdentifiers*
+  name: BlockedIdentifiers
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_BlockedIdentifiers_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIdentifiers
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIdentifiers
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIdentifiers
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.DefaultTrustProtocol
+  name: DefaultTrustProtocol
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_DefaultTrustProtocol
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.DefaultTrustProtocol
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.DefaultTrustProtocol
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.DefaultTrustProtocol
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.DefaultTrustProtocol*
+  name: DefaultTrustProtocol
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_DefaultTrustProtocol_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.DefaultTrustProtocol
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.DefaultTrustProtocol
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.DefaultTrustProtocol
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode
+  name: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.html
+  commentId: T:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.EventBased
+  name: EventBased
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_IncomingPeerMode_EventBased
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.EventBased
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.EventBased
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.EventBased
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.QueueAndEventBased
+  name: QueueAndEventBased
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_IncomingPeerMode_QueueAndEventBased
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.QueueAndEventBased
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.QueueAndEventBased
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.QueueAndEventBased
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.QueueBased
+  name: QueueBased
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_IncomingPeerMode_QueueBased
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.QueueBased
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.QueueBased
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.QueueBased
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement
+  name: IncomingPeerPlacement
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_IncomingPeerPlacement
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement*
+  name: IncomingPeerPlacement
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_IncomingPeerPlacement_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol
+  name: RunDefaultTrustProtocol
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_RunDefaultTrustProtocol
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol
+- uid: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol*
+  name: RunDefaultTrustProtocol
+  href: api/P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_RunDefaultTrustProtocol_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol
+  nameWithType: PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol
+- uid: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes
+  name: PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes
+  href: api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html
+  commentId: T:P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes
+  fullName: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes
+  nameWithType: PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes
+- uid: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.Local
+  name: Local
+  href: api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html#P2PNet_PeerNetwork_TrustPolicies_LocalIdentifierSetPolicyTypes_Local
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.Local
+  fullName: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.Local
+  nameWithType: PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.Local
+- uid: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.LocalAndRemote
+  name: LocalAndRemote
+  href: api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html#P2PNet_PeerNetwork_TrustPolicies_LocalIdentifierSetPolicyTypes_LocalAndRemote
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.LocalAndRemote
+  fullName: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.LocalAndRemote
+  nameWithType: PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.LocalAndRemote
+- uid: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.RemoteOnly
+  name: RemoteOnly
+  href: api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html#P2PNet_PeerNetwork_TrustPolicies_LocalIdentifierSetPolicyTypes_RemoteOnly
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.RemoteOnly
+  fullName: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.RemoteOnly
+  nameWithType: PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.RemoteOnly
+- uid: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.StrictLocalOnly
+  name: StrictLocalOnly
+  href: api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html#P2PNet_PeerNetwork_TrustPolicies_LocalIdentifierSetPolicyTypes_StrictLocalOnly
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.StrictLocalOnly
+  fullName: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.StrictLocalOnly
+  nameWithType: PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.StrictLocalOnly
+- uid: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.StrictRemoteOnly
+  name: StrictRemoteOnly
+  href: api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html#P2PNet_PeerNetwork_TrustPolicies_LocalIdentifierSetPolicyTypes_StrictRemoteOnly
+  commentId: F:P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.StrictRemoteOnly
+  fullName: P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.StrictRemoteOnly
+  nameWithType: PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.StrictRemoteOnly
+- uid: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy
+  name: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy
+  href: api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html
+  commentId: T:P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy
+  fullName: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy
+  nameWithType: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy
+- uid: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy
+  name: LocalIdentifierSetPolicy
+  href: api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_LocalIdentifierSetPolicy
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy
+  fullName: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy
+  nameWithType: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy
+- uid: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy*
+  name: LocalIdentifierSetPolicy
+  href: api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_LocalIdentifierSetPolicy_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy
+  nameWithType: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy
 - uid: P2PNet.PeerNetwork.TrustedPeerChannels
   name: TrustedPeerChannels
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_TrustedPeerChannels

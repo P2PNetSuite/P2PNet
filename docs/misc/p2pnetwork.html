@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/blob/docs/misc/p2pnetwork.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/blob/master/misc/p2pnetwork.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -93,30 +93,38 @@
 <hr>
 <p>The <code>PeerNetwork</code> class is the main entry point for initializing and managing the peer-to-peer network. It sets up the necessary configurations and services required for network operations.</p>
 <ol>
-<li><strong>Configuration</strong>: The application reads configuration settings from the provided parameters. This includes settings for designated ports, inbound peer acceptance, and trust policies.</li>
-<li><strong>Logging</strong>: Logging is configured to use a plain text format and is activated to capture important events and errors.</li>
-<li><strong>Local Address Loading</strong>: The application scans all network interface devices and collects essential information needed for the peer network, such as public IP addresses.</li>
+<li><strong>Configuration</strong>: The peer network hosts several configuration fields which can be used to fine tune control over the network operations. Some of these fields include subclasses that can be explored under <code>TrustPolicies</code>. Other aspects of configuration are in design such as the usage of queues and events, or the use of delegates for handling certain scenarios.</li>
+<li><strong>Logging</strong>: Logging is handled using the <code>ConsoleDebugger</code> package.</li>
+<li><strong>Network Configuration</strong>: The application scans all network interface devices and collects essential information needed for the peer network, such as public IP addresses.</li>
 </ol>
 <h3 id="operation">Operation</h3>
 <hr>
 <p>The <code>PeerNetwork</code> class operates by providing several key functionalities:</p>
 <ol>
-<li><p><strong>Peer Discovery and Connection</strong>: The peer network supports both LAN and WAN peer discovery. It uses broadcasting and multicasting to discover peers within the network and establishes connections with them.</p>
+<li><p><strong>Peer Discovery and Connection</strong>:The library supports both LAN and WAN peer discovery. It uses broadcasting, multicasting, and designated ports to discover peers and establishes connections using TCP.</p>
 <ul>
-<li><strong>LAN Discovery</strong>: The application can broadcast and discover peers within the local network.</li>
-<li><strong>WAN Discovery</strong>: The application can discover peers over the wide area network using designated ports and WAN components.</li>
+<li><strong>LAN Discovery</strong>: Broadcasts are used for peer discovery within the local network.</li>
+<li><strong>WAN Discovery</strong>: Specific WAN components and designated ports facilitate the discovery of peers over a wide area.</li>
 </ul>
 </li>
-<li><p><strong>Peer Management</strong>: The peer network manages a list of known peers and active peer channels. It supports adding, removing, and elevating peer permissions.</p>
+<li><p><strong>Peer Management</strong>:A list of known peers and active peer channels is maintained. This supports functions such as adding or removing peers and managing connection permissions.</p>
 <ul>
-<li><strong>Known Peers</strong>: A list of peers that have been discovered and are known to the network.</li>
-<li><strong>Active Peer Channels</strong>: A list of active peer channels that are currently connected and exchanging data.</li>
+<li><strong>Known Peers</strong>: Stores details of all discovered peers.</li>
+<li><strong>Active Peer Channels</strong>: Manages active communication channels and leverages the <code>PeerChannel</code> class to encapsulate connection logic.</li>
 </ul>
 </li>
-<li><p><strong>Data Exchange</strong>: The peer network supports data exchange between peers using peer channels. It handles sending and receiving data, as well as processing incoming packets.</p>
+<li><p><strong>Data Exchange and Network Packets</strong>:Data exchange between peers is accomplished via network packets formatted to ensure data consistency and integrity.</p>
 <ul>
-<li><strong>Peer Channels</strong>: Represents a communication channel between two peers. It handles the sending and receiving of data packets.</li>
+<li><strong>Network Packets</strong>:
+These packets encapsulate various types of information for transmission between peers. Types include identity packets, disconnect packets, data transmission packets, pure message packets, and more. The packets are wrapped using the <code>DistributionProtocol</code> so that each packet is tagged properly, making it easier for the receiver to determine the payload type.</li>
+<li><strong>DistributionHandler</strong>:
+This static class is responsible for handling outgoing and incoming data packets. It wraps raw data into packets and distributes them to trusted peers. In addition, the handler supports unwrapping payloads to extract raw data before processing.</li>
+<li><strong>NetworkTaskHandler</strong>:
+In parallel with data handling, the <code>NetworkTaskHandler</code> manages network tasks defined as actions such as blocking a peer, sending messages, or synchronizing data. Tasks are enqueued and processed asynchronously to maintain smooth operations across the network.</li>
 </ul>
+</li>
+<li><p><strong>Peer Channels</strong>:
+Each communication channel between peers is represented by an instance of the <code>PeerChannel</code> class. This class manages the relay of data packets, conducts connection retries, and enforces trust policies by invoking predefined delegates from the <code>PacketHandleProtocol</code>.</p>
 </li>
 </ol>
 <h3 id="routines">Routines</h3>
@@ -125,7 +133,7 @@
 <ol>
 <li><strong>Routine Management</strong>: The <code>NetworkRoutines</code> class manages a dictionary of routines and provides methods for adding, starting, stopping, and setting the interval of routines.
 <ul>
-<li><strong>Default Routines</strong>: The application initializes with default routines, such as rotating broadcast ports and discerning peer channels.</li>
+<li><strong>Default Routines</strong>: The application has default routines. These default routines do not automatically startup, but are automatically added in to the routines list.</li>
 <li><strong>Custom Routines</strong>: Users can add custom routines to perform specific tasks.</li>
 </ul>
 </li>
@@ -133,18 +141,48 @@
 <p>Routines are accessed using their <code>RoutineName</code> property. This is automatically handled when they are added as network routines.</p>
 <h3 id="trust-policies">Trust Policies</h3>
 <hr>
-<p>The <code>PeerNetwork</code> class includes trust policies for managing incoming peer connections and bootstrap connections.</p>
+<p>The <code>PeerNetwork</code> class employs a multi-pronged trust model to ensure secure and robust peer interactions. These policies determine how incoming connections are verified, how bootstrap nodes are treated, and how the local network identifier is managed.</p>
 <ol>
-<li><strong>Incoming Peer Trust Policy</strong>: Handles trust and permissions for incoming peer connections. It supports different modes for handling inbound peers, such as queue-based and event-based.</li>
-<li><strong>Bootstrap Trust Policy</strong>: Handles trust and permissions for bootstrap connections. It supports different trust policies, such as trustless and authority-based connections.</li>
+<li><p><strong>Incoming Peer Trust Policy</strong>This policy governs the verification and handling of peers attempting to connect to the network. It includes several configurable settings:</p>
+<ul>
+<li><strong>AllowDefaultCommunication</strong>:
+Enables basic communication—such as exchanging <code>PureMessagePackets</code> and <code>DisconnectPackets</code>—without full verification.
+<em>Example use case</em>: In a trusted LAN environment, you might allow default communication to quickly establish a connection before a deeper security check.</li>
+<li><strong>AllowEnhancedPacketExchange</strong>:
+When enabled, permits the exchange of complex packets (e.g., <code>DataTransmissionPackets</code>) that may carry critical data.
+<em>Example use case</em>: For networks where peers are pre-validated, you might allow enhanced packet exchange immediately to boost performance.</li>
+<li><strong>RunDefaultTrustProtocol</strong>:
+Initiates the system’s built-in handshake mechanism (which you can replace with a custom <code>PeerTrustHandshake</code> delegate) that verifies a peer’s authenticity before granting them full network access.</li>
+<li><strong>Incoming Peer Placement</strong>:
+Supports both queue-based and event-based models. Queue-based placement helps throttle connections when there are many incoming requests, while event-based placement provides immediate notification for further processing.</li>
+</ul>
+</li>
+<li><p><strong>Bootstrap Trust Policy</strong>This policy handles the initial secure connection phase with bootstrap nodes that help a new node join the network. Key settings include:</p>
+<ul>
+<li><strong>AllowBootstrapTrustlessConnection</strong>:
+Permits bootstrap connections without pre-established credentials, often useful for open networks needing quick scalability.</li>
+<li><strong>AllowBootstrapAuthorityConnection</strong>:
+Allow bootstrap nodes to validate their credentials via key issuance, ensuring a tighter security model.</li>
+<li><strong>MustBeAuthority</strong>: Prohibits connecting to bootstrap nodes that are not operating in authority mode.
+<em>Example use case</em>: In a decentralized network, you may require that only nodes with verified authority can bootstrap, ensuring that malicious nodes cannot easily infiltrate the system.</li>
+<li><strong>FirstSingleLockingAuthority</strong>:
+Enforce strict measures so that the first trusted authority connection can be locked in—preventing further authority connections that might threaten network integrity.</li>
+</ul>
+</li>
+<li><p><strong>PeerNetworkTrustPolicy</strong>Focuses on controlling how the local network identifier—a unique marker for each peer—is set and maintained:</p>
+<ul>
+<li><strong>LocalIdentifierSetPolicy</strong>:
+Defines policies like <code>StrictLocalOnly</code> or <code>StrictRemoteOnly</code> to ensure that the identifier is assigned only under secure, predefined conditions.
+<em>Use case for remote</em>: In a decentralized network that values security, bootstrap servers are tasked with assigning identities to peers using a protocol that hashes the the public IPv4 address and another unique serial value if available. If a peer is found to be a malicious actor, it is much easier to then ban and exclude them from connecting.
+<em>Use case for local</em>: In a decentralized network that prioritizes anonymity, the identifier is nullified locally with <code>StrictLocalOnly</code> set to true. This will prevent the peer's activity from bearing any unique fingerprinting that isn't easy to spoof.</li>
+</ul>
+</li>
 </ol>
-<h3 id="diagrams">Diagrams</h3>
+<p>These trust policies work in tandem to balance flexibility and security. You can adjust the settings to suit various network scenarios—from enterprise-level internal networks that rely on rapid, low-security handshakes, to public peer-to-peer systems that demand strict, authority-based validations.</p>
+<h3 id="overview">Overview</h3>
 <hr>
-<p>To supplement the information visually, the following diagrams are provided:</p>
-<ol>
-<li><strong>Peer Network Architecture</strong>: Shows the overall architecture of the peer network, including its interaction with peers and network routines.</li>
-<li><strong>Peer Discovery Flow</strong>: Illustrates the flow of peer discovery, from broadcasting to establishing connections and managing peer channels.</li>
-</ol>
+<p><strong>Peer Network Architecture</strong>
+Shows a broad overview of the architecture of the peer network, including default discovery mechanisms.</p>
 <p>
     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/P2PNetwork.png" width="500" height="325" alt="peer network chart">
 </p>

@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="">
       
       
-      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/blob/docs/README.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/blob/master/README.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -73,23 +73,49 @@
         <article data-uid="">
 <h1 id="p2pnet">P2PNet</h1>
 
+<p>A .Net library toolkit for quickly building P2P network applications.</p>
 <p align="center">
     <img src="https://github.com/realChrisDeBon/P2PNet/assets/97779307/36f3441a-2905-476e-ac6a-c5fa8a9112b0" width="175" height="175" alt="p2pnet logo">
 </p>
 <p><img src="https://github.com/realChrisDeBon/P2PNet/actions/workflows/dotnet.yml/badge.svg" alt="passing"> <img src="https://img.shields.io/badge/Version-.Net_9-purple" alt="version"> <a href="https://github.com/realChrisDeBon/P2PNet/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue" alt="License"></a></p>
 <h3 id="about">About</h3>
+<hr>
 <p>P2PNet facilitates peer-to-peer networking with an array of components for setting up your network. Initial peer discovery can be initiated in the LAN, and facilitated over a WAN utilizing various methods such as bootstrapping and IPv6 ICMP blasting. The PeerNetwork will be able to use a range of interoperable WAN and LAN discovery mechanisms to expand and grow the network, manage peer connections, and distribute data and information. Implementing the P2PNet library will make implementing peer-to-peer functionality in your application more seamless and integrated.</p>
-<p><em>Please note this repo is still under development. Many features are working as described, with the grander interoperability still being rolled out.</em></p>
-<h3 id="dependency">Dependency</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: center;">LAN Discovery</th>
+<th style="text-align: center;">IPv6<br><br> Serverless Discovery</th>
+<th style="text-align: center;">Static<br> Server Bootstrap</th>
+<th style="text-align: center;">NAT Holepunching</th>
+<th style="text-align: center;">File and<br><br>Data Storage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Status</td>
+<td style="text-align: center;"><img src="https://custom-icon-badges.demolab.com/badge/stable-darkgreen.svg?logo=check-circle&amp;logoSource=octicons" alt=""></td>
+<td style="text-align: center;"><img src="https://custom-icon-badges.demolab.com/badge/working-darkgreen.svg?logo=check-circle&amp;logoSource=octicons" alt="">  <img src="https://custom-icon-badges.demolab.com/badge/some--bugs-orange.svg?logo=bug&amp;logoSource=octicons" alt=""></td>
+<td style="text-align: center;"><img src="https://custom-icon-badges.demolab.com/badge/in--progress-yellow.svg?logo=alert&amp;logoSource=octicons" alt=""></td>
+<td style="text-align: center;"><img src="https://custom-icon-badges.demolab.com/badge/not--implemented-red.svg?logo=circle-slash&amp;logoSource=octicons" alt=""></td>
+<td style="text-align: center;"><img src="https://custom-icon-badges.demolab.com/badge/working-darkgreen.svg?logo=check-circle&amp;logoSource=octicons" alt=""> <img src="https://custom-icon-badges.demolab.com/badge/some--bugs-orange.svg?logo=bug&amp;logoSource=octicons" alt=""></td>
+</tr>
+</tbody>
+</table>
+<h3 id="dependency-winpcap">Dependency: WinPcap</h3>
+<hr>
 <p>The P2PNet library requires WinPcap installed on the target system. You can check the releases for a working version that interops with the library. For automation, CI/CD and distribution you are advised to read the license guidelines.</p>
 <h3 id="bootstrap-server-container">Bootstrap Server Container</h3>
-<p>Docker image for launching an instance of the bootstrap server:
-<a href="http://ghcr.io/realchrisdebon/p2pnet/p2pbootstrap"><img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&amp;logo=docker&amp;logoColor=white" alt="Docker"></a></p>
-<p>See live example deployment:
-<a href="https://p2pbootstrap.fly.dev/"><img src="https://img.shields.io/badge/Fly.io-24175B?logo=flydotio&amp;logoColor=fff&amp;style=for-the-badge" alt="Fly.io Badge"></a></p>
+<hr>
+<p>Docker image for launching an instance of the bootstrap server:</p>
+<p><a href="http://ghcr.io/realchrisdebon/p2pnet/p2pbootstrap"><img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&amp;logo=docker&amp;logoColor=white" alt="Docker"></a></p>
+<p>See live example deployment:</p>
+<p><a href="https://p2pbootstrap.fly.dev/"><img src="https://img.shields.io/badge/Fly.io-24175B?logo=flydotio&amp;logoColor=fff&amp;style=for-the-badge" alt="Fly.io Badge"></a></p>
 <h3 id="documentation">Documentation</h3>
-<p>Technical overview and API documentation available down below.</p>
-<p><a href="https://realchrisdebon.github.io/P2PNet/"><img src="https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge" alt="view - Documentation"></a></p>
+<hr>
+<p>Technical overview and API documentation available down below:</p>
+<p><a href="https://p2pnetsuite.github.io/P2PNet/"><img src="https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge" alt="view - Documentation"></a></p>
 
 </article>
 

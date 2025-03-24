@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/new/docs/apiSpec/new?filename=P2PNet_Distribution_NetworkTasks_TaskType.md&amp;value=---%0Auid%3A%20P2PNet.Distribution.NetworkTasks.TaskType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/new/master/apiSpec/new?filename=P2PNet_Distribution_NetworkTasks_TaskType.md&amp;value=---%0Auid%3A%20P2PNet.Distribution.NetworkTasks.TaskType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -90,7 +90,7 @@
 
 
   <h1 id="P2PNet_Distribution_NetworkTasks_TaskType" data-uid="P2PNet.Distribution.NetworkTasks.TaskType" class="text-break">
-Enum TaskType  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PNet/Distribution/NetworkTasks/NetworkTask.cs/#L30"><i class="bi bi-code-slash"></i></a>
+Enum TaskType  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/Distribution/NetworkTasks/NetworkTask.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -117,12 +117,7 @@ Enum TaskType  <a class="header-action link-secondary" title="View source" href=
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_AcceptIdentifier"><code>AcceptIdentifier = 15</code></dt>
-  <dd><p>Set the local identifier to the specified value.</p>
-<p>This can be useful with the Authority trust policy to assign unique IDs to peers.</p>
-</dd>
-  
-    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_AssignIdentifierToPeer"><code>AssignIdentifierToPeer = 16</code></dt>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_AssignIdentifierToPeer"><code>AssignIdentifierToPeer = 17</code></dt>
   
   <dd><p>Set the identifier of a peer to the specified value.</p>
 </dd>
@@ -138,12 +133,16 @@ Enum TaskType  <a class="header-action link-secondary" title="View source" href=
   
   <dd><p>Block a specific IP address from connecting to the network.</p>
 </dd>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_BootstrapInitialization"><code>BootstrapInitialization = 14</code></dt>
+  
+  <dd><p>Send the public key and peer list to the peer from the bootstrap server.</p>
+</dd>
     <dt id="P2PNet_Distribution_NetworkTasks_TaskType_DisconnectPeer"><code>DisconnectPeer = 4</code></dt>
   
   <dd><p>Disconnect a specific peer from the network.</p>
 </dd>
-    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_Heartbeat"><code>Heartbeat = 14</code></dt>
-  <dd><p>Send a heartbeat signal to check the status of a peer or server.</p>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_Heartbeat"><code>Heartbeat = 15</code></dt>
+  <dd><p>Send a heartbeat signal to a bootstrap server.</p>
 <p>This can be useful with bootstrap servers to track if peers are still live or drop off the network.</p>
 </dd>
   
@@ -155,9 +154,17 @@ Enum TaskType  <a class="header-action link-secondary" title="View source" href=
   
   <dd><p>Request specific data from a peer.</p>
 </dd>
-    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_RequestPublicKey"><code>RequestPublicKey = 12</code></dt>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_RequestPublicKey"><code>RequestPublicKey = 13</code></dt>
   
   <dd><p>Request the public key of a peer or bootstrap server.</p>
+</dd>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_RequestVerifyHashRecord"><code>RequestVerifyHashRecord = 11</code></dt>
+  
+  <dd><p>A request to verify the existence of a hash record.</p>
+</dd>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_RequestVerifySignature"><code>RequestVerifySignature = 12</code></dt>
+  
+  <dd><p>Verify the PGP signature of a message or command.</p>
 </dd>
     <dt id="P2PNet_Distribution_NetworkTasks_TaskType_RevokePeerAuthorization"><code>RevokePeerAuthorization = 6</code></dt>
   
@@ -171,10 +178,11 @@ Enum TaskType  <a class="header-action link-secondary" title="View source" href=
   
   <dd><p>Send a message to a specific peer or group of peers.</p>
 </dd>
-    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_SendPublicKey"><code>SendPublicKey = 13</code></dt>
-  
-  <dd><p>Send the public key to a peer or bootstrap server.</p>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_SetLocalIdentifier"><code>SetLocalIdentifier = 16</code></dt>
+  <dd><p>Set the local identifier to the specified value.</p>
+<p>This can be useful with the Authority trust policy to assign unique IDs to peers.</p>
 </dd>
+  
     <dt id="P2PNet_Distribution_NetworkTasks_TaskType_SynchronizeData"><code>SynchronizeData = 9</code></dt>
   
   <dd><p>Synchronize data between peers.</p>
@@ -182,10 +190,6 @@ Enum TaskType  <a class="header-action link-secondary" title="View source" href=
     <dt id="P2PNet_Distribution_NetworkTasks_TaskType_UpdateSettings"><code>UpdateSettings = 10</code></dt>
   
   <dd><p>Update network settings or peer settings.</p>
-</dd>
-    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_VerifySignature"><code>VerifySignature = 11</code></dt>
-  
-  <dd><p>Verify the PGP signature of a message or command.</p>
 </dd>
   </dl>
 

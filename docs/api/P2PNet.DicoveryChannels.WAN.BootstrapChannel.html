@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/new/docs/apiSpec/new?filename=P2PNet_DicoveryChannels_WAN_BootstrapChannel.md&amp;value=---%0Auid%3A%20P2PNet.DicoveryChannels.WAN.BootstrapChannel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/new/master/apiSpec/new?filename=P2PNet_DicoveryChannels_WAN_BootstrapChannel.md&amp;value=---%0Auid%3A%20P2PNet.DicoveryChannels.WAN.BootstrapChannel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="P2PNet_DicoveryChannels_WAN_BootstrapChannel" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel" class="text-break">
-Class BootstrapChannel  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class BootstrapChannel  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -158,12 +158,47 @@ Class BootstrapChannel  <a class="header-action link-secondary" title="View sour
 
   <a id="P2PNet_DicoveryChannels_WAN_BootstrapChannel__ctor_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.#ctor*"></a>
 
-  <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapChannel__ctor_System_String_System_Boolean_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.#ctor(System.String,System.Boolean)">
-  BootstrapChannel(string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapChannel__ctor_P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.#ctor(P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions)">
+  BootstrapChannel(BootstrapChannelConnectionOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapChannel.html">BootstrapChannel</a> class using the specified connection options.
+If the options include a pre-specified <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapPeer.html">BootstrapPeer</a>, it is used; otherwise, a new <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapPeer.html">BootstrapPeer</a> is created from the endpoint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BootstrapChannel(BootstrapChannelConnectionOptions options)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>options</code> <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html">BootstrapChannelConnectionOptions</a></dt>
+    <dd><p>An instance of <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html">BootstrapChannelConnectionOptions</a> detailing the connection settings.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_DicoveryChannels_WAN_BootstrapChannel__ctor_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.#ctor*"></a>
+
+  <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapChannel__ctor_System_String_System_Boolean_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.#ctor(System.String,System.Boolean)">
+  BootstrapChannel(string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapChannel.html">BootstrapChannel</a> class using the specified endpoint and authority mode.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -173,9 +208,11 @@ Class BootstrapChannel  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>endpoint</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The endpoint URL of the bootstrap server.</p>
+</dd>
     <dt><code>isAuthorityMode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dd><p>A boolean indicating if authority mode should be enabled.</p>
+</dd>
   </dl>
 
 
@@ -197,7 +234,7 @@ Class BootstrapChannel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapChannel_BootstrapServer" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.BootstrapServer">
   BootstrapServer
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -228,7 +265,7 @@ Class BootstrapChannel  <a class="header-action link-secondary" title="View sour
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapChannel_IsAuthorityMode" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.IsAuthorityMode">
   IsAuthorityMode
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -255,29 +292,65 @@ Class BootstrapChannel  <a class="header-action link-secondary" title="View sour
 
 
 
-  <h2 class="section" id="methods">Methods
-</h2>
+  <a id="P2PNet_DicoveryChannels_WAN_BootstrapChannel_PublicKey_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey*"></a>
 
-
-  <a id="P2PNet_DicoveryChannels_WAN_BootstrapChannel_ConnectAsync_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.ConnectAsync*"></a>
-
-  <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapChannel_ConnectAsync" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.ConnectAsync">
-  ConnectAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapChannel_PublicKey" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey">
+  PublicKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task ConnectAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">public string PublicKey { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="P2PNet_DicoveryChannels_WAN_BootstrapChannel_OpenBootstrapChannel_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel*"></a>
+
+  <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapChannel_OpenBootstrapChannel" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel">
+  OpenBootstrapChannel()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/DicoveryChannels/WAN/BootstrapChannel.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initiates the bootstrap handshake by sending an initial DataTransmissionPacket that embeds the peer’s identifying information.
+Then, it awaits the response from the bootstrap server.
+In trustless mode, the response is expected to be a CollectionSharePacket.
+In authority mode, the response is a DataTransmissionPacket containing a NetworkTask with the public key and peer list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task OpenBootstrapChannel()</code></pre>
   </div>
 
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd></dd>
+    <dd><p>A task representing the asynchronous handshake operation.</p>
+</dd>
   </dl>
 
 

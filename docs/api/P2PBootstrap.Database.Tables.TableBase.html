@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/new/docs/apiSpec/new?filename=P2PBootstrap_Database_Tables_TableBase.md&amp;value=---%0Auid%3A%20P2PBootstrap.Database.Tables.TableBase%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/new/master/apiSpec/new?filename=P2PBootstrap_Database_Tables_TableBase.md&amp;value=---%0Auid%3A%20P2PBootstrap.Database.Tables.TableBase%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="P2PBootstrap_Database_Tables_TableBase" data-uid="P2PBootstrap.Database.Tables.TableBase" class="text-break">
-Class TableBase  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PBootstrap/Database/Tables/TableBase.cs/#L13"><i class="bi bi-code-slash"></i></a>
+Class TableBase  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PBootstrap/Database/Tables/TableBase.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -120,6 +120,7 @@ Class TableBase  <a class="header-action link-secondary" title="View source" hre
     <dt>Derived</dt>
     <dd>
       <div><a class="xref" href="P2PBootstrap.Database.Tables.Table_LogsCLI.html">Table_LogsCLI</a></div>
+      <div><a class="xref" href="P2PBootstrap.Database.Tables.Table_SigningHistory.html">Table_SigningHistory</a></div>
     </dd>
   </dl>
 
@@ -162,7 +163,7 @@ Class TableBase  <a class="header-action link-secondary" title="View source" hre
 
   <h3 id="P2PBootstrap_Database_Tables_TableBase_TableName" data-uid="P2PBootstrap.Database.Tables.TableBase.TableName">
   TableName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PBootstrap/Database/Tables/TableBase.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PBootstrap/Database/Tables/TableBase.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -197,7 +198,7 @@ Class TableBase  <a class="header-action link-secondary" title="View source" hre
 
   <h3 id="P2PBootstrap_Database_Tables_TableBase_AddColumn_P2PBootstrap_Database_Tables_TableComponents_IColumn_" data-uid="P2PBootstrap.Database.Tables.TableBase.AddColumn(P2PBootstrap.Database.Tables.TableComponents.IColumn)">
   AddColumn(IColumn)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PBootstrap/Database/Tables/TableBase.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PBootstrap/Database/Tables/TableBase.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -228,7 +229,7 @@ Class TableBase  <a class="header-action link-secondary" title="View source" hre
 
   <h3 id="P2PBootstrap_Database_Tables_TableBase_GetCreateTableCommand" data-uid="P2PBootstrap.Database.Tables.TableBase.GetCreateTableCommand">
   GetCreateTableCommand()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PBootstrap/Database/Tables/TableBase.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PBootstrap/Database/Tables/TableBase.cs/#L120"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -257,12 +258,58 @@ Class TableBase  <a class="header-action link-secondary" title="View source" hre
 
   <a id="P2PBootstrap_Database_Tables_TableBase_RunInsertCommand_" data-uid="P2PBootstrap.Database.Tables.TableBase.RunInsertCommand*"></a>
 
-  <h3 id="P2PBootstrap_Database_Tables_TableBase_RunInsertCommand_System_String_System_String_" data-uid="P2PBootstrap.Database.Tables.TableBase.RunInsertCommand(System.String,System.String)">
-  RunInsertCommand(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PBootstrap/Database/Tables/TableBase.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <h3 id="P2PBootstrap_Database_Tables_TableBase_RunInsertCommand_System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="P2PBootstrap.Database.Tables.TableBase.RunInsertCommand(System.Collections.Generic.Dictionary{System.String,System.String})">
+  RunInsertCommand(Dictionary&lt;string, string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PBootstrap/Database/Tables/TableBase.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Generates an SQL insert command to insert multiple values into multiple target columns.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string RunInsertCommand(Dictionary&lt;string, string&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A dictionary where the keys are the column names and the values are the corresponding values to be inserted.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string representing the SQL insert command.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown if any of the target columns do not exist in the table.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="P2PBootstrap_Database_Tables_TableBase_RunInsertCommand_" data-uid="P2PBootstrap.Database.Tables.TableBase.RunInsertCommand*"></a>
+
+  <h3 id="P2PBootstrap_Database_Tables_TableBase_RunInsertCommand_System_String_System_String_" data-uid="P2PBootstrap.Database.Tables.TableBase.RunInsertCommand(System.String,System.String)">
+  RunInsertCommand(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PBootstrap/Database/Tables/TableBase.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates an SQL insert command to insert a single value into a target column.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -272,15 +319,18 @@ Class TableBase  <a class="header-action link-secondary" title="View source" hre
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The value to be inserted into the target column.</p>
+</dd>
     <dt><code>targetColumn</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The name of the column to insert the value into.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>A string representing the SQL insert command.</p>
+</dd>
   </dl>
 
 
@@ -290,6 +340,12 @@ Class TableBase  <a class="header-action link-secondary" title="View source" hre
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown if the target column does not exist in the table.</p>
+</dd>
+  </dl>
 
 
 
@@ -297,7 +353,7 @@ Class TableBase  <a class="header-action link-secondary" title="View source" hre
 
   <h3 id="P2PBootstrap_Database_Tables_TableBase_RunUpdateCommand_System_String_System_String_System_String_System_String_P2PBootstrap_Database_Tables_EqualityCheck_" data-uid="P2PBootstrap.Database.Tables.TableBase.RunUpdateCommand(System.String,System.String,System.String,System.String,P2PBootstrap.Database.Tables.EqualityCheck)">
   RunUpdateCommand(string, string, string, string, EqualityCheck)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/docs/P2PBootstrap/Database/Tables/TableBase.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PBootstrap/Database/Tables/TableBase.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Generates an SQL update command to modify a value in the target column based on a condition involving another column and an equality check.</p>
