@@ -187,11 +187,19 @@ namespace P2PBootstrap
             {                
                 app.MapGet("/api/Bootstrap/publicip", async (HttpContext context) =>
                 {
-                    var headers = context.Request.Headers.ToDictionary(h => h.Key, h => h.Value.ToString());
-                    return Results.Text(headers.ToString());
-                    
-                    string ip = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
-                    return Results.Text(ip, "text/plain");
+                    var forwardedFor = context.Request.Headers["X-Forwarded-For"].ToString();
+                    string clientIp = string.Empty;
+
+                    if (!string.IsNullOrEmpty(forwardedFor))
+                    {
+                        clientIp = forwardedFor.Split(',').First().Trim();
+                    }
+                    else
+                    {
+                        clientIp = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+                    }
+                    string result = $"Header: X-Forwarded-For | Value: {forwardedFor} | ClientIP: {clientIp}";
+                    return Results.Text(result, "text/plain");
                 });
             }
 
