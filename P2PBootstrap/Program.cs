@@ -198,8 +198,7 @@ namespace P2PBootstrap
                     {
                         clientIp = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
                     }
-                    string result = $"Header: X-Forwarded-For | Value: {forwardedFor} | ClientIP: {clientIp}";
-                    return Results.Text(result, "text/plain");
+                    return Results.Text(clientIp, "text/plain");
                 });
             }
 
