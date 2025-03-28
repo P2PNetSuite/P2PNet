@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace P2PNet.NetworkPackets.NetworkPacketBase
 {
-    public class NetworkPacket : INetworkPacket
+    public abstract class NetworkPacket : INetworkPacket
     {
         /// <summary>
         /// Gets or sets the origin identifier of the packet.
