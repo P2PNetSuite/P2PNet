@@ -185,14 +185,20 @@ namespace P2PBootstrap
 
             if(GlobalConfig.ServePublicIP() == true)
             {
-                app.UseForwardedHeaders(new ForwardedHeadersOptions
-                {
-                    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-                });
                 app.MapGet("/api/Bootstrap/publicip", async (HttpContext context) =>
                 {
-                    string ip = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
-                    return Results.Text(ip, "text/plain");
+                    var forwardedFor = context.Request.Headers["X-Forwarded-For"].ToString();
+                    string clientIp = string.Empty;
+
+                    if (!string.IsNullOrEmpty(forwardedFor))
+                    {
+                        clientIp = forwardedFor.Split(',').First().Trim();
+                    }
+                    else
+                    {
+                        clientIp = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+                    }
+                    return Results.Text(clientIp, "text/plain");
                 });
             }
 

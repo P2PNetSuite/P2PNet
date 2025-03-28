@@ -1,4 +1,5 @@
-﻿using System;
+﻿using P2PNet.NetworkPackets.NetworkPacketBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,7 +11,7 @@ namespace P2PNet.NetworkPackets {
     /// <summary>
     /// Standard packet used to relay identifying information through out peer network.
     /// </summary>
-    public sealed class IdentifierPacket : INetworkPacket
+    public sealed class IdentifierPacket : NetworkPacket
         {
         /// <summary>
         /// Optional data or information to assist in establishing network connection.
@@ -28,7 +29,7 @@ namespace P2PNet.NetworkPackets {
         [JsonConstructor]
         public IdentifierPacket() { }
 
-        public IdentifierPacket(string message, int data, IPAddress ip_)
+        public IdentifierPacket(string message, int data, IPAddress ip_) : this()
         {
             Message = message;
             Data = data;

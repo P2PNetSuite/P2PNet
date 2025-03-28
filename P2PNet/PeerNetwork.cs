@@ -136,7 +136,7 @@ namespace P2PNet
             try
             {               
                 if (AcceptInboundPeers == true)
-                {
+                {                  
                     listener.Start();
                     Task.Run(() => AcceptClientsAsync());
                 }
@@ -319,34 +319,39 @@ namespace P2PNet
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
 
-                IPAddress peerIP = ((IPEndPoint)client.Client.RemoteEndPoint).Address;
+                Task.Run(() => handleInboundConnection(client));
+                Thread.Sleep(75);
+            }
+        }
+        static void handleInboundConnection(TcpClient client)
+        {
+            IPAddress peerIP = ((IPEndPoint)client.Client.RemoteEndPoint).Address;
 
-                // Immediately filter out blocked IPs
-                if (PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs.Contains(peerIP))
-                {
-                    DebugMessage($"Blocked IP attempted to connect: {peerIP.ToString()}. Ignoring.", MessageType.Warning);
-                    client.Dispose();
-                    continue;
-                }
-                // Check for existing peer
-                if (KnownPeers.Any(p => p.IP.Equals(peerIP)))
-                {
+            // Immediately filter out blocked IPs
+            if (PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs.Contains(peerIP))
+            {
+                DebugMessage($"Blocked IP attempted to connect: {peerIP.ToString()}. Ignoring.", MessageType.Warning);
+                client.Dispose();
+                return;
+            }
+            // Check for existing peer
+            if (KnownPeers.Any(p => p.IP.Equals(peerIP)))
+            {
                 //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
-                    client.Dispose();
-                }
-                else if (InboundConnectingPeers.PeerIsQueued(peerIP.ToString()))
-                {
+                client.Dispose();
+            }
+            else if (InboundConnectingPeers.PeerIsQueued(peerIP.ToString()))
+            {
                 //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
-                }
-                else
-                {
-                    // Set inbound as GenericPeer
-                    GenericPeer newPeer = new GenericPeer(((IPEndPoint)client.Client.RemoteEndPoint).Address, ((IPEndPoint)client.Client.RemoteEndPoint).Port);
-
-                    InboundConnectingPeers.Enqueue(newPeer);
-
-                    Task.Run(() => AddPeer(newPeer, client));
-                }
+            }
+            else
+            {
+                // Set inbound as GenericPeer
+                GenericPeer newPeer = new GenericPeer(((IPEndPoint)client.Client.RemoteEndPoint).Address, ((IPEndPoint)client.Client.RemoteEndPoint).Port);
+                // pass peer reference to be processed by queue or event driven logic (application defined)
+                InboundConnectingPeers.Enqueue(newPeer);
+                // pass peer reference to be added to KnownPeers and ActivePeerChannels (lib defined)
+                Task.Run(() => AddPeer(newPeer, client));
             }
         }
 
@@ -358,83 +363,80 @@ namespace P2PNet
         /// <param name="client">The TCP client associated with the peer. Default is null.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <remarks></remarks>
+        private static readonly object _peersLock = new object();
+
         public static async Task AddPeer(IPeer peer, TcpClient client = null)
         {
-            List<IPeer> peers = KnownPeers;
-            if ((KnownPeers.Any(p => p.IP.Equals(peer.IP))) || (KnownPeers.Any(p => p.Identifier.Equals(peer.Identifier))))
+            // Lock the known peers check
+            lock (_peersLock)
             {
-            //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
-                return;
-            }
-            else if (peer.IP.ToString() == LocalIPV4Address.ToString() && peer.Port == ListeningPort)
-            {
-            //    DebugMessage("Listener broadcast to itself.");
-                return;
-            }
-            else
-            {
-                if (client == null)
+                if ((KnownPeers.Any(p => p.IP.Equals(peer.IP))) ||
+                    (KnownPeers.Any(p => p.Identifier.Equals(peer.Identifier))))
                 {
-                    try
-                    {
-
-                        IPEndPoint endpoint = new IPEndPoint(peer.IP, peer.Port);
-                        peer.Client = new TcpClient(peer.IP.ToString(), peer.Port);
-                        if (peer.Client.Connected == false)
-                        {
-                            peer.Client.Connect(peer.IP, peer.Port);
-                        }
-
-                        peer.Stream = peer.Client.GetStream();
-                        await channelize();
-                    }
-                    catch (Exception e)
-                    {
-
-                        DebugMessage($"Issue opening trusted peer channel: {peer.IP.ToString()} @ port {peer.Port}\n{e.ToString()}", MessageType.Critical);
-
-                        return;
-                    }
+                    //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
+                    return;
                 }
-                else // we're accepting an incoming client
+                else if (peer.IP.ToString() == LocalIPV4Address.ToString() && peer.Port == ListeningPort)
                 {
-                    try
-                    {
-                        peer.Client = client;
-                        peer.Stream = peer.Client.GetStream();
-                        await channelize();
-                    }
-                    catch (Exception e)
-                    {
 
-                        DebugMessage($"Issue accepting incoming peer: {peer.IP.ToString()} @ port {peer.Port}", MessageType.Warning);
-
-                        return;
-                    }
-                }
-
-                async Task channelize()
-                {
-                    PeerChannel peerChannel = new PeerChannel(peer);
-                    ActivePeerChannels.Add(peerChannel);
-
-                    if (TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange == true)
-                    {
-                        ElevatePeerPermission(peerChannel);
-                    }
-
-                    peers.Add(peerChannel.peer);
-                    KnownPeers = peers;
-                    Thread peerThread = new Thread(peerChannel.OpenPeerChannel);
-                    peerThread.Start();
-
-                    // Raise PeerAdded event
-                    Task.Run(() => { OnPeerAdded(peerChannel); });
                     return;
                 }
             }
-        }
+            if (client == null)
+            {
+                try
+                {
+                    IPEndPoint endpoint = new IPEndPoint(peer.IP, peer.Port);
+                    peer.Client = new TcpClient(peer.IP.ToString(), peer.Port);
+                    if (!peer.Client.Connected)
+                    {
+                        peer.Client.Connect(peer.IP, peer.Port);
+                    }
+                    peer.Stream = peer.Client.GetStream();
+                    await channelize();
+                }
+                catch (Exception e)
+                {
+                    DebugMessage($"Issue opening trusted peer channel: {peer.IP} @ port {peer.Port}\n{e}", MessageType.Critical);
+                    return;
+                }
+            }
+            else // we're accepting an incoming client
+            {
+                try
+                {
+                    peer.Client = client;
+                    peer.Stream = peer.Client.GetStream();
+                    await channelize();
+                }
+                catch (Exception e)
+                {
+                    DebugMessage($"Issue accepting incoming peer: {peer.IP} @ port {peer.Port}", MessageType.Warning);
+                    return;
+                }
+            }
 
+            async Task channelize()
+            {
+                PeerChannel peerChannel = new PeerChannel(peer);
+                lock (_peersLock)
+                {
+                    ActivePeerChannels.Add(peerChannel);
+                    KnownPeers.Add(peerChannel.peer);
+                }
+
+                if (TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange == true)
+                {
+                    await ElevatePeerPermission(peerChannel);
+                }
+
+                Thread peerThread = new Thread(peerChannel.OpenPeerChannel);
+                peerThread.Start();
+
+                // Raise  PeerAdded event
+                Task.Run(() => OnPeerAdded(peerChannel));
+            }
+        }
         /// <summary>
         /// Terminates a peer connection and removes it from <see cref="PeerNetwork.KnownPeers"/> and <see cref="PeerNetwork.ActivePeerChannels"/>.
         /// </summary>
@@ -580,8 +582,7 @@ namespace P2PNet
 
                 DebugMessage("No primary interface found.");
                 Thread.Sleep(1500);
-
-                return; // accidently'd the internet
+                throw new IOException("No primary network interface found. Please check your network settings.");
             }
 
 
@@ -1045,8 +1046,6 @@ namespace P2PNet
                             }
                         }
                     };
-
-
 
                     peerChannel.DataReceived += dataReceivedHandler;
 
