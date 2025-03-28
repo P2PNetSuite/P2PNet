@@ -27,10 +27,11 @@ namespace ExampleApplication
                     Console.WriteLine($"Using environment variable for broadcast port: {port}");
                     PeerNetwork.BroadcasterPort = port;
                     broadcastPortProvided = true;
+                    switch (PeerNetwork.BroadcasterPort) { case 8001: PeerNetwork.Identifier = "peer_one"; break; case 8002: PeerNetwork.Identifier = "peer_two"; break; case 8003: PeerNetwork.Identifier = "peer_three"; break; }
                 }
             }
 
-            PeerNetwork.LoadLocalAddresses();
+            PeerNetwork.LoadLocalAddresses(); 
 
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement = TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.EventBased;
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol = true;
@@ -40,6 +41,7 @@ namespace ExampleApplication
             PeerNetwork.IncomingPeerConnectionAttempt += NewPeerChannel;
 
             PeerNetwork.BeginAcceptingInboundPeers();
+
             if (broadcastPortProvided == true)
             {
                 PeerNetwork.StartBroadcastingLAN(false);

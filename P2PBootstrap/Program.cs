@@ -183,7 +183,7 @@ namespace P2PBootstrap
                 }
             });
 
-            if(GlobalConfig.ServePublicIP() == true)
+            if(GlobalConfig.OptionalEndpoints.ServePublicIP() == true)
             {                
                 app.MapGet("/api/Bootstrap/publicip", async (HttpContext context) =>
                 {
