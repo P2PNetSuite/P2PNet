@@ -184,7 +184,7 @@ namespace P2PBootstrap
             });
 
             if(GlobalConfig.ServePublicIP() == true)
-            {
+            {                
                 app.MapGet("/api/Bootstrap/publicip", async (HttpContext context) =>
                 {
                     var forwardedFor = context.Request.Headers["X-Forwarded-For"].ToString();
