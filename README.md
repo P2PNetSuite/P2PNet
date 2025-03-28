@@ -1,12 +1,12 @@
 ﻿# P2PNet
 
-A .Net library toolkit for quickly building P2P network applications.
+A .Net library toolkit for quickly building P2P network applications. P2PNet is fully AOT compatible.
 
 <p align="center">
     <img src="https://github.com/realChrisDeBon/P2PNet/assets/97779307/36f3441a-2905-476e-ac6a-c5fa8a9112b0" width="175" height="175" alt="p2pnet logo">
 </p>
 
-![passing](https://github.com/realChrisDeBon/P2PNet/actions/workflows/dotnet.yml/badge.svg) ![version](https://img.shields.io/badge/Version-.Net_9-purple) [![License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/realChrisDeBon/P2PNet/blob/main/LICENSE)
+![passing](https://github.com/p2pnetsuite/P2PNet/actions/workflows/dotnet.yml/badge.svg) ![version](https://img.shields.io/badge/Version-.Net_9-purple) [![License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/realChrisDeBon/P2PNet/blob/main/LICENSE)
 
 ### About
 
@@ -31,7 +31,7 @@ The P2PNet library requires WinPcap installed on the target system. You can chec
 
 Docker image for launching an instance of the bootstrap server:
 
-[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](http://ghcr.io/realchrisdebon/p2pnet/p2pbootstrap)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](http://ghcr.io/p2pnetsuite/p2pnet/p2pbootstrap)
 
 See live example deployment:
 
