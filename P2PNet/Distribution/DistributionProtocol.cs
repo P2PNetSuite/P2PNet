@@ -1,5 +1,7 @@
 ﻿using P2PNet.Distribution.NetworkTasks;
 using P2PNet.NetworkPackets;
+using P2PNet.NetworkPackets.NetworkPacketBase;
+using P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase;
 using P2PNet.Peers;
 using System;
 using System.Collections.Generic;
@@ -142,7 +144,9 @@ namespace P2PNet.Distribution
             { typeof(List<GenericPeer>), new GenericPeerListContext().GetTypeInfo(typeof(List<GenericPeer>)) },
             { typeof (IPeer), new IPeerContext().GetTypeInfo(typeof(IPeer)) },
             { typeof (List<IPeer>), new IPeerListContext().GetTypeInfo(typeof(List<IPeer>)) },
-            { typeof(NetworkTask), new NetworkTaskContext().GetTypeInfo(typeof(NetworkTask)) }
+            { typeof(NetworkTask), new NetworkTaskContext().GetTypeInfo(typeof(NetworkTask)) },
+            { typeof(NetworkPacket), new NetworkPacketContext().GetTypeInfo(typeof(NetworkPacket)) },
+            { typeof(INetworkPacket),  new INetworkPacketContext().GetTypeInfo(typeof(INetworkPacketContext))}
         };
 
         /// <summary>
@@ -210,6 +214,13 @@ namespace P2PNet.Distribution
 
     // This region keeps the packet objects and classes AOT compliant for JSON serialization.
     #region PACKET_CONTEXT
+        [JsonSerializable(typeof(INetworkPacket))]
+        [JsonSerializable(typeof(NetworkPacket))]
+        public partial class NetworkPacketContext : JsonSerializerContext { }
+
+        [JsonSerializable(typeof(INetworkPacket))]
+        public partial class INetworkPacketContext : JsonSerializerContext { }
+
         [JsonSerializable(typeof(PureMessagePacket))]
         public partial class PureMessagePacketContext : JsonSerializerContext { }
 

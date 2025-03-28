@@ -63,7 +63,7 @@ namespace ExampleApplication
         {
             while (true)
             {
-                if(TrustedPeerChannels.Count >= 1)
+                if(TrustedPeerChannels.Count >= 2)
                 {
                     PeerNetwork.StopBroadcastingLAN();
                     Console.WriteLine($"Active peer count: {ActivePeerChannels.Count}");
