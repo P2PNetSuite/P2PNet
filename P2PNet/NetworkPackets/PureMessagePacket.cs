@@ -1,4 +1,4 @@
-﻿using P2PNet.NetworkPackets;
+﻿using P2PNet.NetworkPackets.NetworkPacketBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace P2PNet.NetworkPackets
     /// <summary>
     /// Represents a simple human-readable message packet.
     /// </summary>
-    public sealed class PureMessagePacket : INetworkPacket
+    public sealed class PureMessagePacket : NetworkPacket
         {
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace P2PNet.NetworkPackets
         /// Initializes a new instance of the <see cref="PureMessagePacket"/> class with a specified message.
         /// </summary>
         /// <param name="message">The message to include in the packet.</param>
-        public PureMessagePacket(string message) { Message = message; }
+        public PureMessagePacket(string message) : this() { Message = message; }
 
         }
     }

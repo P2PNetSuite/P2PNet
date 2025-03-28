@@ -28,6 +28,7 @@ using P2PNet.Distribution.NetworkTasks;
 using System.Text;
 using System.Security.Cryptography;
 using System.Net;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace P2PBootstrap
 {
@@ -129,6 +130,7 @@ namespace P2PBootstrap
                     return Results.Problem(ex.Message);
                 }
             });
+
             app.MapPut("/api/Bootstrap/verifyhash", async Task<IResult> (HttpContext context) =>
             {
                 if (GlobalConfig.TrustPolicy() != TrustPolicies.BootstrapTrustPolicyType.Trustless)
@@ -180,6 +182,25 @@ namespace P2PBootstrap
                     return Results.Content(Serialize<PureMessagePacket>(new PureMessagePacket("Trustless policy in effect, no hash verification performed.")), "application/json");
                 }
             });
+
+            if(GlobalConfig.OptionalEndpoints.ServePublicIP() == true)
+            {                
+                app.MapGet("/api/Bootstrap/publicip", async (HttpContext context) =>
+                {
+                    var forwardedFor = context.Request.Headers["X-Forwarded-For"].ToString();
+                    string clientIp = string.Empty;
+
+                    if (!string.IsNullOrEmpty(forwardedFor))
+                    {
+                        clientIp = forwardedFor.Split(',').First().Trim();
+                    }
+                    else
+                    {
+                        clientIp = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+                    }
+                    return Results.Text(clientIp, "text/plain");
+                });
+            }
 
             // TODO secure this against remote access
             app.MapGet("/api/parser/output", () =>

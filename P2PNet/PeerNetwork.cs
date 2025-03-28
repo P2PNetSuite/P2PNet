@@ -61,7 +61,7 @@ namespace P2PNet
         /// The ability to set or change the identifier is governed by the <see cref="TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy"/>.
         /// </summary>
         /// <exception cref="UnauthorizedAccessException">
-        /// Thrown if an attempt is made to change the identifier when the policy is set to <see cref="TrustPolicies.LocalIdentifierSetPolicyTypes.StrictLocalOnly"/> or <see cref="TrustPolicies.LocalIdentifierSetPolicyTypes.StrictRemoteOnly"/>
+        /// Thrown if an attempt is made to change the identifier when the policy is set to <see cref="TrustPolicies.LocalIdentifierSetPolicyType.StrictLocalOnly"/> or <see cref="TrustPolicies.LocalIdentifierSetPolicyType.StrictRemoteOnly"/>
         /// and the identifier has already been set.
         /// </exception>
         public static string Identifier
@@ -69,7 +69,7 @@ namespace P2PNet
             get { return _identifier; }
             set 
             { 
-                if((TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy != TrustPolicies.LocalIdentifierSetPolicyTypes.StrictLocalOnly) && (TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy != TrustPolicies.LocalIdentifierSetPolicyTypes.StrictRemoteOnly))
+                if((TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy != TrustPolicies.LocalIdentifierSetPolicyType.StrictLocalOnly) && (TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy != TrustPolicies.LocalIdentifierSetPolicyType.StrictRemoteOnly))
                 {
                     // checking if origin (local or remote) match policy should occur upstream from here
                     // these checks only occur here due to security
@@ -136,7 +136,7 @@ namespace P2PNet
             try
             {               
                 if (AcceptInboundPeers == true)
-                {
+                {                  
                     listener.Start();
                     Task.Run(() => AcceptClientsAsync());
                 }
@@ -319,34 +319,39 @@ namespace P2PNet
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
 
-                IPAddress peerIP = ((IPEndPoint)client.Client.RemoteEndPoint).Address;
+                Task.Run(() => handleInboundConnection(client));
+                Thread.Sleep(75);
+            }
+        }
+        static void handleInboundConnection(TcpClient client)
+        {
+            IPAddress peerIP = ((IPEndPoint)client.Client.RemoteEndPoint).Address;
 
-                // Immediately filter out blocked IPs
-                if (PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs.Contains(peerIP))
-                {
-                    DebugMessage($"Blocked IP attempted to connect: {peerIP.ToString()}. Ignoring.", MessageType.Warning);
-                    client.Dispose();
-                    continue;
-                }
-                // Check for existing peer
-                if (KnownPeers.Any(p => p.IP.Equals(peerIP)))
-                {
+            // Immediately filter out blocked IPs
+            if (PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs.Contains(peerIP))
+            {
+                DebugMessage($"Blocked IP attempted to connect: {peerIP.ToString()}. Ignoring.", MessageType.Warning);
+                client.Dispose();
+                return;
+            }
+            // Check for existing peer
+            if (KnownPeers.Any(p => p.IP.Equals(peerIP)))
+            {
                 //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
-                    client.Dispose();
-                }
-                else if (InboundConnectingPeers.PeerIsQueued(peerIP.ToString()))
-                {
+                client.Dispose();
+            }
+            else if (InboundConnectingPeers.PeerIsQueued(peerIP.ToString()))
+            {
                 //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
-                }
-                else
-                {
-                    // Set inbound as GenericPeer
-                    GenericPeer newPeer = new GenericPeer(((IPEndPoint)client.Client.RemoteEndPoint).Address, ((IPEndPoint)client.Client.RemoteEndPoint).Port);
-
-                    InboundConnectingPeers.Enqueue(newPeer);
-
-                    Task.Run(() => AddPeer(newPeer, client));
-                }
+            }
+            else
+            {
+                // Set inbound as GenericPeer
+                GenericPeer newPeer = new GenericPeer(((IPEndPoint)client.Client.RemoteEndPoint).Address, ((IPEndPoint)client.Client.RemoteEndPoint).Port);
+                // pass peer reference to be processed by queue or event driven logic (application defined)
+                InboundConnectingPeers.Enqueue(newPeer);
+                // pass peer reference to be added to KnownPeers and ActivePeerChannels (lib defined)
+                Task.Run(() => AddPeer(newPeer, client));
             }
         }
 
@@ -358,83 +363,80 @@ namespace P2PNet
         /// <param name="client">The TCP client associated with the peer. Default is null.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <remarks></remarks>
+        private static readonly object _peersLock = new object();
+
         public static async Task AddPeer(IPeer peer, TcpClient client = null)
         {
-            List<IPeer> peers = KnownPeers;
-            if ((KnownPeers.Any(p => p.IP.Equals(peer.IP))) || (KnownPeers.Any(p => p.Identifier.Equals(peer.Identifier))))
+            // Lock the known peers check
+            lock (_peersLock)
             {
-            //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
-                return;
-            }
-            else if (peer.IP.ToString() == LocalIPV4Address.ToString() && peer.Port == ListeningPort)
-            {
-            //    DebugMessage("Listener broadcast to itself.");
-                return;
-            }
-            else
-            {
-                if (client == null)
+                if ((KnownPeers.Any(p => p.IP.Equals(peer.IP))) ||
+                    (KnownPeers.Any(p => p.Identifier.Equals(peer.Identifier))))
                 {
-                    try
-                    {
-
-                        IPEndPoint endpoint = new IPEndPoint(peer.IP, peer.Port);
-                        peer.Client = new TcpClient(peer.IP.ToString(), peer.Port);
-                        if (peer.Client.Connected == false)
-                        {
-                            peer.Client.Connect(peer.IP, peer.Port);
-                        }
-
-                        peer.Stream = peer.Client.GetStream();
-                        await channelize();
-                    }
-                    catch (Exception e)
-                    {
-
-                        DebugMessage($"Issue opening trusted peer channel: {peer.IP.ToString()} @ port {peer.Port}\n{e.ToString()}", MessageType.Critical);
-
-                        return;
-                    }
+                    //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
+                    return;
                 }
-                else // we're accepting an incoming client
+                else if (peer.IP.ToString() == LocalIPV4Address.ToString() && peer.Port == ListeningPort)
                 {
-                    try
-                    {
-                        peer.Client = client;
-                        peer.Stream = peer.Client.GetStream();
-                        await channelize();
-                    }
-                    catch (Exception e)
-                    {
 
-                        DebugMessage($"Issue accepting incoming peer: {peer.IP.ToString()} @ port {peer.Port}", MessageType.Warning);
-
-                        return;
-                    }
-                }
-
-                async Task channelize()
-                {
-                    PeerChannel peerChannel = new PeerChannel(peer);
-                    ActivePeerChannels.Add(peerChannel);
-
-                    if (TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange == true)
-                    {
-                        ElevatePeerPermission(peerChannel);
-                    }
-
-                    peers.Add(peerChannel.peer);
-                    KnownPeers = peers;
-                    Thread peerThread = new Thread(peerChannel.OpenPeerChannel);
-                    peerThread.Start();
-
-                    // Raise PeerAdded event
-                    Task.Run(() => { OnPeerAdded(peerChannel); });
                     return;
                 }
             }
-        }
+            if (client == null)
+            {
+                try
+                {
+                    IPEndPoint endpoint = new IPEndPoint(peer.IP, peer.Port);
+                    peer.Client = new TcpClient(peer.IP.ToString(), peer.Port);
+                    if (!peer.Client.Connected)
+                    {
+                        peer.Client.Connect(peer.IP, peer.Port);
+                    }
+                    peer.Stream = peer.Client.GetStream();
+                    await channelize();
+                }
+                catch (Exception e)
+                {
+                    DebugMessage($"Issue opening trusted peer channel: {peer.IP} @ port {peer.Port}\n{e}", MessageType.Critical);
+                    return;
+                }
+            }
+            else // we're accepting an incoming client
+            {
+                try
+                {
+                    peer.Client = client;
+                    peer.Stream = peer.Client.GetStream();
+                    await channelize();
+                }
+                catch (Exception e)
+                {
+                    DebugMessage($"Issue accepting incoming peer: {peer.IP} @ port {peer.Port}", MessageType.Warning);
+                    return;
+                }
+            }
 
+            async Task channelize()
+            {
+                PeerChannel peerChannel = new PeerChannel(peer);
+                lock (_peersLock)
+                {
+                    ActivePeerChannels.Add(peerChannel);
+                    KnownPeers.Add(peerChannel.peer);
+                }
+
+                if (TrustPolicies.IncomingPeerTrustPolicy.AllowEnhancedPacketExchange == true)
+                {
+                    await ElevatePeerPermission(peerChannel);
+                }
+
+                Thread peerThread = new Thread(peerChannel.OpenPeerChannel);
+                peerThread.Start();
+
+                // Raise  PeerAdded event
+                Task.Run(() => OnPeerAdded(peerChannel));
+            }
+        }
         /// <summary>
         /// Terminates a peer connection and removes it from <see cref="PeerNetwork.KnownPeers"/> and <see cref="PeerNetwork.ActivePeerChannels"/>.
         /// </summary>
@@ -515,7 +517,6 @@ namespace P2PNet
         /// </summary>
         public static void LoadLocalAddresses()
         {
-            localAddressesLoaded = true; // tell the application that we have loaded the local information
             // get public ipv6 address
             PublicIPV6Address = GetLocalIPv6Address();
             if (PublicIPV6Address != null)
@@ -571,7 +572,7 @@ namespace P2PNet
 
                 foreach (IPAddress ip in ipv4Addresses)
                 {
-                    LocalIPV4Address = ip; // grab public IP, typically the last/only one is true
+                    LocalIPV4Address = ip; // grab local IP, typically the last/only one is true
                     MAC = primaryInterface.GetPhysicalAddress();
                 }
             }
@@ -580,8 +581,7 @@ namespace P2PNet
 
                 DebugMessage("No primary interface found.");
                 Thread.Sleep(1500);
-
-                return; // accidently'd the internet
+                throw new IOException("No primary network interface found. Please check your network settings.");
             }
 
 
@@ -611,19 +611,78 @@ namespace P2PNet
             }
             // Ensure there's no duplicates
             multicast_addresses = multicast_addresses.Distinct().ToList();
+
+            localAddressesLoaded = true; // tell the application that we have loaded the local information
         }
         private static IPAddress GetPublicIPv4Address()
         {
             try
             {
-                using (HttpClient client = new HttpClient())
+                switch(TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4GetPolicy)
                 {
-                    string ipString = client.GetStringAsync("https://api.ipify.org").Result;
-                    if (IPAddress.TryParse(ipString, out IPAddress publicIP))
-                    {
-                        return publicIP;
-                    }
+                    case TrustPolicies.PublicIPv4GetPolicyType.SingleStaticURL:
+                        string ipSource = TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4Sources[0];
+                        using (HttpClient client = new HttpClient())
+                        {
+                            string ipString = client.GetStringAsync(ipSource).Result;
+                            if (IPAddress.TryParse(ipString, out IPAddress publicIP))
+                            {
+                                return publicIP;
+                            }
+                        }
+                        break;
+                    case TrustPolicies.PublicIPv4GetPolicyType.StaticURLAndFailover:
+                        foreach (string ipSource_ in TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4Sources)
+                        {
+                            using (HttpClient client = new HttpClient())
+                            {
+                                string ipString = client.GetStringAsync(ipSource_).Result;
+                                if (IPAddress.TryParse(ipString, out IPAddress publicIP))
+                                {
+                                    return publicIP;
+                                } else
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+                        break;
+                    case TrustPolicies.PublicIPv4GetPolicyType.URLListConsensus:
+
+                        Dictionary<IPAddress, int> ipConsensus = new Dictionary<IPAddress, int>();
+
+                        foreach (string ipSource_ in TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4Sources)
+                        {
+                            using (HttpClient client = new HttpClient())
+                            {
+                                string ipString = client.GetStringAsync(ipSource_).Result;
+                                if (IPAddress.TryParse(ipString, out IPAddress publicIP))
+                                {
+                                    if(ipConsensus.ContainsKey(publicIP))
+                                    {
+                                        ipConsensus[publicIP]++;
+                                    }
+                                    else
+                                    {
+                                        ipConsensus.Add(publicIP, 1);
+                                    }
+                                }
+                            }
+                        }
+                        IPAddress topVoted = null;
+                        int topVote = 0;
+                        foreach (KeyValuePair<IPAddress, int> kvp in ipConsensus)
+                        {
+                           if(kvp.Value > topVote)
+                            {
+                                topVote = kvp.Value;
+                                topVoted = kvp.Key;
+                            }
+                        } // get top-voted result
+                        return topVoted;
+                        break;
                 }
+
             }
             catch (Exception ex)
             {
@@ -631,8 +690,6 @@ namespace P2PNet
             }
             return null;
         }
-
-
         /// <summary>
         /// Gets the IPv6 address of the host machine.
         /// </summary>
@@ -1046,8 +1103,6 @@ namespace P2PNet
                         }
                     };
 
-
-
                     peerChannel.DataReceived += dataReceivedHandler;
 
                     while (peerChannel.IsTrustedPeer == false)
@@ -1182,22 +1237,28 @@ namespace P2PNet
 
             public static class PeerNetworkTrustPolicy
             {
-                private static LocalIdentifierSetPolicyTypes _localIdentifierInitPolicy = LocalIdentifierSetPolicyTypes.LocalAndRemote;
+                private static LocalIdentifierSetPolicyType _localIdentifierInitPolicy = LocalIdentifierSetPolicyType.LocalAndRemote;
+                private static PublicIPv4GetPolicyType _publicIPv4GetPolicy = PublicIPv4GetPolicyType.SingleStaticURL;
+                private static List<string> publicIPv4sources = new List<string>()
+                {
+                    "https://p2pbootstrap.fly.dev/api/bootstrap/publicip",
+                    "https://api.ipify.org"
+                };
 
                 /// <summary>
                 /// Gets or sets the policy for initializing and managing the identifier of a peer member in the P2P network.
                 /// This policy determines whether the identifier can be set locally, remotely, or both, and whether it can be changed after initial assignment.
                 /// </summary>
                 /// <exception cref="UnauthorizedAccessException">
-                /// Thrown if an attempt is made to change the policy to or from <see cref="LocalIdentifierSetPolicyTypes.StrictLocalOnly"/> or <see cref="LocalIdentifierSetPolicyTypes.StrictRemoteOnly"/>
+                /// Thrown if an attempt is made to change the policy to or from <see cref="LocalIdentifierSetPolicyType.StrictLocalOnly"/> or <see cref="LocalIdentifierSetPolicyType.StrictRemoteOnly"/>
                 /// after the identifier has already been set.
                 /// </exception>
-                public static LocalIdentifierSetPolicyTypes LocalIdentifierSetPolicy
+                public static LocalIdentifierSetPolicyType LocalIdentifierSetPolicy
                 {
                     get => _localIdentifierInitPolicy;
                     set
                     {
-                        if ((_localIdentifierInitPolicy == LocalIdentifierSetPolicyTypes.StrictLocalOnly || _localIdentifierInitPolicy == LocalIdentifierSetPolicyTypes.StrictRemoteOnly) && (_identifierSet == true))
+                        if ((_localIdentifierInitPolicy == LocalIdentifierSetPolicyType.StrictLocalOnly || _localIdentifierInitPolicy == LocalIdentifierSetPolicyType.StrictRemoteOnly) && (_identifierSet == true))
                         {
                             // ensure that the identifier cannot be changed after initial assignment
                             throw new UnauthorizedAccessException("The identifier policy is locked and cannot be changed after initial assignment.");
@@ -1209,8 +1270,33 @@ namespace P2PNet
                     }
                 }
 
+                /// <summary>
+                /// Gets or sets the policy for fetching the public IPv4 address. This determines policy for failover and consensus.
+                /// To set the list of sources, use <see cref="PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4Sources"/> and add API endpoints that return the public IPv4 as plain text.
+                /// </summary>
+                public static PublicIPv4GetPolicyType PublicIPv4GetPolicy
+                {
+                    get => _publicIPv4GetPolicy;
+                    set => _publicIPv4GetPolicy = value;
+                }
+                /// <summary>
+                /// Get or sets the list of sources to fetch the public IPv4 address.
+                /// </summary>
+                /// <remarks>
+                /// These should be API endpoints that return the public IPv4 address of the client as plain text.
+                /// The use of an API endpoint that uses JSON or other format is not supported.
+                /// </remarks>
+                public static List<string> PublicIPv4Sources
+                {
+                    get => publicIPv4sources;
+                    set => publicIPv4sources = value;
+                }
+
             }
 
+            /// <summary>
+            /// These policy types determine whether the bootstrap server is trustless or bears authority.
+            /// </summary>
             public enum BootstrapTrustPolicyType
             {
                 Trustless,
@@ -1218,10 +1304,9 @@ namespace P2PNet
             }
 
             /// <summary>
-            /// Specifies the policy for initializing and managing the identifier of a peer member in the P2P network.
-            /// This policy determines whether the identifier can be set locally, remotely, or both, and whether it can be changed after initial assignment.
+            /// These policy types determine whether the identifier can be set locally, remotely, or both, and whether it can be changed after initial assignment.
             /// </summary>
-            public enum LocalIdentifierSetPolicyTypes
+            public enum LocalIdentifierSetPolicyType
             {
                 /// <summary>
                 /// The identifier is set only upon initialization and cannot be changed thereafter.
@@ -1255,6 +1340,25 @@ namespace P2PNet
                 /// Note that this will lock in the policy and prevent any changes to the identifier after initial assignment.
                 /// </summary>
                 StrictRemoteOnly
+            }
+
+            /// <summary>
+            /// These policy types determine how the public IPv4 address is fetched.
+            /// </summary>
+            public enum PublicIPv4GetPolicyType
+            {
+                /// <summary>
+                /// The public IPv4 address is fetched from a single static URL.
+                /// </summary>
+                SingleStaticURL,
+                /// <summary>
+                /// The public IPv4 address is fetched from a single static URL, with failover URL(s) ready in case of static server failure.
+                /// </summary>
+                StaticURLAndFailover,
+                /// <summary>
+                /// The public IPv4 address is fetched from a list of static URLs, with a majority vote determining the correct address.
+                /// </summary>
+                URLListConsensus,
             }
         }
         #endregion

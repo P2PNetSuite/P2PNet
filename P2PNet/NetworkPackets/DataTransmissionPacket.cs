@@ -1,11 +1,11 @@
 ﻿using static P2PNet.Distribution.DistributionProtocol;
-using P2PNet.NetworkPackets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using P2PNet.Distribution.NetworkTasks;
+using P2PNet.NetworkPackets.NetworkPacketBase;
 
 namespace P2PNet.NetworkPackets
     {
@@ -13,7 +13,7 @@ namespace P2PNet.NetworkPackets
     /// Represents a data transmission packet used for transmitting data throughout the peer-to-peer network.
     /// </summary>
     /// <remarks>This packet can be used to transmit files, data, and <see cref="NetworkTask"/> objects throughout the network.</remarks>
-    public sealed class DataTransmissionPacket : INetworkPacket
+    public sealed class DataTransmissionPacket : NetworkPacket
         {
         /// <summary>
         /// Gets or sets the data contained in the packet.
@@ -36,7 +36,7 @@ namespace P2PNet.NetworkPackets
         /// </list>
         /// </summary>
         public DataPayloadFormat DataType { get; set; }
-
+        
         public DataTransmissionPacket() { }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace P2PNet.NetworkPackets
         /// <param name="data">The data payload within the packet.</param>
         /// <param name="dataType">Denotes the type of data contained within the data payload.</param>
         /// <remarks>Upon instantiating an instance of the <see cref="DataTransmissionPacket"/> class, the <see cref="DataType"/> parameter is used to wrap the raw data with corresponding tags so it can be parsed and more easily managed throughout its life cycle.</remarks>
-        public DataTransmissionPacket(byte[] data, DataPayloadFormat dataType)
+        public DataTransmissionPacket(byte[] data, DataPayloadFormat dataType) : this()
             {
                 {
                 var tags = DataFormatTagMap[dataType];
