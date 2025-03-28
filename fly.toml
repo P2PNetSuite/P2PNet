@@ -2,7 +2,7 @@
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
-app = "p2pnet"
+app = "p2pbootstrap"
 
 [build]
 image = "ghcr.io/p2pnetsuite/p2pnet/p2pbootstrap:latest"
