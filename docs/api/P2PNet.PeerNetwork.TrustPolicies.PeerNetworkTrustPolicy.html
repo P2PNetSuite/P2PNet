@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/new/master/apiSpec/new?filename=P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy.md&amp;value=---%0Auid%3A%20P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/new/docs/apiSpec/new?filename=P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy.md&amp;value=---%0Auid%3A%20P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy" class="text-break">
-Class PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/PeerNetwork.cs/#L1183"><i class="bi bi-code-slash"></i></a>
+Class PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1238"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -156,7 +156,7 @@ Class PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy  <a class="header-action 
 
   <h3 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_LocalIdentifierSetPolicy" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy">
   LocalIdentifierSetPolicy
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/PeerNetwork.cs/#L1195"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1256"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the policy for initializing and managing the identifier of a peer member in the P2P network.
@@ -165,7 +165,7 @@ This policy determines whether the identifier can be set locally, remotely, or b
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes LocalIdentifierSetPolicy { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType LocalIdentifierSetPolicy { get; set; }</code></pre>
   </div>
 
 
@@ -174,7 +174,7 @@ This policy determines whether the identifier can be set locally, remotely, or b
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="P2PNet.PeerNetwork.html">PeerNetwork</a>.<a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.html">TrustPolicies</a>.<a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html">LocalIdentifierSetPolicyTypes</a></dt>
+    <dt><a class="xref" href="P2PNet.PeerNetwork.html">PeerNetwork</a>.<a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.html">TrustPolicies</a>.<a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType.html">LocalIdentifierSetPolicyType</a></dt>
     <dd></dd>
   </dl>
 
@@ -185,10 +185,79 @@ This policy determines whether the identifier can be set locally, remotely, or b
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></dt>
-    <dd><p>Thrown if an attempt is made to change the policy to or from <a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html#P2PNet_PeerNetwork_TrustPolicies_LocalIdentifierSetPolicyTypes_StrictLocalOnly">StrictLocalOnly</a> or <a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html#P2PNet_PeerNetwork_TrustPolicies_LocalIdentifierSetPolicyTypes_StrictRemoteOnly">StrictRemoteOnly</a>
+    <dd><p>Thrown if an attempt is made to change the policy to or from <a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType.html#P2PNet_PeerNetwork_TrustPolicies_LocalIdentifierSetPolicyType_StrictLocalOnly">StrictLocalOnly</a> or <a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType.html#P2PNet_PeerNetwork_TrustPolicies_LocalIdentifierSetPolicyType_StrictRemoteOnly">StrictRemoteOnly</a>
 after the identifier has already been set.</p>
 </dd>
   </dl>
+
+
+
+  <a id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4GetPolicy_" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4GetPolicy*"></a>
+
+  <h3 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4GetPolicy" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4GetPolicy">
+  PublicIPv4GetPolicy
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1277"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the policy for fetching the public IPv4 address. This determines policy for failover and consensus.
+To set the list of sources, use <a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4Sources">PublicIPv4Sources</a> and add API endpoints that return the public IPv4 as plain text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType PublicIPv4GetPolicy { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.PeerNetwork.html">PeerNetwork</a>.<a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.html">TrustPolicies</a>.<a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType.html">PublicIPv4GetPolicyType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4Sources_" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4Sources*"></a>
+
+  <h3 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4Sources" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4Sources">
+  PublicIPv4Sources
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1289"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get or sets the list of sources to fetch the public IPv4 address.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;string&gt; PublicIPv4Sources { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4Sources_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>These should be API endpoints that return the public IPv4 address of the client as plain text.
+The use of an API endpoint that uses JSON or other format is not supported.</p>
+</div>
+
 
 
 

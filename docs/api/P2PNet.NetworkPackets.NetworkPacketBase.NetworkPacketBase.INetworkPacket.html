@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class CommandResponse | P2PNetDocs </title>
+      <title>Interface INetworkPacket | P2PNetDocs </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class CommandResponse | P2PNetDocs ">
+      <meta name="title" content="Interface INetworkPacket | P2PNetDocs ">
       
       
       <link rel="icon" href="../misc/p2pnet_logo.png">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/new/docs/apiSpec/new?filename=P2PBootstrap_CLI_Command_CommandResponse.md&amp;value=---%0Auid%3A%20P2PBootstrap.CLI.Command.CommandResponse%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/new/docs/apiSpec/new?filename=P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacketBase_INetworkPacket.md&amp;value=---%0Auid%3A%20P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,70 +84,34 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="P2PBootstrap.CLI.Command.CommandResponse">
+        <article data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket">
 
 
 
-  <h1 id="P2PBootstrap_CLI_Command_CommandResponse" data-uid="P2PBootstrap.CLI.Command.CommandResponse" class="text-break">
-Class CommandResponse  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PBootstrap/CLI/Command/CommandResponse.cs/#L3"><i class="bi bi-code-slash"></i></a>
+  <h1 id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacketBase_INetworkPacket" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket" class="text-break">
+Interface INetworkPacket  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/NetworkPacketBase/INetworkPacket.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="P2PBootstrap.html">P2PBootstrap</a>.<a class="xref" href="P2PBootstrap.CLI.html">CLI</a>.<a class="xref" href="P2PBootstrap.CLI.Command.html">Command</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>P2PBootstrap.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="P2PNet.html">P2PNet</a>.<a class="xref" href="P2PNet.NetworkPackets.html">NetworkPackets</a>.<a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.html">NetworkPacketBase</a>.<a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.html">NetworkPacketBase</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>P2PNet.dll</dd></dl>
   </div>
 
   <div class="markdown summary"></div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record CommandResponse : IEquatable&lt;CommandResponse&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonPolymorphic(TypeDiscriminatorPropertyName = &quot;$type&quot;)]
+[JsonDerivedType(typeof(NetworkPacket), &quot;NetworkPacket&quot;)]
+public interface INetworkPacket</code></pre>
   </div>
 
 
 
 
-  <dl class="typelist inheritance">
-    <dt>Inheritance</dt>
-    <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">CommandResponse</span></div>
-    </dd>
-  </dl>
-
-  <dl class="typelist implements">
-    <dt>Implements</dt>
-    <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="P2PBootstrap.CLI.Command.CommandResponse.html">CommandResponse</a>&gt;</div>
-    </dd>
-  </dl>
 
 
-  <dl class="typelist inheritedMembers">
-    <dt>Inherited Members</dt>
-    <dd>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-    </div>
-  </dd></dl>
+
 
 
 
@@ -158,18 +122,18 @@ Class CommandResponse  <a class="header-action link-secondary" title="View sourc
 </h2>
 
 
-  <a id="P2PBootstrap_CLI_Command_CommandResponse_Response_" data-uid="P2PBootstrap.CLI.Command.CommandResponse.Response*"></a>
+  <a id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacketBase_INetworkPacket_SourceOriginIdentifier_" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket.SourceOriginIdentifier*"></a>
 
-  <h3 id="P2PBootstrap_CLI_Command_CommandResponse_Response" data-uid="P2PBootstrap.CLI.Command.CommandResponse.Response">
-  Response
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PBootstrap/CLI/Command/CommandResponse.cs/#L5"><i class="bi bi-code-slash"></i></a>
+  <h3 id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacketBase_INetworkPacket_SourceOriginIdentifier" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket.SourceOriginIdentifier">
+  SourceOriginIdentifier
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/NetworkPacketBase/INetworkPacket.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Response { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">string SourceOriginIdentifier { get; set; }</code></pre>
   </div>
 
 
@@ -189,18 +153,18 @@ Class CommandResponse  <a class="header-action link-secondary" title="View sourc
 
 
 
-  <a id="P2PBootstrap_CLI_Command_CommandResponse_Success_" data-uid="P2PBootstrap.CLI.Command.CommandResponse.Success*"></a>
+  <a id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacketBase_INetworkPacket_SourceOriginTime_" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket.SourceOriginTime*"></a>
 
-  <h3 id="P2PBootstrap_CLI_Command_CommandResponse_Success" data-uid="P2PBootstrap.CLI.Command.CommandResponse.Success">
-  Success
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PBootstrap/CLI/Command/CommandResponse.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  <h3 id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacketBase_INetworkPacket_SourceOriginTime" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket.SourceOriginTime">
+  SourceOriginTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/NetworkPacketBase/INetworkPacket.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Success { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">DateTime SourceOriginTime { get; set; }</code></pre>
   </div>
 
 
@@ -209,7 +173,7 @@ Class CommandResponse  <a class="header-action link-secondary" title="View sourc
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
     <dd></dd>
   </dl>
 

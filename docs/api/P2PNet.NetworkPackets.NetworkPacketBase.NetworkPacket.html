@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class IdentifierPacket | P2PNetDocs </title>
+      <title>Class NetworkPacket | P2PNetDocs </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class IdentifierPacket | P2PNetDocs ">
+      <meta name="title" content="Class NetworkPacket | P2PNetDocs ">
       
-      <meta name="description" content="Standard packet used to relay identifying information through out peer network.">
+      
       <link rel="icon" href="../misc/p2pnet_logo.png">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/new/docs/apiSpec/new?filename=P2PNet_NetworkPackets_IdentifierPacket.md&amp;value=---%0Auid%3A%20P2PNet.NetworkPackets.IdentifierPacket%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/new/docs/apiSpec/new?filename=P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket.md&amp;value=---%0Auid%3A%20P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,25 +84,24 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="P2PNet.NetworkPackets.IdentifierPacket">
+        <article data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket">
 
 
 
-  <h1 id="P2PNet_NetworkPackets_IdentifierPacket" data-uid="P2PNet.NetworkPackets.IdentifierPacket" class="text-break">
-Class IdentifierPacket  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/IdentifierPacket.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <h1 id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket" class="text-break">
+Class NetworkPacket  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/NetworkPacketBase/NetworkPacket.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="P2PNet.html">P2PNet</a>.<a class="xref" href="P2PNet.NetworkPackets.html">NetworkPackets</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="P2PNet.html">P2PNet</a>.<a class="xref" href="P2PNet.NetworkPackets.html">NetworkPackets</a>.<a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.html">NetworkPacketBase</a></dd></dl>
   <dl><dt>Assembly</dt><dd>P2PNet.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Standard packet used to relay identifying information through out peer network.</p>
-</div>
+  <div class="markdown summary"></div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class IdentifierPacket : NetworkPacket, INetworkPacket</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class NetworkPacket : INetworkPacket</code></pre>
   </div>
 
 
@@ -112,8 +111,7 @@ Class IdentifierPacket  <a class="header-action link-secondary" title="View sour
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.html">NetworkPacket</a></div>
-      <div><span class="xref">IdentifierPacket</span></div>
+      <div><span class="xref">NetworkPacket</span></div>
     </dd>
   </dl>
 
@@ -124,16 +122,20 @@ Class IdentifierPacket  <a class="header-action link-secondary" title="View sour
     </dd>
   </dl>
 
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="P2PNet.NetworkPackets.CollectionSharePacket.html">CollectionSharePacket</a></div>
+      <div><a class="xref" href="P2PNet.NetworkPackets.DataTransmissionPacket.html">DataTransmissionPacket</a></div>
+      <div><a class="xref" href="P2PNet.NetworkPackets.DisconnectPacket.html">DisconnectPacket</a></div>
+      <div><a class="xref" href="P2PNet.NetworkPackets.IdentifierPacket.html">IdentifierPacket</a></div>
+      <div><a class="xref" href="P2PNet.NetworkPackets.PureMessagePacket.html">PureMessagePacket</a></div>
+    </dd>
+  </dl>
 
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
-    <div>
-      <a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.html#P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket_SourceOriginIdentifier">NetworkPacket.SourceOriginIdentifier</a>
-    </div>
-    <div>
-      <a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.html#P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket_SourceOriginTime">NetworkPacket.SourceOriginTime</a>
-    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -145,6 +147,9 @@ Class IdentifierPacket  <a class="header-action link-secondary" title="View sour
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
@@ -163,11 +168,11 @@ Class IdentifierPacket  <a class="header-action link-secondary" title="View sour
 </h2>
 
 
-  <a id="P2PNet_NetworkPackets_IdentifierPacket__ctor_" data-uid="P2PNet.NetworkPackets.IdentifierPacket.#ctor*"></a>
+  <a id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket__ctor_" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.#ctor*"></a>
 
-  <h3 id="P2PNet_NetworkPackets_IdentifierPacket__ctor" data-uid="P2PNet.NetworkPackets.IdentifierPacket.#ctor">
-  IdentifierPacket()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/IdentifierPacket.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <h3 id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket__ctor" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.#ctor">
+  NetworkPacket()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/NetworkPacketBase/NetworkPacket.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -175,44 +180,9 @@ Class IdentifierPacket  <a class="header-action link-secondary" title="View sour
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonConstructor]
-public IdentifierPacket()</code></pre>
+public NetworkPacket()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="P2PNet_NetworkPackets_IdentifierPacket__ctor_" data-uid="P2PNet.NetworkPackets.IdentifierPacket.#ctor*"></a>
-
-  <h3 id="P2PNet_NetworkPackets_IdentifierPacket__ctor_System_String_System_Int32_System_Net_IPAddress_" data-uid="P2PNet.NetworkPackets.IdentifierPacket.#ctor(System.String,System.Int32,System.Net.IPAddress)">
-  IdentifierPacket(string, int, IPAddress)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/IdentifierPacket.cs/#L32"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IdentifierPacket(string message, int data, IPAddress ip_)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-    <dt><code>ip_</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -229,51 +199,19 @@ public IdentifierPacket()</code></pre>
 </h2>
 
 
-  <a id="P2PNet_NetworkPackets_IdentifierPacket_Data_" data-uid="P2PNet.NetworkPackets.IdentifierPacket.Data*"></a>
+  <a id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket_SourceOriginIdentifier_" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.SourceOriginIdentifier*"></a>
 
-  <h3 id="P2PNet_NetworkPackets_IdentifierPacket_Data" data-uid="P2PNet.NetworkPackets.IdentifierPacket.Data">
-  Data
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/IdentifierPacket.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <h3 id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket_SourceOriginIdentifier" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.SourceOriginIdentifier">
+  SourceOriginIdentifier
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/NetworkPacketBase/NetworkPacket.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Relevant data to assist in establishing network connection.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the origin identifier of the packet.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Data { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="P2PNet_NetworkPackets_IdentifierPacket_IP_" data-uid="P2PNet.NetworkPackets.IdentifierPacket.IP*"></a>
-
-  <h3 id="P2PNet_NetworkPackets_IdentifierPacket_IP" data-uid="P2PNet.NetworkPackets.IdentifierPacket.IP">
-  IP
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/IdentifierPacket.cs/#L27"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>IP address to broadcast.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string IP { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string SourceOriginIdentifier { get; set; }</code></pre>
   </div>
 
 
@@ -293,19 +231,19 @@ public IdentifierPacket()</code></pre>
 
 
 
-  <a id="P2PNet_NetworkPackets_IdentifierPacket_Message_" data-uid="P2PNet.NetworkPackets.IdentifierPacket.Message*"></a>
+  <a id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket_SourceOriginTime_" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.SourceOriginTime*"></a>
 
-  <h3 id="P2PNet_NetworkPackets_IdentifierPacket_Message" data-uid="P2PNet.NetworkPackets.IdentifierPacket.Message">
-  Message
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/IdentifierPacket.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <h3 id="P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket_SourceOriginTime" data-uid="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.SourceOriginTime">
+  SourceOriginTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/NetworkPacketBase/NetworkPacket.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Optional data or information to assist in establishing network connection.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the source origin time of the packet.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Message { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public DateTime SourceOriginTime { get; set; }</code></pre>
   </div>
 
 
@@ -314,7 +252,7 @@ public IdentifierPacket()</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
     <dd></dd>
   </dl>
 

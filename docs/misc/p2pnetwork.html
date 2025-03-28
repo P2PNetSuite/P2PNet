@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/blob/master/misc/p2pnetwork.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/blob/docs/misc/p2pnetwork.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -107,20 +107,17 @@
 <li><strong>WAN Discovery</strong>: Specific WAN components and designated ports facilitate the discovery of peers over a wide area.</li>
 </ul>
 </li>
-<li><p><strong>Peer Management</strong>:A list of known peers and active peer channels is maintained. This supports functions such as adding or removing peers and managing connection permissions.</p>
+<li><p><strong>Peer Management</strong>: A list of known peers and active peer channels is maintained. This supports functions such as adding or removing peers and managing connection permissions.</p>
 <ul>
 <li><strong>Known Peers</strong>: Stores details of all discovered peers.</li>
 <li><strong>Active Peer Channels</strong>: Manages active communication channels and leverages the <code>PeerChannel</code> class to encapsulate connection logic.</li>
 </ul>
 </li>
-<li><p><strong>Data Exchange and Network Packets</strong>:Data exchange between peers is accomplished via network packets formatted to ensure data consistency and integrity.</p>
+<li><p><strong>Data Exchange and Network Packets</strong>: Data exchange between peers is accomplished via network packets formatted to ensure data consistency and integrity.</p>
 <ul>
-<li><strong>Network Packets</strong>:
-These packets encapsulate various types of information for transmission between peers. Types include identity packets, disconnect packets, data transmission packets, pure message packets, and more. The packets are wrapped using the <code>DistributionProtocol</code> so that each packet is tagged properly, making it easier for the receiver to determine the payload type.</li>
-<li><strong>DistributionHandler</strong>:
-This static class is responsible for handling outgoing and incoming data packets. It wraps raw data into packets and distributes them to trusted peers. In addition, the handler supports unwrapping payloads to extract raw data before processing.</li>
-<li><strong>NetworkTaskHandler</strong>:
-In parallel with data handling, the <code>NetworkTaskHandler</code> manages network tasks defined as actions such as blocking a peer, sending messages, or synchronizing data. Tasks are enqueued and processed asynchronously to maintain smooth operations across the network.</li>
+<li><strong>Network Packets</strong>: These packets encapsulate various types of information for transmission between peers. Types include identity packets, disconnect packets, data transmission packets, pure message packets, and more. The packets are wrapped using the <code>DistributionProtocol</code> so that each packet is tagged properly, making it easier for the receiver to determine the payload type. All network packet types derive from the <code>NetworkPacket</code> base class.</li>
+<li><strong>DistributionHandler</strong>: This static class is responsible for handling outgoing and incoming data packets. It wraps raw data into packets and distributes them to trusted peers. In addition, the handler supports unwrapping payloads to extract raw data before processing.</li>
+<li><strong>NetworkTaskHandler</strong>: In parallel with data handling, the <code>NetworkTaskHandler</code> manages network tasks defined as actions such as blocking a peer, sending messages, or synchronizing data. Tasks are enqueued and processed asynchronously to maintain smooth operations across the network.</li>
 </ul>
 </li>
 <li><p><strong>Peer Channels</strong>:
@@ -143,7 +140,7 @@ Each communication channel between peers is represented by an instance of the <c
 <hr>
 <p>The <code>PeerNetwork</code> class employs a multi-pronged trust model to ensure secure and robust peer interactions. These policies determine how incoming connections are verified, how bootstrap nodes are treated, and how the local network identifier is managed.</p>
 <ol>
-<li><p><strong>Incoming Peer Trust Policy</strong>This policy governs the verification and handling of peers attempting to connect to the network. It includes several configurable settings:</p>
+<li><p><strong>Incoming Peer Trust Policy</strong> This policy governs the verification and handling of peers attempting to connect to the network. It includes several configurable settings:</p>
 <ul>
 <li><strong>AllowDefaultCommunication</strong>:
 Enables basic communication—such as exchanging <code>PureMessagePackets</code> and <code>DisconnectPackets</code>—without full verification.
@@ -157,7 +154,7 @@ Initiates the system’s built-in handshake mechanism (which you can replace wit
 Supports both queue-based and event-based models. Queue-based placement helps throttle connections when there are many incoming requests, while event-based placement provides immediate notification for further processing.</li>
 </ul>
 </li>
-<li><p><strong>Bootstrap Trust Policy</strong>This policy handles the initial secure connection phase with bootstrap nodes that help a new node join the network. Key settings include:</p>
+<li><p><strong>Bootstrap Trust Policy</strong> This policy handles the initial secure connection phase with bootstrap nodes that help a new node join the network. Key settings include:</p>
 <ul>
 <li><strong>AllowBootstrapTrustlessConnection</strong>:
 Permits bootstrap connections without pre-established credentials, often useful for open networks needing quick scalability.</li>
@@ -169,12 +166,18 @@ Allow bootstrap nodes to validate their credentials via key issuance, ensuring a
 Enforce strict measures so that the first trusted authority connection can be locked in—preventing further authority connections that might threaten network integrity.</li>
 </ul>
 </li>
-<li><p><strong>PeerNetworkTrustPolicy</strong>Focuses on controlling how the local network identifier—a unique marker for each peer—is set and maintained:</p>
+<li><p><strong>PeerNetworkTrustPolicy</strong><br>
+Controls how the local network identifier is set and maintained, and how the public IPv4 address is retrieved.</p>
 <ul>
-<li><strong>LocalIdentifierSetPolicy</strong>:
-Defines policies like <code>StrictLocalOnly</code> or <code>StrictRemoteOnly</code> to ensure that the identifier is assigned only under secure, predefined conditions.
-<em>Use case for remote</em>: In a decentralized network that values security, bootstrap servers are tasked with assigning identities to peers using a protocol that hashes the the public IPv4 address and another unique serial value if available. If a peer is found to be a malicious actor, it is much easier to then ban and exclude them from connecting.
-<em>Use case for local</em>: In a decentralized network that prioritizes anonymity, the identifier is nullified locally with <code>StrictLocalOnly</code> set to true. This will prevent the peer's activity from bearing any unique fingerprinting that isn't easy to spoof.</li>
+<li><strong>LocalIdentifierSetPolicy</strong>: Defines policies like <code>StrictLocalOnly</code>, <code>Local</code>, <code>LocalAndRemote</code>, <code>RemoteOnly</code>, or <code>StrictRemoteOnly</code> to ensure that the identifier is assigned only under secure, predefined conditions.</li>
+<li><strong>PublicIPv4GetPolicy</strong>: Determines the method used to retrieve the public IPv4 address. Options include:
+<ul>
+<li><strong>SingleStaticURL</strong>: Fetches the IP address from one static URL.</li>
+<li><strong>StaticURLAndFailover</strong>: Tries a primary static URL and falls back to others if necessary.</li>
+<li><strong>URLListConsensus</strong>: Utilizes multiple URLs and selects the most frequently returned IP address as the public IP.</li>
+</ul>
+</li>
+<li><strong>PublicIPv4Sources</strong>: A list of URLs that are queried to fetch the public-facing IPv4 address, based on the defined retrieval policy. URLs should point directly to an API endpoint serving a plain text response.</li>
 </ul>
 </li>
 </ol>

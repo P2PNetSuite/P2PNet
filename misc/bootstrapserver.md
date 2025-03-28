@@ -16,14 +16,15 @@ The `P2PBootstrap` project initializes by setting up the necessary configuration
 1. **Configuration**: The application reads configuration settings from the `appsettings.json` file. This includes settings for encryption key directory, primary key names, database path, and other essential configurations. In order to ease the deployment process for containerized instances, all configuration settings in the configuration file `appsettings.json` have an environmental variable equivalent that can be used. In order to tell the application to use these, the environmental variable `CONTAINERIZED_ENVIRONMENT` must be set to to `true`. In the table below, you can see each configuration key alongside its corresponding environment variable name and a brief description of its purpose.
 
 
-| AppSettings Key                       | Environment Variable | Description                                                                                             |
-| --------------------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------- |
-| Configuration:KeysDirectory           | KEYS_DIRECTORY       | Specifies the directory where encryption keys are stored.                                               |
-| Configuration:BootstrapMode           | BOOTSTRAP_MODE       | Determines whether the bootstrap server runs in Authority or Trustless mode.                            |
-| Configuration:AuthorityKey:PublicKey  | PUBLIC_KEY_PATH      | The filename (or path, relative to the base directory) for the public key used by the bootstrap server. |
-| Configuration:AuthorityKey:PrivateKey | PRIVATE_KEY_PATH     | The filename (or path) for the private key used by the bootstrap server.                                |
-| Configuration:NetworkName             | NETWORK_NAME         | The identifier for the P2P network, used to distinguish this network from others.                       |
-| Database:DbFileName                   | DB_FILENAME          | The filename for the local database file storing bootstrap server data.                                 |
+| AppSettings Key                          | Environment Variable | Description                                                                                                                       |
+| ------------------------------------------ | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Configuration:KeysDirectory              | KEYS_DIRECTORY       | Specifies the directory where encryption keys are stored.                                                                         |
+| Configuration:BootstrapMode              | BOOTSTRAP_MODE       | Determines whether the bootstrap server runs in Authority or Trustless mode.                                                      |
+| Configuration:AuthorityKey:PublicKey     | PUBLIC_KEY_PATH      | The filename (or path, relative to the base directory) for the public key used by the bootstrap server.                           |
+| Configuration:AuthorityKey:PrivateKey    | PRIVATE_KEY_PATH     | The filename (or path) for the private key used by the bootstrap server.                                                          |
+| Configuration:NetworkName                | NETWORK_NAME         | The identifier for the P2P network, used to distinguish this network from others.                                                 |
+| Configuration:OptionalEndpoints:PublicIP | ENDPOINT_PUBLICIP    | Server will serve a GET endpoint`/api/Bootstrap/publicip` which can be used by clients to retrieve their public face IPv4 address |
+| Database:DbFileName                      | DB_FILENAME          | The filename for the local database file storing bootstrap server data.                                                           |
 
 When running in a containerized environment, the configuration management first attempts to retrieve these values from their respective environment variables (e.g., "KEYS_DIRECTORY" for the keys folder). If an environment variable isn't set, it falls back to the values specified in appsettings.json. This design allows for flexible configuration management during deployment, especially in environments like Docker containers where runtime settings might differ from development.
 
