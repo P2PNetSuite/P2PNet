@@ -371,3 +371,4 @@ FodyWeavers.xsd
 /_site/logo.svg
 /Build_Docs.ps1
 /SyncOrgMaster.ps1
+/P2PBootstrap/log.txt
