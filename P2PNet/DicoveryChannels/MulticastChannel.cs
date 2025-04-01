@@ -44,7 +44,7 @@ namespace P2PNet.DiscoveryChannels
             {
                     byte[] message = UniqueIdentifier(); // Turn unique identifier packet to byte[]
 
-                    DebugMessage($"Multicast channel broadcast:  Endpoint-{broadcasterendpoint.Address.ToString()} MCAddress-{multicast_address.Address.ToString()}");
+                    DebugMessage($"Multicast channel broadcast:  Endpoint-{broadcasterendpoint.Address.ToString()} MCAddress-{multicast_address.Address.ToString()}", PeerNetwork.Logging.LAN);
 
                     broadcaster.Send(message, message.Length, new IPEndPoint(multicast_address, 0));
                     Thread.Sleep(BroadcastRateControl.GetCurrentInterval());
@@ -67,7 +67,7 @@ namespace P2PNet.DiscoveryChannels
                 byte[] receivedData = listener.Receive(ref endpoint);
                 string packet = Encoding.UTF8.GetString(receivedData);
 
-                DebugMessage("Packet received from multicast channel!");
+                DebugMessage("Packet received from multicast channel!", PeerNetwork.Logging.LAN);
 
                 HandlePacket(packet);   
             }

@@ -9,7 +9,7 @@
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<Title>P2PNet</Title>
-	<Company>CD</Company>
+	<Company>P2PNetOrg</Company>
 	<Description> P2PNet is a peer-to-peer facilitation library with the goal of seamless peer discovery, secure encryption, and distributed data exchange. </Description>
 	<PackageReleaseNotes>More optimizations and setting the foundation for WAN discovery and IPv6.
 Including PacketDotNet and SharpPcap as dependencies.</PackageReleaseNotes>
@@ -21,6 +21,7 @@ Including PacketDotNet and SharpPcap as dependencies.</PackageReleaseNotes>
 
 	<PropertyGroup>
 		<NoWarn>$(NoWarn);CS0168,CS0219,CA1416</NoWarn>
+		<PackageProjectUrl>https://github.com/P2PNetSuite/P2PNet</PackageProjectUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -31,7 +32,7 @@ Including PacketDotNet and SharpPcap as dependencies.</PackageReleaseNotes>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ConsoleDebugger" Version="1.0.3" />
+    <PackageReference Include="ConsoleDebugger" Version="1.0.5" />
     <PackageReference Include="PacketDotNet" Version="1.4.8-pre18" />
     <PackageReference Include="PgpCore" Version="6.5.0" />
     <PackageReference Include="SharpPcap" Version="6.3.0" />

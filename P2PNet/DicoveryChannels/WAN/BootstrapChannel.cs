@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using P2PNet.Distribution;
@@ -10,17 +11,12 @@ using P2PNet.Peers;
 
 namespace P2PNet.DicoveryChannels.WAN
 {
-        /// <summary>
-        /// Communicates with a bootstrap server to share known peers and establish identity in network.
-        /// </summary>
-        /// <remarks>Bootstrap server will direct connecting peers with a CollectionSharePacket and other means of conveying network information.</remarks>
-        public class BootstrapChannel
-        {
-            private string BootstrapServerEndpoint { get; set; }
-            public BootstrapPeer BootstrapServer { get; set; }
-            public bool IsAuthorityMode { get; set; }
-            private PGPKeyInfo publicKey { get; set; } = null; // store the public key from the server
-            public string PublicKey => publicKey?.ToString(); // expose the public key as a string for easy access
+    /// <summary>
+    /// Communicates with a bootstrap server to share known peers and establish identity in network.
+    /// </summary>
+    /// <remarks>Bootstrap server will direct connecting peers with a CollectionSharePacket and other means of conveying network information.</remarks>
+    public sealed class BootstrapChannel : BootstrapChannelBase
+    {
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BootstrapChannel"/> class using the specified endpoint and authority mode.
@@ -29,7 +25,6 @@ namespace P2PNet.DicoveryChannels.WAN
         /// <param name="isAuthorityMode">A boolean indicating if authority mode should be enabled.</param>
         public BootstrapChannel(string endpoint, bool isAuthorityMode)
         {
-            BootstrapServerEndpoint = endpoint;
             IsAuthorityMode = isAuthorityMode;
             BootstrapServer = new BootstrapPeer(endpoint);
         }
@@ -41,9 +36,14 @@ namespace P2PNet.DicoveryChannels.WAN
         /// <param name="options">An instance of <see cref="BootstrapChannelConnectionOptions"/> detailing the connection settings.</param>
         public BootstrapChannel(BootstrapChannelConnectionOptions options)
         {
-            BootstrapServerEndpoint = options.Endpoint;
             IsAuthorityMode = options.IsAuthorityMode;
             BootstrapServer = options.BootstrapPeer ?? new BootstrapPeer(options.Endpoint);
+        }
+
+        public async void OpenBootstrapChannel()
+        {
+            DebugMessage($"Setting up bootstrap channel {BootstrapServerEndpoint.ToString()} ...");
+            Task.Run(() => RunInitialBootstrap());
         }
 
         /// <summary>
@@ -53,25 +53,22 @@ namespace P2PNet.DicoveryChannels.WAN
         /// In authority mode, the response is a DataTransmissionPacket containing a NetworkTask with the public key and peer list.
         /// </summary>
         /// <returns>A task representing the asynchronous handshake operation.</returns>
-        public async Task OpenBootstrapChannel()
+        public async Task RunInitialBootstrap()
         {
             // immediately check if first and locking is set or not
-            if(PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet == true)
+            if (PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet == true)
             {
                 // if first and locking is set then we throw exception
                 throw new InitialAuthorityLockedException("First and locking authority is already set. Cannot open additional bootstrap channel.");
             }
 
-            var idPacket = new IdentifierPacket("discovery", PeerNetwork.ListeningPort, PeerNetwork.PublicIPV6Address == null ? PeerNetwork.PublicIPV4Address : PeerNetwork.PublicIPV6Address);
-            string idPacketJson = Serialize(idPacket);
-
-            // wrap the IdentifierPacker in a DataTransmissionPacket
-            DataTransmissionPacket initialPacket = new DataTransmissionPacket(Encoding.UTF8.GetBytes(idPacketJson), DataPayloadFormat.MiscData);
+            DataTransmissionPacket initialPacket = CreateInitialBootstrapPacket();
+            string initialPacketJson = Serialize<DataTransmissionPacket>(initialPacket);
 
             using (HttpClient client = new HttpClient())
             {
-                var content = new StringContent(Serialize(initialPacket), Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PutAsync(BootstrapServerEndpoint, content);
+                DebugMessage($"Sending bootstrap request to {DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.Bootstrap, BootstrapServerEndpoint)} ...");
+                HttpResponseMessage response = await client.PutAsync(DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.Bootstrap, BootstrapServerEndpoint), new StringContent(initialPacketJson, Encoding.UTF8, "application/json"));
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -80,46 +77,31 @@ namespace P2PNet.DicoveryChannels.WAN
 
                 string responseContent = await response.Content.ReadAsStringAsync();
                 var responsePacket = Deserialize<DataTransmissionPacket>(responseContent);
-
+                
+                string dataout = Encoding.UTF8.GetString(responsePacket.Data);
                 if (responsePacket != null)
                 {
+                    InitialBootstrapHandler.Invoke(dataout);
+
                     if (IsAuthorityMode)
                     {
-                        // expecting a DataTransmissionPacket with NetworkTask.
-                        NetworkTask networkTask = Deserialize<NetworkTask>(Encoding.UTF8.GetString(responsePacket.Data));
-                        // store server's public key.
-                        StorePublicKey(networkTask.TaskData["PublicKey"]);
-                        // process the peer list.
-                        CollectionSharePacket sharePacket = Deserialize<CollectionSharePacket>(networkTask.TaskData["Peers"]);
-                        ProcessPeerList(sharePacket);
                         // check and set first locking authority
                         if ((PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthority == true) && (PeerNetwork.TrustPolicies.BootstrapTrustPolicy.FirstSingleLockingAuthoritySet == false))
                         {
                             PeerNetwork.TrustPolicies.BootstrapTrustPolicy.SetFirstLockingAuthority(this);
                         }
                     }
-                    else
-                    {
-                        // trustless mode
-                        CollectionSharePacket sharePacket = Deserialize<CollectionSharePacket>(responseContent);
-                        ProcessPeerList(sharePacket);
-                    }
                 }
+                else
+                {
+                    throw new Exception("Bootstrap response was not in the expected format.");
+                }
+                    
             }
-        }
+        }     
+        
 
-            private void StorePublicKey(string publicKey)
-            {
-            this.publicKey = new PGPKeyInfo("PublicKey", Encoding.UTF8.GetBytes(publicKey));
-            }
-
-
-            private void ProcessPeerList(CollectionSharePacket peerList)
-            {
-                PeerNetwork.ProcessPeerList(peerList);
-            }
-        }
-
+    }
 
         /// <summary>
         /// Represents the configuration options for establishing a connection to a bootstrap server.
@@ -128,10 +110,10 @@ namespace P2PNet.DicoveryChannels.WAN
         public class BootstrapChannelConnectionOptions
         {
             /// <summary>
-            /// Gets or sets the endpoint URL of the bootstrap server.
+            /// Gets or sets the endpoint Url of the bootstrap server.
             /// This value is required.
             /// </summary>
-            public string Endpoint { get; set; }
+            public Uri Endpoint { get; set; }
 
             /// <summary>
             /// Gets or sets a value indicating whether the connection should run in authority mode.
@@ -146,49 +128,90 @@ namespace P2PNet.DicoveryChannels.WAN
             public BootstrapPeer BootstrapPeer { get; set; }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using the specified endpoint.
+            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using the specified endpoint string.
             /// This constructor assumes non-authority mode and no explicit bootstrap peer.
             /// </summary>
-            /// <param name="endpoint">The endpoint URL of the bootstrap server.</param>
+            /// <param name="endpoint">The endpoint URL of the bootstrap server as a string.</param>
             public BootstrapChannelConnectionOptions(string endpoint)
-                : this(endpoint, false, null)
+                 : this(new Uri(endpoint), false, null)
             {
             }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using the specified endpoint and authority mode.
+            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using the specified endpoint string and authority mode.
             /// </summary>
-            /// <param name="endpoint">The endpoint URL of the bootstrap server.</param>
+            /// <param name="endpoint">The endpoint URL of the bootstrap server as a string.</param>
             /// <param name="isAuthorityMode">A boolean indicating if authority mode should be enabled.</param>
             public BootstrapChannelConnectionOptions(string endpoint, bool isAuthorityMode)
-                : this(endpoint, isAuthorityMode, null)
+                 : this(new Uri(endpoint), isAuthorityMode, null)
             {
             }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using the specified endpoint and bootstrap peer.
+            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using the specified endpoint string and bootstrap peer.
             /// Authority mode will be set to false.
             /// </summary>
-            /// <param name="endpoint">The endpoint URL of the bootstrap server.</param>
+            /// <param name="endpoint">The endpoint URL of the bootstrap server as a string.</param>
             /// <param name="bootstrapPeer">An instance of <see cref="BootstrapPeer"/> representing the bootstrap server.</param>
             public BootstrapChannelConnectionOptions(string endpoint, BootstrapPeer bootstrapPeer)
-                : this(endpoint, false, bootstrapPeer)
+                 : this(new Uri(endpoint), false, bootstrapPeer)
             {
             }
 
             /// <summary>
             /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using all specified values.
             /// </summary>
-            /// <param name="endpoint">The endpoint URL of the bootstrap server.</param>
+            /// <param name="endpoint">The endpoint URL of the bootstrap server as a string.</param>
             /// <param name="isAuthorityMode">A boolean indicating if authority mode should be enabled.</param>
             /// <param name="bootstrapPeer">An instance of <see cref="BootstrapPeer"/> representing the bootstrap server.</param>
             public BootstrapChannelConnectionOptions(string endpoint, bool isAuthorityMode, BootstrapPeer bootstrapPeer)
+                 : this(new Uri(endpoint), isAuthorityMode, bootstrapPeer)
+            {
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using the specified endpoint Uri.
+            /// This constructor assumes non-authority mode and no explicit bootstrap peer.
+            /// </summary>
+            /// <param name="endpoint">The endpoint Url of the bootstrap server.</param>
+            public BootstrapChannelConnectionOptions(Uri endpoint)
+                 : this(endpoint, false, null)
+            {
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using the specified endpoint Uri and authority mode.
+            /// </summary>
+            /// <param name="endpoint">The endpoint Url of the bootstrap server.</param>
+            /// <param name="isAuthorityMode">A boolean indicating if authority mode should be enabled.</param>
+            public BootstrapChannelConnectionOptions(Uri endpoint, bool isAuthorityMode)
+                 : this(endpoint, isAuthorityMode, null)
+            {
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using the specified endpoint Uri and bootstrap peer.
+            /// Authority mode will be set to false.
+            /// </summary>
+            /// <param name="endpoint">The endpoint Url of the bootstrap server.</param>
+            /// <param name="bootstrapPeer">An instance of <see cref="BootstrapPeer"/> representing the bootstrap server.</param>
+            public BootstrapChannelConnectionOptions(Uri endpoint, BootstrapPeer bootstrapPeer)
+                 : this(endpoint, false, bootstrapPeer)
+            {
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="BootstrapChannelConnectionOptions"/> class using all specified values.
+            /// </summary>
+            /// <param name="endpoint">The endpoint Url of the bootstrap server.</param>
+            /// <param name="isAuthorityMode">A boolean indicating if authority mode should be enabled.</param>
+            /// <param name="bootstrapPeer">An instance of <see cref="BootstrapPeer"/> representing the bootstrap server.</param>
+            public BootstrapChannelConnectionOptions(Uri endpoint, bool isAuthorityMode, BootstrapPeer bootstrapPeer)
             {
                 Endpoint = endpoint;
                 IsAuthorityMode = isAuthorityMode;
                 BootstrapPeer = bootstrapPeer;
             }
         }
-    
 
 }

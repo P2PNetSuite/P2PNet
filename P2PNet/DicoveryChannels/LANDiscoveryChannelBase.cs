@@ -98,7 +98,7 @@ namespace P2PNet.DicoveryChannels
             else if (collectionPacket != null)
                 {
 
-                DebugMessage($"Packet received: {identifierPacket.Message}");
+                DebugMessage($"Packet received: {identifierPacket.Message}", PeerNetwork.Logging.LAN);
 
                 PeerNetwork.ProcessPeerList(collectionPacket);
                 }

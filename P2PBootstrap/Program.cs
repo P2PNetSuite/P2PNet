@@ -34,6 +34,7 @@ namespace P2PBootstrap
 {
     public class Program
     {
+        public static ClientPeerList ClientPeers = new ClientPeerList();
         public static string PublicKeyToString => Encoding.UTF8.GetString(GlobalConfig.ActiveKeys.Public.KeyData);
         public static void Main(string[] args)
         {
@@ -72,33 +73,42 @@ namespace P2PBootstrap
 
             app.UseRouting();
 
-            app.MapPut("/api/Bootstrap/peers", async Task<IResult> (HttpContext context) =>
+            app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.Bootstrap], async Task<IResult> (HttpContext context) =>
             {
+                DebugMessage("New inbound peer detected.", MessageType.Debug);
+
                 try
                 {
                     // read the incoming PUT
                     using var reader = new StreamReader(context.Request.Body);
                     var bodyJson = await reader.ReadToEndAsync();
-
                     // deserialize the input
                     var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
 
                     // TODO improve logic for handling incoming peer verification
                     // ie Identifier values
-                    if(incomingPacket != null)
+                    if (incomingPacket != null)
                     {
-                        string IDpacketJSON = Encoding.UTF8.GetString(incomingPacket.Data);
-                        IdentifierPacket identifierPacket = JsonSerializer.Deserialize<IdentifierPacket>(IDpacketJSON);
-                        IPeer newPeer = new GenericPeer(IPAddress.Parse(identifierPacket.IP), identifierPacket.Data);
+                        string IDpacketJSON = Encoding.UTF8.GetString(UnwrapData(Deserialize<DataTransmissionPacket>(bodyJson)));
+                        IdentifierPacket identifierPacket = Deserialize<IdentifierPacket>(IDpacketJSON);
+                        IPeer newPeer = new ClientPeer(IPAddress.Parse(identifierPacket.IP), identifierPacket.SourceOriginIdentifier,  identifierPacket.Data);
                         KnownPeers.Add(newPeer); // add the new peer to the known peers list
-                        // we DO NOT use PeerNetwork.AddPeer(...) otherwise a PeerChannel will be created
+                        // we DO NOT use PeerNetwork.AddPeer(...) otherwise a PeerChannel will be made active
                     }
 
                     if (GlobalConfig.TrustPolicy() == TrustPolicies.BootstrapTrustPolicyType.Trustless)
                     {
                         // reply with a CollectionSharePacket
                         var share = new CollectionSharePacket(100, KnownPeers);
-                        var responseJson = Serialize(share);
+                        string peershareJson = Serialize(share);
+                        byte[] peerslistBytes = Encoding.UTF8.GetBytes(peershareJson);
+                        DataTransmissionPacket dptResponse = new DataTransmissionPacket()
+                        {
+                            DataType = DataPayloadFormat.MiscData,
+                            Data = peerslistBytes
+                        };
+                        string responseJson = Serialize(dptResponse);
+                        DebugMessage($"Sending response: {responseJson}", MessageType.Debug);
                         return Results.Content(responseJson, "application/json");
                     }
                     else
@@ -127,11 +137,12 @@ namespace P2PBootstrap
                 }
                 catch (Exception ex)
                 {
+                    DebugMessage($"Error processing PUT request: {ex.Message}", MessageType.Critical);
                     return Results.Problem(ex.Message);
                 }
             });
 
-            app.MapPut("/api/Bootstrap/verifyhash", async Task<IResult> (HttpContext context) =>
+            app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.VerifyHash], async Task<IResult> (HttpContext context) =>
             {
                 if (GlobalConfig.TrustPolicy() != TrustPolicies.BootstrapTrustPolicyType.Trustless)
                 {
@@ -183,9 +194,21 @@ namespace P2PBootstrap
                 }
             });
 
-            if(GlobalConfig.OptionalEndpoints.ServePublicIP() == true)
-            {                
-                app.MapGet("/api/Bootstrap/publicip", async (HttpContext context) =>
+            app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.Heartbeat], async Task<IResult>(HttpContext context) =>
+                {
+                    DebugMessage("New heartbeat detected.", MessageType.Debug);
+                    // read the incoming PUT
+                    using var reader = new StreamReader(context.Request.Body);
+                    var bodyJson = await reader.ReadToEndAsync();
+                    // deserialize the input
+                    return Results.Content(Serialize<PureMessagePacket>(new PureMessagePacket("Heartbeat response.")), "application/json");
+
+
+                });
+
+            if (GlobalConfig.OptionalEndpoints.ServePublicIP() == true)
+            {
+                app.MapGet(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.GetPublicIP], async (HttpContext context) =>
                 {
                     var forwardedFor = context.Request.Headers["X-Forwarded-For"].ToString();
                     string clientIp = string.Empty;
