@@ -31,7 +31,7 @@ namespace ExampleApplication
                 }
             }
 
-            PeerNetwork.LoadLocalAddresses(); 
+            PeerNetwork.LoadLocalAddresses();
 
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement = TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.EventBased;
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol = true;

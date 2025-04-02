@@ -24,8 +24,6 @@ namespace P2PNet.Peers
 
         public string Address { get; set; }
 
-        public string Id => string.IsNullOrEmpty(Address) ? string.Empty : BitConverter.ToString(new System.Security.Cryptography.SHA256Managed().ComputeHash(System.Text.Encoding.UTF8.GetBytes($"{Address}:{Port}"))).Replace("-", string.Empty);
-
 
         /// <summary>
         /// Gets or sets the port of the peer.

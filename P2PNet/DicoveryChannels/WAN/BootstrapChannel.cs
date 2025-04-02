@@ -43,6 +43,8 @@ namespace P2PNet.DicoveryChannels.WAN
         public async void OpenBootstrapChannel()
         {
             DebugMessage($"Setting up bootstrap channel {BootstrapServerEndpoint.ToString()} ...");
+            _heartbeatTimer.Enabled = true;
+            _heartbeatTimer.Start();
             Task.Run(() => RunInitialBootstrap());
         }
 
@@ -94,6 +96,7 @@ namespace P2PNet.DicoveryChannels.WAN
                 }
                 else
                 {
+                    // TODO -- try to deserialize PureMessagePacket that may have been sent
                     throw new Exception("Bootstrap response was not in the expected format.");
                 }
                     

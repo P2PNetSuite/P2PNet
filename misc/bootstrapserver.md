@@ -39,9 +39,13 @@ This side-by-side mapping ensures that you can maintain consistent configuration
 
 The `P2PBootstrap` project operates by providing several key functionalities:
 
-1. **Peer Distribution**: The bootstrap server provides an HTTP endpoint (`/api/Bootstrap/peers`) to distribute the list of known peers to new peers joining the network. This endpoint can operate in two modes:
-   - **Trustless Mode**: Returns the list of known peers directly.
-   - **Authority Mode**: Requires the client to receive and store a public key from the bootstrap server before returning the peer list.
+1. **Peer Distribution**: The bootstrap server provides a series of HTTP endpoints, such as (`/api/Bootstrap/peers`) in order to distribute the list of known peers to new peers joining the network. This endpoint can operate in two modes:
+   - **Trustless Mode**: Returns the list of known peers. Serves mostly to keep a list of peers that is mostly likely up to date. Trustless static bootstrap server cannot exert any degree of central control over the network - no commands can be issued that carry any weight or decision making on
+   - **Authority Mode**: Requires the client to receive and store a public key from the bootstrap server before returning the peer list. Authority mode allows the static bootstrap server to exert varying degrees of central control over the network, which can be leveraged to ensure network security and serve other particular use cases.
+
+   <p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/p2pbootstrap_sequence.png" alt="bootstrap chart">
+    </p>
 2. **Admin Terminal Integration**: The server integrates an admin terminal to easily execute commands.
 3. **Encryption Service**: The server initializes an encryption service to handle secure communication. This includes generating and loading PGP keys, generating new keys, clear signing messages, generating hashes of objects, and more.
 4. **Database Initialization**: The server initializes a local database to store necessary data. It ensures the database directory exists and sets up the required files.
@@ -60,7 +64,7 @@ The user control panel provides a web-based interface for managing the bootstrap
 
 ---
 
-To supplement the information visually, the following diagrams are provided:
+Below is a broad simplification of the P2PBootstrap server implementation:
 
 1. **Bootstrap Server Architecture**: Shows a broad architecture of the bootstrap server.
 2. **Endpoints**: Illustrates the flow of endpoints, from initial request to response.

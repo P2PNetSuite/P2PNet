@@ -20,7 +20,7 @@ namespace P2PNet.DicoveryChannels.WAN
         public string PublicKey => publicKey?.ToString(); // expose the public key as a string for easy access
 
 
-        private static Timer _heartbeatTimer;
+        protected static Timer _heartbeatTimer;
 
 
         // ----- public delegates -----
@@ -53,7 +53,7 @@ namespace P2PNet.DicoveryChannels.WAN
             _heartbeatTimer = new System.Timers.Timer(50000); // half second
             _heartbeatTimer.Elapsed += SendOutgoingHeartbeat;
             _heartbeatTimer.AutoReset = true;
-            _heartbeatTimer.Enabled = true;
+            _heartbeatTimer.Enabled = false;
         }
         #region Delegate Methods
         protected virtual void AuthorityModeInitialBootstrap(string packet)

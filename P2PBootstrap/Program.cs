@@ -93,6 +93,7 @@ namespace P2PBootstrap
                         IdentifierPacket identifierPacket = Deserialize<IdentifierPacket>(IDpacketJSON);
                         IPeer newPeer = new ClientPeer(IPAddress.Parse(identifierPacket.IP), identifierPacket.SourceOriginIdentifier,  identifierPacket.Data);
                         KnownPeers.Add(newPeer); // add the new peer to the known peers list
+                        ClientPeers.Add(new ClientPeer(newPeer)); // add the new peer to the client peers list
                         // we DO NOT use PeerNetwork.AddPeer(...) otherwise a PeerChannel will be made active
                     }
 

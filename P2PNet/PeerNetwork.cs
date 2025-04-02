@@ -311,13 +311,16 @@ namespace P2PNet
             listener = new TcpListener(IPAddress.Any, ListeningPort);
 
             P2PNetworkRoutines.InitializeRoutines();
-
+            LoggingConfiguration.EmitConsoleMessages = Logging.OutputLogMessages ? true : false;
             LoggingConfiguration.IncludeCategory = true;
             AddLoggingCategory(Logging.LAN);
             AddLoggingCategory(Logging.Bootstrap);
             AddLoggingCategory(Logging.PeerActivity);
             DeactivateLoggingCategory(Logging.LAN);
-            StartLogging();
+            if(Logging.LogToFile == true)
+            {
+                StartLogging();
+            }
         }
 
         static async Task AcceptClientsAsync()
@@ -1371,6 +1374,8 @@ namespace P2PNet
 
         public static class Logging
         {
+            public static bool OutputLogMessages { get; set; } = false;
+            public static bool LogToFile { get; set; } = false;
             public static LoggingCategory LAN = new LoggingCategory("LAN");
             public static LoggingCategory Bootstrap = new LoggingCategory("Bootstrap");
             public static LoggingCategory PeerActivity = new LoggingCategory("Peers");

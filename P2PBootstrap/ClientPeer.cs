@@ -61,5 +61,12 @@ namespace P2PBootstrap
             Identifier = identifier;
             Port = port;
         }
+        public ClientPeer(IPeer peer)
+        {
+            IP = peer.IP;
+            Address = peer.Address;
+            Identifier = peer.Identifier;
+            Port = peer.Port;
+        }
     }
 }
