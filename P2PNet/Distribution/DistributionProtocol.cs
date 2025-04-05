@@ -232,11 +232,13 @@ namespace P2PNet.Distribution
             return System.Text.Json.JsonSerializer.Deserialize<T>(json, (JsonTypeInfo<T>)context);
         }
         #endregion
-        }
+    }
 
 
     // This region keeps the packet objects and classes AOT compliant for JSON serialization.
     #region PACKET_CONTEXT
+
+
         [JsonSerializable(typeof(INetworkPacket))]
         [JsonSerializable(typeof(NetworkPacket))]
         public partial class NetworkPacketContext : JsonSerializerContext { }

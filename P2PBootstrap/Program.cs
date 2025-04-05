@@ -29,6 +29,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Net;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 
 namespace P2PBootstrap
 {
@@ -48,7 +49,7 @@ namespace P2PBootstrap
             AppSettings = config.Build();
 
             // check if application is running in container or not
-            GlobalConfig.CheckContainerEnvironment();
+            GlobalConfig.CheckContainerEnvironment();         
 
             var builder = WebApplication.CreateBuilder(args);
             builder.Logging.AddFilter("Microsoft", LogLevel.None);
@@ -77,8 +78,6 @@ namespace P2PBootstrap
             {
                 DebugMessage("New inbound peer detected.", MessageType.Debug);
 
-                try
-                {
                     // read the incoming PUT
                     using var reader = new StreamReader(context.Request.Body);
                     var bodyJson = await reader.ReadToEndAsync();
@@ -91,7 +90,7 @@ namespace P2PBootstrap
                     {
                         string IDpacketJSON = Encoding.UTF8.GetString(UnwrapData(Deserialize<DataTransmissionPacket>(bodyJson)));
                         IdentifierPacket identifierPacket = Deserialize<IdentifierPacket>(IDpacketJSON);
-                        IPeer newPeer = new ClientPeer(IPAddress.Parse(identifierPacket.IP), identifierPacket.SourceOriginIdentifier,  identifierPacket.Data);
+                        IPeer newPeer = new GenericPeer(IPAddress.Parse(identifierPacket.IP), identifierPacket.SourceOriginIdentifier,  identifierPacket.Data);
                         KnownPeers.Add(newPeer); // add the new peer to the known peers list
                         ClientPeers.Add(new ClientPeer(newPeer)); // add the new peer to the client peers list
                         // we DO NOT use PeerNetwork.AddPeer(...) otherwise a PeerChannel will be made active
@@ -135,12 +134,7 @@ namespace P2PBootstrap
                         var responseJson = Serialize(outPacket);
                         return Results.Content(responseJson, "application/json");
                     }
-                }
-                catch (Exception ex)
-                {
-                    DebugMessage($"Error processing PUT request: {ex.Message}", MessageType.Critical);
-                    return Results.Problem(ex.Message);
-                }
+                
             });
 
             app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.VerifyHash], async Task<IResult> (HttpContext context) =>
@@ -195,17 +189,55 @@ namespace P2PBootstrap
                 }
             });
 
-            app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.Heartbeat], async Task<IResult>(HttpContext context) =>
+            app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.Heartbeat], async Task<IResult> (HttpContext context) =>
+            {
+                using var reader = new StreamReader(context.Request.Body);
+                string bodyJson = await reader.ReadToEndAsync();
+                var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
+                if (incomingPacket == null || incomingPacket.Data == null)
                 {
-                    DebugMessage("New heartbeat detected.", MessageType.Debug);
-                    // read the incoming PUT
-                    using var reader = new StreamReader(context.Request.Body);
-                    var bodyJson = await reader.ReadToEndAsync();
-                    // deserialize the input
-                    return Results.Content(Serialize<PureMessagePacket>(new PureMessagePacket("Heartbeat response.")), "application/json");
+                    return Results.Problem("Invalid heartbeat packet received.", statusCode: 400);
+                }
 
+                // find the respective ClientPeer using the SourceOriginIdentifier
+                if (!ClientPeers.TryGetValue(incomingPacket.SourceOriginIdentifier, out ClientPeer clientPeer))
+                {
+                    return Results.Problem($"ClientPeer with SourceOriginIdentifier '{incomingPacket.SourceOriginIdentifier}' not found.", statusCode: 404);
+                }
 
-                });
+                string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
+                NetworkTask heartbeatTask = Deserialize<NetworkTask>(ntJson);
+                if (heartbeatTask == null || heartbeatTask.TaskType != TaskType.Heartbeat)
+                {
+                    return Results.Problem("Invalid heartbeat network task received.", statusCode: 400);
+                }
+
+                // update the client's last incoming time
+                clientPeer.UpdateTimeIn();
+
+                // outgoing tasks from the client
+                Dictionary<string, string> collectedTasks = new Dictionary<string, string>();
+                int taskCounter = 0;
+                while (clientPeer.OutgoingTasks.Count > 0)
+                {
+                    NetworkTask task = clientPeer.OutgoingTasks.Dequeue();
+                    string taskSerialized = Serialize(task);
+                    collectedTasks.Add($"Task_{taskCounter++}", taskSerialized);
+                }
+
+                // new heartbeatresponse network task containing the collected tasks
+                NetworkTask heartbeatResponseTask = new NetworkTask()
+                {
+                    TaskType = TaskType.HeartbeatResponse,
+                    TaskData = collectedTasks
+                };
+
+                // wrap the heartbeat response network task, inside a DataTransmissionPacket
+                byte[] responseData = heartbeatResponseTask.ToByte();
+                DataTransmissionPacket responsePacket = new DataTransmissionPacket(responseData, DataPayloadFormat.Task);
+                string responseJson = Serialize(responsePacket);
+                return Results.Content(responseJson, "application/json");
+            });
 
             if (GlobalConfig.OptionalEndpoints.ServePublicIP() == true)
             {
@@ -248,11 +280,6 @@ namespace P2PBootstrap
             Task.Run(() => { InitializeDatabase(); });
 
             app.Run();
-        }
-
-        private class InputModel
-        {
-            public string Input { get; set; }
         }
 
         public static void Test()

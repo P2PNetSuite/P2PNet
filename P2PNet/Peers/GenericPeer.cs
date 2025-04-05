@@ -54,6 +54,13 @@ namespace P2PNet.Peers
             Port = port;
         }
 
+        public GenericPeer(IPAddress ip, string identifies, int port)
+        {
+            IP = ip;
+            Identifier = identifies;
+            Port = port;
+        }
+
     }
 
 }

@@ -50,7 +50,7 @@ namespace P2PNet.DicoveryChannels.WAN
             SendHeartbeatToServer = SendOutgoingHeartbeatToServer;
 
             // setup hearbeat timer
-            _heartbeatTimer = new System.Timers.Timer(50000); // half second
+            _heartbeatTimer = new System.Timers.Timer(8000); // half second
             _heartbeatTimer.Elapsed += SendOutgoingHeartbeat;
             _heartbeatTimer.AutoReset = true;
             _heartbeatTimer.Enabled = false;
