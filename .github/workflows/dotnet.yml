@@ -49,6 +49,7 @@ jobs:
           echo "No version file found, creating $VERSION_FILE."
           echo $CURRENT_VERSION > $VERSION_FILE
           echo "::set-output name=version_changed::true"
+        fi
     
     - name: Commit and push VERSION.txt if version changed
       if: steps.version_check.outputs.version_changed == 'true'
