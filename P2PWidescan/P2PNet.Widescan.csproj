@@ -11,7 +11,7 @@
     <Company>P2pNetOrg</Company>
     <Authors>P2PNetOrg</Authors>
     <Title>P2PNet.Widescan</Title>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>introduction.md</PackageReadmeFile>
     <PackageIcon>p2pnet_logo.jpg-HD.png</PackageIcon>
     <RepositoryType>https://github.com/P2PNetSuite/P2PNet</RepositoryType>
     <PackageTags>p2pnet;p2p;peer-to-peer;</PackageTags>
@@ -36,7 +36,7 @@
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
-	  <None Include="..\README.md">
+	  <None Include="..\misc\introduction.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
