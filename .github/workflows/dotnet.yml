@@ -35,6 +35,7 @@ jobs:
       run: |
         VERSION_FILE="VERSION.txt"
         CURRENT_VERSION=$(dotnet msbuild P2PNet/P2PNet.csproj -nologo -t:GetVersion -v:diag | grep "^Version:" | cut -d' ' -f2)
+        echo $CURRENT_VERSION
         if [ -f "$VERSION_FILE" ]; then
           SAVED_VERSION=$(cat $VERSION_FILE)
           if [ "$CURRENT_VERSION" == "$SAVED_VERSION" ]; then
