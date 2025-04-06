@@ -58,6 +58,7 @@ Including PacketDotNet and SharpPcap as dependencies.</PackageReleaseNotes>
 
   <Target Name="GetVersion">
     <Message Importance="high" Text="Version: $(Version)" />
+    <WriteLinesToFile File="VERSION.txt" Lines="Version: $(Version)" Overwrite="true" />
   </Target>
 
   <ItemGroup>
