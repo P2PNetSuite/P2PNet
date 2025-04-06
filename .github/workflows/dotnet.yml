@@ -34,21 +34,21 @@ jobs:
       id: version_check
       run: |
         VERSION_FILE="VERSION.txt"
-        CURRENT_VERSION=$(dotnet msbuild -nologo -t:GetVersion -v:m | grep "^Version:" | cut -d' ' -f2)
+        CURRENT_VERSION=$(dotnet msbuild P2PNet/P2PNet.csproj -nologo -t:GetVersion -v:m | grep "^Version:" | cut -d' ' -f2)
         if [ -f "$VERSION_FILE" ]; then
           SAVED_VERSION=$(cat $VERSION_FILE)
           if [ "$CURRENT_VERSION" == "$SAVED_VERSION" ]; then
             echo "Version has not changed, skipping publish."
-            echo "::set-output name=version_changed::false"
+            echo "version_changed=false" >> $GITHUB_OUTPUT
           else
             echo "Version has changed, updating $VERSION_FILE."
             echo $CURRENT_VERSION > $VERSION_FILE
-            echo "::set-output name=version_changed::true"
+            echo "version_changed=true" >> $GITHUB_OUTPUT
           fi
         else
           echo "No version file found, creating $VERSION_FILE."
           echo $CURRENT_VERSION > $VERSION_FILE
-          echo "::set-output name=version_changed::true"
+          echo "version_changed=true" >> $GITHUB_OUTPUT
         fi
     
     - name: Commit and push VERSION.txt if version changed
