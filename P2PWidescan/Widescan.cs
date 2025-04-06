@@ -154,9 +154,9 @@ namespace P2PNet.Widescan
         /// <summary>
         /// Represents the first 4 higher segments of an IPv6 address (right to left).
         /// At least 1 is required to begin address generation.
-        /// (TIP: use online resources to find reputable ISP companies registering prefixes and use those)
         /// </summary>
         /// <param name="input">This should be a 4 segment IPv6 prefix.</param>
+        /// <remarks>Use reliable public directories and resources to discover registered prefixes, such as https://apps.db.ripe.net/db-web-ui/query in order to make the most use of directed scanning.</remarks>
         public static void AddAddressPrefix(string input)
         {
             string inputPrefix = input.Trim();

@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<IsPackable>true</IsPackable>
-	<Version>1.0.0.6</Version>
+	<Version>1.0.0.6-alpha</Version>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<Title>P2PNet</Title>
@@ -22,10 +22,35 @@ Including PacketDotNet and SharpPcap as dependencies.</PackageReleaseNotes>
 	<PropertyGroup>
 		<NoWarn>$(NoWarn);CS0168,CS0219,CA1416</NoWarn>
 		<PackageProjectUrl>https://github.com/P2PNetSuite/P2PNet</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+	  <IsAotCompatible>False</IsAotCompatible>
+	  <IsTrimmable>False</IsTrimmable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0|AnyCPU'">
+	  <IsAotCompatible>False</IsAotCompatible>
+	  <IsTrimmable>False</IsTrimmable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+	  <IsAotCompatible>False</IsAotCompatible>
+	  <IsTrimmable>False</IsTrimmable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0|AnyCPU'">
+	  <IsAotCompatible>False</IsAotCompatible>
+	  <IsTrimmable>False</IsTrimmable>
 	</PropertyGroup>
 
 	<ItemGroup>
     <None Include="..\p2pnet_logo.jpg-HD.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
