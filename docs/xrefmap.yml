@@ -428,6 +428,294 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.CLI.Parser.ProcessInput
   nameWithType: Parser.ProcessInput
+- uid: P2PBootstrap.ClientPeer
+  name: ClientPeer
+  href: api/P2PBootstrap.ClientPeer.html
+  commentId: T:P2PBootstrap.ClientPeer
+  fullName: P2PBootstrap.ClientPeer
+  nameWithType: ClientPeer
+- uid: P2PBootstrap.ClientPeer.#ctor
+  name: ClientPeer()
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer__ctor
+  commentId: M:P2PBootstrap.ClientPeer.#ctor
+  name.vb: New()
+  fullName: P2PBootstrap.ClientPeer.ClientPeer()
+  fullName.vb: P2PBootstrap.ClientPeer.New()
+  nameWithType: ClientPeer.ClientPeer()
+  nameWithType.vb: ClientPeer.New()
+- uid: P2PBootstrap.ClientPeer.#ctor(P2PNet.Peers.IPeer)
+  name: ClientPeer(IPeer)
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer__ctor_P2PNet_Peers_IPeer_
+  commentId: M:P2PBootstrap.ClientPeer.#ctor(P2PNet.Peers.IPeer)
+  name.vb: New(IPeer)
+  fullName: P2PBootstrap.ClientPeer.ClientPeer(P2PNet.Peers.IPeer)
+  fullName.vb: P2PBootstrap.ClientPeer.New(P2PNet.Peers.IPeer)
+  nameWithType: ClientPeer.ClientPeer(IPeer)
+  nameWithType.vb: ClientPeer.New(IPeer)
+- uid: P2PBootstrap.ClientPeer.#ctor(System.Net.IPAddress,System.String,System.Int32)
+  name: ClientPeer(IPAddress, string, int)
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer__ctor_System_Net_IPAddress_System_String_System_Int32_
+  commentId: M:P2PBootstrap.ClientPeer.#ctor(System.Net.IPAddress,System.String,System.Int32)
+  name.vb: New(IPAddress, String, Integer)
+  fullName: P2PBootstrap.ClientPeer.ClientPeer(System.Net.IPAddress, string, int)
+  fullName.vb: P2PBootstrap.ClientPeer.New(System.Net.IPAddress, String, Integer)
+  nameWithType: ClientPeer.ClientPeer(IPAddress, string, int)
+  nameWithType.vb: ClientPeer.New(IPAddress, String, Integer)
+- uid: P2PBootstrap.ClientPeer.#ctor*
+  name: ClientPeer
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer__ctor_
+  commentId: Overload:P2PBootstrap.ClientPeer.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PBootstrap.ClientPeer.ClientPeer
+  fullName.vb: P2PBootstrap.ClientPeer.New
+  nameWithType: ClientPeer.ClientPeer
+  nameWithType.vb: ClientPeer.New
+- uid: P2PBootstrap.ClientPeer.Address
+  name: Address
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Address
+  commentId: P:P2PBootstrap.ClientPeer.Address
+  fullName: P2PBootstrap.ClientPeer.Address
+  nameWithType: ClientPeer.Address
+- uid: P2PBootstrap.ClientPeer.Address*
+  name: Address
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Address_
+  commentId: Overload:P2PBootstrap.ClientPeer.Address
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeer.Address
+  nameWithType: ClientPeer.Address
+- uid: P2PBootstrap.ClientPeer.Client
+  name: Client
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Client
+  commentId: P:P2PBootstrap.ClientPeer.Client
+  fullName: P2PBootstrap.ClientPeer.Client
+  nameWithType: ClientPeer.Client
+- uid: P2PBootstrap.ClientPeer.Client*
+  name: Client
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Client_
+  commentId: Overload:P2PBootstrap.ClientPeer.Client
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeer.Client
+  nameWithType: ClientPeer.Client
+- uid: P2PBootstrap.ClientPeer.IP
+  name: IP
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_IP
+  commentId: P:P2PBootstrap.ClientPeer.IP
+  fullName: P2PBootstrap.ClientPeer.IP
+  nameWithType: ClientPeer.IP
+- uid: P2PBootstrap.ClientPeer.IP*
+  name: IP
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_IP_
+  commentId: Overload:P2PBootstrap.ClientPeer.IP
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeer.IP
+  nameWithType: ClientPeer.IP
+- uid: P2PBootstrap.ClientPeer.Identifier
+  name: Identifier
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Identifier
+  commentId: P:P2PBootstrap.ClientPeer.Identifier
+  fullName: P2PBootstrap.ClientPeer.Identifier
+  nameWithType: ClientPeer.Identifier
+- uid: P2PBootstrap.ClientPeer.Identifier*
+  name: Identifier
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Identifier_
+  commentId: Overload:P2PBootstrap.ClientPeer.Identifier
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeer.Identifier
+  nameWithType: ClientPeer.Identifier
+- uid: P2PBootstrap.ClientPeer.LastIncomingDataReceived
+  name: LastIncomingDataReceived
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_LastIncomingDataReceived
+  commentId: P:P2PBootstrap.ClientPeer.LastIncomingDataReceived
+  fullName: P2PBootstrap.ClientPeer.LastIncomingDataReceived
+  nameWithType: ClientPeer.LastIncomingDataReceived
+- uid: P2PBootstrap.ClientPeer.LastIncomingDataReceived*
+  name: LastIncomingDataReceived
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_LastIncomingDataReceived_
+  commentId: Overload:P2PBootstrap.ClientPeer.LastIncomingDataReceived
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeer.LastIncomingDataReceived
+  nameWithType: ClientPeer.LastIncomingDataReceived
+- uid: P2PBootstrap.ClientPeer.OutgoingTasks
+  name: OutgoingTasks
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_OutgoingTasks
+  commentId: P:P2PBootstrap.ClientPeer.OutgoingTasks
+  fullName: P2PBootstrap.ClientPeer.OutgoingTasks
+  nameWithType: ClientPeer.OutgoingTasks
+- uid: P2PBootstrap.ClientPeer.OutgoingTasks*
+  name: OutgoingTasks
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_OutgoingTasks_
+  commentId: Overload:P2PBootstrap.ClientPeer.OutgoingTasks
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeer.OutgoingTasks
+  nameWithType: ClientPeer.OutgoingTasks
+- uid: P2PBootstrap.ClientPeer.Port
+  name: Port
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Port
+  commentId: P:P2PBootstrap.ClientPeer.Port
+  fullName: P2PBootstrap.ClientPeer.Port
+  nameWithType: ClientPeer.Port
+- uid: P2PBootstrap.ClientPeer.Port*
+  name: Port
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Port_
+  commentId: Overload:P2PBootstrap.ClientPeer.Port
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeer.Port
+  nameWithType: ClientPeer.Port
+- uid: P2PBootstrap.ClientPeer.Stream
+  name: Stream
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Stream
+  commentId: P:P2PBootstrap.ClientPeer.Stream
+  fullName: P2PBootstrap.ClientPeer.Stream
+  nameWithType: ClientPeer.Stream
+- uid: P2PBootstrap.ClientPeer.Stream*
+  name: Stream
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_Stream_
+  commentId: Overload:P2PBootstrap.ClientPeer.Stream
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeer.Stream
+  nameWithType: ClientPeer.Stream
+- uid: P2PBootstrap.ClientPeer.UpdateTimeIn
+  name: UpdateTimeIn()
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_UpdateTimeIn
+  commentId: M:P2PBootstrap.ClientPeer.UpdateTimeIn
+  fullName: P2PBootstrap.ClientPeer.UpdateTimeIn()
+  nameWithType: ClientPeer.UpdateTimeIn()
+- uid: P2PBootstrap.ClientPeer.UpdateTimeIn*
+  name: UpdateTimeIn
+  href: api/P2PBootstrap.ClientPeer.html#P2PBootstrap_ClientPeer_UpdateTimeIn_
+  commentId: Overload:P2PBootstrap.ClientPeer.UpdateTimeIn
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeer.UpdateTimeIn
+  nameWithType: ClientPeer.UpdateTimeIn
+- uid: P2PBootstrap.ClientPeerList
+  name: ClientPeerList
+  href: api/P2PBootstrap.ClientPeerList.html
+  commentId: T:P2PBootstrap.ClientPeerList
+  fullName: P2PBootstrap.ClientPeerList
+  nameWithType: ClientPeerList
+- uid: P2PBootstrap.ClientPeerList.#ctor
+  name: ClientPeerList()
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList__ctor
+  commentId: M:P2PBootstrap.ClientPeerList.#ctor
+  name.vb: New()
+  fullName: P2PBootstrap.ClientPeerList.ClientPeerList()
+  fullName.vb: P2PBootstrap.ClientPeerList.New()
+  nameWithType: ClientPeerList.ClientPeerList()
+  nameWithType.vb: ClientPeerList.New()
+- uid: P2PBootstrap.ClientPeerList.#ctor*
+  name: ClientPeerList
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList__ctor_
+  commentId: Overload:P2PBootstrap.ClientPeerList.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PBootstrap.ClientPeerList.ClientPeerList
+  fullName.vb: P2PBootstrap.ClientPeerList.New
+  nameWithType: ClientPeerList.ClientPeerList
+  nameWithType.vb: ClientPeerList.New
+- uid: P2PBootstrap.ClientPeerList.Add(P2PBootstrap.ClientPeer)
+  name: Add(ClientPeer)
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Add_P2PBootstrap_ClientPeer_
+  commentId: M:P2PBootstrap.ClientPeerList.Add(P2PBootstrap.ClientPeer)
+  fullName: P2PBootstrap.ClientPeerList.Add(P2PBootstrap.ClientPeer)
+  nameWithType: ClientPeerList.Add(ClientPeer)
+- uid: P2PBootstrap.ClientPeerList.Add*
+  name: Add
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Add_
+  commentId: Overload:P2PBootstrap.ClientPeerList.Add
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeerList.Add
+  nameWithType: ClientPeerList.Add
+- uid: P2PBootstrap.ClientPeerList.Clear
+  name: Clear()
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Clear
+  commentId: M:P2PBootstrap.ClientPeerList.Clear
+  fullName: P2PBootstrap.ClientPeerList.Clear()
+  nameWithType: ClientPeerList.Clear()
+- uid: P2PBootstrap.ClientPeerList.Clear*
+  name: Clear
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Clear_
+  commentId: Overload:P2PBootstrap.ClientPeerList.Clear
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeerList.Clear
+  nameWithType: ClientPeerList.Clear
+- uid: P2PBootstrap.ClientPeerList.Count
+  name: Count
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Count
+  commentId: P:P2PBootstrap.ClientPeerList.Count
+  fullName: P2PBootstrap.ClientPeerList.Count
+  nameWithType: ClientPeerList.Count
+- uid: P2PBootstrap.ClientPeerList.Count*
+  name: Count
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Count_
+  commentId: Overload:P2PBootstrap.ClientPeerList.Count
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeerList.Count
+  nameWithType: ClientPeerList.Count
+- uid: P2PBootstrap.ClientPeerList.GetEnumerator
+  name: GetEnumerator()
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_GetEnumerator
+  commentId: M:P2PBootstrap.ClientPeerList.GetEnumerator
+  fullName: P2PBootstrap.ClientPeerList.GetEnumerator()
+  nameWithType: ClientPeerList.GetEnumerator()
+- uid: P2PBootstrap.ClientPeerList.GetEnumerator*
+  name: GetEnumerator
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_GetEnumerator_
+  commentId: Overload:P2PBootstrap.ClientPeerList.GetEnumerator
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeerList.GetEnumerator
+  nameWithType: ClientPeerList.GetEnumerator
+- uid: P2PBootstrap.ClientPeerList.Item(System.String)
+  name: this[string]
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Item_System_String_
+  commentId: P:P2PBootstrap.ClientPeerList.Item(System.String)
+  name.vb: this[](String)
+  fullName: P2PBootstrap.ClientPeerList.this[string]
+  fullName.vb: P2PBootstrap.ClientPeerList.this[](String)
+  nameWithType: ClientPeerList.this[string]
+  nameWithType.vb: ClientPeerList.this[](String)
+- uid: P2PBootstrap.ClientPeerList.Item*
+  name: this
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Item_
+  commentId: Overload:P2PBootstrap.ClientPeerList.Item
+  isSpec: "True"
+  name.vb: this[]
+  fullName: P2PBootstrap.ClientPeerList.this
+  fullName.vb: P2PBootstrap.ClientPeerList.this[]
+  nameWithType: ClientPeerList.this
+  nameWithType.vb: ClientPeerList.this[]
+- uid: P2PBootstrap.ClientPeerList.Remove(System.String)
+  name: Remove(string)
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Remove_System_String_
+  commentId: M:P2PBootstrap.ClientPeerList.Remove(System.String)
+  name.vb: Remove(String)
+  fullName: P2PBootstrap.ClientPeerList.Remove(string)
+  fullName.vb: P2PBootstrap.ClientPeerList.Remove(String)
+  nameWithType: ClientPeerList.Remove(string)
+  nameWithType.vb: ClientPeerList.Remove(String)
+- uid: P2PBootstrap.ClientPeerList.Remove*
+  name: Remove
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_Remove_
+  commentId: Overload:P2PBootstrap.ClientPeerList.Remove
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeerList.Remove
+  nameWithType: ClientPeerList.Remove
+- uid: P2PBootstrap.ClientPeerList.TryGetValue(System.String,P2PBootstrap.ClientPeer@)
+  name: TryGetValue(string, out ClientPeer)
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_TryGetValue_System_String_P2PBootstrap_ClientPeer__
+  commentId: M:P2PBootstrap.ClientPeerList.TryGetValue(System.String,P2PBootstrap.ClientPeer@)
+  name.vb: TryGetValue(String, ClientPeer)
+  fullName: P2PBootstrap.ClientPeerList.TryGetValue(string, out P2PBootstrap.ClientPeer)
+  fullName.vb: P2PBootstrap.ClientPeerList.TryGetValue(String, P2PBootstrap.ClientPeer)
+  nameWithType: ClientPeerList.TryGetValue(string, out ClientPeer)
+  nameWithType.vb: ClientPeerList.TryGetValue(String, ClientPeer)
+- uid: P2PBootstrap.ClientPeerList.TryGetValue*
+  name: TryGetValue
+  href: api/P2PBootstrap.ClientPeerList.html#P2PBootstrap_ClientPeerList_TryGetValue_
+  commentId: Overload:P2PBootstrap.ClientPeerList.TryGetValue
+  isSpec: "True"
+  fullName: P2PBootstrap.ClientPeerList.TryGetValue
+  nameWithType: ClientPeerList.TryGetValue
 - uid: P2PBootstrap.Database
   name: P2PBootstrap.Database
   href: api/P2PBootstrap.Database.html
@@ -1559,6 +1847,12 @@ references:
   commentId: T:P2PBootstrap.Program
   fullName: P2PBootstrap.Program
   nameWithType: Program
+- uid: P2PBootstrap.Program.ClientPeers
+  name: ClientPeers
+  href: api/P2PBootstrap.Program.html#P2PBootstrap_Program_ClientPeers
+  commentId: F:P2PBootstrap.Program.ClientPeers
+  fullName: P2PBootstrap.Program.ClientPeers
+  nameWithType: Program.ClientPeers
 - uid: P2PBootstrap.Program.Main(System.String[])
   name: Main(string[])
   href: api/P2PBootstrap.Program.html#P2PBootstrap_Program_Main_System_String___
@@ -1647,32 +1941,6 @@ references:
   fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannel.New
   nameWithType: BootstrapChannel.BootstrapChannel
   nameWithType.vb: BootstrapChannel.New
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.BootstrapServer
-  name: BootstrapServer
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_BootstrapServer
-  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannel.BootstrapServer
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.BootstrapServer
-  nameWithType: BootstrapChannel.BootstrapServer
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.BootstrapServer*
-  name: BootstrapServer
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_BootstrapServer_
-  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannel.BootstrapServer
-  isSpec: "True"
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.BootstrapServer
-  nameWithType: BootstrapChannel.BootstrapServer
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.IsAuthorityMode
-  name: IsAuthorityMode
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_IsAuthorityMode
-  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannel.IsAuthorityMode
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.IsAuthorityMode
-  nameWithType: BootstrapChannel.IsAuthorityMode
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.IsAuthorityMode*
-  name: IsAuthorityMode
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_IsAuthorityMode_
-  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannel.IsAuthorityMode
-  isSpec: "True"
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.IsAuthorityMode
-  nameWithType: BootstrapChannel.IsAuthorityMode
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel
   name: OpenBootstrapChannel()
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_OpenBootstrapChannel
@@ -1686,19 +1954,228 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.OpenBootstrapChannel
   nameWithType: BootstrapChannel.OpenBootstrapChannel
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
-  name: PublicKey
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_PublicKey
-  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
-  nameWithType: BootstrapChannel.PublicKey
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey*
-  name: PublicKey
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_PublicKey_
-  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.RunInitialBootstrap
+  name: RunInitialBootstrap()
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_RunInitialBootstrap
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannel.RunInitialBootstrap
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.RunInitialBootstrap()
+  nameWithType: BootstrapChannel.RunInitialBootstrap()
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannel.RunInitialBootstrap*
+  name: RunInitialBootstrap
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannel.html#P2PNet_DicoveryChannels_WAN_BootstrapChannel_RunInitialBootstrap_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannel.RunInitialBootstrap
   isSpec: "True"
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.PublicKey
-  nameWithType: BootstrapChannel.PublicKey
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannel.RunInitialBootstrap
+  nameWithType: BootstrapChannel.RunInitialBootstrap
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase
+  name: BootstrapChannelBase
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html
+  commentId: T:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase
+  nameWithType: BootstrapChannelBase
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.#ctor
+  name: BootstrapChannelBase()
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase__ctor
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.#ctor
+  name.vb: New()
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapChannelBase()
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.New()
+  nameWithType: BootstrapChannelBase.BootstrapChannelBase()
+  nameWithType.vb: BootstrapChannelBase.New()
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.#ctor*
+  name: BootstrapChannelBase
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase__ctor_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapChannelBase
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.New
+  nameWithType: BootstrapChannelBase.BootstrapChannelBase
+  nameWithType.vb: BootstrapChannelBase.New
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap(System.String)
+  name: AuthorityModeInitialBootstrap(string)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_AuthorityModeInitialBootstrap_System_String_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap(System.String)
+  name.vb: AuthorityModeInitialBootstrap(String)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap(string)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap(String)
+  nameWithType: BootstrapChannelBase.AuthorityModeInitialBootstrap(string)
+  nameWithType.vb: BootstrapChannelBase.AuthorityModeInitialBootstrap(String)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap*
+  name: AuthorityModeInitialBootstrap
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_AuthorityModeInitialBootstrap_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap
+  nameWithType: BootstrapChannelBase.AuthorityModeInitialBootstrap
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapServer
+  name: BootstrapServer
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_BootstrapServer
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapServer
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapServer
+  nameWithType: BootstrapChannelBase.BootstrapServer
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapServer*
+  name: BootstrapServer
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_BootstrapServer_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapServer
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapServer
+  nameWithType: BootstrapChannelBase.BootstrapServer
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateHeartbeatPacket
+  name: CreateHeartbeatPacket()
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_CreateHeartbeatPacket
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateHeartbeatPacket
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateHeartbeatPacket()
+  nameWithType: BootstrapChannelBase.CreateHeartbeatPacket()
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateHeartbeatPacket*
+  name: CreateHeartbeatPacket
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_CreateHeartbeatPacket_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateHeartbeatPacket
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateHeartbeatPacket
+  nameWithType: BootstrapChannelBase.CreateHeartbeatPacket
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateInitialBootstrapPacket
+  name: CreateInitialBootstrapPacket()
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_CreateInitialBootstrapPacket
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateInitialBootstrapPacket
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateInitialBootstrapPacket()
+  nameWithType: BootstrapChannelBase.CreateInitialBootstrapPacket()
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateInitialBootstrapPacket*
+  name: CreateInitialBootstrapPacket
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_CreateInitialBootstrapPacket_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateInitialBootstrapPacket
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateInitialBootstrapPacket
+  nameWithType: BootstrapChannelBase.CreateInitialBootstrapPacket
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.InitialBootstrapHandler
+  name: InitialBootstrapHandler
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_InitialBootstrapHandler
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.InitialBootstrapHandler
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.InitialBootstrapHandler
+  nameWithType: BootstrapChannelBase.InitialBootstrapHandler
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.InitialBootstrapHandler*
+  name: InitialBootstrapHandler
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_InitialBootstrapHandler_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.InitialBootstrapHandler
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.InitialBootstrapHandler
+  nameWithType: BootstrapChannelBase.InitialBootstrapHandler
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsAuthorityMode
+  name: IsAuthorityMode
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsAuthorityMode
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsAuthorityMode
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsAuthorityMode
+  nameWithType: BootstrapChannelBase.IsAuthorityMode
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsAuthorityMode*
+  name: IsAuthorityMode
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsAuthorityMode_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsAuthorityMode
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsAuthorityMode
+  nameWithType: BootstrapChannelBase.IsAuthorityMode
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsValidNetworkHash
+  name: IsValidNetworkHash
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsValidNetworkHash
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsValidNetworkHash
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsValidNetworkHash
+  nameWithType: BootstrapChannelBase.IsValidNetworkHash
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsValidNetworkHash*
+  name: IsValidNetworkHash
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsValidNetworkHash_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsValidNetworkHash
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsValidNetworkHash
+  nameWithType: BootstrapChannelBase.IsValidNetworkHash
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ProcessPeerList(P2PNet.NetworkPackets.CollectionSharePacket)
+  name: ProcessPeerList(CollectionSharePacket)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_ProcessPeerList_P2PNet_NetworkPackets_CollectionSharePacket_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ProcessPeerList(P2PNet.NetworkPackets.CollectionSharePacket)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ProcessPeerList(P2PNet.NetworkPackets.CollectionSharePacket)
+  nameWithType: BootstrapChannelBase.ProcessPeerList(CollectionSharePacket)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ProcessPeerList*
+  name: ProcessPeerList
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_ProcessPeerList_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ProcessPeerList
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ProcessPeerList
+  nameWithType: BootstrapChannelBase.ProcessPeerList
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PublicKey
+  name: PublicKey
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_PublicKey
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PublicKey
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PublicKey
+  nameWithType: BootstrapChannelBase.PublicKey
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PublicKey*
+  name: PublicKey
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_PublicKey_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PublicKey
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PublicKey
+  nameWithType: BootstrapChannelBase.PublicKey
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer
+  name: SendOutgoingHeartbeatToServer()
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_SendOutgoingHeartbeatToServer
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer()
+  nameWithType: BootstrapChannelBase.SendOutgoingHeartbeatToServer()
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer*
+  name: SendOutgoingHeartbeatToServer
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_SendOutgoingHeartbeatToServer_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer
+  nameWithType: BootstrapChannelBase.SendOutgoingHeartbeatToServer
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StorePublicKey(System.String)
+  name: StorePublicKey(string)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_StorePublicKey_System_String_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StorePublicKey(System.String)
+  name.vb: StorePublicKey(String)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StorePublicKey(string)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StorePublicKey(String)
+  nameWithType: BootstrapChannelBase.StorePublicKey(string)
+  nameWithType.vb: BootstrapChannelBase.StorePublicKey(String)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StorePublicKey*
+  name: StorePublicKey
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_StorePublicKey_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StorePublicKey
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StorePublicKey
+  nameWithType: BootstrapChannelBase.StorePublicKey
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap(System.String)
+  name: TrustlessModeInitialBootstrap(string)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_TrustlessModeInitialBootstrap_System_String_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap(System.String)
+  name.vb: TrustlessModeInitialBootstrap(String)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap(string)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap(String)
+  nameWithType: BootstrapChannelBase.TrustlessModeInitialBootstrap(string)
+  nameWithType.vb: BootstrapChannelBase.TrustlessModeInitialBootstrap(String)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap*
+  name: TrustlessModeInitialBootstrap
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_TrustlessModeInitialBootstrap_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap
+  nameWithType: BootstrapChannelBase.TrustlessModeInitialBootstrap
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  name: ValidateNetworkTaskHash(NetworkTask)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_ValidateNetworkTaskHash_P2PNet_Distribution_NetworkTasks_NetworkTask_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  nameWithType: BootstrapChannelBase.ValidateNetworkTaskHash(NetworkTask)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash*
+  name: ValidateNetworkTaskHash
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_ValidateNetworkTaskHash_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash
+  nameWithType: BootstrapChannelBase.ValidateNetworkTaskHash
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase._heartbeatTimer
+  name: _heartbeatTimer
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase__heartbeatTimer
+  commentId: F:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase._heartbeatTimer
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase._heartbeatTimer
+  nameWithType: BootstrapChannelBase._heartbeatTimer
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions
   name: BootstrapChannelConnectionOptions
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html
@@ -1741,6 +2218,42 @@ references:
   fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New(String, Boolean, P2PNet.DicoveryChannels.WAN.BootstrapPeer)
   nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(string, bool, BootstrapPeer)
   nameWithType.vb: BootstrapChannelConnectionOptions.New(String, Boolean, BootstrapPeer)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.Uri)
+  name: BootstrapChannelConnectionOptions(Uri)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_System_Uri_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.Uri)
+  name.vb: New(Uri)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(System.Uri)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New(System.Uri)
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(Uri)
+  nameWithType.vb: BootstrapChannelConnectionOptions.New(Uri)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.Uri,P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  name: BootstrapChannelConnectionOptions(Uri, BootstrapPeer)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_System_Uri_P2PNet_DicoveryChannels_WAN_BootstrapPeer_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.Uri,P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  name.vb: New(Uri, BootstrapPeer)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(System.Uri, P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New(System.Uri, P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(Uri, BootstrapPeer)
+  nameWithType.vb: BootstrapChannelConnectionOptions.New(Uri, BootstrapPeer)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.Uri,System.Boolean)
+  name: BootstrapChannelConnectionOptions(Uri, bool)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_System_Uri_System_Boolean_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.Uri,System.Boolean)
+  name.vb: New(Uri, Boolean)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(System.Uri, bool)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New(System.Uri, Boolean)
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(Uri, bool)
+  nameWithType.vb: BootstrapChannelConnectionOptions.New(Uri, Boolean)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.Uri,System.Boolean,P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  name: BootstrapChannelConnectionOptions(Uri, bool, BootstrapPeer)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_System_Uri_System_Boolean_P2PNet_DicoveryChannels_WAN_BootstrapPeer_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor(System.Uri,System.Boolean,P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  name.vb: New(Uri, Boolean, BootstrapPeer)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(System.Uri, bool, P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.New(System.Uri, Boolean, P2PNet.DicoveryChannels.WAN.BootstrapPeer)
+  nameWithType: BootstrapChannelConnectionOptions.BootstrapChannelConnectionOptions(Uri, bool, BootstrapPeer)
+  nameWithType.vb: BootstrapChannelConnectionOptions.New(Uri, Boolean, BootstrapPeer)
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.#ctor*
   name: BootstrapChannelConnectionOptions
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions__ctor_
@@ -1832,6 +2345,15 @@ references:
   fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapPeer.New(String, Integer)
   nameWithType: BootstrapPeer.BootstrapPeer(string, int)
   nameWithType.vb: BootstrapPeer.New(String, Integer)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapPeer.#ctor(System.Uri)
+  name: BootstrapPeer(Uri)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapPeer.html#P2PNet_DicoveryChannels_WAN_BootstrapPeer__ctor_System_Uri_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapPeer.#ctor(System.Uri)
+  name.vb: New(Uri)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapPeer.BootstrapPeer(System.Uri)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapPeer.New(System.Uri)
+  nameWithType: BootstrapPeer.BootstrapPeer(Uri)
+  nameWithType.vb: BootstrapPeer.New(Uri)
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapPeer.#ctor*
   name: BootstrapPeer
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapPeer.html#P2PNet_DicoveryChannels_WAN_BootstrapPeer__ctor_
@@ -1868,6 +2390,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapPeer.Client
   nameWithType: BootstrapPeer.Client
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapPeer.Endpoint
+  name: Endpoint
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapPeer.html#P2PNet_DicoveryChannels_WAN_BootstrapPeer_Endpoint
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapPeer.Endpoint
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapPeer.Endpoint
+  nameWithType: BootstrapPeer.Endpoint
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapPeer.Endpoint*
+  name: Endpoint
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapPeer.html#P2PNet_DicoveryChannels_WAN_BootstrapPeer_Endpoint_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapPeer.Endpoint
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapPeer.Endpoint
+  nameWithType: BootstrapPeer.Endpoint
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapPeer.IP
   name: IP
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapPeer.html#P2PNet_DicoveryChannels_WAN_BootstrapPeer_IP
@@ -2450,6 +2985,42 @@ references:
   commentId: T:P2PNet.Distribution.DistributionProtocol
   fullName: P2PNet.Distribution.DistributionProtocol
   nameWithType: DistributionProtocol
+- uid: P2PNet.Distribution.DistributionProtocol.BootstrapServerAPIendpoints
+  name: BootstrapServerAPIendpoints
+  href: api/P2PNet.Distribution.DistributionProtocol.html#P2PNet_Distribution_DistributionProtocol_BootstrapServerAPIendpoints
+  commentId: F:P2PNet.Distribution.DistributionProtocol.BootstrapServerAPIendpoints
+  fullName: P2PNet.Distribution.DistributionProtocol.BootstrapServerAPIendpoints
+  nameWithType: DistributionProtocol.BootstrapServerAPIendpoints
+- uid: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints
+  name: DistributionProtocol.CommonBootstrapEndpoints
+  href: api/P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.html
+  commentId: T:P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints
+  fullName: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints
+  nameWithType: DistributionProtocol.CommonBootstrapEndpoints
+- uid: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.Bootstrap
+  name: Bootstrap
+  href: api/P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.html#P2PNet_Distribution_DistributionProtocol_CommonBootstrapEndpoints_Bootstrap
+  commentId: F:P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.Bootstrap
+  fullName: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.Bootstrap
+  nameWithType: DistributionProtocol.CommonBootstrapEndpoints.Bootstrap
+- uid: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.GetPublicIP
+  name: GetPublicIP
+  href: api/P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.html#P2PNet_Distribution_DistributionProtocol_CommonBootstrapEndpoints_GetPublicIP
+  commentId: F:P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.GetPublicIP
+  fullName: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.GetPublicIP
+  nameWithType: DistributionProtocol.CommonBootstrapEndpoints.GetPublicIP
+- uid: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.Heartbeat
+  name: Heartbeat
+  href: api/P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.html#P2PNet_Distribution_DistributionProtocol_CommonBootstrapEndpoints_Heartbeat
+  commentId: F:P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.Heartbeat
+  fullName: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.Heartbeat
+  nameWithType: DistributionProtocol.CommonBootstrapEndpoints.Heartbeat
+- uid: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.VerifyHash
+  name: VerifyHash
+  href: api/P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.html#P2PNet_Distribution_DistributionProtocol_CommonBootstrapEndpoints_VerifyHash
+  commentId: F:P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.VerifyHash
+  fullName: P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.VerifyHash
+  nameWithType: DistributionProtocol.CommonBootstrapEndpoints.VerifyHash
 - uid: P2PNet.Distribution.DistributionProtocol.DataFormatTagMap
   name: DataFormatTagMap
   href: api/P2PNet.Distribution.DistributionProtocol.html#P2PNet_Distribution_DistributionProtocol_DataFormatTagMap
@@ -2496,6 +3067,19 @@ references:
   fullName.vb: P2PNet.Distribution.DistributionProtocol.Deserialize(Of T)(String)
   nameWithType: DistributionProtocol.Deserialize<T>(string)
   nameWithType.vb: DistributionProtocol.Deserialize(Of T)(String)
+- uid: P2PNet.Distribution.DistributionProtocol.GetEndpointURI(P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints,System.Uri)
+  name: GetEndpointURI(CommonBootstrapEndpoints, Uri)
+  href: api/P2PNet.Distribution.DistributionProtocol.html#P2PNet_Distribution_DistributionProtocol_GetEndpointURI_P2PNet_Distribution_DistributionProtocol_CommonBootstrapEndpoints_System_Uri_
+  commentId: M:P2PNet.Distribution.DistributionProtocol.GetEndpointURI(P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints,System.Uri)
+  fullName: P2PNet.Distribution.DistributionProtocol.GetEndpointURI(P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints, System.Uri)
+  nameWithType: DistributionProtocol.GetEndpointURI(DistributionProtocol.CommonBootstrapEndpoints, Uri)
+- uid: P2PNet.Distribution.DistributionProtocol.GetEndpointURI*
+  name: GetEndpointURI
+  href: api/P2PNet.Distribution.DistributionProtocol.html#P2PNet_Distribution_DistributionProtocol_GetEndpointURI_
+  commentId: Overload:P2PNet.Distribution.DistributionProtocol.GetEndpointURI
+  isSpec: "True"
+  fullName: P2PNet.Distribution.DistributionProtocol.GetEndpointURI
+  nameWithType: DistributionProtocol.GetEndpointURI
 - uid: P2PNet.Distribution.DistributionProtocol.MessageTags
   name: DistributionProtocol.MessageTags
   href: api/P2PNet.Distribution.DistributionProtocol.MessageTags.html
@@ -3783,6 +4367,12 @@ references:
   commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.Heartbeat
   fullName: P2PNet.Distribution.NetworkTasks.TaskType.Heartbeat
   nameWithType: TaskType.Heartbeat
+- uid: P2PNet.Distribution.NetworkTasks.TaskType.HeartbeatResponse
+  name: HeartbeatResponse
+  href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_HeartbeatResponse
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskType.HeartbeatResponse
+  fullName: P2PNet.Distribution.NetworkTasks.TaskType.HeartbeatResponse
+  nameWithType: TaskType.HeartbeatResponse
 - uid: P2PNet.Distribution.NetworkTasks.TaskType.PingPeer
   name: PingPeer
   href: api/P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_PingPeer
@@ -4864,6 +5454,56 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.LocalIPV4Address
   nameWithType: PeerNetwork.LocalIPV4Address
+- uid: P2PNet.PeerNetwork.Logging
+  name: PeerNetwork.Logging
+  href: api/P2PNet.PeerNetwork.Logging.html
+  commentId: T:P2PNet.PeerNetwork.Logging
+  fullName: P2PNet.PeerNetwork.Logging
+  nameWithType: PeerNetwork.Logging
+- uid: P2PNet.PeerNetwork.Logging.Bootstrap
+  name: Bootstrap
+  href: api/P2PNet.PeerNetwork.Logging.html#P2PNet_PeerNetwork_Logging_Bootstrap
+  commentId: F:P2PNet.PeerNetwork.Logging.Bootstrap
+  fullName: P2PNet.PeerNetwork.Logging.Bootstrap
+  nameWithType: PeerNetwork.Logging.Bootstrap
+- uid: P2PNet.PeerNetwork.Logging.LAN
+  name: LAN
+  href: api/P2PNet.PeerNetwork.Logging.html#P2PNet_PeerNetwork_Logging_LAN
+  commentId: F:P2PNet.PeerNetwork.Logging.LAN
+  fullName: P2PNet.PeerNetwork.Logging.LAN
+  nameWithType: PeerNetwork.Logging.LAN
+- uid: P2PNet.PeerNetwork.Logging.LogToFile
+  name: LogToFile
+  href: api/P2PNet.PeerNetwork.Logging.html#P2PNet_PeerNetwork_Logging_LogToFile
+  commentId: P:P2PNet.PeerNetwork.Logging.LogToFile
+  fullName: P2PNet.PeerNetwork.Logging.LogToFile
+  nameWithType: PeerNetwork.Logging.LogToFile
+- uid: P2PNet.PeerNetwork.Logging.LogToFile*
+  name: LogToFile
+  href: api/P2PNet.PeerNetwork.Logging.html#P2PNet_PeerNetwork_Logging_LogToFile_
+  commentId: Overload:P2PNet.PeerNetwork.Logging.LogToFile
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.Logging.LogToFile
+  nameWithType: PeerNetwork.Logging.LogToFile
+- uid: P2PNet.PeerNetwork.Logging.OutputLogMessages
+  name: OutputLogMessages
+  href: api/P2PNet.PeerNetwork.Logging.html#P2PNet_PeerNetwork_Logging_OutputLogMessages
+  commentId: P:P2PNet.PeerNetwork.Logging.OutputLogMessages
+  fullName: P2PNet.PeerNetwork.Logging.OutputLogMessages
+  nameWithType: PeerNetwork.Logging.OutputLogMessages
+- uid: P2PNet.PeerNetwork.Logging.OutputLogMessages*
+  name: OutputLogMessages
+  href: api/P2PNet.PeerNetwork.Logging.html#P2PNet_PeerNetwork_Logging_OutputLogMessages_
+  commentId: Overload:P2PNet.PeerNetwork.Logging.OutputLogMessages
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.Logging.OutputLogMessages
+  nameWithType: PeerNetwork.Logging.OutputLogMessages
+- uid: P2PNet.PeerNetwork.Logging.PeerActivity
+  name: PeerActivity
+  href: api/P2PNet.PeerNetwork.Logging.html#P2PNet_PeerNetwork_Logging_PeerActivity
+  commentId: F:P2PNet.PeerNetwork.Logging.PeerActivity
+  fullName: P2PNet.PeerNetwork.Logging.PeerActivity
+  nameWithType: PeerNetwork.Logging.PeerActivity
 - uid: P2PNet.PeerNetwork.MAC
   name: MAC
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_MAC
@@ -5429,6 +6069,15 @@ references:
   fullName.vb: P2PNet.Peers.GenericPeer.New(System.Net.IPAddress, Integer)
   nameWithType: GenericPeer.GenericPeer(IPAddress, int)
   nameWithType.vb: GenericPeer.New(IPAddress, Integer)
+- uid: P2PNet.Peers.GenericPeer.#ctor(System.Net.IPAddress,System.String,System.Int32)
+  name: GenericPeer(IPAddress, string, int)
+  href: api/P2PNet.Peers.GenericPeer.html#P2PNet_Peers_GenericPeer__ctor_System_Net_IPAddress_System_String_System_Int32_
+  commentId: M:P2PNet.Peers.GenericPeer.#ctor(System.Net.IPAddress,System.String,System.Int32)
+  name.vb: New(IPAddress, String, Integer)
+  fullName: P2PNet.Peers.GenericPeer.GenericPeer(System.Net.IPAddress, string, int)
+  fullName.vb: P2PNet.Peers.GenericPeer.New(System.Net.IPAddress, String, Integer)
+  nameWithType: GenericPeer.GenericPeer(IPAddress, string, int)
+  nameWithType.vb: GenericPeer.New(IPAddress, String, Integer)
 - uid: P2PNet.Peers.GenericPeer.#ctor*
   name: GenericPeer
   href: api/P2PNet.Peers.GenericPeer.html#P2PNet_Peers_GenericPeer__ctor_
@@ -5562,19 +6211,6 @@ references:
   isSpec: "True"
   fullName: P2PNet.Peers.IPeer.IP
   nameWithType: IPeer.IP
-- uid: P2PNet.Peers.IPeer.Id
-  name: Id
-  href: api/P2PNet.Peers.IPeer.html#P2PNet_Peers_IPeer_Id
-  commentId: P:P2PNet.Peers.IPeer.Id
-  fullName: P2PNet.Peers.IPeer.Id
-  nameWithType: IPeer.Id
-- uid: P2PNet.Peers.IPeer.Id*
-  name: Id
-  href: api/P2PNet.Peers.IPeer.html#P2PNet_Peers_IPeer_Id_
-  commentId: Overload:P2PNet.Peers.IPeer.Id
-  isSpec: "True"
-  fullName: P2PNet.Peers.IPeer.Id
-  nameWithType: IPeer.Id
 - uid: P2PNet.Peers.IPeer.Identifier
   name: Identifier
   href: api/P2PNet.Peers.IPeer.html#P2PNet_Peers_IPeer_Identifier

@@ -163,7 +163,7 @@ Class BootstrapPeer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer__ctor" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.#ctor">
   BootstrapPeer()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -189,10 +189,10 @@ Class BootstrapPeer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer__ctor_System_Net_IPAddress_System_Int32_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.#ctor(System.Net.IPAddress,System.Int32)">
   BootstrapPeer(IPAddress, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>For establishing a TCP connection to a bootstrap server.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance using a specified IP address and port for establishing a TCP connection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -225,20 +225,20 @@ Class BootstrapPeer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer__ctor_System_String_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.#ctor(System.String)">
   BootstrapPeer(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>For staging communication with bootstrap server via REST-like API.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance for staging communication with the bootstrap server using a URL string.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BootstrapPeer(string URL)</code></pre>
+    <pre><code class="lang-csharp hljs">public BootstrapPeer(string url)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>URL</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>The URL of the bootstrap server.</p>
 </dd>
   </dl>
@@ -258,24 +258,57 @@ Class BootstrapPeer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer__ctor_System_String_System_Int32_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.#ctor(System.String,System.Int32)">
   BootstrapPeer(string, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L91"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>For staging communication with bootstrap server via REST-like API.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance for staging communication with the bootstrap server using a URL string and a port.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BootstrapPeer(string URL, int port)</code></pre>
+    <pre><code class="lang-csharp hljs">public BootstrapPeer(string url, int port)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>URL</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>The URL of the bootstrap server.</p>
 </dd>
     <dt><code>port</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>The port of the bootstrap server.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_DicoveryChannels_WAN_BootstrapPeer__ctor_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.#ctor*"></a>
+
+  <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer__ctor_System_Uri_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.#ctor(System.Uri)">
+  BootstrapPeer(Uri)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance for staging communication with the bootstrap server using a Uri.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BootstrapPeer(Uri endpoint)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>endpoint</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uri">Uri</a></dt>
+    <dd><p>The endpoint Uri of the bootstrap server.</p>
 </dd>
   </dl>
 
@@ -298,10 +331,10 @@ Class BootstrapPeer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer_Address" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.Address">
   Address
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the address for the peer.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the URL address for the bootstrap peer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -330,7 +363,7 @@ Class BootstrapPeer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer_Client" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.Client">
   Client
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the TCP client associated with the peer.</p>
@@ -348,6 +381,38 @@ Class BootstrapPeer  <a class="header-action link-secondary" title="View source"
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.sockets.tcpclient">TcpClient</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="P2PNet_DicoveryChannels_WAN_BootstrapPeer_Endpoint_" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.Endpoint*"></a>
+
+  <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer_Endpoint" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.Endpoint">
+  Endpoint
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the endpoint Uri of the bootstrap server.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Uri Endpoint { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uri">Uri</a></dt>
     <dd></dd>
   </dl>
 
@@ -394,7 +459,7 @@ Class BootstrapPeer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer_Identifier" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.Identifier">
   Identifier
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the unique identifier for the peer.</p>
@@ -458,7 +523,7 @@ Class BootstrapPeer  <a class="header-action link-secondary" title="View source"
 
   <h3 id="P2PNet_DicoveryChannels_WAN_BootstrapPeer_Stream" data-uid="P2PNet.DicoveryChannels.WAN.BootstrapPeer.Stream">
   Stream
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/DicoveryChannels/WAN/BootstrapPeer.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the network stream associated with the peer.</p>

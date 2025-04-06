@@ -155,6 +155,36 @@ This should be included as a static reference.</p>
 
 
 
+  <h3 id="P2PNet_Distribution_DistributionProtocol_BootstrapServerAPIendpoints" data-uid="P2PNet.Distribution.DistributionProtocol.BootstrapServerAPIendpoints">
+  BootstrapServerAPIendpoints
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionProtocol.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Dictionary&lt;DistributionProtocol.CommonBootstrapEndpoints, string&gt; BootstrapServerAPIendpoints</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="P2PNet.Distribution.DistributionProtocol.html">DistributionProtocol</a>.<a class="xref" href="P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.html">CommonBootstrapEndpoints</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <h3 id="P2PNet_Distribution_DistributionProtocol_DataFormatTagMap" data-uid="P2PNet.Distribution.DistributionProtocol.DataFormatTagMap">
   DataFormatTagMap
   <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionProtocol.cs/#L72"><i class="bi bi-code-slash"></i></a>
@@ -222,7 +252,7 @@ This should be included as a static reference.</p>
 
   <h3 id="P2PNet_Distribution_DistributionProtocol_Deserialize__1_System_String_" data-uid="P2PNet.Distribution.DistributionProtocol.Deserialize``1(System.String)">
   Deserialize&lt;T&gt;(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionProtocol.cs/#L202"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionProtocol.cs/#L225"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>This implementation of JSON deserialization is used specifically for the following types:</p>
@@ -264,11 +294,49 @@ This should be included as a static reference.</p>
 
 
 
+  <a id="P2PNet_Distribution_DistributionProtocol_GetEndpointURI_" data-uid="P2PNet.Distribution.DistributionProtocol.GetEndpointURI*"></a>
+
+  <h3 id="P2PNet_Distribution_DistributionProtocol_GetEndpointURI_P2PNet_Distribution_DistributionProtocol_CommonBootstrapEndpoints_System_Uri_" data-uid="P2PNet.Distribution.DistributionProtocol.GetEndpointURI(P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints,System.Uri)">
+  GetEndpointURI(CommonBootstrapEndpoints, Uri)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionProtocol.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Uri GetEndpointURI(DistributionProtocol.CommonBootstrapEndpoints endpoint, Uri uri)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>endpoint</code> <a class="xref" href="P2PNet.Distribution.DistributionProtocol.html">DistributionProtocol</a>.<a class="xref" href="P2PNet.Distribution.DistributionProtocol.CommonBootstrapEndpoints.html">CommonBootstrapEndpoints</a></dt>
+    <dd></dd>
+    <dt><code>uri</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uri">Uri</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uri">Uri</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="P2PNet_Distribution_DistributionProtocol_Serialize_" data-uid="P2PNet.Distribution.DistributionProtocol.Serialize*"></a>
 
   <h3 id="P2PNet_Distribution_DistributionProtocol_Serialize__1___0_" data-uid="P2PNet.Distribution.DistributionProtocol.Serialize``1(``0)">
   Serialize&lt;T&gt;(T)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionProtocol.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionProtocol.cs/#L195"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>This implementation of JSON serialization is used specifically for the following types:</p>

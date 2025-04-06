@@ -117,7 +117,7 @@ Enum TaskType  <a class="header-action link-secondary" title="View source" href=
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_AssignIdentifierToPeer"><code>AssignIdentifierToPeer = 17</code></dt>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_AssignIdentifierToPeer"><code>AssignIdentifierToPeer = 18</code></dt>
   
   <dd><p>Set the identifier of a peer to the specified value.</p>
 </dd>
@@ -144,6 +144,11 @@ Enum TaskType  <a class="header-action link-secondary" title="View source" href=
     <dt id="P2PNet_Distribution_NetworkTasks_TaskType_Heartbeat"><code>Heartbeat = 15</code></dt>
   <dd><p>Send a heartbeat signal to a bootstrap server.</p>
 <p>This can be useful with bootstrap servers to track if peers are still live or drop off the network.</p>
+</dd>
+  
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_HeartbeatResponse"><code>HeartbeatResponse = 16</code></dt>
+  <dd><p>Send a heartbeat response to a client peer.</p>
+<p>This will return any NetworkTasks queued for the client peer.</p>
 </dd>
   
     <dt id="P2PNet_Distribution_NetworkTasks_TaskType_PingPeer"><code>PingPeer = 3</code></dt>
@@ -178,7 +183,7 @@ Enum TaskType  <a class="header-action link-secondary" title="View source" href=
   
   <dd><p>Send a message to a specific peer or group of peers.</p>
 </dd>
-    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_SetLocalIdentifier"><code>SetLocalIdentifier = 16</code></dt>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskType_SetLocalIdentifier"><code>SetLocalIdentifier = 17</code></dt>
   <dd><p>Set the local identifier to the specified value.</p>
 <p>This can be useful with the Authority trust policy to assign unique IDs to peers.</p>
 </dd>
