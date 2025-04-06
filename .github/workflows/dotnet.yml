@@ -23,6 +23,38 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -nowarn:all
     - name: Test
       run: dotnet test --no-build --verbosity normal --framework net9.0
+    - name: Check if version changed
+      id: version_check
+      run: |
+        VERSION_FILE="VERSION.txt"
+        CURRENT_VERSION=$(dotnet msbuild -nologo -t:GetVersion -v:m | grep "^Version:" | cut -d' ' -f2)
+        if [ -f "$VERSION_FILE" ]; then
+          SAVED_VERSION=$(cat $VERSION_FILE)
+          if [ "$CURRENT_VERSION" == "$SAVED_VERSION" ]; then
+            echo "Version has not changed, skipping publish."
+            echo "::set-output name=version_changed::false"
+          else
+            echo "Version has changed, updating $VERSION_FILE."
+            echo $CURRENT_VERSION > $VERSION_FILE
+            echo "::set-output name=version_changed::true"
+          fi
+        else
+          echo "No version file found, creating $VERSION_FILE."
+          echo $CURRENT_VERSION > $VERSION_FILE
+          echo "::set-output name=version_changed::true"
+
+    - name: Commit and push VERSION.txt if version changed
+      if: steps.version_check.outputs.version_changed == 'true'
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add VERSION.txt
+        git commit -m "Update VERSION.txt to $CURRENT_VERSION"
+        git push
+
+    - name: Publish NuGet package
+      if: steps.version_check.outputs.version_changed == 'true'
+      run: dotnet nuget push **/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_PUSH_API_KEY }}
