@@ -1,1 +1,1 @@
-07:52:18.931 1>Target "GetVersion: (TargetId:2)" in project "/home/runner/work/P2PNet/P2PNet/P2PNet/P2PNet.csproj" (entry point): Task Parameter:Text=Version: 1.0.0.7-alpha (TaskId:2) Version: 1.0.0.7-alpha (TaskId:2) Task Parameter:Lines=Version: 1.0.0.7-alpha (TaskId:3)
+07:55:32.950 1>Target "GetVersion: (TargetId:2)" in project "/home/runner/work/P2PNet/P2PNet/P2PNet/P2PNet.csproj" (entry point): Task Parameter:Text=Version: 1.0.0.7-alpha (TaskId:2) Version: 1.0.0.7-alpha (TaskId:2) Task Parameter:Lines=Version: 1.0.0.7-alpha (TaskId:3)
