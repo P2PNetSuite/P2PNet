@@ -56,6 +56,10 @@ Including PacketDotNet and SharpPcap as dependencies.</PackageReleaseNotes>
     </None>
   </ItemGroup>
 
+  <Target Name="GetVersion">
+    <Message Importance="high" Text="Version: $(Version)" />
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="ConsoleDebugger" Version="1.0.5" />
     <PackageReference Include="PacketDotNet" Version="1.4.8-pre18" />
