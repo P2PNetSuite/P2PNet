@@ -14,8 +14,8 @@ The `P2PNet` library provides the core functionality for building and managing a
 The `PeerNetwork` class is the main entry point for initializing and managing the peer-to-peer network. It sets up the necessary configurations and services required for network operations.
 
 1. **Configuration**: The peer network hosts several configuration fields which can be used to fine tune control over the network operations. Some of these fields include subclasses that can be explored under `TrustPolicies`. Other aspects of configuration are in design such as the usage of queues and events, or the use of delegates for handling certain scenarios.
-2. **Logging**: Logging is handled using the `ConsoleDebugger` package.
-3. **Network Configuration**: The application scans all network interface devices and collects essential information needed for the peer network, such as public IP addresses.
+2. **Logging**: Logging is handled using the `ConsoleDebugger` package. Logging can be toggled between being directed to either console output or the log file, or optionally both. By default logging is omitted. To toggle logging on, set `PeerNetwork.Logging.EmitConsoleMessages` to true for console output and/or `PeerNetwork.Logging.LogToFile` for logging to file. The `ConsoleDebugger` package is a lightweight package that is easy to configure and managed by the same team that made the P2PNet (the package was actually made as a result of P2PNet development).
+3. **Network Configuration**: The application scans all network interface devices and collects essential information needed for the peer network, such as public IP addresses and LAN IP addresses.
 
 ### Operation
 

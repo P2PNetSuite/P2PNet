@@ -33,7 +33,7 @@ namespace P2PNet.Distribution
             _outboundChecker.AutoReset = true;
             _outboundChecker.Enabled = true;
 
-            _queueChecker = new System.Timers.Timer(500); // 10 seconds
+            _queueChecker = new System.Timers.Timer(500); // half second
             _queueChecker.Elapsed += HandleIncomingNetworkTasks;
             _queueChecker.AutoReset = true;
             _queueChecker.Enabled = true;

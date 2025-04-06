@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using P2PNet.Distribution.NetworkTasks;
 using P2PNet.NetworkPackets.NetworkPacketBase;
+using System.Text.Json.Serialization;
 
 namespace P2PNet.NetworkPackets
     {
@@ -36,7 +37,7 @@ namespace P2PNet.NetworkPackets
         /// </list>
         /// </summary>
         public DataPayloadFormat DataType { get; set; }
-        
+        [JsonConstructor]
         public DataTransmissionPacket() { }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace P2PNet.NetworkPackets
         /// <returns>A string representation of the data transmission packet.</returns>
         public override string ToString()
             {
-            return $"{DataFormatTagMap[DataType].OpeningTag}{Data}{DataFormatTagMap[DataType].ClosingTag}";
+            return $"{Encoding.UTF8.GetString(Data)}";
             }
         }
     }

@@ -4,6 +4,17 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <Version>1.0.0.6-alpha</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/P2PNetSuite/P2PNet</PackageProjectUrl>
+    <Description>A P2PNet component for mass IPv6 address scanning and discovery via ICMP packets and docile packet sniffing.</Description>
+    <Company>P2pNetOrg</Company>
+    <Authors>P2PNetOrg</Authors>
+    <Title>P2PNet.Widescan</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>p2pnet_logo.jpg-HD.png</PackageIcon>
+    <RepositoryType>https://github.com/P2PNetSuite/P2PNet</RepositoryType>
+    <PackageTags>p2pnet;p2p;peer-to-peer;</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +29,17 @@
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
 			<_Parameter1>Testing</_Parameter1>
 		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\p2pnet_logo.jpg-HD.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

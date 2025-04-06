@@ -1,5 +1,5 @@
 {
-  "source_base_path": "C:/Users/Chris/source/repos/P2PNet",
+  "source_base_path": "D:/CodeRepositories/P2PNet",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -12,20 +12,20 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "P2PBootstrap/bin/Release/net9.0/wwwroot/node_modules/xterm/README.md",
+      "source_relative_path": "P2PBootstrap/bin/Debug/net9.0/wwwroot/node_modules/xterm/README.md",
       "output": {
         ".html": {
-          "relative_path": "P2PBootstrap/bin/Release/net9.0/wwwroot/node_modules/xterm/README.html"
+          "relative_path": "P2PBootstrap/bin/Debug/net9.0/wwwroot/node_modules/xterm/README.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "P2PBootstrap/bin/Release/net9.0/wwwroot/node_modules/xterm/src/browser/renderer/shared/README.md",
+      "source_relative_path": "P2PBootstrap/bin/Debug/net9.0/wwwroot/node_modules/xterm/src/browser/renderer/shared/README.md",
       "output": {
         ".html": {
-          "relative_path": "P2PBootstrap/bin/Release/net9.0/wwwroot/node_modules/xterm/src/browser/renderer/shared/README.html"
+          "relative_path": "P2PBootstrap/bin/Debug/net9.0/wwwroot/node_modules/xterm/src/browser/renderer/shared/README.html"
         }
       },
       "version": ""
@@ -474,20 +474,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PBootstrap.Encryption.Pgp.Keys.PGPKeyInfo",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/P2PBootstrap.Encryption.Pgp.Keys.yml",
       "output": {
         ".html": {
@@ -540,6 +526,20 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PBootstrap.Encryption",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PBootstrap.GlobalConfig.OptionalEndpoints.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PBootstrap.GlobalConfig.OptionalEndpoints.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PBootstrap.GlobalConfig.OptionalEndpoints",
       "Summary": null
     },
     {
@@ -810,6 +810,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.INetworkPacketContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.INetworkPacketContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.INetworkPacketContext",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/P2PNet.Distribution.IPeerContext.yml",
       "output": {
         ".html": {
@@ -848,6 +862,20 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.Distribution.IdentifierPacketContext",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.NetworkPacketContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.NetworkPacketContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.NetworkPacketContext",
       "Summary": null
     },
     {
@@ -1076,20 +1104,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.NetworkPackets.INetworkPacket.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.NetworkPackets.INetworkPacket.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.NetworkPackets.INetworkPacket",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/P2PNet.NetworkPackets.IdentifierPacket.yml",
       "output": {
         ".html": {
@@ -1101,6 +1115,62 @@
       "IsMRef": true,
       "Title": "P2PNet.NetworkPackets.IdentifierPacket",
       "Summary": "<p sourcefile=\"api/P2PNet.NetworkPackets.IdentifierPacket.yml\" sourcestartlinenumber=\"1\">Standard packet used to relay identifying information through out peer network.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.NetworkPackets.NetworkPacketBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.NetworkPackets.NetworkPacketBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.NetworkPackets.NetworkPacketBase",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1128,90 +1198,6 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.NetworkPackets",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.PeerNetwork.BootstrapTrustPolicy.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.PeerNetwork.BootstrapTrustPolicy.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.PeerNetwork.BootstrapTrustPolicy",
-      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.BootstrapTrustPolicy.yml\" sourcestartlinenumber=\"1\">Handles trust and permissions in regards to bootstrap connections.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.PeerNetwork.BootstrapTrustPolicyType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.PeerNetwork.BootstrapTrustPolicyType.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.PeerNetwork.BootstrapTrustPolicyType",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.PeerNetwork.IncomingPeerTrustPolicy.IncomingPeerMode.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.PeerNetwork.IncomingPeerTrustPolicy.IncomingPeerMode.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.PeerNetwork.IncomingPeerTrustPolicy.IncomingPeerMode",
-      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.IncomingPeerTrustPolicy.IncomingPeerMode.yml\" sourcestartlinenumber=\"1\">Values for <xref href=\"P2PNet.PeerNetwork.IncomingPeerTrustPolicy.IncomingPeerPlacement\" data-throw-if-not-resolved=\"false\"></xref></p>\n<ul><li><span class=\"term\">QueueBased</span>The inbound peer will be directed to the inbound peer queue.</li><li><span class=\"term\">EventBased</span>An event is triggered and the peer is passed to the event args.</li><li><span class=\"term\">QueueAndEventBased</span>The peer is directed to the inbound peer queue, and an event is triggered where the peer is passed to the event args.</li></ul>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.PeerNetwork.IncomingPeerTrustPolicy.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.PeerNetwork.IncomingPeerTrustPolicy.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.PeerNetwork.IncomingPeerTrustPolicy",
-      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.IncomingPeerTrustPolicy.yml\" sourcestartlinenumber=\"1\">Handles trust and permissions in regards to incoming peer connections.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.PeerNetwork.LANIdentifierPreference.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.PeerNetwork.LANIdentifierPreference.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.PeerNetwork.LANIdentifierPreference",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.PeerNetwork.LocalAreaNetworkManagement.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.PeerNetwork.LocalAreaNetworkManagement.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.PeerNetwork.LocalAreaNetworkManagement",
       "Summary": null
     },
     {
@@ -1268,7 +1254,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.yml\" sourcestartlinenumber=\"1\">These policy types determine whether the bootstrap server is trustless or bears authority.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1300,17 +1286,17 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.yml",
+      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType.yml",
       "output": {
         ".html": {
-          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.html"
+          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes",
-      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyTypes.yml\" sourcestartlinenumber=\"1\">Specifies the policy for initializing and managing the identifier of a peer member in the P2P network.\nThis policy determines whether the identifier can be set locally, remotely, or both, and whether it can be changed after initial assignment.</p>\n"
+      "Title": "P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType",
+      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType.yml\" sourcestartlinenumber=\"1\">These policy types determine whether the identifier can be set locally, remotely, or both, and whether it can be changed after initial assignment.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1325,6 +1311,20 @@
       "IsMRef": true,
       "Title": "P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType",
+      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType.yml\" sourcestartlinenumber=\"1\">These policy types determine how the public IPv4 address is fetched.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1464,48 +1464,6 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.Peers.PeerChannelBase",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.Peers.PeerChannel_Base.DataReceivedEventArgs.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.Peers.PeerChannel_Base.DataReceivedEventArgs.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.Peers.PeerChannel_Base.DataReceivedEventArgs",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.Peers.PeerChannel_Base.DataReceivedEventHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.Peers.PeerChannel_Base.DataReceivedEventHandler.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.Peers.PeerChannel_Base.DataReceivedEventHandler",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/P2PNet.Peers.PeerChannel_Base.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/P2PNet.Peers.PeerChannel_Base.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "P2PNet.Peers.PeerChannel_Base",
       "Summary": null
     },
     {

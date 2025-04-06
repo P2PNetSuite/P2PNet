@@ -111,6 +111,12 @@ namespace P2PNet.Distribution.NetworkTasks
         Heartbeat,
 
         /// <summary>
+        /// Send a heartbeat response to a client peer.
+        /// </summary>
+        /// <remarks>This will return any NetworkTasks queued for the client peer.</remarks>
+        HeartbeatResponse,
+
+        /// <summary>
         /// Set the local identifier to the specified value.
         /// </summary>
         /// <remarks>This can be useful with the Authority trust policy to assign unique IDs to peers.</remarks>

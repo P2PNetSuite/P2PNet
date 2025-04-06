@@ -132,6 +132,29 @@ namespace P2PNet.Distribution
             }
         #endregion
 
+        #region Static Server Common
+
+        public static readonly Dictionary<CommonBootstrapEndpoints, string> BootstrapServerAPIendpoints = new Dictionary<CommonBootstrapEndpoints, string>()
+        {
+            { CommonBootstrapEndpoints.Bootstrap, "/api/Bootstrap/peers" },
+            { CommonBootstrapEndpoints.VerifyHash, "/api/Bootstrap/verifyhash" },
+            { CommonBootstrapEndpoints.GetPublicIP, "/api/Bootstrap/publicip" },
+            { CommonBootstrapEndpoints.Heartbeat, "/api/Bootstrap/heartbeat"   }
+        };
+        public enum CommonBootstrapEndpoints
+        {
+            Bootstrap,
+            VerifyHash,
+            GetPublicIP,
+            Heartbeat
+        }
+        public static Uri GetEndpointURI(CommonBootstrapEndpoints endpoint, Uri uri)
+        {
+            return new Uri(uri, BootstrapServerAPIendpoints[endpoint]);
+        }
+
+        #endregion
+
         #region Serialization
 
         private static readonly Dictionary<Type, JsonTypeInfo> _serializerContexts = new Dictionary<Type, JsonTypeInfo>
@@ -209,11 +232,13 @@ namespace P2PNet.Distribution
             return System.Text.Json.JsonSerializer.Deserialize<T>(json, (JsonTypeInfo<T>)context);
         }
         #endregion
-        }
+    }
 
 
     // This region keeps the packet objects and classes AOT compliant for JSON serialization.
     #region PACKET_CONTEXT
+
+
         [JsonSerializable(typeof(INetworkPacket))]
         [JsonSerializable(typeof(NetworkPacket))]
         public partial class NetworkPacketContext : JsonSerializerContext { }

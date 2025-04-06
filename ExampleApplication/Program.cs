@@ -4,6 +4,7 @@ using P2PNet.NetworkPackets;
 using static P2PNet.PeerNetwork;
 using P2PNet.Routines;
 using System.Diagnostics;
+using P2PNet.DicoveryChannels.WAN;
 
 namespace ExampleApplication
 {
@@ -31,7 +32,7 @@ namespace ExampleApplication
                 }
             }
 
-            PeerNetwork.LoadLocalAddresses(); 
+            PeerNetwork.LoadLocalAddresses();
 
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement = TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.EventBased;
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol = true;

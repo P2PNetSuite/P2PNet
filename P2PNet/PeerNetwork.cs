@@ -281,7 +281,7 @@ namespace P2PNet
 
         private static List<LocalChannel> ActiveLocalChannels = new List<LocalChannel>();
         private static List<MulticastChannel> ActiveMulticastChannels = new List<MulticastChannel>();
-        private static List<BootstrapChannel> ActiveBootstrapChannel = new List<BootstrapChannel>();
+        private static List<BootstrapChannel> ActiveBootstrapChannels = new List<BootstrapChannel>();
 
         private static List<BootstrapChannel> inactiveBootstrapChannel = new List<BootstrapChannel>();
         private static List<IPAddress> multicast_addresses = new List<IPAddress>();
@@ -311,6 +311,16 @@ namespace P2PNet
             listener = new TcpListener(IPAddress.Any, ListeningPort);
 
             P2PNetworkRoutines.InitializeRoutines();
+            LoggingConfiguration.EmitConsoleMessages = Logging.OutputLogMessages ? true : false;
+            LoggingConfiguration.IncludeCategory = true;
+            AddLoggingCategory(Logging.LAN);
+            AddLoggingCategory(Logging.Bootstrap);
+            AddLoggingCategory(Logging.PeerActivity);
+            DeactivateLoggingCategory(Logging.LAN);
+            if(Logging.LogToFile == true)
+            {
+                StartLogging();
+            }
         }
 
         static async Task AcceptClientsAsync()
@@ -337,12 +347,12 @@ namespace P2PNet
             // Check for existing peer
             if (KnownPeers.Any(p => p.IP.Equals(peerIP)))
             {
-                //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
-                client.Dispose();
+                    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning, Logging.LAN);
+                    client.Dispose();
             }
             else if (InboundConnectingPeers.PeerIsQueued(peerIP.ToString()))
             {
-                //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
+                    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
             }
             else
             {
@@ -373,7 +383,7 @@ namespace P2PNet
                 if ((KnownPeers.Any(p => p.IP.Equals(peer.IP))) ||
                     (KnownPeers.Any(p => p.Identifier.Equals(peer.Identifier))))
                 {
-                    //    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
+                        DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
                     return;
                 }
                 else if (peer.IP.ToString() == LocalIPV4Address.ToString() && peer.Port == ListeningPort)
@@ -500,13 +510,13 @@ namespace P2PNet
             {
                 if (!KnownPeers.Contains(newpeer))
                 {
-                    KnownPeers.Add(newpeer);
+                    AddPeer(newpeer);
                     x++;
                 }
             }
             if (x > 0)
             {
-                DebugMessage($"Added {x} peers.");
+                DebugMessage($"Attempted to add {x} peers via CollectionSharePacket from {packet.SourceOriginIdentifier}.");
             }
         }
 
@@ -579,8 +589,7 @@ namespace P2PNet
             else
             {
 
-                DebugMessage("No primary interface found.");
-                Thread.Sleep(1500);
+                DebugMessage("No primary interface found.", MessageType.Critical);
                 throw new IOException("No primary network interface found. Please check your network settings.");
             }
 
@@ -595,14 +604,14 @@ namespace P2PNet
                         IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
                         GatewayIPAddressInformationCollection addresses = adapterProperties.GatewayAddresses;
 
-                        DebugMessage(adapter.GetPhysicalAddress().ToString());
-                        DebugMessage($"{adapter.Name.ToString()}\t {adapter.NetworkInterfaceType.ToString()}");
-                        DebugMessage($"Multicast supported: {adapter.SupportsMulticast}");
+                        DebugMessage(adapter.GetPhysicalAddress().ToString(), Logging.LAN);
+                        DebugMessage($"{adapter.Name.ToString()}\t {adapter.NetworkInterfaceType.ToString()}", Logging.LAN);
+                        DebugMessage($"Multicast supported: {adapter.SupportsMulticast}", Logging.LAN);
 
                         foreach (MulticastIPAddressInformation address in adapterProperties.MulticastAddresses)
                         {
 
-                            DebugMessage($"Multicast address: {address.Address.ToString()}");
+                            DebugMessage($"Multicast address: {address.Address.ToString()}", Logging.LAN);
 
                             multicast_addresses.Add(address.Address);
                         }
@@ -748,7 +757,7 @@ namespace P2PNet
             catch (Exception e)
             {
 
-                DebugMessage($"{e.StackTrace} {e.Message}", MessageType.Warning);
+                DebugMessage($"{e.StackTrace} {e.Message}", MessageType.Warning, Logging.LAN);
 
             }
         }
@@ -786,7 +795,7 @@ namespace P2PNet
             catch (Exception e)
             {
 
-                DebugMessage($"{e.StackTrace} {e.Message}", MessageType.Warning);
+                DebugMessage($"{e.StackTrace} {e.Message}", MessageType.Warning, Logging.LAN);
 
             }
         }
@@ -821,12 +830,12 @@ namespace P2PNet
                 try
                 {
                     channel_.OpenLocalChannel();
-                    DebugMessage($"\tSetup local channel on port: {channel_.DESIGNATED_PORT}");
+                    DebugMessage($"\tSetup local channel on port: {channel_.DESIGNATED_PORT}", Logging.LAN);
 
                 }
                 catch
                 {
-                    DebugMessage($"\tCannot setup local broadcast channel.", MessageType.Warning);
+                    DebugMessage($"\tCannot setup local broadcast channel.", MessageType.Warning, Logging.LAN);
                 }
             }
             while (badChannels.Count > 0)
@@ -847,14 +856,14 @@ namespace P2PNet
                 catch
                 {
                     error_occurred = true;
-                    DebugMessage($"\tCannot setup multi-cast channel on address: {multicastChannel.multicast_address.ToString()}", MessageType.Warning);
+                    DebugMessage($"\tCannot setup multi-cast channel on address: {multicastChannel.multicast_address.ToString()}", MessageType.Warning, Logging.LAN);
                     badChannels.Enqueue(multicastChannel);
                 }
                 finally
                 {
                     if (error_occurred == false)
                     {
-                        DebugMessage($"\tSetup multi-cast channel on address: {multicastChannel.multicast_address.ToString()}");
+                        DebugMessage($"\tSetup multi-cast channel on address: {multicastChannel.multicast_address.ToString()}", Logging.LAN);
                     }
                 }
             }
@@ -882,7 +891,7 @@ namespace P2PNet
         /// <param name="bootstrapChannel">An instance of <see cref="BootstrapChannel"/> to be added.</param>
         public static void AddBootstrapChannel(BootstrapChannel bootstrapChannel)
         {
-            ActiveBootstrapChannel.Add(bootstrapChannel);
+            ActiveBootstrapChannels.Add(bootstrapChannel);
         }
         /// <summary>
         /// Creates a new <see cref="BootstrapChannel"/> from the specified connection options and adds it to the active bootstrap channels collection.
@@ -894,7 +903,7 @@ namespace P2PNet
         public static void AddBootstrapChannel(BootstrapChannelConnectionOptions bootstrapChannel)
         {
             BootstrapChannel bChannel = new BootstrapChannel(bootstrapChannel);
-            ActiveBootstrapChannel.Add(bChannel);
+            ActiveBootstrapChannels.Add(bChannel);
         }
         /// <summary>
         /// Creates a new <see cref="BootstrapChannel"/> using the specified endpoint address and trust policy,
@@ -910,7 +919,7 @@ namespace P2PNet
                 address,
                 trustPolicy == TrustPolicies.BootstrapTrustPolicyType.Authority ? true : false);
             BootstrapChannel bChannel = new BootstrapChannel(bootstrapChannel);
-            ActiveBootstrapChannel.Add(bChannel);
+            ActiveBootstrapChannels.Add(bChannel);
         }
 
         /// <summary>
@@ -922,17 +931,17 @@ namespace P2PNet
             {
                 CheckIfProperInit(); // make sure loaded proper
 
-                // todo
+
+                foreach (BootstrapChannel bChannel in ActiveBootstrapChannels)
+                {
+                    bChannel.OpenBootstrapChannel();
+                }
 
             } catch(Exception e)
             {
-                DebugMessage($"{e.StackTrace} {e.Message}", MessageType.Warning);
+                DebugMessage($"{e.StackTrace} {e.Message}", MessageType.Warning, Logging.Bootstrap);
             }
 
-            foreach (BootstrapChannel bChannel in inactiveBootstrapChannel)
-            {
-                // todo: add logic to start bootstrap connections
-            }
         }
 
         #endregion
@@ -1058,7 +1067,7 @@ namespace P2PNet
                 public static Action<PeerChannel> DefaultTrustProtocol { get; set; } = DefaultPingHandler;
                 private static async void DefaultPingHandler(PeerChannel peerChannel)
                 {
-                    DebugMessage("Default trust protocol invoked.", ConsoleColor.Cyan);
+                    DebugMessage("Default trust protocol invoked.", ConsoleColor.Cyan, Logging.PeerActivity);
                     int successfulPings = 0;
                     const int requiredPings = 3;
 
@@ -1068,7 +1077,7 @@ namespace P2PNet
                     // trust established, but peer is still waiting for pings
                     postTestDataReceivedHandler = (sender, e) =>
                     {
-                        DebugMessage(e.Data.ToString(), ConsoleColor.Cyan);
+                        DebugMessage(e.Data.ToString(), ConsoleColor.Cyan, Logging.PeerActivity);
                         if (e.Data.Contains("Ping from"))
                         {
                             // we have established trust, but peer is still waiting for pings
@@ -1085,14 +1094,14 @@ namespace P2PNet
                     // peer is not yet trusted, we are still waiting for pings
                     dataReceivedHandler = (sender, e) =>
                     {
-                        DebugMessage(e.Data.ToString(), ConsoleColor.Cyan);
+                        DebugMessage(e.Data.ToString(), ConsoleColor.Cyan, Logging.PeerActivity);
                         if (e.Data.Contains("Ping from"))
                         {
                             successfulPings++;
                             if ((successfulPings >= requiredPings) && (successfulPings < 6))
                             {
                                 peerChannel.TrustPeer();
-                                DebugMessage("Peer passed trust test.", ConsoleColor.Green);
+                                DebugMessage("Peer passed trust test.", ConsoleColor.Green, Logging.PeerActivity);
                             }
                             else if (successfulPings >= 5)
                             {
@@ -1363,9 +1372,13 @@ namespace P2PNet
         }
         #endregion
 
-        #region Management Policies
-
-
-        #endregion
+        public static class Logging
+        {
+            public static bool OutputLogMessages { get; set; } = false;
+            public static bool LogToFile { get; set; } = false;
+            public static LoggingCategory LAN = new LoggingCategory("LAN");
+            public static LoggingCategory Bootstrap = new LoggingCategory("Bootstrap");
+            public static LoggingCategory PeerActivity = new LoggingCategory("Peers");
+        }
     }
 }

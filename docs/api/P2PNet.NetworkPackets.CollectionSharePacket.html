@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/realChrisDeBon/P2PNet/new/master/apiSpec/new?filename=P2PNet_NetworkPackets_CollectionSharePacket.md&amp;value=---%0Auid%3A%20P2PNet.NetworkPackets.CollectionSharePacket%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/new/docs/apiSpec/new?filename=P2PNet_NetworkPackets_CollectionSharePacket.md&amp;value=---%0Auid%3A%20P2PNet.NetworkPackets.CollectionSharePacket%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="P2PNet_NetworkPackets_CollectionSharePacket" data-uid="P2PNet.NetworkPackets.CollectionSharePacket" class="text-break">
-Class CollectionSharePacket  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L16"><i class="bi bi-code-slash"></i></a>
+Class CollectionSharePacket  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Class CollectionSharePacket  <a class="header-action link-secondary" title="View
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CollectionSharePacket : INetworkPacket</code></pre>
+    <pre><code class="lang-csharp hljs">public class CollectionSharePacket : NetworkPacket, INetworkPacket</code></pre>
   </div>
 
 
@@ -112,6 +112,7 @@ Class CollectionSharePacket  <a class="header-action link-secondary" title="View
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.html">NetworkPacket</a></div>
       <div><span class="xref">CollectionSharePacket</span></div>
     </dd>
   </dl>
@@ -119,7 +120,7 @@ Class CollectionSharePacket  <a class="header-action link-secondary" title="View
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="P2PNet.NetworkPackets.INetworkPacket.html">INetworkPacket</a></div>
+      <div><a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket.html">INetworkPacket</a></div>
     </dd>
   </dl>
 
@@ -127,6 +128,12 @@ Class CollectionSharePacket  <a class="header-action link-secondary" title="View
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.html#P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket_SourceOriginIdentifier">NetworkPacket.SourceOriginIdentifier</a>
+    </div>
+    <div>
+      <a class="xref" href="P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacket.html#P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacket_SourceOriginTime">NetworkPacket.SourceOriginTime</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -163,7 +170,7 @@ Class CollectionSharePacket  <a class="header-action link-secondary" title="View
 
   <h3 id="P2PNet_NetworkPackets_CollectionSharePacket__ctor" data-uid="P2PNet.NetworkPackets.CollectionSharePacket.#ctor">
   CollectionSharePacket()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -189,7 +196,7 @@ Class CollectionSharePacket  <a class="header-action link-secondary" title="View
 
   <h3 id="P2PNet_NetworkPackets_CollectionSharePacket__ctor_System_Int32_System_Collections_Generic_List_P2PNet_Peers_IPeer__" data-uid="P2PNet.NetworkPackets.CollectionSharePacket.#ctor(System.Int32,System.Collections.Generic.List{P2PNet.Peers.IPeer})">
   CollectionSharePacket(int, List&lt;IPeer&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -226,7 +233,7 @@ Class CollectionSharePacket  <a class="header-action link-secondary" title="View
 
   <h3 id="P2PNet_NetworkPackets_CollectionSharePacket_Data" data-uid="P2PNet.NetworkPackets.CollectionSharePacket.Data">
   Data
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Optional data or information to assist in establishing network connection(s).</p>
@@ -258,7 +265,7 @@ Class CollectionSharePacket  <a class="header-action link-secondary" title="View
 
   <h3 id="P2PNet_NetworkPackets_CollectionSharePacket_peers" data-uid="P2PNet.NetworkPackets.CollectionSharePacket.peers">
   peers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/realChrisDeBon/P2PNet/blob/master/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/CollectionSharePacket.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A collection of peer information.</p>
