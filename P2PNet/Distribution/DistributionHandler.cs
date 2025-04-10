@@ -1,4 +1,5 @@
-﻿using P2PNet.NetworkPackets;
+﻿using P2PNet.Distribution.FileManager;
+using P2PNet.NetworkPackets;
 using P2PNet.Peers;
 using System;
 using System.Collections.Concurrent;
@@ -13,11 +14,6 @@ namespace P2PNet.Distribution
     /// </summary>
     public static class DistributionHandler
         {
-        internal struct MemoryEntry
-        {
-            string Key { get; set; }
-            object Data { get; set; }
-        }
         
         /// <summary>
         /// Gets the list of trusted peer channels.
@@ -37,6 +33,8 @@ namespace P2PNet.Distribution
         /// </summary>
         public static ConcurrentQueue<DataTransmissionPacket> incomingDataQueue = new ConcurrentQueue<DataTransmissionPacket>();
 
+
+        public static IFileManager NetworkFileManager { get; set; } = new VirtualImageFileManager();
 
         private static Timer _outboundChecker;
         private static Timer _queueChecker;
@@ -88,7 +86,7 @@ namespace P2PNet.Distribution
             _outboundChecker.AutoReset = true;
             _outboundChecker.Enabled = true;
 
-            _queueChecker = new System.Timers.Timer(500); // 10 seconds
+            _queueChecker = new System.Timers.Timer(500); // half seconds
             _queueChecker.Elapsed += HandleIncomingDataPackets;
             _queueChecker.AutoReset = true;
             _queueChecker.Enabled = true;
@@ -115,7 +113,7 @@ namespace P2PNet.Distribution
                     switch (packet.DataType)
                         {
                         case DataPayloadFormat.File:
-                            MemoryHandler.LoadFileToMemoryMappedFile(packet);
+                            NetworkFileManager.InboundDatapacketToFile(packet);
                             break;
                         case DataPayloadFormat.Task:
 
@@ -130,6 +128,14 @@ namespace P2PNet.Distribution
 
         internal static class MemoryHandler
             {
+
+            internal struct MemoryEntry
+            {
+                internal string Filename { get; set; }
+                internal int Id { get; set; }
+                internal object Data { get; set; }
+            }
+
             private static object _lock = new object(); // For thread safety
 
             // memory mapped files dictionary

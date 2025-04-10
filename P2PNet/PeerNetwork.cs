@@ -2,6 +2,7 @@
 global using static ConsoleDebugger.ConsoleDebugger;
 using P2PNet.DicoveryChannels.WAN;
 using P2PNet.DiscoveryChannels;
+using P2PNet.Distribution;
 using P2PNet.NetworkPackets;
 using P2PNet.Peers;
 using P2PNet.Routines;
@@ -310,17 +311,18 @@ namespace P2PNet
             ListeningPort = randomizer.Next(8051, 9000); // setup a port for listening
             listener = new TcpListener(IPAddress.Any, ListeningPort);
 
-            P2PNetworkRoutines.InitializeRoutines();
             LoggingConfiguration.EmitConsoleMessages = Logging.OutputLogMessages ? true : false;
             LoggingConfiguration.IncludeCategory = true;
             AddLoggingCategory(Logging.LAN);
             AddLoggingCategory(Logging.Bootstrap);
             AddLoggingCategory(Logging.PeerActivity);
-            DeactivateLoggingCategory(Logging.LAN);
             if(Logging.LogToFile == true)
             {
                 StartLogging();
             }
+
+            P2PNetworkRoutines.InitializeRoutines();
+            DistributionHandler.NetworkFileManager.Initialize();
         }
 
         static async Task AcceptClientsAsync()
