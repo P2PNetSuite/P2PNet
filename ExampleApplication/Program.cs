@@ -14,7 +14,7 @@ namespace ExampleApplication
         static bool broadcastPortProvided = false;
         static void Main(string[] args)
         {
-
+            PeerNetwork.Logging.OutputLogMessages = true;
             if (args.Length > 0)
             {
                 targerPorts = args.ToArray().Select(x => int.Parse(x)).ToList();
