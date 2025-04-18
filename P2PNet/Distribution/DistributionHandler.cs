@@ -35,7 +35,7 @@ namespace P2PNet.Distribution
         public static ConcurrentQueue<DataTransmissionPacket> incomingDataQueue = new ConcurrentQueue<DataTransmissionPacket>();
 
 
-        public static IFileManager NetworkFileManager { get; set; } = new VirtualImageFileManager();
+        public static IFileManager NetworkFileManager { get; set; } = new MemoryMappedFileManager();
 
         private static Timer _outboundChecker;
         private static Timer _queueChecker;
