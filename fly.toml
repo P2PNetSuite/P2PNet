@@ -25,4 +25,4 @@ primary_region = "dfw"
 
 [mounts]
   destination = "/P2PBootstrap"
-  source = "vol_rnylnw9dknq5o014"
+  source = "maindrive"
