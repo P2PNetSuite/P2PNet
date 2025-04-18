@@ -69,17 +69,20 @@ namespace P2PNet.DicoveryChannels.WAN
 
             using (HttpClient client = new HttpClient())
             {
-                DebugMessage($"Sending bootstrap request to {DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.Bootstrap, BootstrapServerEndpoint)} ...");
+                DebugMessage($"Sending bootstrap request to {DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.Bootstrap, BootstrapServerEndpoint)} ...", PeerNetwork.Logging.Bootstrap);
                 HttpResponseMessage response = await client.PutAsync(DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.Bootstrap, BootstrapServerEndpoint), new StringContent(initialPacketJson, Encoding.UTF8, "application/json"));
 
-                if (!response.IsSuccessStatusCode)
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                bool _isError = await PacketReturnedErrorResponse(responseContent);
+                if(_isError == true)
                 {
-                    throw new Exception($"Bootstrap request failed with status code: {response.StatusCode}");
+                    HandleErrorResponse(responseContent);
+                    return;
                 }
 
-                string responseContent = await response.Content.ReadAsStringAsync();
                 var responsePacket = Deserialize<DataTransmissionPacket>(responseContent);
-                
+
                 string dataout = Encoding.UTF8.GetString(responsePacket.Data);
                 if (responsePacket != null)
                 {
@@ -96,15 +99,14 @@ namespace P2PNet.DicoveryChannels.WAN
                 }
                 else
                 {
-                    // TODO -- try to deserialize PureMessagePacket that may have been sent
-                    throw new Exception("Bootstrap response was not in the expected format.");
+                    DebugMessage($"Bootstrap response from {BootstrapServerEndpoint.ToString()} failed.", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
                 }
                     
             }
         }     
         
 
-    }
+        }
 
         /// <summary>
         /// Represents the configuration options for establishing a connection to a bootstrap server.

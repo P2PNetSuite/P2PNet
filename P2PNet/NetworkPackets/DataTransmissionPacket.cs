@@ -45,7 +45,7 @@ namespace P2PNet.NetworkPackets
         /// </summary>
         /// <param name="data">The data payload within the packet.</param>
         /// <param name="dataType">Denotes the type of data contained within the data payload.</param>
-        /// <remarks>Upon instantiating an instance of the <see cref="DataTransmissionPacket"/> class, the <see cref="DataType"/> parameter is used to wrap the raw data with corresponding tags so it can be parsed and more easily managed throughout its life cycle.</remarks>
+        /// <remarks>Upon instantiating an instance of the <see cref="DataTransmissionPacket"/> class, the <see cref="DataTransmissionPacket.DataType"/> parameter is used to wrap the raw data with corresponding tags so it can be parsed and more easily managed throughout its life cycle.</remarks>
         public DataTransmissionPacket(byte[] data, DataPayloadFormat dataType) : this()
             {
                 {
@@ -63,12 +63,29 @@ namespace P2PNet.NetworkPackets
             }
 
         /// <summary>
-        /// Returns a string representation of the data transmission packet.
+        /// Initializes a new instance of the <see cref="DataTransmissionPacket"/> class with a <see cref="NetworkTask"/> object.
         /// </summary>
-        /// <returns>A string representation of the data transmission packet.</returns>
+        /// <param name="networkTask">The NetworkTask to store in the payload of the packet.</param>
+        public DataTransmissionPacket(NetworkTask networkTask) : this(networkTask.ToByte(), DataPayloadFormat.Task) { }
+
+
+        /// <summary>
+        /// Returns a string representation of the data transmission packet's data payload.
+        /// </summary>
+        /// <returns>A string representation of the data transmission packet's payload.</returns>
         public override string ToString()
             {
             return $"{Encoding.UTF8.GetString(Data)}";
             }
+
+        /// <summary>
+        /// Returns a JSON serialized string representation of the data transmission packet.
+        /// This is ideal for transmission over network.
+        /// </summary>
+        /// <returns>Returns a JSON serialized string representation of the data transmission packet.</returns>
+        public string ToJsonString()
+        {
+            return Serialize<DataTransmissionPacket>(this);
+        }
         }
     }

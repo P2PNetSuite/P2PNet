@@ -7,6 +7,7 @@ using P2PBootstrap.CLI.Command;
 using System.Runtime.CompilerServices;
 using P2PNet.Distribution.NetworkTasks;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace P2PBootstrap.Encryption
     {

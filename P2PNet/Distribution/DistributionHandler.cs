@@ -1,4 +1,5 @@
 ﻿using P2PNet.Distribution.FileManager;
+using P2PNet.Distribution.NetworkTasks;
 using P2PNet.NetworkPackets;
 using P2PNet.Peers;
 using System;
@@ -116,7 +117,17 @@ namespace P2PNet.Distribution
                             NetworkFileManager.InboundDatapacketToFile(packet);
                             break;
                         case DataPayloadFormat.Task:
-
+                            string _out = Encoding.UTF8.GetString(UnwrapData(packet));
+                            try
+                            {
+                                var _nt = Deserialize<NetworkTask>(_out);
+                                if(_nt != null)
+                                {
+                                    NetworkTaskHandler.incomingNetworkTasks.Enqueue(_nt);
+                                }
+                            } catch { 
+                            // do nothing here for now
+                            }
                             break;
                         case DataPayloadFormat.MiscData:
 

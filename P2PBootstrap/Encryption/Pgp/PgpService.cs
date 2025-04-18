@@ -18,6 +18,7 @@ namespace P2PBootstrap.Encryption.Pgp
         private static string KeysDirectory { get; set; } = Path.Combine(AppContext.BaseDirectory, GlobalConfig.KeysDirectory());
         private static KeyPair ActiveKeyPair => GlobalConfig.ActiveKeys;
         private static List<PGPKeyInfo> _pgpKeys = new List<PGPKeyInfo>();
+        private static bool firstSet = false;
         private static bool PrivateKeySet => ActiveKeyPair.Private != null;
         private static bool PublicKeySet => ActiveKeyPair.Public != null;
 
@@ -27,9 +28,6 @@ namespace P2PBootstrap.Encryption.Pgp
                                        0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF0, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66,
                                        0x77, 0x88
                                };
-
-        // TODO fix me
-        private static string username = "bob";
         
         public static string AllKeysList => string.Join(Environment.NewLine, _pgpKeys.Select(k => k.Name).ToArray());
 
@@ -60,6 +58,10 @@ namespace P2PBootstrap.Encryption.Pgp
                         DebugMessage($"Failed to generate PGP key pair: {message}", MessageType.Critical);
                         return;
                     }
+                }
+                else 
+                {
+                    firstSet = true;
                 }
 
                 LoadPGPKeysFromDirectory();
@@ -101,7 +103,7 @@ namespace P2PBootstrap.Encryption.Pgp
 
                     try {
                         // Generate Keys 
-                        localPGP.GenerateKey(pubKeyPath, privKeyPath, username, passphrase, emitVersion: false);
+                        localPGP.GenerateKey(pubKeyPath, privKeyPath, GlobalConfig.NetworkName(), passphrase, emitVersion: false);
                     }
                     catch (Exception ex) {
                         message = "PGP key generation failed: " + ex.Message;
@@ -115,7 +117,11 @@ namespace P2PBootstrap.Encryption.Pgp
                         Console.WriteLine("A private passphrase was generated with this PGP key pair. It is important to keep this passphrase secure and private, and to not lose it. You will need to use it in order to properly sign messages and encrypt data with your private key. It is advised that you write it down and store it somewhere safe..");
                         Console.WriteLine("Passphrase: " + passphrase);
                         message = $"PGP key pair generated successfully. Save this passphrase: {passphrase}";
-
+                        if(firstSet == false)
+                        {
+                            _passphrase = passphrase;
+                            firstSet = true;
+                        }
                         return true;
                     }
 

@@ -64,10 +64,10 @@ function navigateTo(section) {
 
 // Function to load peers and populate the table
 function loadPeers() {
-    fetch('/api/Bootstrap/peers')
+    fetch('/api/peers')
         .then(response => response.json())
         .then(data => {
-            var peers = data.peers; // Access the peers array from the response
+            var peers = data;
 
             var tbody = document.querySelector('#peers-table tbody');
 
@@ -90,7 +90,7 @@ function loadPeers() {
 
                     // IP Address Cell
                     var ipCell = document.createElement('td');
-                    ipCell.textContent = peer.Address;
+                    ipCell.textContent = peer.address;
                     row.appendChild(ipCell);
 
                     // Action Cell
@@ -114,7 +114,7 @@ function loadPeers() {
                     saveButton.textContent = 'Save';
                     saveButton.onclick = function () {
                         var selectedAction = select.value;
-                        var peerAddress = peer.Address;
+                        var peerAddress = peer.address;
                         performActionOnPeer(peerAddress, selectedAction);
                     };
                     actionCell.appendChild(saveButton);
@@ -129,6 +129,7 @@ function loadPeers() {
             console.error('Error fetching peers:', error);
         });
 }
+
 
 // In dashboard.js
 // Terminal functionality
@@ -193,9 +194,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Function to perform action on peer
 function performActionOnPeer(peerAddress, action) {
-    // Implement the logic to perform the action (e.g., disconnect or block)
-    alert(`Performed '${action}' action on peer with address ${peerAddress}.`);
+    fetch('/api/managepeer', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ peerAddress: peerAddress, action: action })
+    })
+        .then(response => response.text())
+        .then(message => {
+            alert(message);
+            // optionally reload of the peers list if necessary
+            loadPeers();
+        })
+        .catch(error => {
+            console.error('Error performing peer action:', error);
+        });
 }
+
 
 // Initialize the default section
 navigateTo('overview');

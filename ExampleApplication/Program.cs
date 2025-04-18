@@ -34,6 +34,12 @@ namespace ExampleApplication
 
             PeerNetwork.LoadLocalAddresses();
 
+            Uri uri = new Uri("http://localhost:5070");
+            BootstrapChannelConnectionOptions options = new BootstrapChannelConnectionOptions(uri);
+            BootstrapChannel bootstrapChannel = new BootstrapChannel(options);
+            PeerNetwork.AddBootstrapChannel(bootstrapChannel);
+            PeerNetwork.StartBootstrapConnections();
+
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement = TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.EventBased;
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol = true;
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.AllowDefaultCommunication = true;

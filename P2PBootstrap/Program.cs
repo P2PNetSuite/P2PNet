@@ -41,6 +41,7 @@ namespace P2PBootstrap
         {
             LoggingConfiguration.LoggerStyle = LogStyle.PlainTextFormat;
             LoggingConfiguration.LoggerActive = true;
+            PeerNetwork.Logging.OutputLogMessages = true;
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
@@ -77,9 +78,8 @@ namespace P2PBootstrap
             app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.Bootstrap], async Task<IResult> (HttpContext context) =>
             {
                 DebugMessage("New inbound peer detected.", MessageType.Debug);
-
-                    // read the incoming PUT
-                    using var reader = new StreamReader(context.Request.Body);
+                // read the incoming PUT
+                using var reader = new StreamReader(context.Request.Body);
                     var bodyJson = await reader.ReadToEndAsync();
                     // deserialize the input
                     var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
@@ -98,17 +98,16 @@ namespace P2PBootstrap
 
                     if (GlobalConfig.TrustPolicy() == TrustPolicies.BootstrapTrustPolicyType.Trustless)
                     {
-                        // reply with a CollectionSharePacket
-                        var share = new CollectionSharePacket(100, KnownPeers);
-                        string peershareJson = Serialize(share);
-                        byte[] peerslistBytes = Encoding.UTF8.GetBytes(peershareJson);
-                        DataTransmissionPacket dptResponse = new DataTransmissionPacket()
-                        {
-                            DataType = DataPayloadFormat.MiscData,
-                            Data = peerslistBytes
-                        };
-                        string responseJson = Serialize(dptResponse);
-                        DebugMessage($"Sending response: {responseJson}", MessageType.Debug);
+                            // reply with a CollectionSharePacket
+                            var share = new CollectionSharePacket(100, KnownPeers);
+                            string peershareJson = Serialize(share);
+                            byte[] peerslistBytes = Encoding.UTF8.GetBytes(peershareJson);
+                            DataTransmissionPacket dptResponse = new DataTransmissionPacket()
+                            {
+                                DataType = DataPayloadFormat.MiscData,
+                                Data = peerslistBytes
+                            };
+                            string responseJson = dptResponse.ToJsonString();
                         return Results.Content(responseJson, "application/json");
                     }
                     else
@@ -125,14 +124,11 @@ namespace P2PBootstrap
                                 }
                         };
 
-                        var outPacket = new DataTransmissionPacket()
-                        {
-                            DataType = DataPayloadFormat.Task,
-                            Data = networkTask.ToByte()
-                        };
+                        var outPacket = new DataTransmissionPacket(networkTask);
 
-                        var responseJson = Serialize(outPacket);
-                        return Results.Content(responseJson, "application/json");
+                        var responseJson = outPacket.ToJsonString();
+
+                    return Results.Content(responseJson, "application/json");
                     }
                 
             });
@@ -196,20 +192,20 @@ namespace P2PBootstrap
                 var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
                 if (incomingPacket == null || incomingPacket.Data == null)
                 {
-                    return Results.Problem("Invalid heartbeat packet received.", statusCode: 400);
+                    return Results.Content(Serialize<PureMessagePacket>(new PureMessagePacket("Invalid heartbeat packet received.")), "application/json");
                 }
 
                 // find the respective ClientPeer using the SourceOriginIdentifier
                 if (!ClientPeers.TryGetValue(incomingPacket.SourceOriginIdentifier, out ClientPeer clientPeer))
                 {
-                    return Results.Problem($"ClientPeer with SourceOriginIdentifier '{incomingPacket.SourceOriginIdentifier}' not found.", statusCode: 404);
+                    return Results.Content(Serialize<PureMessagePacket>(new PureMessagePacket($"ClientPeer with SourceOriginIdentifier '{incomingPacket.SourceOriginIdentifier}' not found.")), "application/json");
                 }
 
                 string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
                 NetworkTask heartbeatTask = Deserialize<NetworkTask>(ntJson);
                 if (heartbeatTask == null || heartbeatTask.TaskType != TaskType.Heartbeat)
                 {
-                    return Results.Problem("Invalid heartbeat network task received.", statusCode: 400);
+                    return Results.Content(Serialize<PureMessagePacket>(new PureMessagePacket("Invalid heartbeat network task received.")), "application/json");
                 }
 
                 // update the client's last incoming time
@@ -221,6 +217,7 @@ namespace P2PBootstrap
                 while (clientPeer.OutgoingTasks.Count > 0)
                 {
                     NetworkTask task = clientPeer.OutgoingTasks.Dequeue();
+                    SignOffOnNetworkTask(ref task);
                     string taskSerialized = Serialize(task);
                     collectedTasks.Add($"Task_{taskCounter++}", taskSerialized);
                 }
@@ -231,11 +228,11 @@ namespace P2PBootstrap
                     TaskType = TaskType.HeartbeatResponse,
                     TaskData = collectedTasks
                 };
+                SignOffOnNetworkTask(ref heartbeatResponseTask);
 
                 // wrap the heartbeat response network task, inside a DataTransmissionPacket
-                byte[] responseData = heartbeatResponseTask.ToByte();
-                DataTransmissionPacket responsePacket = new DataTransmissionPacket(responseData, DataPayloadFormat.Task);
-                string responseJson = Serialize(responsePacket);
+                DataTransmissionPacket responsePacket = new DataTransmissionPacket(heartbeatResponseTask);
+                string responseJson = responsePacket.ToJsonString();
                 return Results.Content(responseJson, "application/json");
             });
 
@@ -259,6 +256,7 @@ namespace P2PBootstrap
             }
 
             // TODO secure this against remote access
+            #region Internal API Endpoints -- NOT FOR PUBLIC CONSUMPTION
             app.MapGet("/api/parser/output", () =>
             {
                 if (Parser.OutputQueue.Count > 0)
@@ -274,6 +272,74 @@ namespace P2PBootstrap
                 Parser.InputQueue.Enqueue(input);
                 return Results.Ok();
             });
+            // endpoint for managing peers
+            app.MapPut("/api/managepeer", async (HttpContext context) =>
+            {
+                using var reader = new StreamReader(context.Request.Body);
+                string body = await reader.ReadToEndAsync();
+                if (string.IsNullOrWhiteSpace(body))
+                {
+                    return Results.Text("Empty request body.", "text/plain", statusCode: 400);
+                }
+
+                // Parse the JSON body
+                var jsonDoc = System.Text.Json.JsonDocument.Parse(body);
+                if (!jsonDoc.RootElement.TryGetProperty("peerAddress", out var peerAddressElement) ||
+                    !jsonDoc.RootElement.TryGetProperty("action", out var actionElement))
+                {
+                    return Results.Text("Missing required properties.", "text/plain", statusCode: 400);
+                }
+
+                string peerAddress = peerAddressElement.GetString() ?? string.Empty;
+                string actionStr = actionElement.GetString() ?? string.Empty;
+                if (string.IsNullOrEmpty(peerAddress) || string.IsNullOrEmpty(actionStr))
+                {
+                    return Results.Text("Invalid properties.", "text/plain", statusCode: 400);
+                }
+
+                // Map the action string to the TaskType enum using a dictionary.
+                var taskTypeMap = new Dictionary<string, TaskType>(StringComparer.OrdinalIgnoreCase)
+                {
+                    { "disconnect", TaskType.DisconnectPeer },
+                    { "block", TaskType.BlockAndRemovePeer }
+                };
+
+                if (!taskTypeMap.TryGetValue(actionStr, out TaskType taskType))
+                {
+                    return Results.Text($"Action '{actionStr}' is not supported.", "text/plain", statusCode: 400);
+                }
+
+                // Enqueue a network task for each client peer with the provided information
+                foreach (ClientPeer clientPeer in ClientPeers)
+                {
+                    NetworkTask task = new NetworkTask()
+                    {
+                        TaskType = taskType,
+                        TaskData = new Dictionary<string, string>()
+                        {
+                            { "TargetPeer", peerAddress }
+                        }
+                    };
+                    clientPeer.OutgoingTasks.Enqueue(task);
+                }
+                return Results.Text($"Peer management task enqueued for action '{actionStr}' on peer '{peerAddress}'.", "text/plain");
+            });
+            // GET endpoint to return the current peers for the dashboard
+            app.MapGet("/api/peers", () =>
+            {
+                List<GenericPeer> peers = new List<GenericPeer>();
+                // Iterate through ClientPeers and project each peer into a simple object.
+                foreach (ClientPeer peer in ClientPeers)
+                {
+                    GenericPeer _peer = new GenericPeer(peer.IP, peer.Identifier, peer.Port);
+                    _peer.Address = peer.IP.ToString();
+                    peers.Add(_peer);
+                }
+                // Use explicit JSON options to avoid source-generation metadata issues
+                var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+                return Results.Json(peers, options);
+            });
+            #endregion
 
             Task.Run(() => { Parser.Initialize(); });
             Task.Run(() => { EncryptionService.Initialize(); });

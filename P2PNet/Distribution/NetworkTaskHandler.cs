@@ -60,7 +60,7 @@ namespace P2PNet.Distribution
                                 targetRecipient.LoadOutgoingData(new DataTransmissionPacket(task.ToByte(), DataPayloadFormat.Task));
                             }
                         }
-                        // if we cannot easily find a recipients we will just let the NetworkTask dispose of itself
+                        // if we cannot easily find a recipient we will just let the NetworkTask dispose of itself
                     }
                 }
             }
