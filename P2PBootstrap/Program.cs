@@ -348,33 +348,6 @@ namespace P2PBootstrap
             app.Run();
         }
 
-        public static void Test()
-        {
-            Thread.Sleep(5000);
-            // test
-            NetworkTask nt = new NetworkTask()
-            {
-                TaskType = TaskType.BootstrapInitialization,
-                TaskData = new Dictionary<string, string>()
-                {
-                    { "PublicKey", PublicKeyToString },
-                    { "Peers", Serialize(new CollectionSharePacket(100, KnownPeers)) }
-                }
-            };
 
-            SignOffOnNetworkTask(ref nt);
-            foreach (KeyValuePair<string, string> kvp in nt.TaskData)
-            {
-                DebugMessage($"Key: {kvp.Key}, Value: {kvp.Value}", MessageType.Debug);
-            }
-            MD5 hashing = MD5.Create();
-            string _hashone = Convert.ToBase64String(hashing.ComputeHash(nt.ToByte()));
-            DebugMessage("Hash out before entry removal: " + _hashone, MessageType.Debug);
-
-            nt.TaskData.Remove("Signature"); // remove signature for verification
-            
-            string _hash = Convert.ToBase64String(hashing.ComputeHash(nt.ToByte()));
-            DebugMessage("Hash out after entry removal: " + _hash, MessageType.Debug);
-        }
     }
 }
