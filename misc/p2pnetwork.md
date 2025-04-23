@@ -39,6 +39,26 @@ The `PeerNetwork` class operates by providing several key functionalities:
 4. **Peer Channels**:
    Each communication channel between peers is represented by an instance of the `PeerChannel` class. This class manages the relay of data packets, conducts connection retries, and enforces trust policies by invoking predefined delegates from the `PacketHandleProtocol`.
 
+#### File Management via IFileManager
+
+The `DistributionHandler` uses its static `NetworkFileManager` property—typed as `IFileManager`—to handle all file‑based payloads (`DataPayloadFormat.File`). On receipt, each file packet is passed to  
+```csharp
+NetworkFileManager.InboundDatapacketToFile(packet);
+```  
+and outgoing file data is written via the same interface.
+
+By default two implementations are provided:  
+- **MemoryMappedFileManager**  
+  Uses memory‑mapped files for fast, low‑overhead read/write operations in RAM. Ideal when working with large files or high‑throughput scenarios.  
+- **VirtualImageFileManager**  
+  Creates a VHD image formatted with FAT and stores files inside it. Useful when you need a self‑contained disk image or want FAT semantics on top of a virtual filesystem.
+
+To swap in a custom manager, assign before distribution starts:  
+```csharp
+DistributionHandler.NetworkFileManager = new YourCustomFileManager(...);
+```  
+Your implementation must handle `GetFile(string|int)`, `WriteToFile(...)` and `InboundDatapacketToFile(...)` to integrate smoothly with the distribution pipeline.
+
 ### Routines
 
 ---
@@ -87,6 +107,7 @@ The `PeerNetwork` class employs a multi-pronged trust model to ensure secure and
      - **StaticURLAndFailover**: Tries a primary static URL and falls back to others if necessary.  
      - **URLListConsensus**: Utilizes multiple URLs and selects the most frequently returned IP address as the public IP.  
    - **PublicIPv4Sources**: A list of URLs that are queried to fetch the public-facing IPv4 address, based on the defined retrieval policy. URLs should point directly to an API endpoint serving a plain text response. 
+   - **SetIdentifier**: Gets or sets the delegate responsible for generating and assigning the peer’s network identifier. The default `SetIdentifier` handler concatenates the system’s MAC address with the current timestamp, computes an MD5 hash, appends the chosen public IP (IPv6 if available, otherwise IPv4), and computes a second MD5 hash. Override this delegate to supply custom identifier logic that fits your network requirements.
 
 
 These trust policies work in tandem to balance flexibility and security. You can adjust the settings to suit various network scenarios—from enterprise-level internal networks that rely on rapid, low-security handshakes, to public peer-to-peer systems that demand strict, authority-based validations.

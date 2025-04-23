@@ -7,6 +7,8 @@ using P2PBootstrap.CLI.Command;
 using System.Runtime.CompilerServices;
 using P2PNet.Distribution.NetworkTasks;
 using System.Security.Cryptography;
+using System.Text;
+using Org.BouncyCastle.Asn1;
 
 namespace P2PBootstrap.Encryption
     {
@@ -40,17 +42,19 @@ namespace P2PBootstrap.Encryption
             string _signature = $"{_hash}";
             PgpService.ClearSignString(ref _signature);
 
+            string _final_sigout = BitConverter.ToString(Encoding.UTF8.GetBytes(_signature));
+
             // TODO if _signature still equals _hash then the ClearSign failed, likely because passphrase/priv key mismatch
             // implement logic to handle this
 
             // add the signature to the NetworkTask
-            networkTask.TaskData.Add("Signature", _signature);
+            networkTask.TaskData.Add("Signature", _final_sigout);
 
             // record the hash and signature locally for reference
             var dict = new Dictionary<string, string>
             {
                 { "Hash", _hash },
-                { "Signature", _signature }
+                { "Signature", _final_sigout }
             };
             Task.Run(() => { ExecuteTableCommand(SigningHistory_table.RunInsertCommand(dict)); });
         }

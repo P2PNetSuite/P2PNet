@@ -26,10 +26,30 @@ namespace P2PNet.Distribution
         {
             EncryptionKeys key = new EncryptionKeys(pubKey);
             PGP pgp = new PGP(key);
-            return await pgp.VerifyAsync(signature);
+            return await pgp.VerifyClearAsync(signature); // was lots of fun spending 3 days figuring out .VerifyAsync and .VerifyClearAsync were not the same
         }
 
+        /// <summary>
+        /// Computes the MD5 hash for the specified input string and returns its Base64 string representation.
+        /// </summary>
+        /// <param name="input">The input string to hash using MD5.</param>
+        /// <returns>
+        /// A task representing the asynchronous operation that returns the Base64-encoded MD5 hash of the input.
+        /// </returns>
+        public static async Task<string> GetMD5Hash(string input)
+        {
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            byte[] hashBytes = hashing.ComputeHash(inputBytes);
+            return Convert.ToBase64String(hashBytes);
+        }
 
+        public static string HexStringToOriginal(string hexString)
+        {
+            string sanitized = hexString.Replace("-", "");
+
+            byte[] bytes = Convert.FromHexString(sanitized);
+            return Encoding.UTF8.GetString(bytes);
+        }
     }
 
     [Serializable]

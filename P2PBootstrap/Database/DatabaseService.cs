@@ -60,7 +60,7 @@ namespace P2PBootstrap.Database
 
         public static void ExecuteTableCommand(string command)
         {
-            DebugMessage($"Executing database command: {command}", MessageType.General);
+            // DebugMessage($"Executing database command: {command}", MessageType.General);
             using (var cmd = new SqliteCommand(command, connection))
             {
                     cmd.ExecuteNonQuery();

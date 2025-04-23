@@ -169,7 +169,8 @@ namespace P2PNet.Distribution
             { typeof (List<IPeer>), new IPeerListContext().GetTypeInfo(typeof(List<IPeer>)) },
             { typeof(NetworkTask), new NetworkTaskContext().GetTypeInfo(typeof(NetworkTask)) },
             { typeof(NetworkPacket), new NetworkPacketContext().GetTypeInfo(typeof(NetworkPacket)) },
-            { typeof(INetworkPacket),  new INetworkPacketContext().GetTypeInfo(typeof(INetworkPacketContext))}
+            { typeof(INetworkPacket),  new INetworkPacketContext().GetTypeInfo(typeof(INetworkPacketContext))},
+            { typeof(Dictionary<string, string>), new DictionaryStringStringContext(new JsonSerializerOptions { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping, WriteIndented = false }).GetTypeInfo(typeof (Dictionary<string, string>)) },
         };
 
         /// <summary>
@@ -237,7 +238,8 @@ namespace P2PNet.Distribution
 
     // This region keeps the packet objects and classes AOT compliant for JSON serialization.
     #region PACKET_CONTEXT
-
+        [JsonSerializable(typeof(Dictionary<string, string>))]
+        public partial class DictionaryStringStringContext : JsonSerializerContext { }
 
         [JsonSerializable(typeof(INetworkPacket))]
         [JsonSerializable(typeof(NetworkPacket))]

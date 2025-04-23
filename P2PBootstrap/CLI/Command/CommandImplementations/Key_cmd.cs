@@ -9,6 +9,7 @@ namespace P2PBootstrap.CLI.Command.CommandImplementations
 {
     public class Key_cmd : ICommand.ICommand
     {
+
         public string Command { get; set; }
         public string Description { get; set; }
         public string Help { get; set; }
@@ -19,15 +20,26 @@ namespace P2PBootstrap.CLI.Command.CommandImplementations
         {
             Command = "key";
             Description = "Handles key generation and listing.";
-            Help = "Use 'key gen' to generate a new key and 'key list' to list all keys.";
+            Help = "Key Command Help:\n\r" +
+    "key gen - Generate a new PGP key pair using a seedphrase.\n\r     Usage: key gen [multiple words for seedphrase go here]\n\r" +
+    "key list - List all PGP keys.\n\r" +
+    "key setpassphrase - Set the new PGP passphrase used when signing.\n\r     Usage: key setpassphrase [passphrase]\n\r" +
+    "key help - Display this help message.\n\r";
             Args = new Dictionary<string, ICommandArg>
             {
                 {"gen", new CommandArg { Arg = "gen", Description = "Generate a new key", CommandArgDelegate = GenerateKey  } },
                 {"list", new CommandArg { Arg = "list", Description = "List all PGP keys", CommandArgDelegate = ListKeys } },
-                { "setpassphrase", new CommandArg { Arg = "setpassphrase", Description = "Set the new PGP passphrase", CommandArgDelegate = SetPassphrase } }
+                { "setpassphrase", new CommandArg { Arg = "setpassphrase", Description = "Set the new PGP passphrase", CommandArgDelegate = SetPassphrase } },
+                { "help", new CommandArg {Arg = "help", Description = "Display help message", CommandArgDelegate = HelpPage} }
             };
 
             CommandDelegate = ExecuteCommand;
+        }
+
+        public CommandResponse HelpPage(string arg)
+        {
+
+            return new CommandResponse { Response = Help, Success = true };
         }
 
         public CommandResponse ExecuteCommand(List<ICommandArg> args)

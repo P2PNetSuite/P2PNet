@@ -2,6 +2,8 @@
 global using static ConsoleDebugger.ConsoleDebugger;
 using P2PNet.DicoveryChannels.WAN;
 using P2PNet.DiscoveryChannels;
+using P2PNet.Distribution;
+using P2PNet.Distribution.NetworkTasks;
 using P2PNet.NetworkPackets;
 using P2PNet.Peers;
 using P2PNet.Routines;
@@ -10,6 +12,8 @@ using SharpPcap.LibPcap;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace P2PNet
@@ -310,17 +314,18 @@ namespace P2PNet
             ListeningPort = randomizer.Next(8051, 9000); // setup a port for listening
             listener = new TcpListener(IPAddress.Any, ListeningPort);
 
-            P2PNetworkRoutines.InitializeRoutines();
             LoggingConfiguration.EmitConsoleMessages = Logging.OutputLogMessages ? true : false;
             LoggingConfiguration.IncludeCategory = true;
             AddLoggingCategory(Logging.LAN);
             AddLoggingCategory(Logging.Bootstrap);
             AddLoggingCategory(Logging.PeerActivity);
-            DeactivateLoggingCategory(Logging.LAN);
             if(Logging.LogToFile == true)
             {
                 StartLogging();
             }
+
+            P2PNetworkRoutines.InitializeRoutines();
+            DistributionHandler.NetworkFileManager.Initialize();
         }
 
         static async Task AcceptClientsAsync()
@@ -365,6 +370,8 @@ namespace P2PNet
             }
         }
 
+        #region Processing Peers (Add/Remove/Permissions/ect)
+        private static readonly object _peersLock = new object();
         /// <summary>
         /// Adds a peer to the <see cref="KnownPeers"/> list and establishes a connection if one is not provided.
         /// A new peer channel will be automatically added to <see cref="ActivePeerChannels"/> with standard non-elevated permissions.
@@ -373,8 +380,6 @@ namespace P2PNet
         /// <param name="client">The TCP client associated with the peer. Default is null.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <remarks></remarks>
-        private static readonly object _peersLock = new object();
-
         public static async Task AddPeer(IPeer peer, TcpClient client = null)
         {
             // Lock the known peers check
@@ -383,12 +388,15 @@ namespace P2PNet
                 if ((KnownPeers.Any(p => p.IP.Equals(peer.IP))) ||
                     (KnownPeers.Any(p => p.Identifier.Equals(peer.Identifier))))
                 {
-                        DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
+                    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
                     return;
                 }
                 else if (peer.IP.ToString() == LocalIPV4Address.ToString() && peer.Port == ListeningPort)
                 {
-
+                    return;
+                }
+                else if (peer.IP.ToString() == PublicIPV4Address.ToString())
+                {
                     return;
                 }
             }
@@ -447,6 +455,7 @@ namespace P2PNet
                 Task.Run(() => OnPeerAdded(peerChannel));
             }
         }
+
         /// <summary>
         /// Terminates a peer connection and removes it from <see cref="PeerNetwork.KnownPeers"/> and <see cref="PeerNetwork.ActivePeerChannels"/>.
         /// </summary>
@@ -457,7 +466,6 @@ namespace P2PNet
             bool flawless = true; // This is here for more intricate scenarios later
             try
             {
-
                 channel.ClosePeerChannel();
                 ActivePeerChannels.Remove(channel);
             }
@@ -519,9 +527,9 @@ namespace P2PNet
                 DebugMessage($"Attempted to add {x} peers via CollectionSharePacket from {packet.SourceOriginIdentifier}.");
             }
         }
+        #endregion
 
         #region Bootup LAN
-
         /// <summary>
         /// Scans all network interface devices and collects essential information needed for peer network.
         /// </summary>
@@ -1299,6 +1307,30 @@ namespace P2PNet
                 {
                     get => publicIPv4sources;
                     set => publicIPv4sources = value;
+                }
+                /// <summary>
+                /// Gets or sets the action responsible for automatically setting the peer network identifier 
+                /// based on system properties and network configuration.
+                /// </summary>
+                /// <remarks>
+                /// The default implementation, <see cref="SetIdentifierHandler"/>, generates the identifier by concatenating the system MAC address 
+                /// with the current date and time and computing an MD5 hash, then appending the public IP address (IPv6 if available, otherwise IPv4) 
+                /// and computing a second MD5 hash. The resulting hash is then assigned to the static <see cref="PeerNetwork.Identifier"/> property.
+                /// This mechanism ensures that the identifier is unique and conforms to the policy specified by 
+                /// <see cref="PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy"/>.
+                /// Feel free to override this method with your own implementation.
+                /// </remarks>
+                public static Action SetIdentifier { get; set; } = SetIdentifierHandler;
+                private static async void SetIdentifierHandler()
+                {
+                    CheckIfProperInit(); // make sure loaded proper
+
+                    // ((MAC + current DateTime hashed) + public IP hashed)
+                    string str1 = MAC.ToString() + DateTime.Now.ToString();
+                    string _hash1 = await EncryptionAndSecurityHandler.GetMD5Hash(str1);
+                    string str2 = _hash1 + (IPv6AddressFound == true ? PublicIPV6Address.ToString() : PublicIPV4Address.ToString());
+                    string _hash2 = await EncryptionAndSecurityHandler.GetMD5Hash(str2);
+                    Identifier = _hash2;
                 }
 
             }
