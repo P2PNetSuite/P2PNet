@@ -27,6 +27,10 @@ namespace P2PNet.DicoveryChannels.WAN
         {
             IsAuthorityMode = isAuthorityMode;
             BootstrapServer = new BootstrapPeer(endpoint);
+
+            InitialBootstrapHandler = IsAuthorityMode
+                ? AuthorityModeInitialBootstrapHandle
+                : TrustlessModeInitialBootstrapHandle;
         }
 
         /// <summary>
@@ -34,17 +38,19 @@ namespace P2PNet.DicoveryChannels.WAN
         /// If the options include a pre-specified <see cref="BootstrapPeer"/>, it is used; otherwise, a new <see cref="BootstrapPeer"/> is created from the endpoint.
         /// </summary>
         /// <param name="options">An instance of <see cref="BootstrapChannelConnectionOptions"/> detailing the connection settings.</param>
-        public BootstrapChannel(BootstrapChannelConnectionOptions options)
+        public BootstrapChannel(BootstrapChannelConnectionOptions options) : base()
         {
             IsAuthorityMode = options.IsAuthorityMode;
             BootstrapServer = options.BootstrapPeer ?? new BootstrapPeer(options.Endpoint);
+
+            InitialBootstrapHandler = IsAuthorityMode
+                ? AuthorityModeInitialBootstrapHandle
+                : TrustlessModeInitialBootstrapHandle;
         }
 
         public async void OpenBootstrapChannel()
         {
             DebugMessage($"Setting up bootstrap channel {BootstrapServerEndpoint.ToString()} ...");
-            _heartbeatTimer.Enabled = true;
-            _heartbeatTimer.Start();
             Task.Run(() => RunInitialBootstrap());
         }
 
@@ -83,9 +89,16 @@ namespace P2PNet.DicoveryChannels.WAN
 
                 var responsePacket = Deserialize<DataTransmissionPacket>(responseContent);
 
-                string dataout = Encoding.UTF8.GetString(responsePacket.Data);
+                if((responsePacket.SourceOriginIdentifier == "") && (IsAuthorityMode == true))
+                {
+                    HandleErrorResponse($"Bootstrap response from {BootstrapServerEndpoint.ToString()} failed. Authority mode bootstrapping requires source origin identifier to be set.");
+                    return;
+                }
+
                 if (responsePacket != null)
                 {
+                    string dataout = Encoding.UTF8.GetString(UnwrapData(responsePacket));
+
                     InitialBootstrapHandler.Invoke(dataout);
 
                     if (IsAuthorityMode)
@@ -99,12 +112,13 @@ namespace P2PNet.DicoveryChannels.WAN
                 }
                 else
                 {
-                    DebugMessage($"Bootstrap response from {BootstrapServerEndpoint.ToString()} failed.", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
+                    HandleErrorResponse($"Bootstrap response from {BootstrapServerEndpoint.ToString()} failed.");
                 }
                     
             }
         }     
         
+
 
         }
 

@@ -19,10 +19,10 @@ namespace P2PNet.DicoveryChannels.WAN
         public bool IsAuthorityMode { get; set; } = false;
         public BootstrapPeer BootstrapServer { get; set; }
         internal Uri BootstrapServerEndpoint => BootstrapServer.Endpoint;
-        internal PGPKeyInfo publicKey { get; set; } = null; // store the public key from the server
+        internal PGPKeyInfo publicKey { get; set; } // store the public key from the server
         
         
-        public string PublicKey => publicKey?.ToString(); // expose the public key as a string for easy access
+        public string PublicKey => Encoding.UTF8.GetString(publicKey.KeyData); // expose the public key as a string for easy access
 
         /// <summary>
         /// Gets or sets the maximum number of consecutive failed outbound heartbeats before the heartbeat routine is stopped.
@@ -155,10 +155,13 @@ namespace P2PNet.DicoveryChannels.WAN
 
         // ------ private delegates -----
         #region Private Default Delegate Implementations
-        private Action<string> DefaultInitialBootstrapHandler =>
-             IsAuthorityMode ? AuthorityModeInitialBootstrapHandle : TrustlessModeInitialBootstrapHandle;
-        private Action<string> AuthorityModeInitialBootstrapHandle => AuthorityModeInitialBootstrap;
-        private Action<string> TrustlessModeInitialBootstrapHandle => TrustlessModeInitialBootstrap;
+        protected Action<string> DefaultInitialBootstrapHandler
+        {
+            get { if(IsAuthorityMode) { return AuthorityModeInitialBootstrapHandle; } else { return TrustlessModeInitialBootstrapHandle; } }
+            set { InitialBootstrapHandler = value; }
+        }
+        protected Action<string> AuthorityModeInitialBootstrapHandle => AuthorityModeInitialBootstrap;
+        protected Action<string> TrustlessModeInitialBootstrapHandle => TrustlessModeInitialBootstrap;
         private Func<NetworkTask, Task<bool>> CheckNetworkTaskHashHandle => ValidateNetworkTaskHash;
         private Func<string, Task<bool>> CheckForErrorResponseHandle => IsErrorResponse;
         private Action<string> HandleErrorResponseHandle => ErrorResponse;
@@ -188,7 +191,7 @@ namespace P2PNet.DicoveryChannels.WAN
             _heartbeatTimer.AutoReset = true;
             _heartbeatTimer.Enabled = false;
         }
-        #region Delegate Methods
+        #region Default Delegate Methods
         private void AuthorityModeInitialBootstrap(string packet)
         {
             // expecting a DataTransmissionPacket with NetworkTask.
@@ -198,27 +201,28 @@ namespace P2PNet.DicoveryChannels.WAN
             // process the peer list.
             CollectionSharePacket sharePacket = Deserialize<CollectionSharePacket>(networkTask.TaskData["Peers"]);
             ProcessPeerList(sharePacket);
+            // finally start heartbeat routine
+            StartHeartbeatRoutine();
         }
         private void TrustlessModeInitialBootstrap(string packet)
         {
             // trustless mode
             CollectionSharePacket sharePacket = Deserialize<CollectionSharePacket>(packet);
             ProcessPeerList(sharePacket);
+            // finally start heartbeat routine
+            StartHeartbeatRoutine();
         }
 
         private async Task<bool> ValidateNetworkTaskHash(NetworkTask task)
         {
             if (task.TaskData.ContainsKey("Signature"))
             {
-                // Store and remove the signature for hash computation.
-                string signature = task.TaskData["Signature"];
+                // remove the signature for hash computation
                 task.TaskData.Remove("Signature");
+                // compute the hash of the task without the signature
+                string computedHash = EncryptionAndSecurityHandler.GetMD5Hash(Serialize(task)).Result;
 
-                MD5 hashing = MD5.Create();
-                // Compute the hash of the task without the signature.
-                string computedHash = Convert.ToBase64String(hashing.ComputeHash(task.ToByte()));
-
-                // Create a new network task to request hash verification.
+                // create a new network task to request hash verification.
                 NetworkTask verifyTask = new NetworkTask()
                 {
                     TaskType = TaskType.RequestVerifyHashRecord,
@@ -248,7 +252,7 @@ namespace P2PNet.DicoveryChannels.WAN
                         if (messagePacket.Message.StartsWith("True"))
                         {
                             // Now verify the signature using the stored public key.
-                            return await EncryptionAndSecurityHandler.VerifySignature(signature, publicKey?.KeyData?.ToString());
+                            return true;
                         }
                         else
                         {
@@ -307,6 +311,7 @@ namespace P2PNet.DicoveryChannels.WAN
             // create a heartbeat packet, then send it to the server
             DataTransmissionPacket dataTransmissionPacket = CreateHeartbeatPacket();
             string outgoingPacket = dataTransmissionPacket.ToJsonString();
+            bool flawless = true;
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -330,15 +335,40 @@ namespace P2PNet.DicoveryChannels.WAN
                         DebugMessage($"Bootstrap server {BootstrapServerEndpoint.ToString()} responded to heartbeat with {tasks.Count} tasks.", ConsoleColor.Cyan, PeerNetwork.Logging.Bootstrap);
                         foreach (var task in tasks.Values)
                         {
-                            string unescapedJson = Regex.Unescape(task); // necessary because of PGP caveats
-                            string safeSignature = unescapedJson.Replace("\r", "\\r").Replace("\n", "\\n"); // PGP caveats ect ect
                             try
                             { // leave this wrapped in TryCatch block or otherwise will throw exception
-                                var nt = Deserialize<NetworkTask>(safeSignature);
+                                var nt = Deserialize<NetworkTask>(task);
                                 if (nt != null)
                                 {
-                                    DebugMessage($"Enqued task: {unescapedJson}", ConsoleColor.DarkGreen, PeerNetwork.Logging.Bootstrap);
-                                    NetworkTaskHandler.incomingNetworkTasks.Enqueue(nt);
+                                    try
+                                    {
+                                        // extract signature
+                                        string signature = await NetworkTaskHandler.ExtractSignatureFromNetworkTask(nt);
+                                        
+                                        // check signature
+                                        bool validSignature = await EncryptionAndSecurityHandler.VerifySignature(signature, PublicKey);
+                                        if(validSignature == false)
+                                        {
+                                            HandleErrorResponse("Signature is invalid.");
+                                            continue;
+                                        }
+
+                                        // check if hash is stored by the server
+                                        bool validHash = await IsValidNetworkHash(nt);
+                                        if (validHash == false)
+                                        {
+                                            HandleErrorResponse($"Hash verification failed for task: {task}");
+                                            continue;
+                                        }
+
+                                        DebugMessage($"Enqued task: {task}", ConsoleColor.DarkGreen, PeerNetwork.Logging.Bootstrap);
+                                        NetworkTaskHandler.incomingNetworkTasks.Enqueue(nt);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        // we do nothing here for now
+                                        // DebugMessage(ex.ToString(), MessageType.Critical, PeerNetwork.Logging.Bootstrap);
+                                    }
                                 }
                             }
                             catch (Exception ex)
@@ -356,7 +386,16 @@ namespace P2PNet.DicoveryChannels.WAN
             }
             catch (Exception ex)
             {
+                flawless = false;
                 FailedOutgoingHeartbeat();
+            }
+            finally
+            {
+                if (flawless == true)
+                {
+                    failureCount = 0; // reset failure count on success
+                    DebugMessage($"Bootstrap server {BootstrapServerEndpoint.ToString()} heartbeat successful.", ConsoleColor.Cyan, PeerNetwork.Logging.Bootstrap);
+                }
             }
         }
 
@@ -367,7 +406,7 @@ namespace P2PNet.DicoveryChannels.WAN
             {
                 _heartbeatTimer.Stop();
                 _heartbeatTimer.Enabled = false;
-                DebugMessage($"Bootstrap server {BootstrapServerEndpoint.ToString()} failed to respond to {MaxFailureTimeout} consecutive requests. Ending heartbeat routine.");
+                HandleErrorResponse($"Bootstrap server {BootstrapServerEndpoint.ToString()} failed to respond to {MaxFailureTimeout} consecutive requests. Ending heartbeat routine.");
             }
         }
         #endregion
@@ -396,10 +435,13 @@ namespace P2PNet.DicoveryChannels.WAN
             return initialPacket;
         }
 
-        protected void StorePublicKey(string publicKey)
+        protected void StorePublicKey(string publicKeyCrosscheck)
         {
-            this.publicKey = new PGPKeyInfo("PublicKey", Encoding.UTF8.GetBytes(publicKey));
+            // Trim surrounding whitespace
+            string sanitizedKey = publicKeyCrosscheck.Trim();
+            publicKey = new PGPKeyInfo("PublicKey", Encoding.UTF8.GetBytes(publicKeyCrosscheck));
         }
+
 
         protected void ProcessPeerList(CollectionSharePacket peerList)
         {

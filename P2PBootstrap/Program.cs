@@ -50,7 +50,9 @@ namespace P2PBootstrap
             AppSettings = config.Build();
 
             // check if application is running in container or not
-            GlobalConfig.CheckContainerEnvironment();         
+            GlobalConfig.CheckContainerEnvironment();
+
+            Identifier = ConfigIdentifier(); // set identifier
 
             var builder = WebApplication.CreateBuilder(args);
             builder.Logging.AddFilter("Microsoft", LogLevel.None);
@@ -151,7 +153,7 @@ namespace P2PBootstrap
                     }
 
                     // extract the NetworkTask from the DataTransmissionPacket Data field.
-                    string ntJson = Encoding.UTF8.GetString(incomingPacket.Data);
+                    string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
                     NetworkTask task = Deserialize<NetworkTask>(ntJson);
 
                     // verify the task type.

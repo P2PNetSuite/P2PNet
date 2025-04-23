@@ -34,11 +34,12 @@ namespace ExampleApplication
 
             PeerNetwork.LoadLocalAddresses();
 
-            Uri uri = new Uri("http://p2pbootstrap.fly.dev");
+            Uri uri = new Uri("http://p2pbootstrap.fly.dev"); // bootstrap to sample instance of bootstrap container
             BootstrapChannelConnectionOptions options = new BootstrapChannelConnectionOptions(uri);
             BootstrapChannel bootstrapChannel = new BootstrapChannel(options);
+
             PeerNetwork.AddBootstrapChannel(bootstrapChannel);
-            PeerNetwork.StartBootstrapConnections();
+            PeerNetwork.StartBootstrapConnections(); // similar to StartBroadcastingLAN
 
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerPlacement = TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.EventBased;
             PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.RunDefaultTrustProtocol = true;

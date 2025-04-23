@@ -2,7 +2,9 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Timers;
 using P2PNet.Distribution.NetworkTasks;
@@ -10,6 +12,21 @@ using P2PNet.NetworkPackets;
 
 namespace P2PNet.Distribution
 {
+    /// <summary>
+    /// Provides static methods and queues for managing network tasks within the peer-to-peer distribution system.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// This static class maintains two concurrent queues—one for outgoing network tasks to be sent to trusted peers,
+    /// and one for incoming network tasks that need to be processed. It uses timers to periodically check these queues
+    /// and invoke appropriate handlers to process tasks based on their <see cref="TaskType"/>. Tasks may include actions
+    /// such as blocking a peer, sending messages, pinging, and disconnecting peers.
+    /// </para>
+    /// <para>
+    /// The class also exposes a helper method to extract the PGP clear-signed signature from a network task, which is used
+    /// for validation and verification purposes.
+    /// </para>
+    /// </remarks>
     public static class NetworkTaskHandler
     {
 
@@ -98,6 +115,34 @@ namespace P2PNet.Distribution
                 }
             }
         }
+
+        #region Public Methods
+
+        public static async Task<string> ExtractSignatureFromNetworkTask(NetworkTask networkTask)
+        {
+            string task = Encoding.UTF8.GetString(networkTask.ToByte());
+            using (JsonDocument doc = JsonDocument.Parse(task))
+            {
+                if (doc.RootElement.TryGetProperty("TaskData", out JsonElement taskData))
+                {
+                    if (taskData.TryGetProperty("Signature", out JsonElement signatureElement))
+                    {
+                        string signature = signatureElement.GetString();
+                        string originalSignature = EncryptionAndSecurityHandler.HexStringToOriginal(signature);
+                        return originalSignature;
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+        #endregion
 
     }
 }

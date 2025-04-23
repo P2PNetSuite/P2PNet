@@ -62,6 +62,7 @@ namespace P2PBootstrap.Encryption.Pgp
                 else 
                 {
                     firstSet = true;
+                    DebugMessage("Keys were successfully loaded. Be sure to login to admin terminal to set the passphrase for signing.", MessageType.Warning);
                 }
 
                 LoadPGPKeysFromDirectory();

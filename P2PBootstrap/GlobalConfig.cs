@@ -218,6 +218,27 @@ namespace P2PBootstrap
             }
         }
 
+        public static string ConfigIdentifier()
+        {
+            string ENVVAR = "IDENTIFIER";
+            if (!_containerized)
+            {
+                // Non-containerized mode: read directly from appsettings.json
+                return AppSettings["Configuration:Identifier"];
+            }
+            else
+            {
+                // Containerized mode: check environment variable first
+                string envVar = Environment.GetEnvironmentVariable(ENVVAR, EnvironmentVariableTarget.Process);
+                if (!string.IsNullOrEmpty(envVar))
+                {
+                    return envVar;
+                }
+                // If no environment variable is found, defer back to appsettings.json
+                return AppSettings["Configuration:Identifier"];
+            }
+        }
+
         #endregion
 
     }
