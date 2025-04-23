@@ -176,6 +176,22 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.Help
   nameWithType: Key_cmd.Help
+- uid: P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.HelpPage(System.String)
+  name: HelpPage(string)
+  href: api/P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.html#P2PBootstrap_CLI_Command_CommandImplementations_Key_cmd_HelpPage_System_String_
+  commentId: M:P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.HelpPage(System.String)
+  name.vb: HelpPage(String)
+  fullName: P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.HelpPage(string)
+  fullName.vb: P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.HelpPage(String)
+  nameWithType: Key_cmd.HelpPage(string)
+  nameWithType.vb: Key_cmd.HelpPage(String)
+- uid: P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.HelpPage*
+  name: HelpPage
+  href: api/P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.html#P2PBootstrap_CLI_Command_CommandImplementations_Key_cmd_HelpPage_
+  commentId: Overload:P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.HelpPage
+  isSpec: "True"
+  fullName: P2PBootstrap.CLI.Command.CommandImplementations.Key_cmd.HelpPage
+  nameWithType: Key_cmd.HelpPage
 - uid: P2PBootstrap.CLI.Command.CommandResponse
   name: CommandResponse
   href: api/P2PBootstrap.CLI.Command.CommandResponse.html
@@ -1725,6 +1741,19 @@ references:
   commentId: F:P2PBootstrap.GlobalConfig.ConfigFile
   fullName: P2PBootstrap.GlobalConfig.ConfigFile
   nameWithType: GlobalConfig.ConfigFile
+- uid: P2PBootstrap.GlobalConfig.ConfigIdentifier
+  name: ConfigIdentifier()
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_ConfigIdentifier
+  commentId: M:P2PBootstrap.GlobalConfig.ConfigIdentifier
+  fullName: P2PBootstrap.GlobalConfig.ConfigIdentifier()
+  nameWithType: GlobalConfig.ConfigIdentifier()
+- uid: P2PBootstrap.GlobalConfig.ConfigIdentifier*
+  name: ConfigIdentifier
+  href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_ConfigIdentifier_
+  commentId: Overload:P2PBootstrap.GlobalConfig.ConfigIdentifier
+  isSpec: "True"
+  fullName: P2PBootstrap.GlobalConfig.ConfigIdentifier
+  nameWithType: GlobalConfig.ConfigIdentifier
 - uid: P2PBootstrap.GlobalConfig.DbFileName
   name: DbFileName()
   href: api/P2PBootstrap.GlobalConfig.html#P2PBootstrap_GlobalConfig_DbFileName
@@ -1882,19 +1911,6 @@ references:
   isSpec: "True"
   fullName: P2PBootstrap.Program.PublicKeyToString
   nameWithType: Program.PublicKeyToString
-- uid: P2PBootstrap.Program.Test
-  name: Test()
-  href: api/P2PBootstrap.Program.html#P2PBootstrap_Program_Test
-  commentId: M:P2PBootstrap.Program.Test
-  fullName: P2PBootstrap.Program.Test()
-  nameWithType: Program.Test()
-- uid: P2PBootstrap.Program.Test*
-  name: Test
-  href: api/P2PBootstrap.Program.html#P2PBootstrap_Program_Test_
-  commentId: Overload:P2PBootstrap.Program.Test
-  isSpec: "True"
-  fullName: P2PBootstrap.Program.Test
-  nameWithType: Program.Test
 - uid: P2PNet
   name: P2PNet
   href: api/P2PNet.html
@@ -1992,22 +2008,19 @@ references:
   fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.New
   nameWithType: BootstrapChannelBase.BootstrapChannelBase
   nameWithType.vb: BootstrapChannelBase.New
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap(System.String)
-  name: AuthorityModeInitialBootstrap(string)
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_AuthorityModeInitialBootstrap_System_String_
-  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap(System.String)
-  name.vb: AuthorityModeInitialBootstrap(String)
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap(string)
-  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap(String)
-  nameWithType: BootstrapChannelBase.AuthorityModeInitialBootstrap(string)
-  nameWithType.vb: BootstrapChannelBase.AuthorityModeInitialBootstrap(String)
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap*
-  name: AuthorityModeInitialBootstrap
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_AuthorityModeInitialBootstrap_
-  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrapHandle
+  name: AuthorityModeInitialBootstrapHandle
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_AuthorityModeInitialBootstrapHandle
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrapHandle
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrapHandle
+  nameWithType: BootstrapChannelBase.AuthorityModeInitialBootstrapHandle
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrapHandle*
+  name: AuthorityModeInitialBootstrapHandle
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_AuthorityModeInitialBootstrapHandle_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrapHandle
   isSpec: "True"
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrap
-  nameWithType: BootstrapChannelBase.AuthorityModeInitialBootstrap
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.AuthorityModeInitialBootstrapHandle
+  nameWithType: BootstrapChannelBase.AuthorityModeInitialBootstrapHandle
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapServer
   name: BootstrapServer
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_BootstrapServer
@@ -2047,6 +2060,71 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateInitialBootstrapPacket
   nameWithType: BootstrapChannelBase.CreateInitialBootstrapPacket
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.DefaultInitialBootstrapHandler
+  name: DefaultInitialBootstrapHandler
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_DefaultInitialBootstrapHandler
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.DefaultInitialBootstrapHandler
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.DefaultInitialBootstrapHandler
+  nameWithType: BootstrapChannelBase.DefaultInitialBootstrapHandler
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.DefaultInitialBootstrapHandler*
+  name: DefaultInitialBootstrapHandler
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_DefaultInitialBootstrapHandler_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.DefaultInitialBootstrapHandler
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.DefaultInitialBootstrapHandler
+  nameWithType: BootstrapChannelBase.DefaultInitialBootstrapHandler
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleErrorResponse
+  name: HandleErrorResponse
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_HandleErrorResponse
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleErrorResponse
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleErrorResponse
+  nameWithType: BootstrapChannelBase.HandleErrorResponse
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleErrorResponse*
+  name: HandleErrorResponse
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_HandleErrorResponse_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleErrorResponse
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleErrorResponse
+  nameWithType: BootstrapChannelBase.HandleErrorResponse
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleFailedHeartbeat
+  name: HandleFailedHeartbeat
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_HandleFailedHeartbeat
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleFailedHeartbeat
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleFailedHeartbeat
+  nameWithType: BootstrapChannelBase.HandleFailedHeartbeat
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleFailedHeartbeat*
+  name: HandleFailedHeartbeat
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_HandleFailedHeartbeat_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleFailedHeartbeat
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HandleFailedHeartbeat
+  nameWithType: BootstrapChannelBase.HandleFailedHeartbeat
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatOutHandler
+  name: HeartbeatOutHandler
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_HeartbeatOutHandler
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatOutHandler
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatOutHandler
+  nameWithType: BootstrapChannelBase.HeartbeatOutHandler
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatOutHandler*
+  name: HeartbeatOutHandler
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_HeartbeatOutHandler_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatOutHandler
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatOutHandler
+  nameWithType: BootstrapChannelBase.HeartbeatOutHandler
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatRoutineRunning
+  name: HeartbeatRoutineRunning
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_HeartbeatRoutineRunning
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatRoutineRunning
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatRoutineRunning
+  nameWithType: BootstrapChannelBase.HeartbeatRoutineRunning
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatRoutineRunning*
+  name: HeartbeatRoutineRunning
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_HeartbeatRoutineRunning_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatRoutineRunning
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.HeartbeatRoutineRunning
+  nameWithType: BootstrapChannelBase.HeartbeatRoutineRunning
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.InitialBootstrapHandler
   name: InitialBootstrapHandler
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_InitialBootstrapHandler
@@ -2073,6 +2151,22 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsAuthorityMode
   nameWithType: BootstrapChannelBase.IsAuthorityMode
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsErrorResponse(System.String)
+  name: IsErrorResponse(string)
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsErrorResponse_System_String_
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsErrorResponse(System.String)
+  name.vb: IsErrorResponse(String)
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsErrorResponse(string)
+  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsErrorResponse(String)
+  nameWithType: BootstrapChannelBase.IsErrorResponse(string)
+  nameWithType.vb: BootstrapChannelBase.IsErrorResponse(String)
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsErrorResponse*
+  name: IsErrorResponse
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsErrorResponse_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsErrorResponse
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsErrorResponse
+  nameWithType: BootstrapChannelBase.IsErrorResponse
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsValidNetworkHash
   name: IsValidNetworkHash
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsValidNetworkHash
@@ -2086,6 +2180,32 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsValidNetworkHash
   nameWithType: BootstrapChannelBase.IsValidNetworkHash
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.MaxFailureTimeout
+  name: MaxFailureTimeout
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_MaxFailureTimeout
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.MaxFailureTimeout
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.MaxFailureTimeout
+  nameWithType: BootstrapChannelBase.MaxFailureTimeout
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.MaxFailureTimeout*
+  name: MaxFailureTimeout
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_MaxFailureTimeout_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.MaxFailureTimeout
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.MaxFailureTimeout
+  nameWithType: BootstrapChannelBase.MaxFailureTimeout
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PacketReturnedErrorResponse
+  name: PacketReturnedErrorResponse
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_PacketReturnedErrorResponse
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PacketReturnedErrorResponse
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PacketReturnedErrorResponse
+  nameWithType: BootstrapChannelBase.PacketReturnedErrorResponse
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PacketReturnedErrorResponse*
+  name: PacketReturnedErrorResponse
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_PacketReturnedErrorResponse_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PacketReturnedErrorResponse
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PacketReturnedErrorResponse
+  nameWithType: BootstrapChannelBase.PacketReturnedErrorResponse
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ProcessPeerList(P2PNet.NetworkPackets.CollectionSharePacket)
   name: ProcessPeerList(CollectionSharePacket)
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_ProcessPeerList_P2PNet_NetworkPackets_CollectionSharePacket_
@@ -2112,19 +2232,32 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.PublicKey
   nameWithType: BootstrapChannelBase.PublicKey
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer
-  name: SendOutgoingHeartbeatToServer()
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_SendOutgoingHeartbeatToServer
-  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer()
-  nameWithType: BootstrapChannelBase.SendOutgoingHeartbeatToServer()
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer*
-  name: SendOutgoingHeartbeatToServer
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_SendOutgoingHeartbeatToServer_
-  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StartHeartbeatRoutine
+  name: StartHeartbeatRoutine()
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_StartHeartbeatRoutine
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StartHeartbeatRoutine
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StartHeartbeatRoutine()
+  nameWithType: BootstrapChannelBase.StartHeartbeatRoutine()
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StartHeartbeatRoutine*
+  name: StartHeartbeatRoutine
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_StartHeartbeatRoutine_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StartHeartbeatRoutine
   isSpec: "True"
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.SendOutgoingHeartbeatToServer
-  nameWithType: BootstrapChannelBase.SendOutgoingHeartbeatToServer
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StartHeartbeatRoutine
+  nameWithType: BootstrapChannelBase.StartHeartbeatRoutine
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StopHeartbeatRoutine
+  name: StopHeartbeatRoutine()
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_StopHeartbeatRoutine
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StopHeartbeatRoutine
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StopHeartbeatRoutine()
+  nameWithType: BootstrapChannelBase.StopHeartbeatRoutine()
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StopHeartbeatRoutine*
+  name: StopHeartbeatRoutine
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_StopHeartbeatRoutine_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StopHeartbeatRoutine
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StopHeartbeatRoutine
+  nameWithType: BootstrapChannelBase.StopHeartbeatRoutine
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StorePublicKey(System.String)
   name: StorePublicKey(string)
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_StorePublicKey_System_String_
@@ -2141,35 +2274,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.StorePublicKey
   nameWithType: BootstrapChannelBase.StorePublicKey
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap(System.String)
-  name: TrustlessModeInitialBootstrap(string)
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_TrustlessModeInitialBootstrap_System_String_
-  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap(System.String)
-  name.vb: TrustlessModeInitialBootstrap(String)
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap(string)
-  fullName.vb: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap(String)
-  nameWithType: BootstrapChannelBase.TrustlessModeInitialBootstrap(string)
-  nameWithType.vb: BootstrapChannelBase.TrustlessModeInitialBootstrap(String)
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap*
-  name: TrustlessModeInitialBootstrap
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_TrustlessModeInitialBootstrap_
-  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrapHandle
+  name: TrustlessModeInitialBootstrapHandle
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_TrustlessModeInitialBootstrapHandle
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrapHandle
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrapHandle
+  nameWithType: BootstrapChannelBase.TrustlessModeInitialBootstrapHandle
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrapHandle*
+  name: TrustlessModeInitialBootstrapHandle
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_TrustlessModeInitialBootstrapHandle_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrapHandle
   isSpec: "True"
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrap
-  nameWithType: BootstrapChannelBase.TrustlessModeInitialBootstrap
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash(P2PNet.Distribution.NetworkTasks.NetworkTask)
-  name: ValidateNetworkTaskHash(NetworkTask)
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_ValidateNetworkTaskHash_P2PNet_Distribution_NetworkTasks_NetworkTask_
-  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash(P2PNet.Distribution.NetworkTasks.NetworkTask)
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash(P2PNet.Distribution.NetworkTasks.NetworkTask)
-  nameWithType: BootstrapChannelBase.ValidateNetworkTaskHash(NetworkTask)
-- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash*
-  name: ValidateNetworkTaskHash
-  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_ValidateNetworkTaskHash_
-  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash
-  isSpec: "True"
-  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.ValidateNetworkTaskHash
-  nameWithType: BootstrapChannelBase.ValidateNetworkTaskHash
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.TrustlessModeInitialBootstrapHandle
+  nameWithType: BootstrapChannelBase.TrustlessModeInitialBootstrapHandle
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase._heartbeatTimer
   name: _heartbeatTimer
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase__heartbeatTimer
@@ -2763,6 +2880,105 @@ references:
   isSpec: "True"
   fullName: P2PNet.Distribution.DataTransmissionPacketContext.String
   nameWithType: DataTransmissionPacketContext.String
+- uid: P2PNet.Distribution.DictionaryStringStringContext
+  name: DictionaryStringStringContext
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html
+  commentId: T:P2PNet.Distribution.DictionaryStringStringContext
+  fullName: P2PNet.Distribution.DictionaryStringStringContext
+  nameWithType: DictionaryStringStringContext
+- uid: P2PNet.Distribution.DictionaryStringStringContext.#ctor
+  name: DictionaryStringStringContext()
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext__ctor
+  commentId: M:P2PNet.Distribution.DictionaryStringStringContext.#ctor
+  name.vb: New()
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.DictionaryStringStringContext()
+  fullName.vb: P2PNet.Distribution.DictionaryStringStringContext.New()
+  nameWithType: DictionaryStringStringContext.DictionaryStringStringContext()
+  nameWithType.vb: DictionaryStringStringContext.New()
+- uid: P2PNet.Distribution.DictionaryStringStringContext.#ctor(System.Text.Json.JsonSerializerOptions)
+  name: DictionaryStringStringContext(JsonSerializerOptions)
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext__ctor_System_Text_Json_JsonSerializerOptions_
+  commentId: M:P2PNet.Distribution.DictionaryStringStringContext.#ctor(System.Text.Json.JsonSerializerOptions)
+  name.vb: New(JsonSerializerOptions)
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.DictionaryStringStringContext(System.Text.Json.JsonSerializerOptions)
+  fullName.vb: P2PNet.Distribution.DictionaryStringStringContext.New(System.Text.Json.JsonSerializerOptions)
+  nameWithType: DictionaryStringStringContext.DictionaryStringStringContext(JsonSerializerOptions)
+  nameWithType.vb: DictionaryStringStringContext.New(JsonSerializerOptions)
+- uid: P2PNet.Distribution.DictionaryStringStringContext.#ctor*
+  name: DictionaryStringStringContext
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext__ctor_
+  commentId: Overload:P2PNet.Distribution.DictionaryStringStringContext.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.DictionaryStringStringContext
+  fullName.vb: P2PNet.Distribution.DictionaryStringStringContext.New
+  nameWithType: DictionaryStringStringContext.DictionaryStringStringContext
+  nameWithType.vb: DictionaryStringStringContext.New
+- uid: P2PNet.Distribution.DictionaryStringStringContext.Default
+  name: Default
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_Default
+  commentId: P:P2PNet.Distribution.DictionaryStringStringContext.Default
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.Default
+  nameWithType: DictionaryStringStringContext.Default
+- uid: P2PNet.Distribution.DictionaryStringStringContext.Default*
+  name: Default
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_Default_
+  commentId: Overload:P2PNet.Distribution.DictionaryStringStringContext.Default
+  isSpec: "True"
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.Default
+  nameWithType: DictionaryStringStringContext.Default
+- uid: P2PNet.Distribution.DictionaryStringStringContext.DictionaryStringString
+  name: DictionaryStringString
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_DictionaryStringString
+  commentId: P:P2PNet.Distribution.DictionaryStringStringContext.DictionaryStringString
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.DictionaryStringString
+  nameWithType: DictionaryStringStringContext.DictionaryStringString
+- uid: P2PNet.Distribution.DictionaryStringStringContext.DictionaryStringString*
+  name: DictionaryStringString
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_DictionaryStringString_
+  commentId: Overload:P2PNet.Distribution.DictionaryStringStringContext.DictionaryStringString
+  isSpec: "True"
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.DictionaryStringString
+  nameWithType: DictionaryStringStringContext.DictionaryStringString
+- uid: P2PNet.Distribution.DictionaryStringStringContext.GeneratedSerializerOptions
+  name: GeneratedSerializerOptions
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_GeneratedSerializerOptions
+  commentId: P:P2PNet.Distribution.DictionaryStringStringContext.GeneratedSerializerOptions
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.GeneratedSerializerOptions
+  nameWithType: DictionaryStringStringContext.GeneratedSerializerOptions
+- uid: P2PNet.Distribution.DictionaryStringStringContext.GeneratedSerializerOptions*
+  name: GeneratedSerializerOptions
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_GeneratedSerializerOptions_
+  commentId: Overload:P2PNet.Distribution.DictionaryStringStringContext.GeneratedSerializerOptions
+  isSpec: "True"
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.GeneratedSerializerOptions
+  nameWithType: DictionaryStringStringContext.GeneratedSerializerOptions
+- uid: P2PNet.Distribution.DictionaryStringStringContext.GetTypeInfo(System.Type)
+  name: GetTypeInfo(Type)
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_GetTypeInfo_System_Type_
+  commentId: M:P2PNet.Distribution.DictionaryStringStringContext.GetTypeInfo(System.Type)
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.GetTypeInfo(System.Type)
+  nameWithType: DictionaryStringStringContext.GetTypeInfo(Type)
+- uid: P2PNet.Distribution.DictionaryStringStringContext.GetTypeInfo*
+  name: GetTypeInfo
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_GetTypeInfo_
+  commentId: Overload:P2PNet.Distribution.DictionaryStringStringContext.GetTypeInfo
+  isSpec: "True"
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.GetTypeInfo
+  nameWithType: DictionaryStringStringContext.GetTypeInfo
+- uid: P2PNet.Distribution.DictionaryStringStringContext.String
+  name: String
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_String
+  commentId: P:P2PNet.Distribution.DictionaryStringStringContext.String
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.String
+  nameWithType: DictionaryStringStringContext.String
+- uid: P2PNet.Distribution.DictionaryStringStringContext.String*
+  name: String
+  href: api/P2PNet.Distribution.DictionaryStringStringContext.html#P2PNet_Distribution_DictionaryStringStringContext_String_
+  commentId: Overload:P2PNet.Distribution.DictionaryStringStringContext.String
+  isSpec: "True"
+  fullName: P2PNet.Distribution.DictionaryStringStringContext.String
+  nameWithType: DictionaryStringStringContext.String
 - uid: P2PNet.Distribution.DisconnectPacketContext
   name: DisconnectPacketContext
   href: api/P2PNet.Distribution.DisconnectPacketContext.html
@@ -2945,6 +3161,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.Distribution.DistributionHandler.EnqueueIncomingDataPacket
   nameWithType: DistributionHandler.EnqueueIncomingDataPacket
+- uid: P2PNet.Distribution.DistributionHandler.NetworkFileManager
+  name: NetworkFileManager
+  href: api/P2PNet.Distribution.DistributionHandler.html#P2PNet_Distribution_DistributionHandler_NetworkFileManager
+  commentId: P:P2PNet.Distribution.DistributionHandler.NetworkFileManager
+  fullName: P2PNet.Distribution.DistributionHandler.NetworkFileManager
+  nameWithType: DistributionHandler.NetworkFileManager
+- uid: P2PNet.Distribution.DistributionHandler.NetworkFileManager*
+  name: NetworkFileManager
+  href: api/P2PNet.Distribution.DistributionHandler.html#P2PNet_Distribution_DistributionHandler_NetworkFileManager_
+  commentId: Overload:P2PNet.Distribution.DistributionHandler.NetworkFileManager
+  isSpec: "True"
+  fullName: P2PNet.Distribution.DistributionHandler.NetworkFileManager
+  nameWithType: DistributionHandler.NetworkFileManager
 - uid: P2PNet.Distribution.DistributionHandler.QueueDataForDistribution(P2PNet.NetworkPackets.DataTransmissionPacket)
   name: QueueDataForDistribution(DataTransmissionPacket)
   href: api/P2PNet.Distribution.DistributionHandler.html#P2PNet_Distribution_DistributionHandler_QueueDataForDistribution_P2PNet_NetworkPackets_DataTransmissionPacket_
@@ -3215,6 +3444,38 @@ references:
   commentId: T:P2PNet.Distribution.EncryptionAndSecurityHandler
   fullName: P2PNet.Distribution.EncryptionAndSecurityHandler
   nameWithType: EncryptionAndSecurityHandler
+- uid: P2PNet.Distribution.EncryptionAndSecurityHandler.GetMD5Hash(System.String)
+  name: GetMD5Hash(string)
+  href: api/P2PNet.Distribution.EncryptionAndSecurityHandler.html#P2PNet_Distribution_EncryptionAndSecurityHandler_GetMD5Hash_System_String_
+  commentId: M:P2PNet.Distribution.EncryptionAndSecurityHandler.GetMD5Hash(System.String)
+  name.vb: GetMD5Hash(String)
+  fullName: P2PNet.Distribution.EncryptionAndSecurityHandler.GetMD5Hash(string)
+  fullName.vb: P2PNet.Distribution.EncryptionAndSecurityHandler.GetMD5Hash(String)
+  nameWithType: EncryptionAndSecurityHandler.GetMD5Hash(string)
+  nameWithType.vb: EncryptionAndSecurityHandler.GetMD5Hash(String)
+- uid: P2PNet.Distribution.EncryptionAndSecurityHandler.GetMD5Hash*
+  name: GetMD5Hash
+  href: api/P2PNet.Distribution.EncryptionAndSecurityHandler.html#P2PNet_Distribution_EncryptionAndSecurityHandler_GetMD5Hash_
+  commentId: Overload:P2PNet.Distribution.EncryptionAndSecurityHandler.GetMD5Hash
+  isSpec: "True"
+  fullName: P2PNet.Distribution.EncryptionAndSecurityHandler.GetMD5Hash
+  nameWithType: EncryptionAndSecurityHandler.GetMD5Hash
+- uid: P2PNet.Distribution.EncryptionAndSecurityHandler.HexStringToOriginal(System.String)
+  name: HexStringToOriginal(string)
+  href: api/P2PNet.Distribution.EncryptionAndSecurityHandler.html#P2PNet_Distribution_EncryptionAndSecurityHandler_HexStringToOriginal_System_String_
+  commentId: M:P2PNet.Distribution.EncryptionAndSecurityHandler.HexStringToOriginal(System.String)
+  name.vb: HexStringToOriginal(String)
+  fullName: P2PNet.Distribution.EncryptionAndSecurityHandler.HexStringToOriginal(string)
+  fullName.vb: P2PNet.Distribution.EncryptionAndSecurityHandler.HexStringToOriginal(String)
+  nameWithType: EncryptionAndSecurityHandler.HexStringToOriginal(string)
+  nameWithType.vb: EncryptionAndSecurityHandler.HexStringToOriginal(String)
+- uid: P2PNet.Distribution.EncryptionAndSecurityHandler.HexStringToOriginal*
+  name: HexStringToOriginal
+  href: api/P2PNet.Distribution.EncryptionAndSecurityHandler.html#P2PNet_Distribution_EncryptionAndSecurityHandler_HexStringToOriginal_
+  commentId: Overload:P2PNet.Distribution.EncryptionAndSecurityHandler.HexStringToOriginal
+  isSpec: "True"
+  fullName: P2PNet.Distribution.EncryptionAndSecurityHandler.HexStringToOriginal
+  nameWithType: EncryptionAndSecurityHandler.HexStringToOriginal
 - uid: P2PNet.Distribution.EncryptionAndSecurityHandler.VerifySignature(System.String,System.String)
   name: VerifySignature(string, string)
   href: api/P2PNet.Distribution.EncryptionAndSecurityHandler.html#P2PNet_Distribution_EncryptionAndSecurityHandler_VerifySignature_System_String_System_String_
@@ -3231,6 +3492,271 @@ references:
   isSpec: "True"
   fullName: P2PNet.Distribution.EncryptionAndSecurityHandler.VerifySignature
   nameWithType: EncryptionAndSecurityHandler.VerifySignature
+- uid: P2PNet.Distribution.FileManager
+  name: P2PNet.Distribution.FileManager
+  href: api/P2PNet.Distribution.FileManager.html
+  commentId: N:P2PNet.Distribution.FileManager
+  fullName: P2PNet.Distribution.FileManager
+  nameWithType: P2PNet.Distribution.FileManager
+- uid: P2PNet.Distribution.FileManager.IFileManager
+  name: IFileManager
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html
+  commentId: T:P2PNet.Distribution.FileManager.IFileManager
+  fullName: P2PNet.Distribution.FileManager.IFileManager
+  nameWithType: IFileManager
+- uid: P2PNet.Distribution.FileManager.IFileManager.GetFile(System.Int32)
+  name: GetFile(int)
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_GetFile_System_Int32_
+  commentId: M:P2PNet.Distribution.FileManager.IFileManager.GetFile(System.Int32)
+  name.vb: GetFile(Integer)
+  fullName: P2PNet.Distribution.FileManager.IFileManager.GetFile(int)
+  fullName.vb: P2PNet.Distribution.FileManager.IFileManager.GetFile(Integer)
+  nameWithType: IFileManager.GetFile(int)
+  nameWithType.vb: IFileManager.GetFile(Integer)
+- uid: P2PNet.Distribution.FileManager.IFileManager.GetFile(System.String)
+  name: GetFile(string)
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_GetFile_System_String_
+  commentId: M:P2PNet.Distribution.FileManager.IFileManager.GetFile(System.String)
+  name.vb: GetFile(String)
+  fullName: P2PNet.Distribution.FileManager.IFileManager.GetFile(string)
+  fullName.vb: P2PNet.Distribution.FileManager.IFileManager.GetFile(String)
+  nameWithType: IFileManager.GetFile(string)
+  nameWithType.vb: IFileManager.GetFile(String)
+- uid: P2PNet.Distribution.FileManager.IFileManager.GetFile*
+  name: GetFile
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_GetFile_
+  commentId: Overload:P2PNet.Distribution.FileManager.IFileManager.GetFile
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.IFileManager.GetFile
+  nameWithType: IFileManager.GetFile
+- uid: P2PNet.Distribution.FileManager.IFileManager.InboundDatapacketToFile(P2PNet.NetworkPackets.DataTransmissionPacket)
+  name: InboundDatapacketToFile(DataTransmissionPacket)
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_InboundDatapacketToFile_P2PNet_NetworkPackets_DataTransmissionPacket_
+  commentId: M:P2PNet.Distribution.FileManager.IFileManager.InboundDatapacketToFile(P2PNet.NetworkPackets.DataTransmissionPacket)
+  fullName: P2PNet.Distribution.FileManager.IFileManager.InboundDatapacketToFile(P2PNet.NetworkPackets.DataTransmissionPacket)
+  nameWithType: IFileManager.InboundDatapacketToFile(DataTransmissionPacket)
+- uid: P2PNet.Distribution.FileManager.IFileManager.InboundDatapacketToFile*
+  name: InboundDatapacketToFile
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_InboundDatapacketToFile_
+  commentId: Overload:P2PNet.Distribution.FileManager.IFileManager.InboundDatapacketToFile
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.IFileManager.InboundDatapacketToFile
+  nameWithType: IFileManager.InboundDatapacketToFile
+- uid: P2PNet.Distribution.FileManager.IFileManager.Initialize
+  name: Initialize()
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_Initialize
+  commentId: M:P2PNet.Distribution.FileManager.IFileManager.Initialize
+  fullName: P2PNet.Distribution.FileManager.IFileManager.Initialize()
+  nameWithType: IFileManager.Initialize()
+- uid: P2PNet.Distribution.FileManager.IFileManager.Initialize*
+  name: Initialize
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_Initialize_
+  commentId: Overload:P2PNet.Distribution.FileManager.IFileManager.Initialize
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.IFileManager.Initialize
+  nameWithType: IFileManager.Initialize
+- uid: P2PNet.Distribution.FileManager.IFileManager.WriteToFile(System.String,System.Byte[])
+  name: WriteToFile(string, byte[])
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_WriteToFile_System_String_System_Byte___
+  commentId: M:P2PNet.Distribution.FileManager.IFileManager.WriteToFile(System.String,System.Byte[])
+  name.vb: WriteToFile(String, Byte())
+  fullName: P2PNet.Distribution.FileManager.IFileManager.WriteToFile(string, byte[])
+  fullName.vb: P2PNet.Distribution.FileManager.IFileManager.WriteToFile(String, Byte())
+  nameWithType: IFileManager.WriteToFile(string, byte[])
+  nameWithType.vb: IFileManager.WriteToFile(String, Byte())
+- uid: P2PNet.Distribution.FileManager.IFileManager.WriteToFile(System.String,System.String)
+  name: WriteToFile(string, string)
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_WriteToFile_System_String_System_String_
+  commentId: M:P2PNet.Distribution.FileManager.IFileManager.WriteToFile(System.String,System.String)
+  name.vb: WriteToFile(String, String)
+  fullName: P2PNet.Distribution.FileManager.IFileManager.WriteToFile(string, string)
+  fullName.vb: P2PNet.Distribution.FileManager.IFileManager.WriteToFile(String, String)
+  nameWithType: IFileManager.WriteToFile(string, string)
+  nameWithType.vb: IFileManager.WriteToFile(String, String)
+- uid: P2PNet.Distribution.FileManager.IFileManager.WriteToFile*
+  name: WriteToFile
+  href: api/P2PNet.Distribution.FileManager.IFileManager.html#P2PNet_Distribution_FileManager_IFileManager_WriteToFile_
+  commentId: Overload:P2PNet.Distribution.FileManager.IFileManager.WriteToFile
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.IFileManager.WriteToFile
+  nameWithType: IFileManager.WriteToFile
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager
+  name: MemoryMappedFileManager
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html
+  commentId: T:P2PNet.Distribution.FileManager.MemoryMappedFileManager
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager
+  nameWithType: MemoryMappedFileManager
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile(System.Int32)
+  name: GetFile(int)
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_GetFile_System_Int32_
+  commentId: M:P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile(System.Int32)
+  name.vb: GetFile(Integer)
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile(int)
+  fullName.vb: P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile(Integer)
+  nameWithType: MemoryMappedFileManager.GetFile(int)
+  nameWithType.vb: MemoryMappedFileManager.GetFile(Integer)
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile(System.String)
+  name: GetFile(string)
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_GetFile_System_String_
+  commentId: M:P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile(System.String)
+  name.vb: GetFile(String)
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile(string)
+  fullName.vb: P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile(String)
+  nameWithType: MemoryMappedFileManager.GetFile(string)
+  nameWithType.vb: MemoryMappedFileManager.GetFile(String)
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile*
+  name: GetFile
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_GetFile_
+  commentId: Overload:P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.GetFile
+  nameWithType: MemoryMappedFileManager.GetFile
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.InboundDatapacketToFile(P2PNet.NetworkPackets.DataTransmissionPacket)
+  name: InboundDatapacketToFile(DataTransmissionPacket)
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_InboundDatapacketToFile_P2PNet_NetworkPackets_DataTransmissionPacket_
+  commentId: M:P2PNet.Distribution.FileManager.MemoryMappedFileManager.InboundDatapacketToFile(P2PNet.NetworkPackets.DataTransmissionPacket)
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.InboundDatapacketToFile(P2PNet.NetworkPackets.DataTransmissionPacket)
+  nameWithType: MemoryMappedFileManager.InboundDatapacketToFile(DataTransmissionPacket)
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.InboundDatapacketToFile*
+  name: InboundDatapacketToFile
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_InboundDatapacketToFile_
+  commentId: Overload:P2PNet.Distribution.FileManager.MemoryMappedFileManager.InboundDatapacketToFile
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.InboundDatapacketToFile
+  nameWithType: MemoryMappedFileManager.InboundDatapacketToFile
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.Initialize
+  name: Initialize()
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_Initialize
+  commentId: M:P2PNet.Distribution.FileManager.MemoryMappedFileManager.Initialize
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.Initialize()
+  nameWithType: MemoryMappedFileManager.Initialize()
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.Initialize*
+  name: Initialize
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_Initialize_
+  commentId: Overload:P2PNet.Distribution.FileManager.MemoryMappedFileManager.Initialize
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.Initialize
+  nameWithType: MemoryMappedFileManager.Initialize
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile(System.String,System.Byte[])
+  name: WriteToFile(string, byte[])
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_WriteToFile_System_String_System_Byte___
+  commentId: M:P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile(System.String,System.Byte[])
+  name.vb: WriteToFile(String, Byte())
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile(string, byte[])
+  fullName.vb: P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile(String, Byte())
+  nameWithType: MemoryMappedFileManager.WriteToFile(string, byte[])
+  nameWithType.vb: MemoryMappedFileManager.WriteToFile(String, Byte())
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile(System.String,System.String)
+  name: WriteToFile(string, string)
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_WriteToFile_System_String_System_String_
+  commentId: M:P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile(System.String,System.String)
+  name.vb: WriteToFile(String, String)
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile(string, string)
+  fullName.vb: P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile(String, String)
+  nameWithType: MemoryMappedFileManager.WriteToFile(string, string)
+  nameWithType.vb: MemoryMappedFileManager.WriteToFile(String, String)
+- uid: P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile*
+  name: WriteToFile
+  href: api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html#P2PNet_Distribution_FileManager_MemoryMappedFileManager_WriteToFile_
+  commentId: Overload:P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.MemoryMappedFileManager.WriteToFile
+  nameWithType: MemoryMappedFileManager.WriteToFile
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager
+  name: VirtualImageFileManager
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html
+  commentId: T:P2PNet.Distribution.FileManager.VirtualImageFileManager
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager
+  nameWithType: VirtualImageFileManager
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.Dispose
+  name: Dispose()
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_Dispose
+  commentId: M:P2PNet.Distribution.FileManager.VirtualImageFileManager.Dispose
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.Dispose()
+  nameWithType: VirtualImageFileManager.Dispose()
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.Dispose*
+  name: Dispose
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_Dispose_
+  commentId: Overload:P2PNet.Distribution.FileManager.VirtualImageFileManager.Dispose
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.Dispose
+  nameWithType: VirtualImageFileManager.Dispose
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile(System.Int32)
+  name: GetFile(int)
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_GetFile_System_Int32_
+  commentId: M:P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile(System.Int32)
+  name.vb: GetFile(Integer)
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile(int)
+  fullName.vb: P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile(Integer)
+  nameWithType: VirtualImageFileManager.GetFile(int)
+  nameWithType.vb: VirtualImageFileManager.GetFile(Integer)
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile(System.String)
+  name: GetFile(string)
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_GetFile_System_String_
+  commentId: M:P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile(System.String)
+  name.vb: GetFile(String)
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile(string)
+  fullName.vb: P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile(String)
+  nameWithType: VirtualImageFileManager.GetFile(string)
+  nameWithType.vb: VirtualImageFileManager.GetFile(String)
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile*
+  name: GetFile
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_GetFile_
+  commentId: Overload:P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.GetFile
+  nameWithType: VirtualImageFileManager.GetFile
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.InboundDatapacketToFile(P2PNet.NetworkPackets.DataTransmissionPacket)
+  name: InboundDatapacketToFile(DataTransmissionPacket)
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_InboundDatapacketToFile_P2PNet_NetworkPackets_DataTransmissionPacket_
+  commentId: M:P2PNet.Distribution.FileManager.VirtualImageFileManager.InboundDatapacketToFile(P2PNet.NetworkPackets.DataTransmissionPacket)
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.InboundDatapacketToFile(P2PNet.NetworkPackets.DataTransmissionPacket)
+  nameWithType: VirtualImageFileManager.InboundDatapacketToFile(DataTransmissionPacket)
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.InboundDatapacketToFile*
+  name: InboundDatapacketToFile
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_InboundDatapacketToFile_
+  commentId: Overload:P2PNet.Distribution.FileManager.VirtualImageFileManager.InboundDatapacketToFile
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.InboundDatapacketToFile
+  nameWithType: VirtualImageFileManager.InboundDatapacketToFile
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.Initialize
+  name: Initialize()
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_Initialize
+  commentId: M:P2PNet.Distribution.FileManager.VirtualImageFileManager.Initialize
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.Initialize()
+  nameWithType: VirtualImageFileManager.Initialize()
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.Initialize*
+  name: Initialize
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_Initialize_
+  commentId: Overload:P2PNet.Distribution.FileManager.VirtualImageFileManager.Initialize
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.Initialize
+  nameWithType: VirtualImageFileManager.Initialize
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile(System.String,System.Byte[])
+  name: WriteToFile(string, byte[])
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_WriteToFile_System_String_System_Byte___
+  commentId: M:P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile(System.String,System.Byte[])
+  name.vb: WriteToFile(String, Byte())
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile(string, byte[])
+  fullName.vb: P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile(String, Byte())
+  nameWithType: VirtualImageFileManager.WriteToFile(string, byte[])
+  nameWithType.vb: VirtualImageFileManager.WriteToFile(String, Byte())
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile(System.String,System.String)
+  name: WriteToFile(string, string)
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_WriteToFile_System_String_System_String_
+  commentId: M:P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile(System.String,System.String)
+  name.vb: WriteToFile(String, String)
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile(string, string)
+  fullName.vb: P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile(String, String)
+  nameWithType: VirtualImageFileManager.WriteToFile(string, string)
+  nameWithType.vb: VirtualImageFileManager.WriteToFile(String, String)
+- uid: P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile*
+  name: WriteToFile
+  href: api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html#P2PNet_Distribution_FileManager_VirtualImageFileManager_WriteToFile_
+  commentId: Overload:P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile
+  isSpec: "True"
+  fullName: P2PNet.Distribution.FileManager.VirtualImageFileManager.WriteToFile
+  nameWithType: VirtualImageFileManager.WriteToFile
 - uid: P2PNet.Distribution.GenericPeerContext
   name: GenericPeerContext
   href: api/P2PNet.Distribution.GenericPeerContext.html
@@ -4237,6 +4763,19 @@ references:
   commentId: T:P2PNet.Distribution.NetworkTaskHandler
   fullName: P2PNet.Distribution.NetworkTaskHandler
   nameWithType: NetworkTaskHandler
+- uid: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  name: ExtractSignatureFromNetworkTask(NetworkTask)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTask_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  nameWithType: NetworkTaskHandler.ExtractSignatureFromNetworkTask(NetworkTask)
+- uid: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask*
+  name: ExtractSignatureFromNetworkTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask
+  nameWithType: NetworkTaskHandler.ExtractSignatureFromNetworkTask
 - uid: P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks
   name: incomingNetworkTasks
   href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_incomingNetworkTasks
@@ -4861,6 +5400,15 @@ references:
   fullName.vb: P2PNet.NetworkPackets.DataTransmissionPacket.New()
   nameWithType: DataTransmissionPacket.DataTransmissionPacket()
   nameWithType.vb: DataTransmissionPacket.New()
+- uid: P2PNet.NetworkPackets.DataTransmissionPacket.#ctor(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  name: DataTransmissionPacket(NetworkTask)
+  href: api/P2PNet.NetworkPackets.DataTransmissionPacket.html#P2PNet_NetworkPackets_DataTransmissionPacket__ctor_P2PNet_Distribution_NetworkTasks_NetworkTask_
+  commentId: M:P2PNet.NetworkPackets.DataTransmissionPacket.#ctor(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  name.vb: New(NetworkTask)
+  fullName: P2PNet.NetworkPackets.DataTransmissionPacket.DataTransmissionPacket(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  fullName.vb: P2PNet.NetworkPackets.DataTransmissionPacket.New(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  nameWithType: DataTransmissionPacket.DataTransmissionPacket(NetworkTask)
+  nameWithType.vb: DataTransmissionPacket.New(NetworkTask)
 - uid: P2PNet.NetworkPackets.DataTransmissionPacket.#ctor(System.Byte[],P2PNet.Distribution.DistributionProtocol.DataPayloadFormat)
   name: DataTransmissionPacket(byte[], DataPayloadFormat)
   href: api/P2PNet.NetworkPackets.DataTransmissionPacket.html#P2PNet_NetworkPackets_DataTransmissionPacket__ctor_System_Byte___P2PNet_Distribution_DistributionProtocol_DataPayloadFormat_
@@ -4906,6 +5454,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.NetworkPackets.DataTransmissionPacket.DataType
   nameWithType: DataTransmissionPacket.DataType
+- uid: P2PNet.NetworkPackets.DataTransmissionPacket.ToJsonString
+  name: ToJsonString()
+  href: api/P2PNet.NetworkPackets.DataTransmissionPacket.html#P2PNet_NetworkPackets_DataTransmissionPacket_ToJsonString
+  commentId: M:P2PNet.NetworkPackets.DataTransmissionPacket.ToJsonString
+  fullName: P2PNet.NetworkPackets.DataTransmissionPacket.ToJsonString()
+  nameWithType: DataTransmissionPacket.ToJsonString()
+- uid: P2PNet.NetworkPackets.DataTransmissionPacket.ToJsonString*
+  name: ToJsonString
+  href: api/P2PNet.NetworkPackets.DataTransmissionPacket.html#P2PNet_NetworkPackets_DataTransmissionPacket_ToJsonString_
+  commentId: Overload:P2PNet.NetworkPackets.DataTransmissionPacket.ToJsonString
+  isSpec: "True"
+  fullName: P2PNet.NetworkPackets.DataTransmissionPacket.ToJsonString
+  nameWithType: DataTransmissionPacket.ToJsonString
 - uid: P2PNet.NetworkPackets.DataTransmissionPacket.ToString
   name: ToString()
   href: api/P2PNet.NetworkPackets.DataTransmissionPacket.html#P2PNet_NetworkPackets_DataTransmissionPacket_ToString
@@ -6002,6 +6563,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4Sources
   nameWithType: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4Sources
+- uid: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.SetIdentifier
+  name: SetIdentifier
+  href: api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_SetIdentifier
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.SetIdentifier
+  fullName: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.SetIdentifier
+  nameWithType: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.SetIdentifier
+- uid: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.SetIdentifier*
+  name: SetIdentifier
+  href: api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_SetIdentifier_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.SetIdentifier
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.SetIdentifier
+  nameWithType: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.SetIdentifier
 - uid: P2PNet.PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType
   name: PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType
   href: api/P2PNet.PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType.html

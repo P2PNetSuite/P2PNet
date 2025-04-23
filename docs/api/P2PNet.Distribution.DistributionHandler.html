@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class DistributionHandler | P2PNetDocs ">
       
-      <meta name="description" content="Provides methods and properties to handle data distribution to trusted peer channels.">
+      <meta name="description" content="Provides methods and properties to handle data distribution in the peer-to-peer network.">
       <link rel="icon" href="../misc/p2pnet_logo.png">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="P2PNet_Distribution_DistributionHandler" data-uid="P2PNet.Distribution.DistributionHandler" class="text-break">
-Class DistributionHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L14"><i class="bi bi-code-slash"></i></a>
+Class DistributionHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
   <dl><dt>Assembly</dt><dd>P2PNet.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Provides methods and properties to handle data distribution to trusted peer channels.</p>
+  <div class="markdown summary"><p>Provides methods and properties to handle data distribution in the peer-to-peer network.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -147,6 +147,23 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
 
 
+  <h2 id="P2PNet_Distribution_DistributionHandler_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+The DistributionHandler static class orchestrates the distribution of data packets such as files,
+network tasks, and miscellaneous data across trusted peer channels. It maintains separate concurrent
+queues for outgoing and incoming data packets.
+</p>
+<p>
+Outgoing packets are queued and then distributed to all trusted peers by periodically checking the queue.
+Incoming packets are similarly enqueued and processed in distinct logic branches based on their payload type.
+Additionally, the class exposes methods to wrap raw data into a data transmission packet and to 
+asynchronously queue incoming serialized packets.
+</p>
+<p>
+A file manager is used to dispatch files via memory-mapped files and the internal MemoryHandler
+class provides support for loading and managing file data.
+</p>
+</div>
 
 
   <h2 class="section" id="fields">Fields
@@ -156,7 +173,7 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
   <h3 id="P2PNet_Distribution_DistributionHandler_incomingDataQueue" data-uid="P2PNet.Distribution.DistributionHandler.incomingDataQueue">
   incomingDataQueue
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Queue for incoming data packets to be processed.</p>
@@ -187,7 +204,7 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
   <h3 id="P2PNet_Distribution_DistributionHandler_outgoingDataQueue" data-uid="P2PNet.Distribution.DistributionHandler.outgoingDataQueue">
   outgoingDataQueue
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Queue for outgoing data packets to be distributed to trusted peers.</p>
@@ -215,6 +232,46 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
 
 
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="P2PNet_Distribution_DistributionHandler_NetworkFileManager_" data-uid="P2PNet.Distribution.DistributionHandler.NetworkFileManager*"></a>
+
+  <h3 id="P2PNet_Distribution_DistributionHandler_NetworkFileManager" data-uid="P2PNet.Distribution.DistributionHandler.NetworkFileManager">
+  NetworkFileManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the network file manager instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IFileManager NetworkFileManager { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.FileManager.IFileManager.html">IFileManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="P2PNet_Distribution_DistributionHandler_NetworkFileManager_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The file manager is responsible for handling file data from the network and mapping inbound file data
+to a storage mechanism; by default, an instance of <a class="xref" href="P2PNet.Distribution.FileManager.MemoryMappedFileManager.html">MemoryMappedFileManager</a> is used.</p>
+</div>
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -223,7 +280,7 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
   <h3 id="P2PNet_Distribution_DistributionHandler_DistributeFileAsync_System_String_" data-uid="P2PNet.Distribution.DistributionHandler.DistributeFileAsync(System.String)">
   DistributeFileAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L206"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Distributes a file asynchronously by reading its contents and queuing it for distribution.</p>
@@ -262,7 +319,7 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
   <h3 id="P2PNet_Distribution_DistributionHandler_EnqueueIncomingDataPacket_P2PNet_NetworkPackets_DataTransmissionPacket_" data-uid="P2PNet.Distribution.DistributionHandler.EnqueueIncomingDataPacket(P2PNet.NetworkPackets.DataTransmissionPacket)">
   EnqueueIncomingDataPacket(DataTransmissionPacket)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L98"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enqueues an incoming data packet for processing.</p>
@@ -301,7 +358,7 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
   <h3 id="P2PNet_Distribution_DistributionHandler_EnqueueIncomingDataPacket_System_String_" data-uid="P2PNet.Distribution.DistributionHandler.EnqueueIncomingDataPacket(System.String)">
   EnqueueIncomingDataPacket(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L108"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enqueues a serialized incoming data packet for processing.</p>
@@ -340,10 +397,10 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
   <h3 id="P2PNet_Distribution_DistributionHandler_QueueDataForDistribution_P2PNet_NetworkPackets_DataTransmissionPacket_" data-uid="P2PNet.Distribution.DistributionHandler.QueueDataForDistribution(P2PNet.NetworkPackets.DataTransmissionPacket)">
   QueueDataForDistribution(DataTransmissionPacket)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Queues a data packet for distribution.</p>
+  <div class="markdown level1 summary"><p>Queues a data transmission packet for distribution to trusted peers.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -354,7 +411,7 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>packet</code> <a class="xref" href="P2PNet.NetworkPackets.DataTransmissionPacket.html">DataTransmissionPacket</a></dt>
-    <dd><p>The data packet to queue.</p>
+    <dd><p>The data transmission packet to enqueue.</p>
 </dd>
   </dl>
 
@@ -373,10 +430,10 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
   <h3 id="P2PNet_Distribution_DistributionHandler_QueueDataForDistribution_System_Byte___P2PNet_Distribution_DistributionProtocol_DataPayloadFormat_" data-uid="P2PNet.Distribution.DistributionHandler.QueueDataForDistribution(System.Byte[],P2PNet.Distribution.DistributionProtocol.DataPayloadFormat)">
   QueueDataForDistribution(byte[], DataPayloadFormat)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/DistributionHandler.cs/#L88"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Queues raw data for distribution by wrapping it in a data transmission packet.</p>
+  <div class="markdown level1 summary"><p>Queues raw data for distribution by wrapping it into a data transmission packet.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -387,10 +444,10 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd><p>The raw data to queue.</p>
+    <dd><p>The raw data bytes to be distributed.</p>
 </dd>
     <dt><code>dataType</code> <a class="xref" href="P2PNet.Distribution.DistributionProtocol.html">DistributionProtocol</a>.<a class="xref" href="P2PNet.Distribution.DistributionProtocol.DataPayloadFormat.html">DataPayloadFormat</a></dt>
-    <dd><p>The type of data being queued.</p>
+    <dd><p>The type of data indicated by <a class="xref" href="P2PNet.Distribution.DistributionProtocol.DataPayloadFormat.html">DistributionProtocol.DataPayloadFormat</a>.</p>
 </dd>
   </dl>
 
@@ -401,6 +458,10 @@ Class DistributionHandler  <a class="header-action link-secondary" title="View s
 
 
 
+  <h4 class="section" id="P2PNet_Distribution_DistributionHandler_QueueDataForDistribution_System_Byte___P2PNet_Distribution_DistributionProtocol_DataPayloadFormat__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This overload allows enqueueing data that is not already wrapped in a data transmission packet.
+The packet is constructed using the data and its specified payload format.</p>
+</div>
 
 
 

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class NetworkTaskHandler | P2PNetDocs ">
       
-      
+      <meta name="description" content="Provides static methods and queues for managing network tasks within the peer-to-peer distribution system.">
       <link rel="icon" href="../misc/p2pnet_logo.png">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="P2PNet_Distribution_NetworkTaskHandler" data-uid="P2PNet.Distribution.NetworkTaskHandler" class="text-break">
-Class NetworkTaskHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L13"><i class="bi bi-code-slash"></i></a>
+Class NetworkTaskHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class NetworkTaskHandler  <a class="header-action link-secondary" title="View so
   <dl><dt>Assembly</dt><dd>P2PNet.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Provides static methods and queues for managing network tasks within the peer-to-peer distribution system.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -146,6 +147,18 @@ Class NetworkTaskHandler  <a class="header-action link-secondary" title="View so
 
 
 
+  <h2 id="P2PNet_Distribution_NetworkTaskHandler_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+This static class maintains two concurrent queues—one for outgoing network tasks to be sent to trusted peers,
+and one for incoming network tasks that need to be processed. It uses timers to periodically check these queues
+and invoke appropriate handlers to process tasks based on their <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html">TaskType</a>. Tasks may include actions
+such as blocking a peer, sending messages, pinging, and disconnecting peers.
+</p>
+<p>
+The class also exposes a helper method to extract the PGP clear-signed signature from a network task, which is used
+for validation and verification purposes.
+</p>
+</div>
 
 
   <h2 class="section" id="fields">Fields
@@ -155,7 +168,7 @@ Class NetworkTaskHandler  <a class="header-action link-secondary" title="View so
 
   <h3 id="P2PNet_Distribution_NetworkTaskHandler_incomingNetworkTasks" data-uid="P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks">
   incomingNetworkTasks
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Queue for incoming data packets to be processed.</p>
@@ -186,7 +199,7 @@ Class NetworkTaskHandler  <a class="header-action link-secondary" title="View so
 
   <h3 id="P2PNet_Distribution_NetworkTaskHandler_outgoingNetworkTasks" data-uid="P2PNet.Distribution.NetworkTaskHandler.outgoingNetworkTasks">
   outgoingNetworkTasks
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Queue for outgoing data packets to be distributed to trusted peers.</p>
@@ -205,6 +218,46 @@ Class NetworkTaskHandler  <a class="header-action link-secondary" title="View so
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentqueue-1">ConcurrentQueue</a>&lt;<a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a>&gt;</dt>
     <dd></dd>
   </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)">
+  ExtractSignatureFromNetworkTask(NetworkTask)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;string&gt; ExtractSignatureFromNetworkTask(NetworkTask networkTask)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>networkTask</code> <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
 
 
 

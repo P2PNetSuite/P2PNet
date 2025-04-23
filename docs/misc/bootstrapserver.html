@@ -100,44 +100,49 @@
 <tr>
 <th>AppSettings Key</th>
 <th>Environment Variable</th>
-<th>Description</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Configuration:KeysDirectory</td>
 <td>KEYS_DIRECTORY</td>
-<td>Specifies the directory where encryption keys are stored.</td>
+<td style="text-align: left;">Specifies the directory where encryption keys are stored.</td>
 </tr>
 <tr>
 <td>Configuration:BootstrapMode</td>
 <td>BOOTSTRAP_MODE</td>
-<td>Determines whether the bootstrap server runs in Authority or Trustless mode.</td>
+<td style="text-align: left;">Determines whether the bootstrap server runs in Authority or Trustless mode.</td>
 </tr>
 <tr>
 <td>Configuration:AuthorityKey:PublicKey</td>
 <td>PUBLIC_KEY_PATH</td>
-<td>The filename (or path, relative to the base directory) for the public key used by the bootstrap server.</td>
+<td style="text-align: left;">The filename (or path, relative to the base directory) for the public key used by the bootstrap server.</td>
 </tr>
 <tr>
 <td>Configuration:AuthorityKey:PrivateKey</td>
 <td>PRIVATE_KEY_PATH</td>
-<td>The filename (or path) for the private key used by the bootstrap server.</td>
+<td style="text-align: left;">The filename (or path) for the private key used by the bootstrap server.</td>
 </tr>
 <tr>
 <td>Configuration:NetworkName</td>
 <td>NETWORK_NAME</td>
-<td>The identifier for the P2P network, used to distinguish this network from others.</td>
+<td style="text-align: left;">The alias for the P2P network, used to distinguish this network from others. This is also used and referenced within encryption logic for some keys.</td>
 </tr>
 <tr>
 <td>Configuration:OptionalEndpoints:PublicIP</td>
 <td>ENDPOINT_PUBLICIP</td>
-<td>Server will serve a GET endpoint<code>/api/Bootstrap/publicip</code> which can be used by clients to retrieve their public face IPv4 address</td>
+<td style="text-align: left;">Server will serve a GET endpoint<code>/api/Bootstrap/publicip</code> which can be used by clients to retrieve their public face IPv4 address</td>
+</tr>
+<tr>
+<td>Configuration:Identifier</td>
+<td>IDENTIFIER</td>
+<td style="text-align: left;">The peer network Identifier value upon initialization. This is required for authority mode operations and cannot be blank unless running in trustless mode.</td>
 </tr>
 <tr>
 <td>Database:DbFileName</td>
 <td>DB_FILENAME</td>
-<td>The filename for the local database file storing bootstrap server data.</td>
+<td style="text-align: left;">The filename for the local database file storing bootstrap server data.</td>
 </tr>
 </tbody>
 </table>
@@ -153,16 +158,20 @@
 <ol>
 <li><p><strong>Peer Distribution</strong>: The bootstrap server provides a series of HTTP endpoints, such as (<code>/api/Bootstrap/peers</code>) in order to distribute the list of known peers to new peers joining the network. This endpoint can operate in two modes:</p>
 <ul>
-<li><strong>Trustless Mode</strong>: Returns the list of known peers. Serves mostly to keep a list of peers that is mostly likely up to date. Trustless static bootstrap server cannot exert any degree of central control over the network - no commands can be issued that carry any weight or decision making on</li>
+<li><strong>Trustless Mode</strong>: Returns the list of known peers. Serves mostly to keep a list of peers that is most likely up to date. Trustless static bootstrap server cannot exert any degree of central control over the network - no commands can be issued that carry any weight or decision making.</li>
 <li><strong>Authority Mode</strong>: Requires the client to receive and store a public key from the bootstrap server before returning the peer list. Authority mode allows the static bootstrap server to exert varying degrees of central control over the network, which can be leveraged to ensure network security and serve other particular use cases.</li>
 </ul>
 <p>
  <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/p2pbootstrap_sequence.png" alt="bootstrap chart">
  </p>
 </li>
-<li><p><strong>Admin Terminal Integration</strong>: The server integrates an admin terminal to easily execute commands.</p>
+<li><p><strong>Admin Terminal Integration</strong>: The server integrates an admin terminal to easily execute commands. This is accessible upon logging into the control panel via the web portal page.</p>
 </li>
 <li><p><strong>Encryption Service</strong>: The server initializes an encryption service to handle secure communication. This includes generating and loading PGP keys, generating new keys, clear signing messages, generating hashes of objects, and more.</p>
+<ul>
+<li><strong>⚠️IMPORTANT⚠️</strong>: In the appsettings.json configuration file, the <code>NetworkName</code> field is used as an authorization point of reference. Change the <code>NetworkName</code> field after an initialization under a different value will render any previously generated PGP keys unusable. You will either have to purge all previous keys, or revert the <code>NetworkName</code> value back. This <em>can</em> break functionality, so be careful.</li>
+<li><strong>Note</strong>: During startup, the server verifies whether the passphrase for its PGP keys is configured. If the passphrase is missing or invalid, the server logs a message advising the operator to supply one. This step ensures that key-based encryption and clear signing remain functional. If the passphrase needs resetting, administrators can update the relevant environment variable or appsettings configuration, and then restart the server to apply the changes.</li>
+</ul>
 </li>
 <li><p><strong>Database Initialization</strong>: The server initializes a local database to store necessary data. It ensures the database directory exists and sets up the required files.</p>
 </li>
@@ -185,6 +194,45 @@
 <p>
     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/Bootstrap.png" width="500" height="325" alt="bootstrap chart">
 </p>
+<h3 id="bootstrap-channels">Bootstrap Channels</h3>
+<p>The <strong>BootstrapChannel</strong> class defines the core routines for communicating with a bootstrap server. It is able to apply these routines in both <em>authority</em> and <em>trustless</em> modes to help establish a node’s identity and retrieve known peers.</p>
+<ol>
+<li><p><strong>Core Responsibilities</strong></p>
+<ul>
+<li><strong>Initial Handshake</strong>: The <code>InitialBootstrapHandler</code> delegate determines how the channel attempts its first connection. In authority mode, the base logic validates a public key and processes a peer list. In trustless mode, the peer list is simply loaded without further validation.</li>
+<li><strong>Heartbeat Routine</strong>: A periodic heartbeat signals the node’s presence to the bootstrap server. The default behavior is controlled by the <code>HeartbeatOutHandler</code> delegate, which sends an outbound heartbeat on a timer. The bootstrap server will respond with <code>NetworkTasks</code> to be handled by the <code>NetworkTaskhandler</code>.</li>
+<li><strong>Error Handling</strong>: When the server indicates a failure (e.g., due to invalid packets or unreachable endpoints), the <code>HandleErrorResponse</code> delegate processes and logs the issue.</li>
+</ul>
+</li>
+<li><p><strong>Mode Differences</strong></p>
+<ul>
+<li><strong>Trustless Mode</strong>: Returns a straightforward peer list, facilitating faster onboarding for new peers. Minimal validation is performed, suitable for open or LAN-oriented networks.</li>
+<li><strong>Authority Mode</strong>: Incorporates a public key check, verifies network tasks (e.g., hashing and signatures), and may lock the first recognized authority to prevent unauthorized servers from impersonation.</li>
+</ul>
+</li>
+<li><p><strong>Delegate Customization</strong><br>
+Each of the public delegates in <code>BootstrapChannelBase</code> can be replaced to modify the default behaviors (e.g., injecting custom logging or retry logic). For instance, the <code>InitialBootstrapHandler</code> can be overwritten to integrate special authentication steps before loading the peer list, while the <code>IsValidNetworkHash</code> delegate allows you to plug in a custom hash or signature validation routine.</p>
+</li>
+<li><p><strong>Sample Usage Outline</strong><br>
+4. <strong>Sample Usage Outline</strong></p>
+<ul>
+<li>Instantiate a <code>BootstrapChannel</code><br>
+• via the simple constructor, e.g. <code>new BootstrapChannel(&quot;https://bootstrap.example.com&quot;, true)</code><br>
+• or by supplying a <code>BootstrapChannelConnectionOptions</code> instance for advanced settings, e.g.
+<pre><code class="lang-csharp">var options = new BootstrapChannelConnectionOptions(
+    new Uri(&quot;https://bootstrap.example.com&quot;),
+    isAuthorityMode: true,
+    bootstrapPeer: null);
+var channel = new BootstrapChannel(options);
+</code></pre>
+</li>
+<li>Either A) Call <code>channel.OpenBootstrapChannel()</code> to trigger the initial handshake, or B) Call <code>AddBootstrapChannel(channel)</code> and when ready to open all bootstrap channels, call <code>StartBootstrapConnections();</code>. In authority mode, the server’s public key is validated and the peer list is processed; in trustless mode, the peer list is loaded directly.</li>
+<li>Control the heartbeat routine with <code>StartHeartbeatRoutine()</code> / <code>StopHeartbeatRoutine()</code>, or replace the <code>HeartbeatOutHandler</code> delegate to customize send/retry logic.</li>
+<li>When overriding delegates (e.g., <code>InitialBootstrapHandler</code> or <code>HeartbeatOutHandler</code>), remember to maintain the essential tasks of each step—handshake, data retrieval, or error checks—to keep the channel stable.</li>
+</ul>
+</li>
+</ol>
+<p>These classes ensure that each node communicates with the bootstrap server in a consistent manner while still allowing extensibility for custom security or operational requirements.</p>
 <p><strong>Note:</strong> Bootstrap server still under construction 🏗️</p>
 
 </article>

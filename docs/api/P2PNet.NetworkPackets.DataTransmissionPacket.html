@@ -192,6 +192,39 @@ public DataTransmissionPacket()</code></pre>
 
   <a id="P2PNet_NetworkPackets_DataTransmissionPacket__ctor_" data-uid="P2PNet.NetworkPackets.DataTransmissionPacket.#ctor*"></a>
 
+  <h3 id="P2PNet_NetworkPackets_DataTransmissionPacket__ctor_P2PNet_Distribution_NetworkTasks_NetworkTask_" data-uid="P2PNet.NetworkPackets.DataTransmissionPacket.#ctor(P2PNet.Distribution.NetworkTasks.NetworkTask)">
+  DataTransmissionPacket(NetworkTask)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/DataTransmissionPacket.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="P2PNet.NetworkPackets.DataTransmissionPacket.html">DataTransmissionPacket</a> class with a <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataTransmissionPacket(NetworkTask networkTask)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>networkTask</code> <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>The NetworkTask to store in the payload of the packet.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_NetworkPackets_DataTransmissionPacket__ctor_" data-uid="P2PNet.NetworkPackets.DataTransmissionPacket.#ctor*"></a>
+
   <h3 id="P2PNet_NetworkPackets_DataTransmissionPacket__ctor_System_Byte___P2PNet_Distribution_DistributionProtocol_DataPayloadFormat_" data-uid="P2PNet.NetworkPackets.DataTransmissionPacket.#ctor(System.Byte[],P2PNet.Distribution.DistributionProtocol.DataPayloadFormat)">
   DataTransmissionPacket(byte[], DataPayloadFormat)
   <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/DataTransmissionPacket.cs/#L49"><i class="bi bi-code-slash"></i></a>
@@ -303,14 +336,48 @@ Acceptable data formats include:</p>
 </h2>
 
 
+  <a id="P2PNet_NetworkPackets_DataTransmissionPacket_ToJsonString_" data-uid="P2PNet.NetworkPackets.DataTransmissionPacket.ToJsonString*"></a>
+
+  <h3 id="P2PNet_NetworkPackets_DataTransmissionPacket_ToJsonString" data-uid="P2PNet.NetworkPackets.DataTransmissionPacket.ToJsonString">
+  ToJsonString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/DataTransmissionPacket.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a JSON serialized string representation of the data transmission packet.
+This is ideal for transmission over network.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToJsonString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Returns a JSON serialized string representation of the data transmission packet.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="P2PNet_NetworkPackets_DataTransmissionPacket_ToString_" data-uid="P2PNet.NetworkPackets.DataTransmissionPacket.ToString*"></a>
 
   <h3 id="P2PNet_NetworkPackets_DataTransmissionPacket_ToString" data-uid="P2PNet.NetworkPackets.DataTransmissionPacket.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/DataTransmissionPacket.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/NetworkPackets/DataTransmissionPacket.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Returns a string representation of the data transmission packet.</p>
+  <div class="markdown level1 summary"><p>Returns a string representation of the data transmission packet's data payload.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -322,7 +389,7 @@ Acceptable data formats include:</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>A string representation of the data transmission packet.</p>
+    <dd><p>A string representation of the data transmission packet's payload.</p>
 </dd>
   </dl>
 

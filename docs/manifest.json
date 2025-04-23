@@ -712,6 +712,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.DictionaryStringStringContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.DictionaryStringStringContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.DictionaryStringStringContext",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/P2PNet.Distribution.DisconnectPacketContext.yml",
       "output": {
         ".html": {
@@ -736,7 +750,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.Distribution.DistributionHandler",
-      "Summary": "<p sourcefile=\"api/P2PNet.Distribution.DistributionHandler.yml\" sourcestartlinenumber=\"1\">Provides methods and properties to handle data distribution to trusted peer channels.</p>\n"
+      "Summary": "<p sourcefile=\"api/P2PNet.Distribution.DistributionHandler.yml\" sourcestartlinenumber=\"1\">Provides methods and properties to handle data distribution in the peer-to-peer network.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -834,6 +848,62 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.Distribution.EncryptionAndSecurityHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.FileManager.IFileManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.FileManager.IFileManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.FileManager.IFileManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.FileManager.MemoryMappedFileManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.FileManager.MemoryMappedFileManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.FileManager.VirtualImageFileManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.FileManager.VirtualImageFileManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.FileManager.VirtualImageFileManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.FileManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.FileManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.FileManager",
       "Summary": null
     },
     {
@@ -960,7 +1030,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.Distribution.NetworkTaskHandler",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/P2PNet.Distribution.NetworkTaskHandler.yml\" sourcestartlinenumber=\"1\">Provides static methods and queues for managing network tasks within the peer-to-peer distribution system.</p>\n"
     },
     {
       "type": "ManagedReference",

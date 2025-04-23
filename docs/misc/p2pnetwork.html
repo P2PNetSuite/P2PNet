@@ -124,6 +124,22 @@
 Each communication channel between peers is represented by an instance of the <code>PeerChannel</code> class. This class manages the relay of data packets, conducts connection retries, and enforces trust policies by invoking predefined delegates from the <code>PacketHandleProtocol</code>.</p>
 </li>
 </ol>
+<h4 id="file-management-via-ifilemanager">File Management via IFileManager</h4>
+<p>The <code>DistributionHandler</code> uses its static <code>NetworkFileManager</code> property—typed as <code>IFileManager</code>—to handle all file‑based payloads (<code>DataPayloadFormat.File</code>). On receipt, each file packet is passed to</p>
+<pre><code class="lang-csharp">NetworkFileManager.InboundDatapacketToFile(packet);
+</code></pre>
+<p>and outgoing file data is written via the same interface.</p>
+<p>By default two implementations are provided:</p>
+<ul>
+<li><strong>MemoryMappedFileManager</strong><br>
+Uses memory‑mapped files for fast, low‑overhead read/write operations in RAM. Ideal when working with large files or high‑throughput scenarios.</li>
+<li><strong>VirtualImageFileManager</strong><br>
+Creates a VHD image formatted with FAT and stores files inside it. Useful when you need a self‑contained disk image or want FAT semantics on top of a virtual filesystem.</li>
+</ul>
+<p>To swap in a custom manager, assign before distribution starts:</p>
+<pre><code class="lang-csharp">DistributionHandler.NetworkFileManager = new YourCustomFileManager(...);
+</code></pre>
+<p>Your implementation must handle <code>GetFile(string|int)</code>, <code>WriteToFile(...)</code> and <code>InboundDatapacketToFile(...)</code> to integrate smoothly with the distribution pipeline.</p>
 <h3 id="routines">Routines</h3>
 <hr>
 <p>The <code>NetworkRoutines</code> class provides a mechanism for managing network routines. Routines are tasks that run at specified intervals to perform various network-related operations.</p>
@@ -178,6 +194,7 @@ Controls how the local network identifier is set and maintained, and how the pub
 </ul>
 </li>
 <li><strong>PublicIPv4Sources</strong>: A list of URLs that are queried to fetch the public-facing IPv4 address, based on the defined retrieval policy. URLs should point directly to an API endpoint serving a plain text response.</li>
+<li><strong>SetIdentifier</strong>: Gets or sets the delegate responsible for generating and assigning the peer’s network identifier. The default <code>SetIdentifier</code> handler concatenates the system’s MAC address with the current timestamp, computes an MD5 hash, appends the chosen public IP (IPv6 if available, otherwise IPv4), and computes a second MD5 hash. Override this delegate to supply custom identifier logic that fits your network requirements.</li>
 </ul>
 </li>
 </ol>
