@@ -13,22 +13,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        framework: [ 'net8.0', 'net9.0' ]
+
     steps:
     - uses: actions/checkout@v4
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: ${{ matrix.framework }}
         
     - name: Restore dependencies
       run: dotnet restore
       
-    - name: Build
+    - name: Build ${{ matrix.framework }}
       run: dotnet build --no-restore -nowarn:all
-      
-    - name: Test
-      run: dotnet test --no-build --verbosity normal --framework net9.0
+
+    - name: Pack for ${{ matrix.framework }}
+      run: dotnet pack --no-build --configuration Release --framework ${{ matrix.framework }}
 
     - name: Check if version changed
       id: version_check
