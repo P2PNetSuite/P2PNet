@@ -15,7 +15,8 @@ jobs:
 
     strategy:
       matrix:
-        framework: [ 'net8.0', 'net9.0' ]
+        sdk: [ '9.0.x', '8.0.x' ]
+        framework: [ 'net9.0', 'net8.0' ]
 
     steps:
     - uses: actions/checkout@v4
@@ -23,7 +24,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ matrix.framework | replace('net', '') }}.x
+        dotnet-version: ${{ matrix.sdk }}
         
     - name: Restore dependencies
       run: dotnet restore
