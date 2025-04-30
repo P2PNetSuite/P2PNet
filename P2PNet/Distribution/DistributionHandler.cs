@@ -169,7 +169,7 @@ namespace P2PNet.Distribution
                                 var _nt = Deserialize<NetworkTask>(_out);
                                 if(_nt != null)
                                 {
-                                    NetworkTaskHandler.incomingNetworkTasks.Enqueue(_nt);
+                                    NetworkTaskHandler.EnqueueIncomingNetworkTask(_nt, new NetworkTaskOriginInfo(packet));
                                 }
                             } catch { 
                             // do nothing here for now

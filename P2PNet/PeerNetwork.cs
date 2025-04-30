@@ -71,7 +71,7 @@ namespace P2PNet
         public static string Identifier
         {
             get { return _identifier; }
-            set 
+            set // TODO: add additional checks to ensure SET complies with policies (ie we need to add internal bools/flags through out lib that can be checked to signal if setting is allowed or not) 
             { 
                 if((TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy != TrustPolicies.LocalIdentifierSetPolicyType.StrictLocalOnly) && (TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy != TrustPolicies.LocalIdentifierSetPolicyType.StrictRemoteOnly))
                 {
@@ -204,6 +204,23 @@ namespace P2PNet
         }
 
         /// <summary>
+        /// Searches the list of known peers for a peer with the specified identifier.
+        /// </summary>
+        /// <param name="identifier">The identifier to search for.</param>
+        /// <returns>
+        /// The first <see cref="IPeer"/> with a matching identifier, or <c>null</c> if no matching peer is found.
+        /// </returns>
+        public static IPeer GetPeerByIdentifier(string identifier)
+        {
+            if (string.IsNullOrEmpty(identifier))
+            {
+                return null;
+            }
+
+            return KnownPeers.FirstOrDefault(peer => peer.Identifier == identifier);
+        }
+
+        /// <summary>
         /// Occurs when a new peer is added and passes the received data from the subsequent PeerChannel in an event.
         /// Subscribers can use this event to handle all new peers and their peer channels, regardless of point of origin.
         /// </summary>
@@ -285,11 +302,14 @@ namespace P2PNet
 
         private static List<LocalChannel> ActiveLocalChannels = new List<LocalChannel>();
         private static List<MulticastChannel> ActiveMulticastChannels = new List<MulticastChannel>();
-        private static List<BootstrapChannel> ActiveBootstrapChannels = new List<BootstrapChannel>();
 
+        /// <summary>
+        /// All active <see cref="BootstrapChannel"/> connections are stored here.
+        /// </summary>
+        public static List<BootstrapChannel> ActiveBootstrapChannels = new List<BootstrapChannel>();
         private static List<BootstrapChannel> inactiveBootstrapChannel = new List<BootstrapChannel>();
-        private static List<IPAddress> multicast_addresses = new List<IPAddress>();
 
+        private static List<IPAddress> multicast_addresses = new List<IPAddress>();
         #endregion
 
 
@@ -335,7 +355,7 @@ namespace P2PNet
                 TcpClient client = await listener.AcceptTcpClientAsync();
 
                 Task.Run(() => handleInboundConnection(client));
-                Thread.Sleep(75);
+                // Thread.Sleep(75);
             }
         }
         static void handleInboundConnection(TcpClient client)
@@ -1252,6 +1272,9 @@ namespace P2PNet
 
             }
 
+            /// <summary>
+            /// Handles trust and permissions in regards to a range of misc. peer network settings.
+            /// </summary>
             public static class PeerNetworkTrustPolicy
             {
                 private static LocalIdentifierSetPolicyType _localIdentifierInitPolicy = LocalIdentifierSetPolicyType.LocalAndRemote;
@@ -1308,6 +1331,64 @@ namespace P2PNet
                     get => publicIPv4sources;
                     set => publicIPv4sources = value;
                 }
+
+                /// <summary>
+                /// Configures the trust settings for executing network tasks within the peer-to-peer network.
+                /// </summary>
+                /// <remarks>
+                /// <para>
+                /// This static instance of <see cref="NetworkTaskTrustConfiguration"/> defines the trust parameters for each <see cref="TaskType"/>.
+                /// It determines the conditions under which a network task is allowed to execute, such as requiring the sender to be a trusted peer
+                /// or authority bootstrap server, or providing a valid signed hash. You can also mute a certain type of task using the parameter
+                /// <see cref="TaskTrustParameter.IgnoreAll"/> or allow total pass through of all of a certain type with <see cref="TaskTrustParameter.Open"/>
+                /// </para>
+                /// <para>
+                /// The default configuration assigns specific trust requirements to certain task types. For example:
+                /// <list type="bullet">
+                /// <item>
+                /// <term><see cref="TaskType.SendMessage"/></term>
+                /// <description>Defaults to <see cref="TaskTrustParameter.Open"/>, allowing all peers to send messages.</description>
+                /// </item>
+                /// <item>
+                /// <term><see cref="TaskType.BlockIP"/></term>
+                /// <description>Defaults to requiring <see cref="TaskTrustParameter.TrustedPeer"/> and <see cref="TaskTrustParameter.AuthorityBootstrapServer"/>.</description>
+                /// </item>
+                /// <item>
+                /// <term><see cref="TaskType.AssignIdentifierToPeer"/></term>
+                /// <description>Defaults to requiring <see cref="TaskTrustParameter.MustHaveSignedHash"/> and <see cref="TaskTrustParameter.AuthorityBootstrapServer"/>.</description>
+                /// </item>
+                /// </list>
+                /// </para>
+                /// <para>
+                /// For any <see cref="TaskType"/> not explicitly declared in the default configuration, trust requirements default to
+                /// <see cref="TaskTrustParameter.TrustedPeer"/> and <see cref="TaskTrustParameter.AuthorityBootstrapServer"/>. This ensures that
+                /// tasks not explicitly configured require some elevated trust by default (ie the sender of the task must be either a trust peer
+                /// or an authority bootstrap server).
+                /// </para>
+                /// <para>
+                /// Users can modify this configuration at runtime to customize the trust requirements for specific task types. For example:
+                /// <code language="csharp">
+                /// PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings.UpdateTrustParams(
+                ///     TaskType.SendMessage,
+                ///     TaskTrustParameter.TrustedPeer
+                /// );
+                /// </code>
+                /// </para>
+                /// </remarks>
+                public static NetworkTaskTrustConfiguration NetworkTaskTrustSettings { get; set; } = new NetworkTaskTrustConfiguration(
+                    bootstrapping_,
+                    blocking_,
+                    blocking_remove_,
+                    update_identifier_,
+                    messages_
+                    );
+                    private static TaskTrustMappingEntry bootstrapping_ = new TaskTrustMappingEntry(TaskType.BootstrapInitialization,       TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
+                        private static TaskTrustMappingEntry blocking_ = new TaskTrustMappingEntry(TaskType.BlockIP,                        TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
+                        private static TaskTrustMappingEntry blocking_remove_ = new TaskTrustMappingEntry(TaskType.BlockAndRemovePeer,      TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
+                        private static TaskTrustMappingEntry update_identifier_ = new TaskTrustMappingEntry(TaskType.AssignIdentifierToPeer,TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
+                    private static TaskTrustMappingEntry messages_ = new TaskTrustMappingEntry(TaskType.SendMessage,                        TaskTrustParameter.Open);
+
+
                 /// <summary>
                 /// Gets or sets the action responsible for automatically setting the peer network identifier 
                 /// based on system properties and network configuration.
