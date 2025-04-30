@@ -23,7 +23,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ matrix.framework }}.x
+        dotnet-version: ${{ matrix.framework | replace('net', '') }}.x
         
     - name: Restore dependencies
       run: dotnet restore
