@@ -23,11 +23,6 @@ namespace P2PNet.Peers
         /// </summary>
         public DateTime LastIncomingDataReceived { get; internal set; } = DateTime.Now;
 
-        /// <summary>
-        /// Gets or sets the peer associated with this channel.
-        /// </summary>
-        public IPeer peer { get; set; }
-
         private int RETRIES = 0; // for retrying connections
         private const int MAX_RETRIES = 3;
 

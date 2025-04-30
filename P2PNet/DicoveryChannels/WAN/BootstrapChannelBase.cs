@@ -20,8 +20,13 @@ namespace P2PNet.DicoveryChannels.WAN
         public BootstrapPeer BootstrapServer { get; set; }
         internal Uri BootstrapServerEndpoint => BootstrapServer.Endpoint;
         internal PGPKeyInfo publicKey { get; set; } // store the public key from the server
-        
-        
+
+        /// <summary>
+        /// Indicates whether the channel is currently active and has recently communicated.
+        /// False indicates prolonged lack of communication (ie timeout) or failed initialization.
+        /// </summary>
+        public bool IsActive { get; set; } = false; // indicates if the channel is active or not
+
         public string PublicKey => Encoding.UTF8.GetString(publicKey.KeyData); // expose the public key as a string for easy access
 
         /// <summary>
@@ -203,6 +208,8 @@ namespace P2PNet.DicoveryChannels.WAN
             ProcessPeerList(sharePacket);
             // finally start heartbeat routine
             StartHeartbeatRoutine();
+            // set the channel to active
+            IsActive = true;
         }
         private void TrustlessModeInitialBootstrap(string packet)
         {
@@ -210,7 +217,9 @@ namespace P2PNet.DicoveryChannels.WAN
             CollectionSharePacket sharePacket = Deserialize<CollectionSharePacket>(packet);
             ProcessPeerList(sharePacket);
             // finally start heartbeat routine
-            StartHeartbeatRoutine();
+            // StartHeartbeatRoutine();   TODO: Trustless mode should not start heartbeat routine until a trustless heartbeat routine can be devised
+            // set the channel to active
+            IsActive = true;
         }
 
         private async Task<bool> ValidateNetworkTaskHash(NetworkTask task)
@@ -223,21 +232,12 @@ namespace P2PNet.DicoveryChannels.WAN
                 string computedHash = EncryptionAndSecurityHandler.GetMD5Hash(Serialize(task)).Result;
 
                 // create a new network task to request hash verification.
-                NetworkTask verifyTask = new NetworkTask()
-                {
-                    TaskType = TaskType.RequestVerifyHashRecord,
-                    TaskData = new Dictionary<string, string>()
-                    {
-                        { "Hash", computedHash }
-                    }
-                };
+                NetworkTask verifyTask = NetworkTaskHandler.CreateRequestVerifyHashRecordTask(computedHash);
 
                 // Wrap the verification task in a data transmission packet.
                 DataTransmissionPacket verifyPacket = new DataTransmissionPacket(verifyTask);
                 string jsonPayload = Serialize(verifyPacket);
 
-                // Construct the verify-hash endpoint URI.
-                // Adjust the GetEndpointURI parameters as needed for your application.
                 Uri verifyHashUri = DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.VerifyHash, BootstrapServer.Endpoint);
 
                 using (HttpClient client = new HttpClient())
@@ -251,25 +251,24 @@ namespace P2PNet.DicoveryChannels.WAN
                         // Expecting a message of the form "True:<hash>" if the hash is valid.
                         if (messagePacket.Message.StartsWith("True"))
                         {
-                            // Now verify the signature using the stored public key.
                             return true;
                         }
                         else
                         {
-                            DebugMessage($"Hash verification failed. Server returned: {messagePacket.Message}", MessageType.Debug);
+                            HandleErrorResponse($"Hash verification failed. Server returned: {messagePacket.Message}");
                             return false;
                         }
                     }
                     else
                     {
-                        DebugMessage("Failed to call verify hash endpoint.", MessageType.Debug);
+                        HandleErrorResponse("Failed to call verify hash endpoint.");
                         return false;
                     }
                 }
             }
             else
             {
-                DebugMessage("No signature found in NetworkTask.", MessageType.Debug);
+                HandleErrorResponse("No signature found in NetworkTask.");
                 return false;
             }
         }
@@ -330,52 +329,12 @@ namespace P2PNet.DicoveryChannels.WAN
 
                         // turn NetworkTask's data to Dict<str,str>
                         NetworkTask inboundTask = Deserialize<NetworkTask>(response_);
-                        // each value in Dict<str,str> --should-- be another NetworkTask
-                        Dictionary<string, string> tasks = inboundTask.TaskData;
-                        DebugMessage($"Bootstrap server {BootstrapServerEndpoint.ToString()} responded to heartbeat with {tasks.Count} tasks.", ConsoleColor.Cyan, PeerNetwork.Logging.Bootstrap);
-                        foreach (var task in tasks.Values)
+
+                        if (inboundTask.TaskType == TaskType.HeartbeatResponse) {
+                            NetworkTaskHandler.EnqueueIncomingNetworkTask(inboundTask, new NetworkTaskOriginInfo(responsePacket, PublicKey));
+                        } else
                         {
-                            try
-                            { // leave this wrapped in TryCatch block or otherwise will throw exception
-                                var nt = Deserialize<NetworkTask>(task);
-                                if (nt != null)
-                                {
-                                    try
-                                    {
-                                        // extract signature
-                                        string signature = await NetworkTaskHandler.ExtractSignatureFromNetworkTask(nt);
-                                        
-                                        // check signature
-                                        bool validSignature = await EncryptionAndSecurityHandler.VerifySignature(signature, PublicKey);
-                                        if(validSignature == false)
-                                        {
-                                            HandleErrorResponse("Signature is invalid.");
-                                            continue;
-                                        }
-
-                                        // check if hash is stored by the server
-                                        bool validHash = await IsValidNetworkHash(nt);
-                                        if (validHash == false)
-                                        {
-                                            HandleErrorResponse($"Hash verification failed for task: {task}");
-                                            continue;
-                                        }
-
-                                        DebugMessage($"Enqued task: {task}", ConsoleColor.DarkGreen, PeerNetwork.Logging.Bootstrap);
-                                        NetworkTaskHandler.incomingNetworkTasks.Enqueue(nt);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        // we do nothing here for now
-                                        // DebugMessage(ex.ToString(), MessageType.Critical, PeerNetwork.Logging.Bootstrap);
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                // we do nothing here
-                            }
-
+                            // TODO: handle
                         }
                     }
                     else
@@ -386,6 +345,7 @@ namespace P2PNet.DicoveryChannels.WAN
             }
             catch (Exception ex)
             {
+                DebugMessage(ex.ToString(), ConsoleColor.DarkBlue);
                 flawless = false;
                 FailedOutgoingHeartbeat();
             }
@@ -442,10 +402,16 @@ namespace P2PNet.DicoveryChannels.WAN
             publicKey = new PGPKeyInfo("PublicKey", Encoding.UTF8.GetBytes(publicKeyCrosscheck));
         }
 
-
         protected void ProcessPeerList(CollectionSharePacket peerList)
         {
             PeerNetwork.ProcessPeerList(peerList);
+        }
+
+        public virtual void CloseBootstrapChannel()
+        {
+                _heartbeatTimer.Stop();
+                _heartbeatTimer.Enabled = false;
+                IsActive = false;
         }
         #endregion
     }

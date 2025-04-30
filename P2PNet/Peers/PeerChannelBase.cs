@@ -29,6 +29,12 @@ namespace P2PNet.Peers
             { 10060, "Connection timed out. Connection attempt failed due to no response from connected party." }
         }; // TODO implement more pleasant exception handling
 
+        /// <summary>
+        /// Gets or sets the peer associated with this channel.
+        /// </summary>
+        public IPeer peer { get; set; }
+        private bool _identifierSet = false;
+
         protected ConcurrentQueue<string> IncomingDataQueue = new ConcurrentQueue<string>();
         protected ConcurrentQueue<string> OutgoingDataQueue = new ConcurrentQueue<string>();
         protected ConcurrentQueue<PacketTypeRelay> packetQueue = new ConcurrentQueue<PacketTypeRelay>();
