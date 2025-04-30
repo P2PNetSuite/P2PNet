@@ -27,9 +27,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore -nowarn:all
 
-    - name: Pack
-      run: dotnet pack --no-build --configuration Release --framework net9.0
-
     - name: Check if version changed
       id: version_check
       run: |
