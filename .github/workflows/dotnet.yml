@@ -12,31 +12,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        include:
-          - framework: net9.0
-            sdk: 9.0.x
-          - framework: net8.0
-            sdk: 8.0.x
-
+    
     steps:
     - uses: actions/checkout@v4
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ matrix.sdk }}
+        dotnet-version: 9.0.x
         
     - name: Restore dependencies
       run: dotnet restore
       
-    - name: Build ${{ matrix.framework }}
+    - name: Build
       run: dotnet build --no-restore -nowarn:all
 
-    - name: Pack for ${{ matrix.framework }}
-      run: dotnet pack --no-build --configuration Release --framework ${{ matrix.framework }}
+    - name: Pack
+      run: dotnet pack --no-build --configuration Release --framework net9.0
 
     - name: Check if version changed
       id: version_check
