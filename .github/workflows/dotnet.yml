@@ -15,8 +15,11 @@ jobs:
 
     strategy:
       matrix:
-        sdk: [ '9.0.x', '8.0.x' ]
-        framework: [ 'net9.0', 'net8.0' ]
+        include:
+          - framework: net9.0
+            sdk: 9.0.x
+          - framework: net8.0
+            sdk: 8.0.x
 
     steps:
     - uses: actions/checkout@v4
