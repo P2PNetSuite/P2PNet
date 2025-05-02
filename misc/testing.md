@@ -18,7 +18,7 @@ This portion of documentation outlines different methods of testing, and differe
 **WAN Tests**
 
 
-* Bootstrap test - *in progress*
+* Bootstrap test - the current ExampleApplication has been modified to establish a bootstrap connection with the official P2PNet boostrap server example instance... a more complex test scenario is underway
 
 * Widescan test - *in progress*
 

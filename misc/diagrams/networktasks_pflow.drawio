@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:137.0) Gecko/20100101 Firefox/137.0" version="26.2.14">
+  <diagram name="Page-1" id="T-AykJ4VlSibVeM5uB7N">
+    <mxGraphModel dx="1094" dy="1072" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lv03y9vsbfHR4nwqhgse-41" value="NetworkTask Overview - Process Flow" style="swimlane;labelBackgroundColor=none;swimlaneFillColor=default;fillColor=#003298;strokeColor=#001DBC;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry y="280" width="1010" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-42" value="NetworkTaskHandler" style="swimlane;swimlaneFillColor=default;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-41">
+          <mxGeometry x="225" y="70" width="725" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-43" value="Queues" style="swimlane;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;horizontal=1;startSize=20;horizontalStack=0;html=1;swimlaneFillColor=default;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-42">
+          <mxGeometry x="47.5" y="60" width="652.5" height="263" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-44" value="Inbound Queue" style="swimlane;startSize=20;horizontal=0;html=1;swimlaneFillColor=default;fillColor=#ffcccc;strokeColor=#F8CECC;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-43">
+          <mxGeometry y="20" width="652.5" height="123" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-45" value="" style="swimlane;childLayout=stackLayout;horizontal=1;fillColor=none;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;strokeColor=none;stackBorder=10;stackSpacing=-12;resizable=1;align=center;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-44">
+          <mxGeometry x="22.5" y="-6" width="630" height="113" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-46" value="&lt;div&gt;Check static instance of NetworkTaskTrustSettings &lt;br&gt;&lt;/div&gt;&lt;div&gt;in TrustPolicies to determine&lt;/div&gt;&lt;div&gt;what TaskTrustParameter(s) apply&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-45">
+          <mxGeometry x="10" y="33" width="230" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-47" value="&lt;div&gt;If checks apply, utilize metadata&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp;&amp;nbsp; provided by NetworkTaskOriginInfo&lt;/div&gt;&lt;div&gt;to ensure NetworkTask complies&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-45">
+          <mxGeometry x="228" y="33" width="222" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-48" value="&lt;div&gt;&amp;nbsp; If checks are satisfied, NetworkTask moves to&lt;/div&gt;&lt;div&gt;its corresponding delegate&lt;/div&gt;&lt;div&gt;to be invoked&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-45">
+          <mxGeometry x="438" y="33" width="182" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-49" value="Outbound Queue" style="swimlane;startSize=20;horizontal=0;html=1;swimlaneFillColor=default;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-43">
+          <mxGeometry y="143" width="652.5" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-50" value="" style="swimlane;childLayout=stackLayout;horizontal=1;fillColor=none;horizontalStack=1;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;strokeColor=none;stackBorder=10;stackSpacing=-12;resizable=1;align=center;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-49">
+          <mxGeometry x="22.5" y="-13" width="630" height="113" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-51" value="&lt;div&gt;Determine if NetworkTask&amp;nbsp;&lt;/div&gt;&lt;div&gt;needs to be wrapped in&amp;nbsp;&lt;/div&gt;&lt;div&gt;DataTransmissionPacket or not&lt;/div&gt;&lt;div&gt;by checking type of connection&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-50">
+          <mxGeometry x="10" y="33" width="230" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-52" value="&lt;div&gt;&amp;nbsp;If connectionless (HTTP/UDP) then&lt;/div&gt;&lt;div&gt;wrap, otherwise send unwrapped &lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-50">
+          <mxGeometry x="228" y="33" width="222" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-53" value="&lt;div&gt;Find recipient peer,&lt;/div&gt;&lt;div&gt;proceed to send&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;fixedSize=1;points=[];whiteSpace=wrap;html=1;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-50">
+          <mxGeometry x="438" y="33" width="182" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-54" value="&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;&amp;lt;&amp;lt;class&amp;gt;&amp;gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;NetworkTask&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-41">
+          <mxGeometry x="20" y="230" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-55" value="&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;&amp;lt;&amp;lt;struct&amp;gt;&amp;gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;NetworkTaskOriginInfo&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-41">
+          <mxGeometry x="20" y="170" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="lv03y9vsbfHR4nwqhgse-41" source="lv03y9vsbfHR4nwqhgse-57" target="lv03y9vsbfHR4nwqhgse-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-57" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-41">
+          <mxGeometry x="170" y="170" width="20" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="lv03y9vsbfHR4nwqhgse-41" source="lv03y9vsbfHR4nwqhgse-59" target="lv03y9vsbfHR4nwqhgse-49">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lv03y9vsbfHR4nwqhgse-59" value="&lt;div&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;&amp;lt;&amp;lt;class&amp;gt;&amp;gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;NetworkTask&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="lv03y9vsbfHR4nwqhgse-41">
+          <mxGeometry x="20" y="322" width="140" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -2,6 +2,8 @@
   href: p2pnetwork.md
 - name: Peers
   href: peers.md
+- name: NetworkTasks
+  href: networktasks.md
 - name: Testing🛠️
   href: testing.md
 - name: Bootstrap Server
