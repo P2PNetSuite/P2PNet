@@ -18,9 +18,17 @@ Tasks queue within the NetworkTaskHandler move in two directions:
 2. **Outbound Queue**  
    Locally created tasks (e.g., to send a message or request data) go into the outbound queue. Before dispatching, the system checks whether the connection requires wrapping the task in a higher-level `DataTransmissionPacket` or can send it directly. Typically, connectionless transmission is wrapped (e.g. UDP or HTTP)
 
+<p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/networktasks_flow.png" alt="peer network chart">
+</p>
+
 ### Trust Configuration
 
 `NetworkTaskTrustConfiguration` maps each `TaskType` to a set of required `TaskTrustParameter` values. These parameters (e.g., `Open`, `TrustedPeer`, or `AuthorityBootstrapServer`) define which security checks, if any, must be conducted to ensure the NetworkTask complies with security standards. This system lets developers tailor how strictly each task is authenticated or whether it needs a signed hash.
+
+<p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/networktasks_configuration.png" alt="peer network chart">
+</p>
 
 ### Handlers and Delegates
 
