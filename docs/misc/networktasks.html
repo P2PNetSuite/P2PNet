@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title> | P2PNetDocs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content=" | P2PNetDocs ">
+      
+      
+      <link rel="icon" href="../misc/p2pnet_logo.png">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/blob/docs/misc/networktasks.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../misc/p2plogo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="nettasks">
+
+<h2 id="network-tasks-">Network Tasks 🏭</h2>
+<p>Network tasks represent discrete actions carried out across the peer-to-peer network, such as blocking, messaging, or synchronizing data. Each task is described by a <code>NetworkTask</code> object, which contains:</p>
+<ul>
+<li><strong>TaskType</strong>: An enum value indicating the exact operation (e.g., <code>BlockIP</code>, <code>SendData</code>, or <code>AuthorizePeer</code>).</li>
+<li><strong>TaskData</strong>: A dictionary holding any supporting information (e.g., target peer identifier, a message payload).</li>
+</ul>
+<h3 id="task-flow">Task Flow</h3>
+<p>Tasks queue within the NetworkTaskHandler move in two directions:</p>
+<ol>
+<li><p><strong>Inbound Queue</strong><br>
+When a peer sends a <code>NetworkTask</code>, it is placed in the inbound queue for validation. The <code>NetworkTaskOriginInfo</code> provides metadata such as the sender’s IP address, SourceOriginIdentifier of the packet it came from, or a public key if known. The <code>NetworkTaskTrustConfiguration</code> (exposed as <code>NetworkTaskTrustSettings</code> within <code>PeerNetwork.TrustPolicies.PeerNetworkTrustPolicies</code>) applies trust rules—if a task fails to comply, it is blocked; otherwise it is routed to the corresponding handler delegate and executed.</p>
+</li>
+<li><p><strong>Outbound Queue</strong><br>
+Locally created tasks (e.g., to send a message or request data) go into the outbound queue. Before dispatching, the system checks whether the connection requires wrapping the task in a higher-level <code>DataTransmissionPacket</code> or can send it directly. Typically, connectionless transmission is wrapped (e.g. UDP or HTTP)</p>
+</li>
+</ol>
+<p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/networktasks_flow.png" alt="peer network chart">
+</p>
+<h3 id="trust-configuration">Trust Configuration</h3>
+<p><code>NetworkTaskTrustConfiguration</code> maps each <code>TaskType</code> to a set of required <code>TaskTrustParameter</code> values. These parameters (e.g., <code>Open</code>, <code>TrustedPeer</code>, or <code>AuthorityBootstrapServer</code>) define which security checks, if any, must be conducted to ensure the NetworkTask complies with security standards. This system lets developers tailor how strictly each task is authenticated or whether it needs a signed hash.</p>
+<p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/networktasks_configuration.png" alt="peer network chart">
+</p>
+<h3 id="handlers-and-delegates">Handlers and Delegates</h3>
+<p><code>NetworkTaskHandler</code> houses default delegate methods for each <code>TaskType</code> (e.g., <code>DefaultSendMessageHandler</code>). You can override these delegates to implement custom logic. Valid tasks are handed to their respective delegate, which performs the corresponding action (block, authorize, send data, ect).</p>
+<p>This approach ensures that each task is processed securely and in a consistent, extensible manner.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
