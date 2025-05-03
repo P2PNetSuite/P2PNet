@@ -1,7 +1,7 @@
 ---
 uid: nettasks
 ---
-## Network Tasks
+## Network Tasks 🏭
 
 Network tasks represent discrete actions carried out across the peer-to-peer network, such as blocking, messaging, or synchronizing data. Each task is described by a `NetworkTask` object, which contains:
 

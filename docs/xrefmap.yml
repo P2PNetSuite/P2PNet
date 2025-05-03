@@ -4763,19 +4763,6 @@ references:
   commentId: T:P2PNet.Distribution.NetworkTaskHandler
   fullName: P2PNet.Distribution.NetworkTaskHandler
   nameWithType: NetworkTaskHandler
-- uid: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
-  name: ExtractSignatureFromNetworkTask(NetworkTask)
-  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTask_
-  commentId: M:P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
-  fullName: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
-  nameWithType: NetworkTaskHandler.ExtractSignatureFromNetworkTask(NetworkTask)
-- uid: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask*
-  name: ExtractSignatureFromNetworkTask
-  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_
-  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask
-  isSpec: "True"
-  fullName: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask
-  nameWithType: NetworkTaskHandler.ExtractSignatureFromNetworkTask
 - uid: P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks
   name: incomingNetworkTasks
   href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_incomingNetworkTasks
@@ -4858,6 +4845,273 @@ references:
   isSpec: "True"
   fullName: P2PNet.Distribution.NetworkTasks.NetworkTask.ToByte
   nameWithType: NetworkTask.ToByte
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo
+  name: NetworkTaskOriginInfo
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html
+  commentId: T:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo
+  nameWithType: NetworkTaskOriginInfo
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket)
+  name: NetworkTaskOriginInfo(INetworkPacket)
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo__ctor_P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacketBase_INetworkPacket_
+  commentId: M:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket)
+  name.vb: New(INetworkPacket)
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.NetworkTaskOriginInfo(P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket)
+  fullName.vb: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.New(P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket)
+  nameWithType: NetworkTaskOriginInfo.NetworkTaskOriginInfo(INetworkPacket)
+  nameWithType.vb: NetworkTaskOriginInfo.New(INetworkPacket)
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket,System.String)
+  name: NetworkTaskOriginInfo(INetworkPacket, string)
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo__ctor_P2PNet_NetworkPackets_NetworkPacketBase_NetworkPacketBase_INetworkPacket_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket,System.String)
+  name.vb: New(INetworkPacket, String)
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.NetworkTaskOriginInfo(P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket, string)
+  fullName.vb: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.New(P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase.INetworkPacket, String)
+  nameWithType: NetworkTaskOriginInfo.NetworkTaskOriginInfo(INetworkPacket, string)
+  nameWithType.vb: NetworkTaskOriginInfo.New(INetworkPacket, String)
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(P2PNet.Peers.IPeer)
+  name: NetworkTaskOriginInfo(IPeer)
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo__ctor_P2PNet_Peers_IPeer_
+  commentId: M:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(P2PNet.Peers.IPeer)
+  name.vb: New(IPeer)
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.NetworkTaskOriginInfo(P2PNet.Peers.IPeer)
+  fullName.vb: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.New(P2PNet.Peers.IPeer)
+  nameWithType: NetworkTaskOriginInfo.NetworkTaskOriginInfo(IPeer)
+  nameWithType.vb: NetworkTaskOriginInfo.New(IPeer)
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(P2PNet.Peers.IPeer,System.String)
+  name: NetworkTaskOriginInfo(IPeer, string)
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo__ctor_P2PNet_Peers_IPeer_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(P2PNet.Peers.IPeer,System.String)
+  name.vb: New(IPeer, String)
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.NetworkTaskOriginInfo(P2PNet.Peers.IPeer, string)
+  fullName.vb: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.New(P2PNet.Peers.IPeer, String)
+  nameWithType: NetworkTaskOriginInfo.NetworkTaskOriginInfo(IPeer, string)
+  nameWithType.vb: NetworkTaskOriginInfo.New(IPeer, String)
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(System.String,System.String)
+  name: NetworkTaskOriginInfo(string, string)
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo__ctor_System_String_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor(System.String,System.String)
+  name.vb: New(String, String)
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.NetworkTaskOriginInfo(string, string)
+  fullName.vb: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.New(String, String)
+  nameWithType: NetworkTaskOriginInfo.NetworkTaskOriginInfo(string, string)
+  nameWithType.vb: NetworkTaskOriginInfo.New(String, String)
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor*
+  name: NetworkTaskOriginInfo
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo__ctor_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.NetworkTaskOriginInfo
+  fullName.vb: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.New
+  nameWithType: NetworkTaskOriginInfo.NetworkTaskOriginInfo
+  nameWithType.vb: NetworkTaskOriginInfo.New
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.Address
+  name: Address
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo_Address
+  commentId: P:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.Address
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.Address
+  nameWithType: NetworkTaskOriginInfo.Address
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.Address*
+  name: Address
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo_Address_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.Address
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.Address
+  nameWithType: NetworkTaskOriginInfo.Address
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.IP
+  name: IP
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo_IP
+  commentId: P:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.IP
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.IP
+  nameWithType: NetworkTaskOriginInfo.IP
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.IP*
+  name: IP
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo_IP_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.IP
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.IP
+  nameWithType: NetworkTaskOriginInfo.IP
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SenderPublicKey
+  name: SenderPublicKey
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo_SenderPublicKey
+  commentId: P:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SenderPublicKey
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SenderPublicKey
+  nameWithType: NetworkTaskOriginInfo.SenderPublicKey
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SenderPublicKey*
+  name: SenderPublicKey
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo_SenderPublicKey_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SenderPublicKey
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SenderPublicKey
+  nameWithType: NetworkTaskOriginInfo.SenderPublicKey
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SourceOriginIdentifier
+  name: SourceOriginIdentifier
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo_SourceOriginIdentifier
+  commentId: P:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SourceOriginIdentifier
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SourceOriginIdentifier
+  nameWithType: NetworkTaskOriginInfo.SourceOriginIdentifier
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SourceOriginIdentifier*
+  name: SourceOriginIdentifier
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html#P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo_SourceOriginIdentifier_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SourceOriginIdentifier
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.SourceOriginIdentifier
+  nameWithType: NetworkTaskOriginInfo.SourceOriginIdentifier
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration
+  name: NetworkTaskTrustConfiguration
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html
+  commentId: T:P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration
+  nameWithType: NetworkTaskTrustConfiguration
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.#ctor(P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry[])
+  name: NetworkTaskTrustConfiguration(params TaskTrustMappingEntry[])
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html#P2PNet_Distribution_NetworkTasks_NetworkTaskTrustConfiguration__ctor_P2PNet_Distribution_NetworkTasks_TaskTrustMappingEntry___
+  commentId: M:P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.#ctor(P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry[])
+  name.vb: New(ParamArray TaskTrustMappingEntry())
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.NetworkTaskTrustConfiguration(params P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry[])
+  fullName.vb: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.New(ParamArray P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry())
+  nameWithType: NetworkTaskTrustConfiguration.NetworkTaskTrustConfiguration(params TaskTrustMappingEntry[])
+  nameWithType.vb: NetworkTaskTrustConfiguration.New(ParamArray TaskTrustMappingEntry())
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.#ctor*
+  name: NetworkTaskTrustConfiguration
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html#P2PNet_Distribution_NetworkTasks_NetworkTaskTrustConfiguration__ctor_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.NetworkTaskTrustConfiguration
+  fullName.vb: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.New
+  nameWithType: NetworkTaskTrustConfiguration.NetworkTaskTrustConfiguration
+  nameWithType.vb: NetworkTaskTrustConfiguration.New
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.IsRequirementAllowed(P2PNet.Distribution.NetworkTasks.TaskType,P2PNet.Distribution.NetworkTasks.TaskTrustParameter)
+  name: IsRequirementAllowed(TaskType, TaskTrustParameter)
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html#P2PNet_Distribution_NetworkTasks_NetworkTaskTrustConfiguration_IsRequirementAllowed_P2PNet_Distribution_NetworkTasks_TaskType_P2PNet_Distribution_NetworkTasks_TaskTrustParameter_
+  commentId: M:P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.IsRequirementAllowed(P2PNet.Distribution.NetworkTasks.TaskType,P2PNet.Distribution.NetworkTasks.TaskTrustParameter)
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.IsRequirementAllowed(P2PNet.Distribution.NetworkTasks.TaskType, P2PNet.Distribution.NetworkTasks.TaskTrustParameter)
+  nameWithType: NetworkTaskTrustConfiguration.IsRequirementAllowed(TaskType, TaskTrustParameter)
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.IsRequirementAllowed*
+  name: IsRequirementAllowed
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html#P2PNet_Distribution_NetworkTasks_NetworkTaskTrustConfiguration_IsRequirementAllowed_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.IsRequirementAllowed
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.IsRequirementAllowed
+  nameWithType: NetworkTaskTrustConfiguration.IsRequirementAllowed
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.TaskTrustMapping
+  name: TaskTrustMapping
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html#P2PNet_Distribution_NetworkTasks_NetworkTaskTrustConfiguration_TaskTrustMapping
+  commentId: P:P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.TaskTrustMapping
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.TaskTrustMapping
+  nameWithType: NetworkTaskTrustConfiguration.TaskTrustMapping
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.TaskTrustMapping*
+  name: TaskTrustMapping
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html#P2PNet_Distribution_NetworkTasks_NetworkTaskTrustConfiguration_TaskTrustMapping_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.TaskTrustMapping
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.TaskTrustMapping
+  nameWithType: NetworkTaskTrustConfiguration.TaskTrustMapping
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.UpdateTrustParams(P2PNet.Distribution.NetworkTasks.TaskType,P2PNet.Distribution.NetworkTasks.TaskTrustParameter[])
+  name: UpdateTrustParams(TaskType, params TaskTrustParameter[])
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html#P2PNet_Distribution_NetworkTasks_NetworkTaskTrustConfiguration_UpdateTrustParams_P2PNet_Distribution_NetworkTasks_TaskType_P2PNet_Distribution_NetworkTasks_TaskTrustParameter___
+  commentId: M:P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.UpdateTrustParams(P2PNet.Distribution.NetworkTasks.TaskType,P2PNet.Distribution.NetworkTasks.TaskTrustParameter[])
+  name.vb: UpdateTrustParams(TaskType, ParamArray TaskTrustParameter())
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.UpdateTrustParams(P2PNet.Distribution.NetworkTasks.TaskType, params P2PNet.Distribution.NetworkTasks.TaskTrustParameter[])
+  fullName.vb: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.UpdateTrustParams(P2PNet.Distribution.NetworkTasks.TaskType, ParamArray P2PNet.Distribution.NetworkTasks.TaskTrustParameter())
+  nameWithType: NetworkTaskTrustConfiguration.UpdateTrustParams(TaskType, params TaskTrustParameter[])
+  nameWithType.vb: NetworkTaskTrustConfiguration.UpdateTrustParams(TaskType, ParamArray TaskTrustParameter())
+- uid: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.UpdateTrustParams*
+  name: UpdateTrustParams
+  href: api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html#P2PNet_Distribution_NetworkTasks_NetworkTaskTrustConfiguration_UpdateTrustParams_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.UpdateTrustParams
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.UpdateTrustParams
+  nameWithType: NetworkTaskTrustConfiguration.UpdateTrustParams
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry
+  name: TaskTrustMappingEntry
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.html
+  commentId: T:P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry
+  nameWithType: TaskTrustMappingEntry
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.#ctor(P2PNet.Distribution.NetworkTasks.TaskType,P2PNet.Distribution.NetworkTasks.TaskTrustParameter[])
+  name: TaskTrustMappingEntry(TaskType, params TaskTrustParameter[])
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.html#P2PNet_Distribution_NetworkTasks_TaskTrustMappingEntry__ctor_P2PNet_Distribution_NetworkTasks_TaskType_P2PNet_Distribution_NetworkTasks_TaskTrustParameter___
+  commentId: M:P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.#ctor(P2PNet.Distribution.NetworkTasks.TaskType,P2PNet.Distribution.NetworkTasks.TaskTrustParameter[])
+  name.vb: New(TaskType, ParamArray TaskTrustParameter())
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.TaskTrustMappingEntry(P2PNet.Distribution.NetworkTasks.TaskType, params P2PNet.Distribution.NetworkTasks.TaskTrustParameter[])
+  fullName.vb: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.New(P2PNet.Distribution.NetworkTasks.TaskType, ParamArray P2PNet.Distribution.NetworkTasks.TaskTrustParameter())
+  nameWithType: TaskTrustMappingEntry.TaskTrustMappingEntry(TaskType, params TaskTrustParameter[])
+  nameWithType.vb: TaskTrustMappingEntry.New(TaskType, ParamArray TaskTrustParameter())
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.#ctor*
+  name: TaskTrustMappingEntry
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.html#P2PNet_Distribution_NetworkTasks_TaskTrustMappingEntry__ctor_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.TaskTrustMappingEntry
+  fullName.vb: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.New
+  nameWithType: TaskTrustMappingEntry.TaskTrustMappingEntry
+  nameWithType.vb: TaskTrustMappingEntry.New
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.Requirements
+  name: Requirements
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.html#P2PNet_Distribution_NetworkTasks_TaskTrustMappingEntry_Requirements
+  commentId: P:P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.Requirements
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.Requirements
+  nameWithType: TaskTrustMappingEntry.Requirements
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.Requirements*
+  name: Requirements
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.html#P2PNet_Distribution_NetworkTasks_TaskTrustMappingEntry_Requirements_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.Requirements
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.Requirements
+  nameWithType: TaskTrustMappingEntry.Requirements
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.TaskType
+  name: TaskType
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.html#P2PNet_Distribution_NetworkTasks_TaskTrustMappingEntry_TaskType
+  commentId: P:P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.TaskType
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.TaskType
+  nameWithType: TaskTrustMappingEntry.TaskType
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.TaskType*
+  name: TaskType
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.html#P2PNet_Distribution_NetworkTasks_TaskTrustMappingEntry_TaskType_
+  commentId: Overload:P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.TaskType
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.TaskType
+  nameWithType: TaskTrustMappingEntry.TaskType
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustParameter
+  name: TaskTrustParameter
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html
+  commentId: T:P2PNet.Distribution.NetworkTasks.TaskTrustParameter
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustParameter
+  nameWithType: TaskTrustParameter
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.AuthorityBootstrapServer
+  name: AuthorityBootstrapServer
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_AuthorityBootstrapServer
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskTrustParameter.AuthorityBootstrapServer
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.AuthorityBootstrapServer
+  nameWithType: TaskTrustParameter.AuthorityBootstrapServer
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.IgnoreAll
+  name: IgnoreAll
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_IgnoreAll
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskTrustParameter.IgnoreAll
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.IgnoreAll
+  nameWithType: TaskTrustParameter.IgnoreAll
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.MustHaveSignedHash
+  name: MustHaveSignedHash
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_MustHaveSignedHash
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskTrustParameter.MustHaveSignedHash
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.MustHaveSignedHash
+  nameWithType: TaskTrustParameter.MustHaveSignedHash
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.Open
+  name: Open
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_Open
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskTrustParameter.Open
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.Open
+  nameWithType: TaskTrustParameter.Open
+- uid: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.TrustedPeer
+  name: TrustedPeer
+  href: api/P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_TrustedPeer
+  commentId: F:P2PNet.Distribution.NetworkTasks.TaskTrustParameter.TrustedPeer
+  fullName: P2PNet.Distribution.NetworkTasks.TaskTrustParameter.TrustedPeer
+  nameWithType: TaskTrustParameter.TrustedPeer
 - uid: P2PNet.Distribution.NetworkTasks.TaskType
   name: TaskType
   href: api/P2PNet.Distribution.NetworkTasks.TaskType.html
@@ -5800,6 +6054,12 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.AcceptInboundPeers
   nameWithType: PeerNetwork.AcceptInboundPeers
+- uid: P2PNet.PeerNetwork.ActiveBootstrapChannels
+  name: ActiveBootstrapChannels
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_ActiveBootstrapChannels
+  commentId: F:P2PNet.PeerNetwork.ActiveBootstrapChannels
+  fullName: P2PNet.PeerNetwork.ActiveBootstrapChannels
+  nameWithType: PeerNetwork.ActiveBootstrapChannels
 - uid: P2PNet.PeerNetwork.ActivePeerChannels
   name: ActivePeerChannels
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_ActivePeerChannels
@@ -5925,6 +6185,22 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.ElevatePeerPermission
   nameWithType: PeerNetwork.ElevatePeerPermission
+- uid: P2PNet.PeerNetwork.GetPeerByIdentifier(System.String)
+  name: GetPeerByIdentifier(string)
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_GetPeerByIdentifier_System_String_
+  commentId: M:P2PNet.PeerNetwork.GetPeerByIdentifier(System.String)
+  name.vb: GetPeerByIdentifier(String)
+  fullName: P2PNet.PeerNetwork.GetPeerByIdentifier(string)
+  fullName.vb: P2PNet.PeerNetwork.GetPeerByIdentifier(String)
+  nameWithType: PeerNetwork.GetPeerByIdentifier(string)
+  nameWithType.vb: PeerNetwork.GetPeerByIdentifier(String)
+- uid: P2PNet.PeerNetwork.GetPeerByIdentifier*
+  name: GetPeerByIdentifier
+  href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_GetPeerByIdentifier_
+  commentId: Overload:P2PNet.PeerNetwork.GetPeerByIdentifier
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.GetPeerByIdentifier
+  nameWithType: PeerNetwork.GetPeerByIdentifier
 - uid: P2PNet.PeerNetwork.Identifier
   name: Identifier
   href: api/P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_Identifier
@@ -6537,6 +6813,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy
   nameWithType: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy
+- uid: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings
+  name: NetworkTaskTrustSettings
+  href: api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_NetworkTaskTrustSettings
+  commentId: P:P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings
+  fullName: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings
+  nameWithType: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings
+- uid: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings*
+  name: NetworkTaskTrustSettings
+  href: api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_NetworkTaskTrustSettings_
+  commentId: Overload:P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings
+  isSpec: "True"
+  fullName: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings
+  nameWithType: PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings
 - uid: P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4GetPolicy
   name: PublicIPv4GetPolicy
   href: api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4GetPolicy
@@ -7041,19 +7330,6 @@ references:
   isSpec: "True"
   fullName: P2PNet.Peers.PeerChannel.SendOutgoing
   nameWithType: PeerChannel.SendOutgoing
-- uid: P2PNet.Peers.PeerChannel.peer
-  name: peer
-  href: api/P2PNet.Peers.PeerChannel.html#P2PNet_Peers_PeerChannel_peer
-  commentId: P:P2PNet.Peers.PeerChannel.peer
-  fullName: P2PNet.Peers.PeerChannel.peer
-  nameWithType: PeerChannel.peer
-- uid: P2PNet.Peers.PeerChannel.peer*
-  name: peer
-  href: api/P2PNet.Peers.PeerChannel.html#P2PNet_Peers_PeerChannel_peer_
-  commentId: Overload:P2PNet.Peers.PeerChannel.peer
-  isSpec: "True"
-  fullName: P2PNet.Peers.PeerChannel.peer
-  nameWithType: PeerChannel.peer
 - uid: P2PNet.Peers.PeerChannelBase
   name: PeerChannelBase
   href: api/P2PNet.Peers.PeerChannelBase.html
@@ -7464,6 +7740,19 @@ references:
   commentId: F:P2PNet.Peers.PeerChannelBase.packetQueue
   fullName: P2PNet.Peers.PeerChannelBase.packetQueue
   nameWithType: PeerChannelBase.packetQueue
+- uid: P2PNet.Peers.PeerChannelBase.peer
+  name: peer
+  href: api/P2PNet.Peers.PeerChannelBase.html#P2PNet_Peers_PeerChannelBase_peer
+  commentId: P:P2PNet.Peers.PeerChannelBase.peer
+  fullName: P2PNet.Peers.PeerChannelBase.peer
+  nameWithType: PeerChannelBase.peer
+- uid: P2PNet.Peers.PeerChannelBase.peer*
+  name: peer
+  href: api/P2PNet.Peers.PeerChannelBase.html#P2PNet_Peers_PeerChannelBase_peer_
+  commentId: Overload:P2PNet.Peers.PeerChannelBase.peer
+  isSpec: "True"
+  fullName: P2PNet.Peers.PeerChannelBase.peer
+  nameWithType: PeerChannelBase.peer
 - uid: P2PNet.Routines
   name: P2PNet.Routines
   href: api/P2PNet.Routines.html
@@ -8133,6 +8422,9 @@ references:
   isSpec: "True"
   fullName: P2PNet.Widescan.Widescan.StopWidescan
   nameWithType: Widescan.StopWidescan
+- uid: nettasks
+  name: nettasks
+  href: misc/networktasks.html
 - uid: p2pnetbootstrap
   name: p2pnetbootstrap
   href: misc/bootstrapserver.html

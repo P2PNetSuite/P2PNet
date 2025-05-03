@@ -153,6 +153,37 @@ Class PeerNetwork  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <h3 id="P2PNet_PeerNetwork_ActiveBootstrapChannels" data-uid="P2PNet.PeerNetwork.ActiveBootstrapChannels">
+  ActiveBootstrapChannels
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L309"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>All active <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapChannel.html">BootstrapChannel</a> connections are stored here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;BootstrapChannel&gt; ActiveBootstrapChannels</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapChannel.html">BootstrapChannel</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <h3 id="P2PNet_PeerNetwork_ActivePeerChannels" data-uid="P2PNet.PeerNetwork.ActivePeerChannels">
   ActivePeerChannels
   <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L283"><i class="bi bi-code-slash"></i></a>
@@ -186,7 +217,7 @@ Class PeerNetwork  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="P2PNet_PeerNetwork_InboundConnectingPeers" data-uid="P2PNet.PeerNetwork.InboundConnectingPeers">
   InboundConnectingPeers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L251"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Queue of inbound connecting peers that have not been assigned a peer channel.</p>
@@ -459,7 +490,7 @@ and the identifier has already been set.</p>
 
   <h3 id="P2PNet_PeerNetwork_InboundPeerCount" data-uid="P2PNet.PeerNetwork.InboundPeerCount">
   InboundPeerCount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L266"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the number of inbound peers that have been enqueued but not yet processed.</p>
@@ -690,7 +721,7 @@ This is mostly to store and manage known peers for future reference and potentia
 
   <h3 id="P2PNet_PeerNetwork_AddBootstrapChannel_P2PNet_DicoveryChannels_WAN_BootstrapChannel_" data-uid="P2PNet.PeerNetwork.AddBootstrapChannel(P2PNet.DicoveryChannels.WAN.BootstrapChannel)">
   AddBootstrapChannel(BootstrapChannel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L900"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L883"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds the provided <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapChannel.html">BootstrapChannel</a> instance to the active bootstrap channels collection.</p>
@@ -723,7 +754,7 @@ This is mostly to store and manage known peers for future reference and potentia
 
   <h3 id="P2PNet_PeerNetwork_AddBootstrapChannel_P2PNet_DicoveryChannels_WAN_BootstrapChannelConnectionOptions_" data-uid="P2PNet.PeerNetwork.AddBootstrapChannel(P2PNet.DicoveryChannels.WAN.BootstrapChannelConnectionOptions)">
   AddBootstrapChannel(BootstrapChannelConnectionOptions)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L911"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L894"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapChannel.html">BootstrapChannel</a> from the specified connection options and adds it to the active bootstrap channels collection.</p>
@@ -757,7 +788,7 @@ The endpoint is mandatory while the authority mode and bootstrap peer values are
 
   <h3 id="P2PNet_PeerNetwork_AddBootstrapChannel_System_String_P2PNet_PeerNetwork_TrustPolicies_BootstrapTrustPolicyType_" data-uid="P2PNet.PeerNetwork.AddBootstrapChannel(System.String,P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType)">
   AddBootstrapChannel(string, BootstrapTrustPolicyType)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L924"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L907"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="P2PNet.DicoveryChannels.WAN.BootstrapChannel.html">BootstrapChannel</a> using the specified endpoint address and trust policy,
@@ -794,7 +825,7 @@ then adds it to the active bootstrap channels collection.</p>
 
   <h3 id="P2PNet_PeerNetwork_AddPeer_P2PNet_Peers_IPeer_System_Net_Sockets_TcpClient_" data-uid="P2PNet.PeerNetwork.AddPeer(P2PNet.Peers.IPeer,System.Net.Sockets.TcpClient)">
   AddPeer(IPeer, TcpClient)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L383"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L368"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds a peer to the <a class="xref" href="P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_KnownPeers">KnownPeers</a> list and establishes a connection if one is not provided.
@@ -864,7 +895,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_DequeueInboundPeer" data-uid="P2PNet.PeerNetwork.DequeueInboundPeer">
   DequeueInboundPeer()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L271"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the first peer from inbound peer queue.</p>
@@ -896,7 +927,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_ElevatePeerPermission_P2PNet_Peers_PeerChannel_" data-uid="P2PNet.PeerNetwork.ElevatePeerPermission(P2PNet.Peers.PeerChannel)">
   ElevatePeerPermission(PeerChannel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L487"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L469"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Elevates a peer's permissions and adjusts broadcasting if necessary.</p>
@@ -931,11 +962,50 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
 
 
+  <a id="P2PNet_PeerNetwork_GetPeerByIdentifier_" data-uid="P2PNet.PeerNetwork.GetPeerByIdentifier*"></a>
+
+  <h3 id="P2PNet_PeerNetwork_GetPeerByIdentifier_System_String_" data-uid="P2PNet.PeerNetwork.GetPeerByIdentifier(System.String)">
+  GetPeerByIdentifier(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Searches the list of known peers for a peer with the specified identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IPeer GetPeerByIdentifier(string identifier)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>identifier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The identifier to search for.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Peers.IPeer.html">IPeer</a></dt>
+    <dd><p>The first <a class="xref" href="P2PNet.Peers.IPeer.html">IPeer</a> with a matching identifier, or <code>null</code> if no matching peer is found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="P2PNet_PeerNetwork_LoadLocalAddresses_" data-uid="P2PNet.PeerNetwork.LoadLocalAddresses*"></a>
 
   <h3 id="P2PNet_PeerNetwork_LoadLocalAddresses" data-uid="P2PNet.PeerNetwork.LoadLocalAddresses">
   LoadLocalAddresses()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L536"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L518"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Scans all network interface devices and collects essential information needed for peer network.</p>
@@ -962,7 +1032,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_ProcessPeerList_P2PNet_NetworkPackets_CollectionSharePacket_" data-uid="P2PNet.PeerNetwork.ProcessPeerList(P2PNet.NetworkPackets.CollectionSharePacket)">
   ProcessPeerList(CollectionSharePacket)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L514"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L496"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Processes and adds peers from a collection share packet to the known peers list.</p>
@@ -995,7 +1065,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_RemovePeer_P2PNet_Peers_PeerChannel_" data-uid="P2PNet.PeerNetwork.RemovePeer(P2PNet.Peers.PeerChannel)">
   RemovePeer(PeerChannel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L464"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L445"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Terminates a peer connection and removes it from <a class="xref" href="P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_KnownPeers">KnownPeers</a> and <a class="xref" href="P2PNet.PeerNetwork.html#P2PNet_PeerNetwork_ActivePeerChannels">ActivePeerChannels</a>.</p>
@@ -1034,7 +1104,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_StartBootstrapConnections" data-uid="P2PNet.PeerNetwork.StartBootstrapConnections">
   StartBootstrapConnections()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L936"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L919"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Begin loading bootstrap connections.</p>
@@ -1061,7 +1131,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_StartBroadcastingLAN" data-uid="P2PNet.PeerNetwork.StartBroadcastingLAN">
   StartBroadcastingLAN()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L741"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L724"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Begin LAN broadcast and discovery.</p>
@@ -1088,7 +1158,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_StartBroadcastingLAN_System_Boolean_" data-uid="P2PNet.PeerNetwork.StartBroadcastingLAN(System.Boolean)">
   StartBroadcastingLAN(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L776"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L759"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Begin LAN broadcast and discovery.</p>
@@ -1148,7 +1218,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_StopBroadcastingLAN" data-uid="P2PNet.PeerNetwork.StopBroadcastingLAN">
   StopBroadcastingLAN()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L814"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L797"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Stops all LAN broadcast.</p>
@@ -1175,7 +1245,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_ThrottleBroadcastingDown" data-uid="P2PNet.PeerNetwork.ThrottleBroadcastingDown">
   ThrottleBroadcastingDown()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L300"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L296"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Throttles the broadcasting down.</p>
@@ -1208,7 +1278,7 @@ A new peer channel will be automatically added to <a class="xref" href="P2PNet.P
 
   <h3 id="P2PNet_PeerNetwork_IncomingPeerConnectionAttempt" data-uid="P2PNet.PeerNetwork.IncomingPeerConnectionAttempt">
   IncomingPeerConnectionAttempt
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L261"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L257"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Occurs when a new incoming peer connection attempt is detected.
@@ -1240,7 +1310,7 @@ Subscribers can use this event to handle new connections and pass incoming conne
 
   <h3 id="P2PNet_PeerNetwork_PeerAdded" data-uid="P2PNet.PeerNetwork.PeerAdded">
   PeerAdded
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L222"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Occurs when a new peer is added and passes the received data from the subsequent PeerChannel in an event.

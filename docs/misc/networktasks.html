@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/blob/docs/misc/testing.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/blob/docs/misc/networktasks.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,72 +84,35 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="testing">
+        <article data-uid="nettasks">
 
-<h3 id="testing">Testing</h3>
-<hr>
-<p>This portion of documentation outlines different methods of testing, and different test types with varying levels of setup complexity.</p>
-<p><strong>LAN Tests</strong></p>
+<h2 id="network-tasks-">Network Tasks 🏭</h2>
+<p>Network tasks represent discrete actions carried out across the peer-to-peer network, such as blocking, messaging, or synchronizing data. Each task is described by a <code>NetworkTask</code> object, which contains:</p>
 <ul>
-<li><p>Quick LAN test - quickly setup a peer connection using the ExampleApplication container and a local instance started from Visual Studio</p>
-</li>
-<li><p>Multi-peer LAN test - runs a Powershell script which automates a Docker Compose setup to simulate 3 peers establishing connection over NAT</p>
-</li>
+<li><strong>TaskType</strong>: An enum value indicating the exact operation (e.g., <code>BlockIP</code>, <code>SendData</code>, or <code>AuthorizePeer</code>).</li>
+<li><strong>TaskData</strong>: A dictionary holding any supporting information (e.g., target peer identifier, a message payload).</li>
 </ul>
-<p><strong>WAN Tests</strong></p>
-<ul>
-<li><p>Bootstrap test - the current ExampleApplication has been modified to establish a bootstrap connection with the official P2PNet boostrap server example instance... a more complex test scenario is underway</p>
-</li>
-<li><p>Widescan test - <em>in progress</em></p>
-</li>
-</ul>
-<hr>
-<h3 id="quick-lan-test">Quick LAN test</h3>
+<h3 id="task-flow">Task Flow</h3>
+<p>Tasks queue within the NetworkTaskHandler move in two directions:</p>
 <ol>
-<li>In the ExampleApplication, startup the Docker container from Visual Studio.<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/quick_lan_test_1.png">
- </p>
+<li><p><strong>Inbound Queue</strong><br>
+When a peer sends a <code>NetworkTask</code>, it is placed in the inbound queue for validation. The <code>NetworkTaskOriginInfo</code> provides metadata such as the sender’s IP address, SourceOriginIdentifier of the packet it came from, or a public key if known. The <code>NetworkTaskTrustConfiguration</code> (exposed as <code>NetworkTaskTrustSettings</code> within <code>PeerNetwork.TrustPolicies.PeerNetworkTrustPolicies</code>) applies trust rules—if a task fails to comply, it is blocked; otherwise it is routed to the corresponding handler delegate and executed.</p>
 </li>
-<li>Once the container has verifiably started, go ahead and stop the container (Ctrl + C or from Docker dashboard)<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/quick_lan_test_2.png">
- </p>
-</li>
-<li>With the container still stopped, go ahead and run a regular instance of the ExampleApplication from Visual Studio (Ctrl + F5)<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/quick_lan_test_3.png">
- </p>
-</li>
-<li>Ensure the regular instance of the ExampleApplication starts up. Leave this open.<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/quick_lan_test_4.png">
- </p>
-</li>
-<li>With the regular instance running, go into your Docker dashboard and go to Containers. Proceed to startup the ExampleApplication container (simply click the Start button). Go to the Exec tab and you should see the Windows terminal open. Type <code>ExampleApplication.exe</code> then hit enter.<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/quick_lan_test_5.png">
- </p>
-</li>
-<li>You should now be able to see the application start up in the Docker container. From this point, you have two instances of the ExampleApplication running which you should be able to observe side-by-side. Observe and see if the default trust protocol shows back and forth communication between the peers.<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/quick_lan_test_6.png">
- </p>
+<li><p><strong>Outbound Queue</strong><br>
+Locally created tasks (e.g., to send a message or request data) go into the outbound queue. Before dispatching, the system checks whether the connection requires wrapping the task in a higher-level <code>DataTransmissionPacket</code> or can send it directly. Typically, connectionless transmission is wrapped (e.g. UDP or HTTP)</p>
 </li>
 </ol>
-<h3 id="multi-peer-lan-test">Multi-peer LAN test</h3>
-<ol>
-<li>Open the solution in Visual Studio. It is advised to Clean Solution and then to do a fresh Build Solution. Then, proceed to run the <code>LAN_Test.ps1</code> script that should be in the root directory<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/multipeer_lan_test_1.png">
- </p>
-</li>
-<li>The Docker Compose build process may take a minute or two. This is normal.<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/multipeer_lan_test_2.png">
- </p>
-</li>
-<li>The build process creates a new NAT network and 3 individual peer containers. This is automated through the Powershell script.<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/multipeer_lan_test_3.png">
- </p>
-</li>
-<li>You should then be able to observe the multi-peer LAN test output within the Developer Powershell console in Visual Studio. It will typically look something like this:<p>
-     <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/screenshots/multipeer_lan_test_4.png">
- </p>
-</li>
-</ol>
+<p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/networktasks_flow.png" alt="peer network chart">
+</p>
+<h3 id="trust-configuration">Trust Configuration</h3>
+<p><code>NetworkTaskTrustConfiguration</code> maps each <code>TaskType</code> to a set of required <code>TaskTrustParameter</code> values. These parameters (e.g., <code>Open</code>, <code>TrustedPeer</code>, or <code>AuthorityBootstrapServer</code>) define which security checks, if any, must be conducted to ensure the NetworkTask complies with security standards. This system lets developers tailor how strictly each task is authenticated or whether it needs a signed hash.</p>
+<p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/networktasks_configuration.png" alt="peer network chart">
+</p>
+<h3 id="handlers-and-delegates">Handlers and Delegates</h3>
+<p><code>NetworkTaskHandler</code> houses default delegate methods for each <code>TaskType</code> (e.g., <code>DefaultSendMessageHandler</code>). You can override these delegates to implement custom logic. Valid tasks are handed to their respective delegate, which performs the corresponding action (block, authorize, send data, ect).</p>
+<p>This approach ensures that each task is processed securely and in a consistent, extensible manner.</p>
 
 </article>
 

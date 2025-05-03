@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Namespace P2PNet | P2PNetDocs </title>
+      <title>Enum TaskTrustParameter | P2PNetDocs </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Namespace P2PNet | P2PNetDocs ">
+      <meta name="title" content="Enum TaskTrustParameter | P2PNetDocs ">
       
-      
+      <meta name="description" content="Represents the trust requirement for executing a network task as a parameter.">
       <link rel="icon" href="../misc/p2pnet_logo.png">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/P2PNetSuite/P2PNet/new/docs/apiSpec/new?filename=P2PNet_Distribution_NetworkTasks_TaskTrustParameter.md&amp;value=---%0Auid%3A%20P2PNet.Distribution.NetworkTasks.TaskTrustParameter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,78 +84,61 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="P2PNet">
+        <article data-uid="P2PNet.Distribution.NetworkTasks.TaskTrustParameter">
 
-  <h1 id="P2PNet" data-uid="P2PNet" class="text-break">Namespace P2PNet</h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
 
-    <h3 id="classes">
-Classes
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.html">PeerNetwork</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.Logging.html">PeerNetwork.Logging</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.NewPeerEventArgs.html">PeerNetwork.NewPeerEventArgs</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.html">PeerNetwork.TrustPolicies</a></dt>
-      <dd></dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicy.html">PeerNetwork.TrustPolicies.BootstrapTrustPolicy</a></dt>
-      <dd><p>Handles trust and permissions in regards to bootstrap connections.</p>
+
+
+  <h1 id="P2PNet_Distribution_NetworkTasks_TaskTrustParameter" data-uid="P2PNet.Distribution.NetworkTasks.TaskTrustParameter" class="text-break">
+Enum TaskTrustParameter  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTasks/NetworkTask.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="P2PNet.html">P2PNet</a>.<a class="xref" href="P2PNet.Distribution.html">Distribution</a>.<a class="xref" href="P2PNet.Distribution.NetworkTasks.html">NetworkTasks</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>P2PNet.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents the trust requirement for executing a network task as a parameter.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum TaskTrustParameter</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h2 id="fields">Fields
+</h2>
+  <dl class="parameters">
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskTrustParameter_AuthorityBootstrapServer"><code>AuthorityBootstrapServer = 2</code></dt>
+  
+  <dd><p>Task may come from an Authority Bootstrap Server.</p>
 </dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html">PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy</a></dt>
-      <dd><p>Handles trust and permissions in regards to incoming peer connections.</p>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskTrustParameter_IgnoreAll"><code>IgnoreAll = 4</code></dt>
+  
+  <dd><p>Task should be ignored regardless of source.</p>
 </dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.html">PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy</a></dt>
-      <dd><p>Handles trust and permissions in regards to a range of misc. peer network settings.</p>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskTrustParameter_MustHaveSignedHash"><code>MustHaveSignedHash = 3</code></dt>
+  
+  <dd><p>Task must have a valid signed hash.</p>
 </dd>
-    </dl>
-    <h3 id="enums">
-Enums
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.BootstrapTrustPolicyType.html">PeerNetwork.TrustPolicies.BootstrapTrustPolicyType</a></dt>
-      <dd><p>These policy types determine whether the bootstrap server is trustless or bears authority.</p>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskTrustParameter_Open"><code>Open = 0</code></dt>
+  
+  <dd><p>Task is totally open. No checks required.</p>
 </dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode.html">PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.IncomingPeerMode</a></dt>
-      <dd><p>Values for <a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.html#P2PNet_PeerNetwork_TrustPolicies_IncomingPeerTrustPolicy_IncomingPeerPlacement">IncomingPeerPlacement</a></p>
-<ul><li><span class="term">QueueBased</span>The inbound peer will be directed to the inbound peer queue.</li><li><span class="term">EventBased</span>An event is triggered and the peer is passed to the event args.</li><li><span class="term">QueueAndEventBased</span>The peer is directed to the inbound peer queue, and an event is triggered where the peer is passed to the event args.</li></ul>
+    <dt id="P2PNet_Distribution_NetworkTasks_TaskTrustParameter_TrustedPeer"><code>TrustedPeer = 1</code></dt>
+  
+  <dd><p>Task is allowed if the sender is a Trusted Peer.</p>
 </dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType.html">PeerNetwork.TrustPolicies.LocalIdentifierSetPolicyType</a></dt>
-      <dd><p>These policy types determine whether the identifier can be set locally, remotely, or both, and whether it can be changed after initial assignment.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType.html">PeerNetwork.TrustPolicies.PublicIPv4GetPolicyType</a></dt>
-      <dd><p>These policy types determine how the public IPv4 address is fetched.</p>
-</dd>
-    </dl>
-    <h3 id="delegates">
-Delegates
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="P2PNet.PeerNetwork.NewKnownPeerEventHandler.html">PeerNetwork.NewKnownPeerEventHandler</a></dt>
-      <dd></dd>
-    </dl>
+  </dl>
+
 
 
 </article>

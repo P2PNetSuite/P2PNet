@@ -89,6 +89,12 @@
 <h3 id="p2p-network-basics-">P2P Network Basics 🌐</h3>
 <hr>
 <p>The <code>P2PNet</code> library provides the core functionality for building and managing a peer-to-peer network. It includes classes and methods for peer discovery, connection management, data exchange, and network routines. This document provides a broad overview of the peer network basics.</p>
+<h3 id="overview">Overview</h3>
+<hr>
+<p>General broad overview of the peer network structure.</p>
+<p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/P2PNetwork.png" alt="peer network chart">
+</p>
 <h3 id="initialization">Initialization</h3>
 <hr>
 <p>The <code>PeerNetwork</code> class is the main entry point for initializing and managing the peer-to-peer network. It sets up the necessary configurations and services required for network operations.</p>
@@ -182,8 +188,7 @@ Allow bootstrap nodes to validate their credentials via key issuance, ensuring a
 Enforce strict measures so that the first trusted authority connection can be locked in—preventing further authority connections that might threaten network integrity.</li>
 </ul>
 </li>
-<li><p><strong>PeerNetworkTrustPolicy</strong><br>
-Controls how the local network identifier is set and maintained, and how the public IPv4 address is retrieved.</p>
+<li><p><strong>PeerNetworkTrustPolicy</strong>Controls how the local network identifier is set and maintained, and how the public IPv4 address is retrieved.</p>
 <ul>
 <li><strong>LocalIdentifierSetPolicy</strong>: Defines policies like <code>StrictLocalOnly</code>, <code>Local</code>, <code>LocalAndRemote</code>, <code>RemoteOnly</code>, or <code>StrictRemoteOnly</code> to ensure that the identifier is assigned only under secure, predefined conditions.</li>
 <li><strong>PublicIPv4GetPolicy</strong>: Determines the method used to retrieve the public IPv4 address. Options include:
@@ -194,18 +199,10 @@ Controls how the local network identifier is set and maintained, and how the pub
 </ul>
 </li>
 <li><strong>PublicIPv4Sources</strong>: A list of URLs that are queried to fetch the public-facing IPv4 address, based on the defined retrieval policy. URLs should point directly to an API endpoint serving a plain text response.</li>
-<li><strong>SetIdentifier</strong>: Gets or sets the delegate responsible for generating and assigning the peer’s network identifier. The default <code>SetIdentifier</code> handler concatenates the system’s MAC address with the current timestamp, computes an MD5 hash, appends the chosen public IP (IPv6 if available, otherwise IPv4), and computes a second MD5 hash. Override this delegate to supply custom identifier logic that fits your network requirements.</li>
 </ul>
 </li>
 </ol>
 <p>These trust policies work in tandem to balance flexibility and security. You can adjust the settings to suit various network scenarios—from enterprise-level internal networks that rely on rapid, low-security handshakes, to public peer-to-peer systems that demand strict, authority-based validations.</p>
-<h3 id="overview">Overview</h3>
-<hr>
-<p><strong>Peer Network Architecture</strong>
-Shows a broad overview of the architecture of the peer network, including default discovery mechanisms.</p>
-<p>
-    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/P2PNetwork.png" width="500" height="325" alt="peer network chart">
-</p>
 
 </article>
 
