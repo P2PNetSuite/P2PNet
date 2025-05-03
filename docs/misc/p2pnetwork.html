@@ -89,6 +89,12 @@
 <h3 id="p2p-network-basics-">P2P Network Basics 🌐</h3>
 <hr>
 <p>The <code>P2PNet</code> library provides the core functionality for building and managing a peer-to-peer network. It includes classes and methods for peer discovery, connection management, data exchange, and network routines. This document provides a broad overview of the peer network basics.</p>
+<h3 id="overview">Overview</h3>
+<hr>
+<p>General broad overview of the peer network structure.</p>
+<p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/P2PNetwork.png" alt="peer network chart">
+</p>
 <h3 id="initialization">Initialization</h3>
 <hr>
 <p>The <code>PeerNetwork</code> class is the main entry point for initializing and managing the peer-to-peer network. It sets up the necessary configurations and services required for network operations.</p>
@@ -124,6 +130,22 @@
 Each communication channel between peers is represented by an instance of the <code>PeerChannel</code> class. This class manages the relay of data packets, conducts connection retries, and enforces trust policies by invoking predefined delegates from the <code>PacketHandleProtocol</code>.</p>
 </li>
 </ol>
+<h4 id="file-management-via-ifilemanager">File Management via IFileManager</h4>
+<p>The <code>DistributionHandler</code> uses its static <code>NetworkFileManager</code> property—typed as <code>IFileManager</code>—to handle all file‑based payloads (<code>DataPayloadFormat.File</code>). On receipt, each file packet is passed to</p>
+<pre><code class="lang-csharp">NetworkFileManager.InboundDatapacketToFile(packet);
+</code></pre>
+<p>and outgoing file data is written via the same interface.</p>
+<p>By default two implementations are provided:</p>
+<ul>
+<li><strong>MemoryMappedFileManager</strong>
+Uses memory‑mapped files for fast, low‑overhead read/write operations in RAM. Ideal when working with large files or high‑throughput scenarios.</li>
+<li><strong>VirtualImageFileManager</strong>
+Creates a VHD image formatted with FAT and stores files inside it. Useful when you need a self‑contained disk image or want FAT semantics on top of a virtual filesystem.</li>
+</ul>
+<p>To swap in a custom manager, assign before distribution starts:</p>
+<pre><code class="lang-csharp">DistributionHandler.NetworkFileManager = new YourCustomFileManager(...);
+</code></pre>
+<p>Your implementation must handle <code>GetFile(string|int)</code>, <code>WriteToFile(...)</code> and <code>InboundDatapacketToFile(...)</code> to integrate smoothly with the distribution pipeline.</p>
 <h3 id="routines">Routines</h3>
 <hr>
 <p>The <code>NetworkRoutines</code> class provides a mechanism for managing network routines. Routines are tasks that run at specified intervals to perform various network-related operations.</p>
@@ -166,8 +188,7 @@ Allow bootstrap nodes to validate their credentials via key issuance, ensuring a
 Enforce strict measures so that the first trusted authority connection can be locked in—preventing further authority connections that might threaten network integrity.</li>
 </ul>
 </li>
-<li><p><strong>PeerNetworkTrustPolicy</strong><br>
-Controls how the local network identifier is set and maintained, and how the public IPv4 address is retrieved.</p>
+<li><p><strong>PeerNetworkTrustPolicy</strong>Controls how the local network identifier is set and maintained, and how the public IPv4 address is retrieved.</p>
 <ul>
 <li><strong>LocalIdentifierSetPolicy</strong>: Defines policies like <code>StrictLocalOnly</code>, <code>Local</code>, <code>LocalAndRemote</code>, <code>RemoteOnly</code>, or <code>StrictRemoteOnly</code> to ensure that the identifier is assigned only under secure, predefined conditions.</li>
 <li><strong>PublicIPv4GetPolicy</strong>: Determines the method used to retrieve the public IPv4 address. Options include:
@@ -178,17 +199,13 @@ Controls how the local network identifier is set and maintained, and how the pub
 </ul>
 </li>
 <li><strong>PublicIPv4Sources</strong>: A list of URLs that are queried to fetch the public-facing IPv4 address, based on the defined retrieval policy. URLs should point directly to an API endpoint serving a plain text response.</li>
+<li><strong>SetIdentifier</strong>: Gets or sets the delegate responsible for generating and assigning the peer’s network identifier. The default <code>SetIdentifier</code> handler concatenates the system’s MAC address with the current timestamp, computes an MD5 hash, appends the chosen public IP (IPv6 if available, otherwise IPv4), and computes a second MD5 hash. Override this delegate to supply custom identifier logic that fits your network requirements.</li>
+<li><strong>NetworkTaskTrustSettings</strong>:  An instance of <code>NetworkTaskTrustConfiguration</code> named <code>NetworkTaskTrustSettings</code> defines trust parameters for executing network tasks. It maps specific task types (such as bootstrap initialization, blocking, and messaging) to required trust parameters, such as requiring a signed hash or authority verification. This configuration ensures that tasks are only executed when the originating peer meets the necessary trust criteria.
+For example, tasks like <code>TaskType.AssignIdentifierToPeer</code> require that the sender provides a valid signed hash and is recognized as an authority bootstrap server. However, by creating a new instance of <code>NetworkTaskTrustConfiguration</code> we can set it to block any tasks that attempt to assign an identifier to a peer thereby nullifying the action all together. This allows for finer control over network behavior.</li>
 </ul>
 </li>
 </ol>
 <p>These trust policies work in tandem to balance flexibility and security. You can adjust the settings to suit various network scenarios—from enterprise-level internal networks that rely on rapid, low-security handshakes, to public peer-to-peer systems that demand strict, authority-based validations.</p>
-<h3 id="overview">Overview</h3>
-<hr>
-<p><strong>Peer Network Architecture</strong>
-Shows a broad overview of the architecture of the peer network, including default discovery mechanisms.</p>
-<p>
-    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/P2PNetwork.png" width="500" height="325" alt="peer network chart">
-</p>
 
 </article>
 

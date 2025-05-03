@@ -77,11 +77,55 @@
 <p>P2PNet facilitates peer-to-peer networking with an array of components and options for setting up your network. Initial peer discovery can be initiated in the LAN, and facilitated over a WAN utilizing various methods such as bootstrapping and IPv6 ICMP blasting (widescan). The PeerNetwork will be able to use a range of interoperable WAN and LAN discovery mechanisms to expand and grow the network. Implementing the P2PNet library, you will be able to integrate your own verification steps and protocols to validate discovered peer members before establishing an enhanced connection that will facilitate the exchange of data and information.</p>
 <h3 id="documentation">Documentation</h3>
 <ul>
-<li><a href="misc/p2pnetwork.html">Peer Network</a></li>
-<li><a href="misc/testing.html">Testing 🛠️</a></li>
-<li><a href="misc/bootstrapserver.html">Bootstrap Server</a></li>
-<li><a href="misc/widescan.html">Widescan</a></li>
+<li><a href="misc/p2pnetwork.html">Peer Network🌐</a>
+<ul>
+<li><a href="misc/peers.html">Peers👥</a></li>
 </ul>
+</li>
+<li><a href="misc/networktasks.html">NetworkTasks🏭</a></li>
+<li><a href="misc/testing.html">Testing🛠️</a></li>
+<li><a href="misc/bootstrapserver.html">Bootstrap Server🤝</a></li>
+<li><a href="misc/widescan.html">Widescan📡</a></li>
+</ul>
+<h3 id="winpcap">WinPcap</h3>
+<p>The P2PNet library utilizes the WinPcap library for its advanced network functionality. P2PNet will not work if WinPcap is not installed on the system. You can <a href="https://github.com/P2PNetSuite/P2PNet/releases/tag/dependency">download</a> a version in our GitHub releases that works with the P2PNet library.</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>Below is a simple example application that demonstrates how to integrate P2PNet into your project.</p>
+<ol>
+<li><p>Install the NuGet package in your project:</p>
+<p>dotnet add package P2PNet</p>
+</li>
+<li><p>Create a simple console application (or use your existing one) and add the following code:</p>
+</li>
+</ol>
+<pre><code class="lang-csharp">using System;
+using P2PNet;
+using P2PNet.Peers;
+using static P2PNet.PeerNetwork;
+
+namespace ExampleApplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Print log messages to console
+            PeerNetwork.Logging.OutputLogMessages = true;
+
+            // Load local network information and addresses
+            PeerNetwork.LoadLocalAddresses();
+
+            // Enable inbound peer connections
+            PeerNetwork.BeginAcceptingInboundPeers();
+            
+            // Keep the application running to accept connections
+            Console.WriteLine(&quot;P2PNet Example Application started.&quot;);
+            Console.ReadLine();
+        }
+    }
+}
+</code></pre>
+<p>This basic setup mirrors the style of the Example Application, letting you quickly get up and running without the complexity of advanced routines or configurations.</p>
 
 </article>
 

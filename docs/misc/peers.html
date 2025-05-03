@@ -86,7 +86,7 @@
 
         <article data-uid="peersinfo">
 
-<h3 id="peers">Peers</h3>
+<h3 id="peers-">Peers 👥</h3>
 <hr>
 <p>Peers are representative of client users within the peer network. When a connection is established to a peer through the TCP listener, the connection by default is wrapped in an instance of the <code>GenericPeer</code> implementation of <code>IPeer</code> and the <code>PeerChannel</code> which stores an <code>IPeer</code> implementation.</p>
 <p>The <code>IPeer</code> interface defines the essential properties and methods for a peer, including the IP address, port, TCP client, network stream, and a unique identifier. The <code>GenericPeer</code> class provides a default implementation of the <code>IPeer</code> interface, encapsulating the peer's IP address, port, TCP client, and network stream. It also includes a unique identifier for the peer, which can be used for whitelisting and blacklisting peers in the network.</p>

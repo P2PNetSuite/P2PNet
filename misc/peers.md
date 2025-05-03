@@ -2,7 +2,7 @@
 uid: peersinfo
 ---
 
-### Peers
+### Peers 👥
 
 ---
 

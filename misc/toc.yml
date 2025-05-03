@@ -1,12 +1,12 @@
-- name: Peer Network
+- name: Peer Network🌐
   href: p2pnetwork.md
-- name: Peers
+- name: Peers👥
   href: peers.md
-- name: NetworkTasks
+- name: NetworkTasks🏭
   href: networktasks.md
 - name: Testing🛠️
   href: testing.md
-- name: Bootstrap Server
+- name: Bootstrap Server🤝
   href: bootstrapserver.md
-- name: Widescan
+- name: Widescan📡
   href: widescan.md

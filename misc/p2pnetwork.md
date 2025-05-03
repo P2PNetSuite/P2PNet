@@ -7,6 +7,15 @@ uid: p2pnetworkbasics
 
 The `P2PNet` library provides the core functionality for building and managing a peer-to-peer network. It includes classes and methods for peer discovery, connection management, data exchange, and network routines. This document provides a broad overview of the peer network basics.
 
+### Overview
+
+---
+
+General broad overview of the peer network structure.
+<p>
+    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/P2PNetwork.png" alt="peer network chart">
+</p>
+
 ### Initialization
 
 ---
@@ -41,22 +50,27 @@ The `PeerNetwork` class operates by providing several key functionalities:
 
 #### File Management via IFileManager
 
-The `DistributionHandler` uses its static `NetworkFileManager` property—typed as `IFileManager`—to handle all file‑based payloads (`DataPayloadFormat.File`). On receipt, each file packet is passed to  
+The `DistributionHandler` uses its static `NetworkFileManager` property—typed as `IFileManager`—to handle all file‑based payloads (`DataPayloadFormat.File`). On receipt, each file packet is passed to
+
 ```csharp
 NetworkFileManager.InboundDatapacketToFile(packet);
-```  
+```
+
 and outgoing file data is written via the same interface.
 
-By default two implementations are provided:  
-- **MemoryMappedFileManager**  
-  Uses memory‑mapped files for fast, low‑overhead read/write operations in RAM. Ideal when working with large files or high‑throughput scenarios.  
-- **VirtualImageFileManager**  
+By default two implementations are provided:
+
+- **MemoryMappedFileManager**
+  Uses memory‑mapped files for fast, low‑overhead read/write operations in RAM. Ideal when working with large files or high‑throughput scenarios.
+- **VirtualImageFileManager**
   Creates a VHD image formatted with FAT and stores files inside it. Useful when you need a self‑contained disk image or want FAT semantics on top of a virtual filesystem.
 
-To swap in a custom manager, assign before distribution starts:  
+To swap in a custom manager, assign before distribution starts:
+
 ```csharp
 DistributionHandler.NetworkFileManager = new YourCustomFileManager(...);
-```  
+```
+
 Your implementation must handle `GetFile(string|int)`, `WriteToFile(...)` and `InboundDatapacketToFile(...)` to integrate smoothly with the distribution pipeline.
 
 ### Routines
@@ -79,48 +93,36 @@ The `PeerNetwork` class employs a multi-pronged trust model to ensure secure and
 
 1. **Incoming Peer Trust Policy** This policy governs the verification and handling of peers attempting to connect to the network. It includes several configurable settings:
 
-   - **AllowDefaultCommunication**: 
+   - **AllowDefaultCommunication**:
      Enables basic communication—such as exchanging `PureMessagePackets` and `DisconnectPackets`—without full verification.
      *Example use case*: In a trusted LAN environment, you might allow default communication to quickly establish a connection before a deeper security check.
-   - **AllowEnhancedPacketExchange**: 
+   - **AllowEnhancedPacketExchange**:
      When enabled, permits the exchange of complex packets (e.g., `DataTransmissionPackets`) that may carry critical data.
      *Example use case*: For networks where peers are pre-validated, you might allow enhanced packet exchange immediately to boost performance.
-   - **RunDefaultTrustProtocol**: 
+   - **RunDefaultTrustProtocol**:
      Initiates the system’s built-in handshake mechanism (which you can replace with a custom `PeerTrustHandshake` delegate) that verifies a peer’s authenticity before granting them full network access.
-   - **Incoming Peer Placement**: 
+   - **Incoming Peer Placement**:
      Supports both queue-based and event-based models. Queue-based placement helps throttle connections when there are many incoming requests, while event-based placement provides immediate notification for further processing.
 2. **Bootstrap Trust Policy** This policy handles the initial secure connection phase with bootstrap nodes that help a new node join the network. Key settings include:
 
-   - **AllowBootstrapTrustlessConnection**: 
+   - **AllowBootstrapTrustlessConnection**:
      Permits bootstrap connections without pre-established credentials, often useful for open networks needing quick scalability.
-   - **AllowBootstrapAuthorityConnection**: 
+   - **AllowBootstrapAuthorityConnection**:
      Allow bootstrap nodes to validate their credentials via key issuance, ensuring a tighter security model.
    - **MustBeAuthority**: Prohibits connecting to bootstrap nodes that are not operating in authority mode.
      *Example use case*: In a decentralized network, you may require that only nodes with verified authority can bootstrap, ensuring that malicious nodes cannot easily infiltrate the system.
    - **FirstSingleLockingAuthority**:
      Enforce strict measures so that the first trusted authority connection can be locked in—preventing further authority connections that might threaten network integrity.
-3. **PeerNetworkTrustPolicy**  
-   Controls how the local network identifier is set and maintained, and how the public IPv4 address is retrieved.  
-   - **LocalIdentifierSetPolicy**: Defines policies like `StrictLocalOnly`, `Local`, `LocalAndRemote`, `RemoteOnly`, or `StrictRemoteOnly` to ensure that the identifier is assigned only under secure, predefined conditions.  
-   - **PublicIPv4GetPolicy**: Determines the method used to retrieve the public IPv4 address. Options include:  
-     - **SingleStaticURL**: Fetches the IP address from one static URL.  
-     - **StaticURLAndFailover**: Tries a primary static URL and falls back to others if necessary.  
-     - **URLListConsensus**: Utilizes multiple URLs and selects the most frequently returned IP address as the public IP.  
-   - **PublicIPv4Sources**: A list of URLs that are queried to fetch the public-facing IPv4 address, based on the defined retrieval policy. URLs should point directly to an API endpoint serving a plain text response. 
+3. **PeerNetworkTrustPolicy**Controls how the local network identifier is set and maintained, and how the public IPv4 address is retrieved.
+
+   - **LocalIdentifierSetPolicy**: Defines policies like `StrictLocalOnly`, `Local`, `LocalAndRemote`, `RemoteOnly`, or `StrictRemoteOnly` to ensure that the identifier is assigned only under secure, predefined conditions.
+   - **PublicIPv4GetPolicy**: Determines the method used to retrieve the public IPv4 address. Options include:
+     - **SingleStaticURL**: Fetches the IP address from one static URL.
+     - **StaticURLAndFailover**: Tries a primary static URL and falls back to others if necessary.
+     - **URLListConsensus**: Utilizes multiple URLs and selects the most frequently returned IP address as the public IP.
+   - **PublicIPv4Sources**: A list of URLs that are queried to fetch the public-facing IPv4 address, based on the defined retrieval policy. URLs should point directly to an API endpoint serving a plain text response.
    - **SetIdentifier**: Gets or sets the delegate responsible for generating and assigning the peer’s network identifier. The default `SetIdentifier` handler concatenates the system’s MAC address with the current timestamp, computes an MD5 hash, appends the chosen public IP (IPv6 if available, otherwise IPv4), and computes a second MD5 hash. Override this delegate to supply custom identifier logic that fits your network requirements.
    - **NetworkTaskTrustSettings**:  An instance of `NetworkTaskTrustConfiguration` named `NetworkTaskTrustSettings` defines trust parameters for executing network tasks. It maps specific task types (such as bootstrap initialization, blocking, and messaging) to required trust parameters, such as requiring a signed hash or authority verification. This configuration ensures that tasks are only executed when the originating peer meets the necessary trust criteria.
-   For example, tasks like `TaskType.AssignIdentifierToPeer` require that the sender provides a valid signed hash and is recognized as an authority bootstrap server. However, by creating a new instance of `NetworkTaskTrustConfiguration` we can set it to block any tasks that attempt to assign an identifier to a peer thereby nullifying the action all together. This allows for finer control over network behavior.
-
+     For example, tasks like `TaskType.AssignIdentifierToPeer` require that the sender provides a valid signed hash and is recognized as an authority bootstrap server. However, by creating a new instance of `NetworkTaskTrustConfiguration` we can set it to block any tasks that attempt to assign an identifier to a peer thereby nullifying the action all together. This allows for finer control over network behavior.
 
 These trust policies work in tandem to balance flexibility and security. You can adjust the settings to suit various network scenarios—from enterprise-level internal networks that rely on rapid, low-security handshakes, to public peer-to-peer systems that demand strict, authority-based validations.
-
-### Overview
-
----
-
-**Peer Network Architecture** 
-Shows a broad overview of the architecture of the peer network, including default discovery mechanisms.
-
-<p>
-    <img src="https://raw.githubusercontent.com/p2pnetsuite/P2PNet/refs/heads/master/misc/P2PNetwork.png" width="500" height="325" alt="peer network chart">
-</p>

@@ -894,6 +894,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.NetworkTaskHandler.NetworkTaskDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.NetworkTaskHandler.NetworkTaskDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.NetworkTaskHandler.NetworkTaskDelegate",
+      "Summary": "<p sourcefile=\"api/P2PNet.Distribution.NetworkTaskHandler.NetworkTaskDelegate.yml\" sourcestartlinenumber=\"1\">Represents a handler for processing a network task.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/P2PNet.Distribution.NetworkTaskHandler.yml",
       "output": {
         ".html": {
@@ -919,6 +933,62 @@
       "IsMRef": true,
       "Title": "P2PNet.Distribution.NetworkTasks.NetworkTask",
       "Summary": "<p sourcefile=\"api/P2PNet.Distribution.NetworkTasks.NetworkTask.yml\" sourcestartlinenumber=\"1\">Represents a network task that can be executed within the peer-to-peer network.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo",
+      "Summary": "<p sourcefile=\"api/P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo.yml\" sourcestartlinenumber=\"1\">Represents temporary metadata about the origin of a <xref href=\"P2PNet.Distribution.NetworkTasks.NetworkTask\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration",
+      "Summary": "<p sourcefile=\"api/P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.yml\" sourcestartlinenumber=\"1\">Configures the trust requirements for each network task type.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry",
+      "Summary": "<p sourcefile=\"api/P2PNet.Distribution.NetworkTasks.TaskTrustMappingEntry.yml\" sourcestartlinenumber=\"1\">Represents a mapping entry between a task type and its required trust parameters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/P2PNet.Distribution.NetworkTasks.TaskTrustParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "P2PNet.Distribution.NetworkTasks.TaskTrustParameter",
+      "Summary": "<p sourcefile=\"api/P2PNet.Distribution.NetworkTasks.TaskTrustParameter.yml\" sourcestartlinenumber=\"1\">Represents the trust requirement for executing a network task as a parameter.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1310,7 +1380,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.yml\" sourcestartlinenumber=\"1\">Handles trust and permissions in regards to a range of misc. peer network settings.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1683,6 +1753,16 @@
       "output": {
         ".html": {
           "relative_path": "misc/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "misc/networktasks.md",
+      "output": {
+        ".html": {
+          "relative_path": "misc/networktasks.html"
         }
       },
       "version": ""
