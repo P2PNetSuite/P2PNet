@@ -89,7 +89,7 @@
 
 
   <h1 id="P2PNet_Distribution_NetworkTaskHandler" data-uid="P2PNet.Distribution.NetworkTaskHandler" class="text-break">
-Class NetworkTaskHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L30"><i class="bi bi-code-slash"></i></a>
+Class NetworkTaskHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTasks/NetworkTask.cs/#L404"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -149,7 +149,7 @@ Class NetworkTaskHandler  <a class="header-action link-secondary" title="View so
 
   <h2 id="P2PNet_Distribution_NetworkTaskHandler_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>
-This static class maintains two concurrent queues�one for outgoing network tasks to be sent to trusted peers,
+This static class maintains two concurrent queues—one for outgoing network tasks to be sent to trusted peers,
 and one for incoming network tasks that need to be processed. It uses timers to periodically check these queues
 and invoke appropriate handlers to process tasks based on their <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html">TaskType</a>. Tasks may include actions
 such as blocking a peer, sending messages, pinging, and disconnecting peers.
@@ -366,9 +366,512 @@ for validation and verification purposes.
 
 
 
-  <h3 id="P2PNet_Distribution_NetworkTaskHandler_incomingNetworkTasks" data-uid="P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks">
-  incomingNetworkTasks
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateDisconnectPeerTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateDisconnectPeerTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateDisconnectPeerTask_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateDisconnectPeerTask(System.String)">
+  CreateDisconnectPeerTask(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to disconnect a specific peer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateDisconnectPeerTask(string targetIdentifier)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>targetIdentifier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The identifier of the peer to disconnect.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_DisconnectPeer">DisconnectPeer</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateHeartbeatResponseTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatResponseTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateHeartbeatResponseTask_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatResponseTask(System.String)">
+  CreateHeartbeatResponseTask(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L448"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task for sending a heartbeat response.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateHeartbeatResponseTask(string responseData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>responseData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Additional response data or information to include.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_HeartbeatResponse">HeartbeatResponse</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateHeartbeatTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateHeartbeatTask" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatTask">
+  CreateHeartbeatTask()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L433"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to send a heartbeat signal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateHeartbeatTask()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_Heartbeat">Heartbeat</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreatePingTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreatePingTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreatePingTask_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreatePingTask(System.String)">
+  CreatePingTask(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to send a ping to a peer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreatePingTask(string recipient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recipient</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The identifier of the peer to ping.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_PingPeer">PingPeer</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateRequestDataTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRequestDataTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateRequestDataTask_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRequestDataTask(System.String)">
+  CreateRequestDataTask(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L298"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to request specific data from a peer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateRequestDataTask(string dataKey)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dataKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The key identifying the data being requested.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_RequestData">RequestData</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateRequestPublicKeyTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRequestPublicKeyTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateRequestPublicKeyTask" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRequestPublicKeyTask">
+  CreateRequestPublicKeyTask()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L401"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to request the public key of a peer or bootstrap server.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateRequestPublicKeyTask()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_RequestPublicKey">RequestPublicKey</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateRequestVerifyHashRecordTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifyHashRecordTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateRequestVerifyHashRecordTask_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifyHashRecordTask(System.String)">
+  CreateRequestVerifyHashRecordTask(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L369"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to request verification of a hash record.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateRequestVerifyHashRecordTask(string hashToVerify)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>hashToVerify</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The hash value that needs to be verified.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_RequestVerifyHashRecord">RequestVerifyHashRecord</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateRequestVerifySignatureTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifySignatureTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateRequestVerifySignatureTask_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifySignatureTask(System.String)">
+  CreateRequestVerifySignatureTask(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L386"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to verify a PGP signature.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateRequestVerifySignatureTask(string signature)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>signature</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The clear-signed PGP signature to verify.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_RequestVerifySignature">RequestVerifySignature</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateRevokePeerAuthorizationTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRevokePeerAuthorizationTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateRevokePeerAuthorizationTask_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateRevokePeerAuthorizationTask(System.String)">
+  CreateRevokePeerAuthorizationTask(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L282"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to revoke a peer's authorization.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateRevokePeerAuthorizationTask(string targetIdentifier)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>targetIdentifier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The identifier of the peer whose authorization is to be revoked.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_RevokePeerAuthorization">RevokePeerAuthorization</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateSendDataTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateSendDataTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateSendDataTask_System_String_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateSendDataTask(System.String,System.String)">
+  CreateSendDataTask(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L315"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to send data to a peer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateSendDataTask(string recipient, string data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recipient</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The identifier of the recipient peer.</p>
+</dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The data to send (serialized as a string).</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_SendData">SendData</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateSendMessageTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateSendMessageTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateSendMessageTask_System_String_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateSendMessageTask(System.String,System.String)">
+  CreateSendMessageTask(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L217"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to send a message to a designated recipient.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateSendMessageTask(string recipient, string message)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>recipient</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The identifier of the recipient peer.</p>
+</dd>
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The message to send.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_SendMessage">SendMessage</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateSetLocalIdentifierTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateSetLocalIdentifierTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateSetLocalIdentifierTask_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateSetLocalIdentifierTask(System.String)">
+  CreateSetLocalIdentifierTask(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L464"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to set the local identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateSetLocalIdentifierTask(string identifier)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>identifier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The identifier to assign locally.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_SetLocalIdentifier">SetLocalIdentifier</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateSynchronizeDataTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateSynchronizeDataTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateSynchronizeDataTask_System_String_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateSynchronizeDataTask(System.String)">
+  CreateSynchronizeDataTask(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L332"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a network task to synchronize data between peers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTask CreateSynchronizeDataTask(string dataKey)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dataKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The key identifying the data to synchronize.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
+    <dd><p>A <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a> with type <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_SynchronizeData">SynchronizeData</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="P2PNet_Distribution_NetworkTaskHandler_CreateUpdateSettingsTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateUpdateSettingsTask*"></a>
+
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_CreateUpdateSettingsTask_System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="P2PNet.Distribution.NetworkTaskHandler.CreateUpdateSettingsTask(System.Collections.Generic.Dictionary{System.String,System.String})">
+  CreateUpdateSettingsTask(Dictionary&lt;string, string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L348"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a network task to update network or peer settings.</p>
@@ -439,9 +942,9 @@ for validation and verification purposes.
 
   <a id="P2PNet_Distribution_NetworkTaskHandler_EnqueueOutgoingNetworkTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.EnqueueOutgoingNetworkTask*"></a>
 
-  <h3 id="P2PNet_Distribution_NetworkTaskHandler_outgoingNetworkTasks" data-uid="P2PNet.Distribution.NetworkTaskHandler.outgoingNetworkTasks">
-  outgoingNetworkTasks
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <h3 id="P2PNet_Distribution_NetworkTaskHandler_EnqueueOutgoingNetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.EnqueueOutgoingNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)">
+  EnqueueOutgoingNetworkTask(NetworkTask)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L142"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Enqueues a network task for outgoing distribution to trusted peers.</p>
@@ -494,46 +997,6 @@ for validation and verification purposes.
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
   </dl>
-
-
-
-
-
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
-  <a id="P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask*"></a>
-
-  <h3 id="P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTask_" data-uid="P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)">
-  ExtractSignatureFromNetworkTask(NetworkTask)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/Distribution/NetworkTaskHandler.cs/#L121"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;string&gt; ExtractSignatureFromNetworkTask(NetworkTask networkTask)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>networkTask</code> <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTask.html">NetworkTask</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
 
 
 

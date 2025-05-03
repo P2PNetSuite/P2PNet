@@ -2034,6 +2034,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.BootstrapServer
   nameWithType: BootstrapChannelBase.BootstrapServer
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CloseBootstrapChannel
+  name: CloseBootstrapChannel()
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_CloseBootstrapChannel
+  commentId: M:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CloseBootstrapChannel
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CloseBootstrapChannel()
+  nameWithType: BootstrapChannelBase.CloseBootstrapChannel()
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CloseBootstrapChannel*
+  name: CloseBootstrapChannel
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_CloseBootstrapChannel_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CloseBootstrapChannel
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CloseBootstrapChannel
+  nameWithType: BootstrapChannelBase.CloseBootstrapChannel
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.CreateHeartbeatPacket
   name: CreateHeartbeatPacket()
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_CreateHeartbeatPacket
@@ -2138,6 +2151,19 @@ references:
   isSpec: "True"
   fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.InitialBootstrapHandler
   nameWithType: BootstrapChannelBase.InitialBootstrapHandler
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsActive
+  name: IsActive
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsActive
+  commentId: P:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsActive
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsActive
+  nameWithType: BootstrapChannelBase.IsActive
+- uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsActive*
+  name: IsActive
+  href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsActive_
+  commentId: Overload:P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsActive
+  isSpec: "True"
+  fullName: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsActive
+  nameWithType: BootstrapChannelBase.IsActive
 - uid: P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.IsAuthorityMode
   name: IsAuthorityMode
   href: api/P2PNet.DicoveryChannels.WAN.BootstrapChannelBase.html#P2PNet_DicoveryChannels_WAN_BootstrapChannelBase_IsAuthorityMode
@@ -4763,18 +4789,349 @@ references:
   commentId: T:P2PNet.Distribution.NetworkTaskHandler
   fullName: P2PNet.Distribution.NetworkTaskHandler
   nameWithType: NetworkTaskHandler
-- uid: P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks
-  name: incomingNetworkTasks
-  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_incomingNetworkTasks
-  commentId: F:P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks
-  fullName: P2PNet.Distribution.NetworkTaskHandler.incomingNetworkTasks
-  nameWithType: NetworkTaskHandler.incomingNetworkTasks
-- uid: P2PNet.Distribution.NetworkTaskHandler.outgoingNetworkTasks
-  name: outgoingNetworkTasks
-  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_outgoingNetworkTasks
-  commentId: F:P2PNet.Distribution.NetworkTaskHandler.outgoingNetworkTasks
-  fullName: P2PNet.Distribution.NetworkTaskHandler.outgoingNetworkTasks
-  nameWithType: NetworkTaskHandler.outgoingNetworkTasks
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateAssignIdentifierToPeerTask(System.String,System.String)
+  name: CreateAssignIdentifierToPeerTask(string, string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateAssignIdentifierToPeerTask_System_String_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateAssignIdentifierToPeerTask(System.String,System.String)
+  name.vb: CreateAssignIdentifierToPeerTask(String, String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateAssignIdentifierToPeerTask(string, string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateAssignIdentifierToPeerTask(String, String)
+  nameWithType: NetworkTaskHandler.CreateAssignIdentifierToPeerTask(string, string)
+  nameWithType.vb: NetworkTaskHandler.CreateAssignIdentifierToPeerTask(String, String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateAssignIdentifierToPeerTask*
+  name: CreateAssignIdentifierToPeerTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateAssignIdentifierToPeerTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateAssignIdentifierToPeerTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateAssignIdentifierToPeerTask
+  nameWithType: NetworkTaskHandler.CreateAssignIdentifierToPeerTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateAuthorizePeerTask(System.String)
+  name: CreateAuthorizePeerTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateAuthorizePeerTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateAuthorizePeerTask(System.String)
+  name.vb: CreateAuthorizePeerTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateAuthorizePeerTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateAuthorizePeerTask(String)
+  nameWithType: NetworkTaskHandler.CreateAuthorizePeerTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateAuthorizePeerTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateAuthorizePeerTask*
+  name: CreateAuthorizePeerTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateAuthorizePeerTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateAuthorizePeerTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateAuthorizePeerTask
+  nameWithType: NetworkTaskHandler.CreateAuthorizePeerTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateBlockAndRemovePeerTask(System.String)
+  name: CreateBlockAndRemovePeerTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateBlockAndRemovePeerTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateBlockAndRemovePeerTask(System.String)
+  name.vb: CreateBlockAndRemovePeerTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateBlockAndRemovePeerTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateBlockAndRemovePeerTask(String)
+  nameWithType: NetworkTaskHandler.CreateBlockAndRemovePeerTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateBlockAndRemovePeerTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateBlockAndRemovePeerTask*
+  name: CreateBlockAndRemovePeerTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateBlockAndRemovePeerTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateBlockAndRemovePeerTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateBlockAndRemovePeerTask
+  nameWithType: NetworkTaskHandler.CreateBlockAndRemovePeerTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateBlockIPTask(System.String)
+  name: CreateBlockIPTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateBlockIPTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateBlockIPTask(System.String)
+  name.vb: CreateBlockIPTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateBlockIPTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateBlockIPTask(String)
+  nameWithType: NetworkTaskHandler.CreateBlockIPTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateBlockIPTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateBlockIPTask*
+  name: CreateBlockIPTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateBlockIPTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateBlockIPTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateBlockIPTask
+  nameWithType: NetworkTaskHandler.CreateBlockIPTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateBootstrapInitializationTask(System.String,System.String)
+  name: CreateBootstrapInitializationTask(string, string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateBootstrapInitializationTask_System_String_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateBootstrapInitializationTask(System.String,System.String)
+  name.vb: CreateBootstrapInitializationTask(String, String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateBootstrapInitializationTask(string, string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateBootstrapInitializationTask(String, String)
+  nameWithType: NetworkTaskHandler.CreateBootstrapInitializationTask(string, string)
+  nameWithType.vb: NetworkTaskHandler.CreateBootstrapInitializationTask(String, String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateBootstrapInitializationTask*
+  name: CreateBootstrapInitializationTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateBootstrapInitializationTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateBootstrapInitializationTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateBootstrapInitializationTask
+  nameWithType: NetworkTaskHandler.CreateBootstrapInitializationTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateDisconnectPeerTask(System.String)
+  name: CreateDisconnectPeerTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateDisconnectPeerTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateDisconnectPeerTask(System.String)
+  name.vb: CreateDisconnectPeerTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateDisconnectPeerTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateDisconnectPeerTask(String)
+  nameWithType: NetworkTaskHandler.CreateDisconnectPeerTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateDisconnectPeerTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateDisconnectPeerTask*
+  name: CreateDisconnectPeerTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateDisconnectPeerTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateDisconnectPeerTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateDisconnectPeerTask
+  nameWithType: NetworkTaskHandler.CreateDisconnectPeerTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatResponseTask(System.String)
+  name: CreateHeartbeatResponseTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateHeartbeatResponseTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatResponseTask(System.String)
+  name.vb: CreateHeartbeatResponseTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatResponseTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatResponseTask(String)
+  nameWithType: NetworkTaskHandler.CreateHeartbeatResponseTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateHeartbeatResponseTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatResponseTask*
+  name: CreateHeartbeatResponseTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateHeartbeatResponseTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatResponseTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatResponseTask
+  nameWithType: NetworkTaskHandler.CreateHeartbeatResponseTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatTask
+  name: CreateHeartbeatTask()
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateHeartbeatTask
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatTask
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatTask()
+  nameWithType: NetworkTaskHandler.CreateHeartbeatTask()
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatTask*
+  name: CreateHeartbeatTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateHeartbeatTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateHeartbeatTask
+  nameWithType: NetworkTaskHandler.CreateHeartbeatTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreatePingTask(System.String)
+  name: CreatePingTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreatePingTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreatePingTask(System.String)
+  name.vb: CreatePingTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreatePingTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreatePingTask(String)
+  nameWithType: NetworkTaskHandler.CreatePingTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreatePingTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreatePingTask*
+  name: CreatePingTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreatePingTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreatePingTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreatePingTask
+  nameWithType: NetworkTaskHandler.CreatePingTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRequestDataTask(System.String)
+  name: CreateRequestDataTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRequestDataTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateRequestDataTask(System.String)
+  name.vb: CreateRequestDataTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRequestDataTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateRequestDataTask(String)
+  nameWithType: NetworkTaskHandler.CreateRequestDataTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateRequestDataTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRequestDataTask*
+  name: CreateRequestDataTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRequestDataTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateRequestDataTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRequestDataTask
+  nameWithType: NetworkTaskHandler.CreateRequestDataTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRequestPublicKeyTask
+  name: CreateRequestPublicKeyTask()
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRequestPublicKeyTask
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateRequestPublicKeyTask
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRequestPublicKeyTask()
+  nameWithType: NetworkTaskHandler.CreateRequestPublicKeyTask()
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRequestPublicKeyTask*
+  name: CreateRequestPublicKeyTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRequestPublicKeyTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateRequestPublicKeyTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRequestPublicKeyTask
+  nameWithType: NetworkTaskHandler.CreateRequestPublicKeyTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifyHashRecordTask(System.String)
+  name: CreateRequestVerifyHashRecordTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRequestVerifyHashRecordTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifyHashRecordTask(System.String)
+  name.vb: CreateRequestVerifyHashRecordTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifyHashRecordTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifyHashRecordTask(String)
+  nameWithType: NetworkTaskHandler.CreateRequestVerifyHashRecordTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateRequestVerifyHashRecordTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifyHashRecordTask*
+  name: CreateRequestVerifyHashRecordTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRequestVerifyHashRecordTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifyHashRecordTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifyHashRecordTask
+  nameWithType: NetworkTaskHandler.CreateRequestVerifyHashRecordTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifySignatureTask(System.String)
+  name: CreateRequestVerifySignatureTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRequestVerifySignatureTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifySignatureTask(System.String)
+  name.vb: CreateRequestVerifySignatureTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifySignatureTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifySignatureTask(String)
+  nameWithType: NetworkTaskHandler.CreateRequestVerifySignatureTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateRequestVerifySignatureTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifySignatureTask*
+  name: CreateRequestVerifySignatureTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRequestVerifySignatureTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifySignatureTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRequestVerifySignatureTask
+  nameWithType: NetworkTaskHandler.CreateRequestVerifySignatureTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRevokePeerAuthorizationTask(System.String)
+  name: CreateRevokePeerAuthorizationTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRevokePeerAuthorizationTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateRevokePeerAuthorizationTask(System.String)
+  name.vb: CreateRevokePeerAuthorizationTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRevokePeerAuthorizationTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateRevokePeerAuthorizationTask(String)
+  nameWithType: NetworkTaskHandler.CreateRevokePeerAuthorizationTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateRevokePeerAuthorizationTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateRevokePeerAuthorizationTask*
+  name: CreateRevokePeerAuthorizationTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateRevokePeerAuthorizationTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateRevokePeerAuthorizationTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateRevokePeerAuthorizationTask
+  nameWithType: NetworkTaskHandler.CreateRevokePeerAuthorizationTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateSendDataTask(System.String,System.String)
+  name: CreateSendDataTask(string, string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateSendDataTask_System_String_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateSendDataTask(System.String,System.String)
+  name.vb: CreateSendDataTask(String, String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateSendDataTask(string, string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateSendDataTask(String, String)
+  nameWithType: NetworkTaskHandler.CreateSendDataTask(string, string)
+  nameWithType.vb: NetworkTaskHandler.CreateSendDataTask(String, String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateSendDataTask*
+  name: CreateSendDataTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateSendDataTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateSendDataTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateSendDataTask
+  nameWithType: NetworkTaskHandler.CreateSendDataTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateSendMessageTask(System.String,System.String)
+  name: CreateSendMessageTask(string, string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateSendMessageTask_System_String_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateSendMessageTask(System.String,System.String)
+  name.vb: CreateSendMessageTask(String, String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateSendMessageTask(string, string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateSendMessageTask(String, String)
+  nameWithType: NetworkTaskHandler.CreateSendMessageTask(string, string)
+  nameWithType.vb: NetworkTaskHandler.CreateSendMessageTask(String, String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateSendMessageTask*
+  name: CreateSendMessageTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateSendMessageTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateSendMessageTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateSendMessageTask
+  nameWithType: NetworkTaskHandler.CreateSendMessageTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateSetLocalIdentifierTask(System.String)
+  name: CreateSetLocalIdentifierTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateSetLocalIdentifierTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateSetLocalIdentifierTask(System.String)
+  name.vb: CreateSetLocalIdentifierTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateSetLocalIdentifierTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateSetLocalIdentifierTask(String)
+  nameWithType: NetworkTaskHandler.CreateSetLocalIdentifierTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateSetLocalIdentifierTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateSetLocalIdentifierTask*
+  name: CreateSetLocalIdentifierTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateSetLocalIdentifierTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateSetLocalIdentifierTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateSetLocalIdentifierTask
+  nameWithType: NetworkTaskHandler.CreateSetLocalIdentifierTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateSynchronizeDataTask(System.String)
+  name: CreateSynchronizeDataTask(string)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateSynchronizeDataTask_System_String_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateSynchronizeDataTask(System.String)
+  name.vb: CreateSynchronizeDataTask(String)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateSynchronizeDataTask(string)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateSynchronizeDataTask(String)
+  nameWithType: NetworkTaskHandler.CreateSynchronizeDataTask(string)
+  nameWithType.vb: NetworkTaskHandler.CreateSynchronizeDataTask(String)
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateSynchronizeDataTask*
+  name: CreateSynchronizeDataTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateSynchronizeDataTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateSynchronizeDataTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateSynchronizeDataTask
+  nameWithType: NetworkTaskHandler.CreateSynchronizeDataTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateUpdateSettingsTask(System.Collections.Generic.Dictionary{System.String,System.String})
+  name: CreateUpdateSettingsTask(Dictionary<string, string>)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateUpdateSettingsTask_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.CreateUpdateSettingsTask(System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: CreateUpdateSettingsTask(Dictionary(Of String, String))
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateUpdateSettingsTask(System.Collections.Generic.Dictionary<string, string>)
+  fullName.vb: P2PNet.Distribution.NetworkTaskHandler.CreateUpdateSettingsTask(System.Collections.Generic.Dictionary(Of String, String))
+  nameWithType: NetworkTaskHandler.CreateUpdateSettingsTask(Dictionary<string, string>)
+  nameWithType.vb: NetworkTaskHandler.CreateUpdateSettingsTask(Dictionary(Of String, String))
+- uid: P2PNet.Distribution.NetworkTaskHandler.CreateUpdateSettingsTask*
+  name: CreateUpdateSettingsTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_CreateUpdateSettingsTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.CreateUpdateSettingsTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.CreateUpdateSettingsTask
+  nameWithType: NetworkTaskHandler.CreateUpdateSettingsTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.EnqueueIncomingNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask,P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo)
+  name: EnqueueIncomingNetworkTask(NetworkTask, NetworkTaskOriginInfo)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_EnqueueIncomingNetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTaskOriginInfo_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.EnqueueIncomingNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask,P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.EnqueueIncomingNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask, P2PNet.Distribution.NetworkTasks.NetworkTaskOriginInfo)
+  nameWithType: NetworkTaskHandler.EnqueueIncomingNetworkTask(NetworkTask, NetworkTaskOriginInfo)
+- uid: P2PNet.Distribution.NetworkTaskHandler.EnqueueIncomingNetworkTask*
+  name: EnqueueIncomingNetworkTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_EnqueueIncomingNetworkTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.EnqueueIncomingNetworkTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.EnqueueIncomingNetworkTask
+  nameWithType: NetworkTaskHandler.EnqueueIncomingNetworkTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.EnqueueOutgoingNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  name: EnqueueOutgoingNetworkTask(NetworkTask)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_EnqueueOutgoingNetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTask_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.EnqueueOutgoingNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.EnqueueOutgoingNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  nameWithType: NetworkTaskHandler.EnqueueOutgoingNetworkTask(NetworkTask)
+- uid: P2PNet.Distribution.NetworkTaskHandler.EnqueueOutgoingNetworkTask*
+  name: EnqueueOutgoingNetworkTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_EnqueueOutgoingNetworkTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.EnqueueOutgoingNetworkTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.EnqueueOutgoingNetworkTask
+  nameWithType: NetworkTaskHandler.EnqueueOutgoingNetworkTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  name: ExtractSignatureFromNetworkTask(NetworkTask)
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_P2PNet_Distribution_NetworkTasks_NetworkTask_
+  commentId: M:P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  fullName: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask(P2PNet.Distribution.NetworkTasks.NetworkTask)
+  nameWithType: NetworkTaskHandler.ExtractSignatureFromNetworkTask(NetworkTask)
+- uid: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask*
+  name: ExtractSignatureFromNetworkTask
+  href: api/P2PNet.Distribution.NetworkTaskHandler.html#P2PNet_Distribution_NetworkTaskHandler_ExtractSignatureFromNetworkTask_
+  commentId: Overload:P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask
+  isSpec: "True"
+  fullName: P2PNet.Distribution.NetworkTaskHandler.ExtractSignatureFromNetworkTask
+  nameWithType: NetworkTaskHandler.ExtractSignatureFromNetworkTask
+- uid: P2PNet.Distribution.NetworkTaskHandler.NetworkTaskDelegate
+  name: NetworkTaskHandler.NetworkTaskDelegate
+  href: api/P2PNet.Distribution.NetworkTaskHandler.NetworkTaskDelegate.html
+  commentId: T:P2PNet.Distribution.NetworkTaskHandler.NetworkTaskDelegate
+  fullName: P2PNet.Distribution.NetworkTaskHandler.NetworkTaskDelegate
+  nameWithType: NetworkTaskHandler.NetworkTaskDelegate
 - uid: P2PNet.Distribution.NetworkTasks
   name: P2PNet.Distribution.NetworkTasks
   href: api/P2PNet.Distribution.NetworkTasks.html

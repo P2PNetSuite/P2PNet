@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy | P2PNetDocs ">
       
-      
+      <meta name="description" content="Handles trust and permissions in regards to a range of misc. peer network settings.">
       <link rel="icon" href="../misc/p2pnet_logo.png">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy" class="text-break">
-Class PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1255"><i class="bi bi-code-slash"></i></a>
+Class PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1278"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy  <a class="header-action 
   <dl><dt>Assembly</dt><dd>P2PNet.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Handles trust and permissions in regards to a range of misc. peer network settings.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -156,7 +157,7 @@ Class PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy  <a class="header-action 
 
   <h3 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_LocalIdentifierSetPolicy" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy">
   LocalIdentifierSetPolicy
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1273"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1296"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the policy for initializing and managing the identifier of a peer member in the P2P network.
@@ -192,11 +193,68 @@ after the identifier has already been set.</p>
 
 
 
+  <a id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_NetworkTaskTrustSettings_" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings*"></a>
+
+  <h3 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_NetworkTaskTrustSettings" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings">
+  NetworkTaskTrustSettings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1378"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Configures the trust settings for executing network tasks within the peer-to-peer network.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NetworkTaskTrustConfiguration NetworkTaskTrustSettings { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html">NetworkTaskTrustConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_NetworkTaskTrustSettings_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+This static instance of <a class="xref" href="P2PNet.Distribution.NetworkTasks.NetworkTaskTrustConfiguration.html">NetworkTaskTrustConfiguration</a> defines the trust parameters for each <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html">TaskType</a>.
+It determines the conditions under which a network task is allowed to execute, such as requiring the sender to be a trusted peer
+or authority bootstrap server, or providing a valid signed hash. You can also mute a certain type of task using the parameter
+<a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_IgnoreAll">IgnoreAll</a> or allow total pass through of all of a certain type with <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_Open">Open</a>
+</p>
+<p>
+The default configuration assigns specific trust requirements to certain task types. For example:
+<ul><li><span class="term"><a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_SendMessage">SendMessage</a></span>Defaults to <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_Open">Open</a>, allowing all peers to send messages.</li><li><span class="term"><a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_BlockIP">BlockIP</a></span>Defaults to requiring <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_TrustedPeer">TrustedPeer</a> and <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_AuthorityBootstrapServer">AuthorityBootstrapServer</a>.</li><li><span class="term"><a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html#P2PNet_Distribution_NetworkTasks_TaskType_AssignIdentifierToPeer">AssignIdentifierToPeer</a></span>Defaults to requiring <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_MustHaveSignedHash">MustHaveSignedHash</a> and <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_AuthorityBootstrapServer">AuthorityBootstrapServer</a>.</li></ul>
+
+<p>
+For any <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskType.html">TaskType</a> not explicitly declared in the default configuration, trust requirements default to
+<a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_TrustedPeer">TrustedPeer</a> and <a class="xref" href="P2PNet.Distribution.NetworkTasks.TaskTrustParameter.html#P2PNet_Distribution_NetworkTasks_TaskTrustParameter_AuthorityBootstrapServer">AuthorityBootstrapServer</a>. This ensures that
+tasks not explicitly configured require some elevated trust by default (ie the sender of the task must be either a trust peer
+or an authority bootstrap server).
+</p>
+<p>
+Users can modify this configuration at runtime to customize the trust requirements for specific task types. For example:
+<pre><code class="lang-csharp">PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings.UpdateTrustParams(
+    TaskType.SendMessage,
+    TaskTrustParameter.TrustedPeer
+);</code></pre>
+
+</div>
+
+
+
+
   <a id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4GetPolicy_" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4GetPolicy*"></a>
 
   <h3 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4GetPolicy" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4GetPolicy">
   PublicIPv4GetPolicy
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1294"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1317"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the policy for fetching the public IPv4 address. This determines policy for failover and consensus.
@@ -229,7 +287,7 @@ To set the list of sources, use <a class="xref" href="P2PNet.PeerNetwork.TrustPo
 
   <h3 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_PublicIPv4Sources" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.PublicIPv4Sources">
   PublicIPv4Sources
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1306"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1329"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Get or sets the list of sources to fetch the public IPv4 address.</p>
@@ -265,7 +323,7 @@ The use of an API endpoint that uses JSON or other format is not supported.</p>
 
   <h3 id="P2PNet_PeerNetwork_TrustPolicies_PeerNetworkTrustPolicy_SetIdentifier" data-uid="P2PNet.PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.SetIdentifier">
   SetIdentifier
-  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1323"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/P2PNetSuite/P2PNet/blob/docs/P2PNet/PeerNetwork.cs/#L1404"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the action responsible for automatically setting the peer network identifier
