@@ -372,7 +372,7 @@ namespace P2PNet
             // Check for existing peer
             if (KnownPeers.Any(p => p.IP.Equals(peerIP)))
             {
-                    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning, Logging.LAN);
+                    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
                     client.Dispose();
             }
             else if (InboundConnectingPeers.PeerIsQueued(peerIP.ToString()))

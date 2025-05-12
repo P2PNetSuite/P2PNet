@@ -90,7 +90,7 @@ namespace P2PNet.DicoveryChannels
             if (identifierPacket != null)
                 {
 
-            //    DebugMessage($"Identifier packet received: {identifierPacket.Data} from {identifierPacket.IP}" + Environment.NewLine + $"\t\t\tSecret Port: {identifierPacket.Data}");
+          //    DebugMessage($"Identifier packet received: {identifierPacket.Data} from {identifierPacket.IP}" + Environment.NewLine + $"\t\t\tSecret Port: {identifierPacket.Data}");
 
                 IPeer newPeer = new GenericPeer(IPAddress.Parse(identifierPacket.IP), identifierPacket.Data);
                 newPeer.Identifier = identifierPacket.SourceOriginIdentifier;

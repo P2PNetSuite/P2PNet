@@ -1,4 +1,5 @@
 ﻿using P2PNet.Peers;
+using P2PNet.Peers.CommProtocols;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,10 @@ namespace P2PNet.DicoveryChannels.WAN
         /// Gets or sets the unique identifier for the peer.
         /// </summary>
         public string Identifier { get; set; }
+        /// <summary>
+        /// Gets or sets the protocol used by the peer.
+        /// </summary>
+        public INetProtocol Protocol { get; set; }
         public BootstrapPeer() { }
 
         /// <summary>

@@ -412,7 +412,12 @@ namespace P2PNet.Distribution
 
         private static bool CheckTrustedPeer(ref NetworkTask task, NetworkTaskOriginInfo info)
         {
-            return PeerNetwork.TrustedPeerChannels.Any(peer => peer.peer.Identifier.Equals(info.SourceOriginIdentifier, StringComparison.Ordinal));
+            return PeerNetwork.TrustedPeerChannels != null &&
+                   PeerNetwork.TrustedPeerChannels.Any(channel =>
+                       channel != null &&
+                       channel.peer != null &&
+                       !string.IsNullOrEmpty(channel.peer.Identifier) &&
+                       channel.peer.Identifier.Equals(info.SourceOriginIdentifier, StringComparison.Ordinal));
         }
 
         private static bool CheckAuthorityBootstrapServer(ref NetworkTask task, NetworkTaskOriginInfo info)
@@ -436,7 +441,7 @@ namespace P2PNet.Distribution
 
         private static bool CheckTaskParameters(ref NetworkTask task, ref NetworkTaskOriginInfo info)
         {
-            if (!PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings.TaskTrustMapping.TryGetValue(task.TaskType, out var requiredParams))
+            if (!PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings.TaskTrustMapping.TryGetValue(task.TaskType, out TaskTrustParameter[] requiredParams))
             {
                 DebugMessage($"Task {task.TaskType} from {info.SourceOriginIdentifier} has no trust mapping.", MessageType.Warning);
                 return false;
