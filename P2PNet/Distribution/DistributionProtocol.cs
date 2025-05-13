@@ -139,14 +139,18 @@ namespace P2PNet.Distribution
             { CommonBootstrapEndpoints.Bootstrap, "/api/Bootstrap/peers" },
             { CommonBootstrapEndpoints.VerifyHash, "/api/Bootstrap/verifyhash" },
             { CommonBootstrapEndpoints.GetPublicIP, "/api/Bootstrap/publicip" },
-            { CommonBootstrapEndpoints.Heartbeat, "/api/Bootstrap/heartbeat"   }
+            { CommonBootstrapEndpoints.Heartbeat, "/api/Bootstrap/heartbeat" },
+            { CommonBootstrapEndpoints.TurnSignal, "/api/TURN/signal" },
+            { CommonBootstrapEndpoints.TurnPoll, "/api/TURN/poll" }
         };
         public enum CommonBootstrapEndpoints
         {
             Bootstrap,
             VerifyHash,
             GetPublicIP,
-            Heartbeat
+            Heartbeat,
+            TurnSignal,
+            TurnPoll
         }
         public static Uri GetEndpointURI(CommonBootstrapEndpoints endpoint, Uri uri)
         {

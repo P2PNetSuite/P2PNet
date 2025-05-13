@@ -12,7 +12,7 @@ namespace P2PNet.Peers.CommProtocols
     {
         private readonly UdpClient _client;
         private readonly IPEndPoint _remoteEndPoint;
-
+        public NetProtocolType ProtocolType => NetProtocolType.Udp;
         public UdpNetProtocol(UdpClient client, IPEndPoint remoteEndPoint)
         {
             _client = client;

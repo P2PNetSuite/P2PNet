@@ -122,7 +122,10 @@ namespace P2PBootstrap
                             TaskData = new Dictionary<string, string>()
                                 {
                                     { "PublicKey", PublicKeyToString },
-                                    { "Peers", Serialize(new CollectionSharePacket(100, KnownPeers)) }
+                                    { "Peers", Serialize(new CollectionSharePacket(100, KnownPeers)) },
+                                    { "WebRTC", GlobalConfig.OptionalServices.WebRTC().ToString() },
+                                    { "NATHolepunch", GlobalConfig.OptionalServices.UDPNATHolepunch().ToString() },
+                                    { "TURN", GlobalConfig.OptionalServices.TURN().ToString() }
                                 }
                         };
 
@@ -254,6 +257,106 @@ namespace P2PBootstrap
                         clientIp = context.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
                     }
                     return Results.Text(clientIp, "text/plain");
+                });
+            }
+
+            if(GlobalConfig.OptionalServices.TURN() == true)
+            {
+                app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.TurnSignal], async Task<IResult> (HttpContext context) =>
+                {
+                    using var reader = new StreamReader(context.Request.Body);
+                    string bodyJson = await reader.ReadToEndAsync();
+
+                    var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
+                    if (incomingPacket == null || incomingPacket.Data == null)
+                    {
+                        return Results.Problem("Invalid DataTransmissionPacket received.", statusCode: 400);
+                    }
+
+                    string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
+                    NetworkTask task = Deserialize<NetworkTask>(ntJson);
+
+                    // Only allow WebRTC signaling types
+                    if (task == null ||
+                        (task.TaskType != TaskType.WebRTCOffer &&
+                         task.TaskType != TaskType.WebRTCAnswer &&
+                         task.TaskType != TaskType.WebRTCIceCandidate))
+                    {
+                        return Results.Problem("Invalid or unsupported network task type for this endpoint.", statusCode: 400);
+                    }
+
+                    // Route to recipient
+                    if (!task.TaskData.TryGetValue("Recipient", out var recipientId) || string.IsNullOrWhiteSpace(recipientId))
+                    {
+                        return Results.Problem("Missing 'Recipient' in TaskData.", statusCode: 400);
+                    }
+
+                    if (!ClientPeers.TryGetValue(recipientId, out ClientPeer recipientPeer))
+                    {
+                        return Results.Problem($"Recipient peer '{recipientId}' not found.", statusCode: 404);
+                    }
+
+                    recipientPeer.OutgoingTasks.Enqueue(task);
+
+                    return Results.Ok();
+                });
+
+                app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.TurnPoll], async Task<IResult> (HttpContext context) =>
+                {
+                    using var reader = new StreamReader(context.Request.Body);
+                    string bodyJson = await reader.ReadToEndAsync();
+
+                    var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
+                    if (incomingPacket == null || incomingPacket.Data == null)
+                    {
+                        return Results.Problem("Invalid DataTransmissionPacket received.", statusCode: 400);
+                    }
+
+                    string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
+                    NetworkTask pollTask = Deserialize<NetworkTask>(ntJson);
+
+                    // Expect a special polling task type, e.g., TaskType.Heartbeat or a custom TaskType.WebRTCPoll
+                    if (pollTask == null || !pollTask.TaskData.TryGetValue("PeerId", out var peerId) || string.IsNullOrWhiteSpace(peerId))
+                    {
+                        return Results.Problem("Missing or invalid 'PeerId' in TaskData.", statusCode: 400);
+                    }
+
+                    if (!ClientPeers.TryGetValue(peerId, out ClientPeer clientPeer))
+                    {
+                        return Results.Problem($"Peer '{peerId}' not found.", statusCode: 404);
+                    }
+
+                    // Collect all pending signaling tasks for this peer
+                    var signalingTasks = new List<NetworkTask>();
+                    var remainingTasks = new Queue<NetworkTask>();
+                    while (clientPeer.OutgoingTasks.Count > 0)
+                    {
+                        var task = clientPeer.OutgoingTasks.Dequeue();
+                        if (task.TaskType == TaskType.WebRTCOffer ||
+                            task.TaskType == TaskType.WebRTCAnswer ||
+                            task.TaskType == TaskType.WebRTCIceCandidate)
+                        {
+                            signalingTasks.Add(task);
+                        }
+                        else
+                        {
+                            remainingTasks.Enqueue(task); // preserve non-signaling tasks
+                        }
+                    }
+                    // Restore non-signaling tasks
+                    while (remainingTasks.Count > 0)
+                        clientPeer.OutgoingTasks.Enqueue(remainingTasks.Dequeue());
+
+                    // Wrap the signaling tasks in a DataTransmissionPacket for response
+                    var responseTasks = signalingTasks
+                        .Select(t => Serialize(t))
+                        .ToArray();
+                    var responsePacket = new DataTransmissionPacket()
+                    {
+                        DataType = DataPayloadFormat.MiscData,
+                        Data = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(responseTasks))
+                    };
+                    return Results.Content(responsePacket.ToJsonString(), "application/json");
                 });
             }
 

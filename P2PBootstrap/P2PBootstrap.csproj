@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\P2PBootstrap.TURN\P2PBootstrap.TURN.csproj" />
     <ProjectReference Include="..\P2PNet\P2PNet.csproj" />
   </ItemGroup>
 
@@ -24,6 +25,7 @@
     <Folder Include="Networking\" />
   </ItemGroup>
 
+	<!-- ################ PREBUILD AND POST BUILD TARGETS ################ -->
 	<Target Name="PreBuild" BeforeTargets="Build">
 		<Exec Command="node &quot;wwwroot/install-dependencies.js&quot;" />
 	</Target>
@@ -31,6 +33,13 @@
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="cd wwwroot &amp;&amp; npm install" />
 	</Target>
+	<!-- ################ ############################### ################ -->
+
+	<!-- ################ POST CLEAN TARGET ################ -->
+	<Target Name="CleanNodeModules" AfterTargets="Clean">
+		<RemoveDir Directories="bin\$(Configuration)\net9.0\keys" />
+	</Target>
+	<!-- ################ ############################### ################ -->
 
 	<ItemGroup>
 		<Content Include="wwwroot\**\*.*">

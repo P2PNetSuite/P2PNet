@@ -65,7 +65,8 @@ namespace P2PNet.Distribution
                 { TaskType.Heartbeat, WrapWithChecks(HeartbeatHandler) },
                 { TaskType.HeartbeatResponse, WrapWithChecks(HeartbeatResponseHandler) },
                 { TaskType.SetLocalIdentifier, WrapWithChecks(SetLocalIdentifierHandler) },
-                { TaskType.AssignIdentifierToPeer, WrapWithChecks(AssignIdentifierToPeerHandler) }
+                { TaskType.AssignIdentifierToPeer, WrapWithChecks(AssignIdentifierToPeerHandler) },
+                { TaskType.RequestWebRTCConnection, WrapWithChecks(RequestWebRTCConnection) }
             };
 
             _outboundChecker = new System.Timers.Timer(500); // half second
@@ -116,8 +117,8 @@ namespace P2PNet.Distribution
                 {
                     try
                     {
-                        var task = outTuple.Item1;
-                        var originInfo = outTuple.Item2;
+                        NetworkTask task = outTuple.Item1;
+                        NetworkTaskOriginInfo originInfo = outTuple.Item2;
                         if (delegateLib.TryGetValue(task.TaskType, out var handler) && handler != null)
                         {
                             handler.Invoke(task, originInfo);
@@ -490,6 +491,38 @@ namespace P2PNet.Distribution
                 return task;
             }
 
+            /// <summary>
+            /// Creates a network task to request the bootstrap server to facilitate a WebRTC connection between two peers.
+            /// </summary>
+            /// <param name="requestorIdentifier">The identifier of the requesting peer.</param>
+            /// <param name="targetIdentifier">The identifier of the peer to connect to.</param>
+            /// <returns>A <see cref="NetworkTask"/> with type <see cref="TaskType.RequestWebRTCConnection"/>.</returns>
+            public static NetworkTask CreateRequestWebRTCConnectionTask(string requestorIdentifier, string targetIdentifier)
+            {
+                var task = new NetworkTask
+                {
+                    TaskType = TaskType.RequestWebRTCConnection,
+                    TaskData = new Dictionary<string, string>()
+                };
+                task.TaskData["Requestor"] = requestorIdentifier;
+                task.TaskData["Target"] = targetIdentifier;
+                return task;
+            }
+
+            public static NetworkTask CreateWebRTCOfferTask(string requester, string target, string sdp)
+            {
+                var task = new NetworkTask
+                {
+                    TaskType = TaskType.WebRTCOffer,
+                    TaskData = new Dictionary<string, string>
+                    {
+                        ["From"] = requester,
+                        ["To"] = target,
+                        ["SDP"] = sdp
+                    }
+                };
+                return task;
+            }
     }
 
 

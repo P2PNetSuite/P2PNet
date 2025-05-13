@@ -5,19 +5,74 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.MixedReality.WebRTC;
+using P2PNet.Distribution.NetworkTasks;
+using P2PNet.Distribution;
 
 namespace P2PNet.Peers.CommProtocols
 {
     public class WebRtcNetProtocol : INetProtocol
     {
+        public NetProtocolType ProtocolType => NetProtocolType.WebRTC;
         private readonly PeerConnection _peerConnection;
         private readonly DataChannel _dataChannel;
         private readonly MemoryStream _receiveBuffer = new MemoryStream();
         private readonly SemaphoreSlim _receiveSignal = new SemaphoreSlim(0);
 
+        public event Action<string> LocalSdpReady; // SDP offer/answer
+        public event Action<string> IceCandidateReady; // ICE candidate
+
+        /// <summary>
+        /// Initializes signaling event handlers and optionally starts the offer.
+        /// </summary>
+        /// <param name="remoteId">The remote target peer's identifier.</param>
+        /// <param name="sendTask">Delegate to send signaling NetworkTasks.</param>
+        /// <param name="isInitiator">If true, this peer will create the offer.</param>
+        public void Initialize(string remoteId, Action<NetworkTask> sendTask,bool isInitiator = false)
+        {
+            LocalSdpReady += sdp =>
+            {
+                var offerTask = NetworkTaskHandler.CreateWebRTCOfferTask(PeerNetwork.Identifier, remoteId, sdp);
+                offerTask.TaskData["Recipient"] = remoteId;
+                sendTask(offerTask);
+            };
+
+            IceCandidateReady += candidate =>
+            {
+                var iceTask = new NetworkTask
+                {
+                    TaskType = TaskType.WebRTCIceCandidate,
+                    TaskData = new Dictionary<string, string>
+                    {
+                        ["From"] = PeerNetwork.Identifier,
+                        ["To"] = remoteId,
+                        ["Candidate"] = candidate,
+                        ["Recipient"] = remoteId
+                    }
+                };
+                sendTask(iceTask);
+            };
+
+            if (isInitiator)
+            {
+                _peerConnection.CreateOffer();
+            }
+        }
+
         public WebRtcNetProtocol(string sourceOriginIdentifier)
         {
             _peerConnection = new PeerConnection();
+
+            // Attach signaling event handlers
+
+            _peerConnection.LocalSdpReadytoSend += (SdpMessage message) =>
+            {
+                LocalSdpReady?.Invoke(message.Content);
+            };
+            _peerConnection.IceCandidateReadytoSend += (IceCandidate candidate) =>
+            {
+                IceCandidateReady?.Invoke(candidate.Content);
+            };
+
             _peerConnection.InitializeAsync().GetAwaiter().GetResult();
 
 
@@ -26,6 +81,15 @@ namespace P2PNet.Peers.CommProtocols
                 : _peerConnection.AddDataChannelAsync("default", true, true).GetAwaiter().GetResult();
 
             _dataChannel.MessageReceived += DataChannel_MessageReceived;
+        }
+
+        public async Task SetRemoteDescriptionAsync(SdpMessage message)
+        {
+            await _peerConnection.SetRemoteDescriptionAsync(message);
+        }
+        public void AddIceCandidate(IceCandidate candidate)
+        {
+            _peerConnection.AddIceCandidate(candidate);
         }
 
         private void DataChannel_MessageReceived(byte[] message)

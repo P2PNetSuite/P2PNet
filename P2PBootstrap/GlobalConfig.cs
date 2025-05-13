@@ -5,9 +5,24 @@ namespace P2PBootstrap
 {
     public static class GlobalConfig
     {
+        /// <summary>
+        /// The application configuration loaded from appsettings.json.
+        /// </summary>
         public static IConfiguration AppSettings;
+
+        /// <summary>
+        /// The default configuration file name.
+        /// </summary>
         public const string ConfigFile = "appsettings.json";
+
+        /// <summary>
+        /// Indicates whether the application is running in a containerized environment.
+        /// </summary>
         public static bool _containerized = false;
+
+        /// <summary>
+        /// The active key pair used for cryptographic operations.
+        /// </summary>
         public static KeyPair ActiveKeys { get; set; } = new KeyPair();
 
         /// <summary>
@@ -46,6 +61,10 @@ namespace P2PBootstrap
 
         #region GlobalConfig Values
 
+        /// <summary>
+        /// Gets the directory where key files are stored.
+        /// Checks environment variable KEYS_DIRECTORY if containerized, otherwise uses appsettings.json.
+        /// </summary>
         public static string KeysDirectory()
         {
             string ENVVAR = "KEYS_DIRECTORY";
@@ -66,6 +85,10 @@ namespace P2PBootstrap
                 }
         }
 
+        /// <summary>
+        /// Gets the trust policy type for the bootstrap server.
+        /// Checks environment variable BOOTSTRAP_MODE if containerized, otherwise uses appsettings.json.
+        /// </summary>
         public static TrustPolicies.BootstrapTrustPolicyType TrustPolicy()
         {
             string ENVVAR = "BOOTSTRAP_MODE";
@@ -117,6 +140,11 @@ namespace P2PBootstrap
             }
 
         }
+
+        /// <summary>
+        /// Gets the full path to the public key file.
+        /// Checks environment variable PUBLIC_KEY_PATH if containerized, otherwise uses appsettings.json.
+        /// </summary>
         public static string PublicKeyPath()
         {
             string ENVVAR = "PUBLIC_KEY_PATH";
@@ -134,6 +162,11 @@ namespace P2PBootstrap
                     return Path.Combine(AppContext.BaseDirectory, KeysDirectory(), AppSettings["Configuration:AuthorityKey:PublicKey"]);
                 }
         }
+
+        /// <summary>
+        /// Gets the full path to the private key file.
+        /// Checks environment variable PRIVATE_KEY_PATH if containerized, otherwise uses appsettings.json.
+        /// </summary>
         public static string PrivateKeyPath()
         {
             string ENVVAR = "PRIVATE_KEY_PATH";
@@ -151,6 +184,11 @@ namespace P2PBootstrap
                     return Path.Combine(AppContext.BaseDirectory, KeysDirectory(), AppSettings["Configuration:AuthorityKey:PrivateKey"]);
                 }
         }
+
+        /// <summary>
+        /// Gets the configured network name.
+        /// Checks environment variable NETWORK_NAME if containerized, otherwise uses appsettings.json.
+        /// </summary>
         public static string NetworkName()
         {
             // Matches the 'Configuration:NetworkName' value in appsettings.json
@@ -173,8 +211,16 @@ namespace P2PBootstrap
             }
         }
 
+
+        /// <summary>
+        /// Provides configuration options for optional HTTP endpoints.
+        /// </summary>
         public static class OptionalEndpoints
         {
+            /// <summary>
+            /// Determines if the server should serve its public IP endpoint.
+            /// Checks environment variable ENDPOINT_PUBLICIP if containerized, otherwise uses appsettings.json.
+            /// </summary>
             public static bool ServePublicIP()
             {
                 string ENVVAR = "ENDPOINT_PUBLICIP";
@@ -196,6 +242,88 @@ namespace P2PBootstrap
             }
         }
 
+        /// <summary>
+        /// Provides configuration options for optional network services.
+        /// </summary>
+        public static class OptionalServices
+        {
+            /// <summary>
+            /// Determines if the WebRTC service is enabled.
+            /// Checks environment variable OPTIONALSERVICE_WEBRTC if containerized, otherwise uses appsettings.json.
+            /// </summary>
+            public static bool WebRTC()
+            {
+                string ENVVAR = "OPTIONALSERVICE_WEBRTC";
+                if (!_containerized)
+                {
+                    string configValue = AppSettings["Configuration:OptionalServices:WebRTC"];
+                    return bool.TryParse(configValue, out bool configResult) && configResult;
+                }
+                else
+                {
+                    string envVar = Environment.GetEnvironmentVariable(ENVVAR, EnvironmentVariableTarget.Process);
+                    if (!string.IsNullOrEmpty(envVar))
+                    {
+                        return bool.TryParse(envVar, out bool envResult) && envResult;
+                    }
+                    string configValue = AppSettings["Configuration:OptionalServices:WebRTC"];
+                    return bool.TryParse(configValue, out bool configResult) && configResult;
+                }
+            }
+
+            /// <summary>
+            /// Determines if UDP NAT hole punching is enabled.
+            /// Checks environment variable OPTIONALSERVICE_UDPNATHOLEPUNCH if containerized, otherwise uses appsettings.json.
+            /// </summary>
+            public static bool UDPNATHolepunch()
+            {
+                string ENVVAR = "OPTIONALSERVICE_UDPNATHOLEPUNCH";
+                if (!_containerized)
+                {
+                    string configValue = AppSettings["Configuration:OptionalServices:UDPNATHolepunch"];
+                    return bool.TryParse(configValue, out bool configResult) && configResult;
+                }
+                else
+                {
+                    string envVar = Environment.GetEnvironmentVariable(ENVVAR, EnvironmentVariableTarget.Process);
+                    if (!string.IsNullOrEmpty(envVar))
+                    {
+                        return bool.TryParse(envVar, out bool envResult) && envResult;
+                    }
+                    string configValue = AppSettings["Configuration:OptionalServices:UDPNATHolepunch"];
+                    return bool.TryParse(configValue, out bool configResult) && configResult;
+                }
+            }
+
+            /// <summary>
+            /// Determines if TURN relay service is enabled.
+            /// Checks environment variable OPTIONALSERVICE_TURN if containerized, otherwise uses appsettings.json.
+            /// </summary>
+            public static bool TURN()
+            {
+                string ENVVAR = "OPTIONALSERVICE_TURN";
+                if (!_containerized)
+                {
+                    string configValue = AppSettings["Configuration:OptionalServices:TURN"];
+                    return bool.TryParse(configValue, out bool configResult) && configResult;
+                }
+                else
+                {
+                    string envVar = Environment.GetEnvironmentVariable(ENVVAR, EnvironmentVariableTarget.Process);
+                    if (!string.IsNullOrEmpty(envVar))
+                    {
+                        return bool.TryParse(envVar, out bool envResult) && envResult;
+                    }
+                    string configValue = AppSettings["Configuration:OptionalServices:TURN"];
+                    return bool.TryParse(configValue, out bool configResult) && configResult;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the database file name.
+        /// Checks environment variable DB_FILENAME if containerized, otherwise uses appsettings.json.
+        /// </summary>
         public static string DbFileName()
         {
             // Matches the 'Database:DbFileName' value in appsettings.json
@@ -218,6 +346,10 @@ namespace P2PBootstrap
             }
         }
 
+        /// <summary>
+        /// Gets the configured identifier for this node.
+        /// Checks environment variable IDENTIFIER if containerized, otherwise uses appsettings.json.
+        /// </summary>
         public static string ConfigIdentifier()
         {
             string ENVVAR = "IDENTIFIER";

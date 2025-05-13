@@ -10,6 +10,7 @@ namespace P2PNet.Peers
     public class TcpNetProtocol : INetProtocol
     {
         private readonly TcpClient _client;
+        public NetProtocolType ProtocolType => NetProtocolType.Tcp;
 
         public TcpNetProtocol(TcpClient client)
         {

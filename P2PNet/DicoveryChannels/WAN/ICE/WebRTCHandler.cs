@@ -1,18 +1,20 @@
-﻿global using static P2PNet.PeerNetwork;
-global using static P2PNet.Distribution.DistributionProtocol;
-global using static ConsoleDebugger.ConsoleDebugger;
-global using P2PNet.Distribution;
-
-using Microsoft.MixedReality.WebRTC;
-using System.Collections.Concurrent;
+﻿using Microsoft.MixedReality.WebRTC;
 using P2PNet.Peers;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace P2PBootstrap.WebRTC
+namespace P2PNet.DicoveryChannels.WAN.ICE
 {
     public static class WebRTCHandler
     {
         private static readonly ConcurrentDictionary<string, PeerConnection> PeerConnections = new();
         private static readonly ConcurrentDictionary<string, string> PendingRequests = new();
+        
+        
 
         /// <summary>
         /// Initializes a new WebRTC PeerConnection for the given SourceOriginIdentifier.
@@ -114,7 +116,7 @@ namespace P2PBootstrap.WebRTC
         /// </summary>
         public static bool IsPeerKnown(string sourceOriginIdentifier)
         {
-            return KnownPeers.Any(p => p.Identifier == sourceOriginIdentifier);
+            return PeerNetwork.KnownPeers.Any(p => p.Identifier == sourceOriginIdentifier);
         }
 
         /// <summary>
