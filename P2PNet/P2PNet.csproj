@@ -5,29 +5,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<IsPackable>true</IsPackable>
-	<Version>1.0.0.9-alpha</Version>
+	<Version>1.0.1.0-alpha</Version>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<Title>P2PNet</Title>
 	<Company>P2PNetOrg</Company>
 	<Description> P2PNet is a peer-to-peer facilitation library with the goal of seamless peer discovery, secure encryption, and distributed data exchange. </Description>
-	<PackageReleaseNotes>Bootstrap implementation, greater NetworkTask handling logic, and other misc improvements
-
--- PeerNetwork peer management
-* Updated `LANDiscoveryChannelBase.cs` to assign `SourceOriginIdentifier` to new peers
-* Enhanced `PeerNetwork.cs` with a method to retrieve peers by identifier
-* Updated `PeerChannel.cs` and `PeerChannelBase.cs` so that IPeer is held in the base class as opposed to the derived class
--- Bootstrap
-* Added identifier setting logic in `BootstrapChannel.cs` for `BootstrapServer`
-* Introduced `IsActive` property in `BootstrapChannelBase.cs` to track if channel is actively communicating.
-* Improved error handling in `BootstrapChannelBase.cs` with structured responses and swappable delegate.
--- NetworkTasks and related
-* Refactored `ValidateNetworkTaskHash` to simplify task creation with lots of new methods (will ensure organization and consistency throughout implementation)
-* Implemented `NetworkTaskTrustConfiguration` for managing task trust requirements in the TrustPolicy.PeerNetworkTrustPolicy section. This wraps a TaskType with a collection of TaskTrustParameters, which define the rules and permissions checked before executing a task or not.
-* Modified `NetworkTaskHandler.cs` to process incoming tasks with origin info -- this uses a new struct NetworkTaskOriginInfo which has several constructor options for passing relavant information needed for the NetworkTaskTrustConfiguration class in the TrustPolicy section named NetworkTaskTrustSettings. To enqueue incoming NetworkTasks, the Enqueue method will need the NetworkTask -and- a NetworkTaskOriginInfo to be passed as params</PackageReleaseNotes>
+	<PackageReleaseNotes>Setting things up for early proto-TURN server implementation</PackageReleaseNotes>
 	<PackageTags>p2pnet;p2p;peer-to-peer;</PackageTags>
 	<PackageIcon>p2pnet_logo.jpg-HD.png</PackageIcon>
-	<RepositoryUrl>https://github.com/realChrisDeBon/P2PNet</RepositoryUrl>
+	<RepositoryUrl>https://github.com/P2PNetSuite/P2PNet</RepositoryUrl>
 	<NoWarn>$(NoWarn);CS0168,CS0219</NoWarn>
   </PropertyGroup>
 
@@ -74,8 +61,9 @@
   </Target>
 
   <ItemGroup>
-    <PackageReference Include="ConsoleDebugger" Version="1.0.5" />
+    <PackageReference Include="ConsoleDebugger" Version="1.0.8" />
     <PackageReference Include="DiscUtils" Version="0.16.13" />
+    <PackageReference Include="Microsoft.MixedReality.WebRTC" Version="2.0.2" />
     <PackageReference Include="PacketDotNet" Version="1.4.8-pre18" />
     <PackageReference Include="PgpCore" Version="6.5.0" />
     <PackageReference Include="SharpPcap" Version="6.3.0" />

@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using P2PNet.Peers.CommProtocols;
 using P2PNet.Peers;
 
 namespace P2PNet.Peers
@@ -46,6 +47,10 @@ namespace P2PNet.Peers
         /// Gets or sets the unique identifier for the peer.
         /// </summary>
         public string Identifier { get; set; }
+        /// <summary>
+        /// Gets or sets the protocol for the peer.
+        /// </summary>
+        public INetProtocol Protocol { get; set; }
         public GenericPeer() { }
 
         public GenericPeer(IPAddress ip, int port)

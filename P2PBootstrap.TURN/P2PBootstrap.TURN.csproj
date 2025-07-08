@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.MixedReality.WebRTC" Version="2.0.2" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="NodeTurnServer\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+
+	<Target Name="InstallNodeDependencies" AfterTargets="Build">
+		<Exec Command="npm install" WorkingDirectory="NodeTurnServer" />
+		<Exec Command="npm run build" WorkingDirectory="NodeTurnServer" />
+	</Target>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\P2PNet\P2PNet.csproj" />
+	</ItemGroup>
+
+	<!-- ################ PREBUILD AND POST BUILD TARGETS ################ -->
+	<Target Name="PreBuild" BeforeTargets="Build">
+		<Exec Command="node &quot;$(ProjectDir)install-dependencies.js&quot;" WorkingDirectory="NodeTurnServer" />
+	</Target>
+
+	<ItemGroup>
+	  <Content Update="NodeTurnServer\package.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	<!-- ################ ############################### ################ -->
+
+	
+	<!-- ################ POST CLEAN TARGET ################ -->
+	<Target Name="CleanNodeModules" AfterTargets="Clean">
+		<RemoveDir Directories="NodeTurnServer\node_modules" />
+		<RemoveDir Directories="bin\$(Configuration)\net8.0\NodeTurnServer" />
+	</Target>
+	<!-- ################ ############################### ################ -->
+	
+</Project>

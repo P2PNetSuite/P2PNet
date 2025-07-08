@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApplication", "ExampleApplication\ExampleApplication.csproj", "{16092892-A578-B5AA-4504-8E46B0005D0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2PBootstrap.TURN", "P2PBootstrap.TURN\P2PBootstrap.TURN.csproj", "{95F56339-6505-4C61-AE51-80A3C1E0EF83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{16092892-A578-B5AA-4504-8E46B0005D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16092892-A578-B5AA-4504-8E46B0005D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16092892-A578-B5AA-4504-8E46B0005D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95F56339-6505-4C61-AE51-80A3C1E0EF83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95F56339-6505-4C61-AE51-80A3C1E0EF83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95F56339-6505-4C61-AE51-80A3C1E0EF83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95F56339-6505-4C61-AE51-80A3C1E0EF83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

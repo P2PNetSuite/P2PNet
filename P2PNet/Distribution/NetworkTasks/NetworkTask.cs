@@ -2,6 +2,7 @@
 using P2PNet.NetworkPackets;
 using P2PNet.NetworkPackets.NetworkPacketBase.NetworkPacketBase;
 using P2PNet.Peers;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -258,6 +259,17 @@ namespace P2PNet.Distribution.NetworkTasks
         /// Set the identifier of a peer to the specified value.
         /// </summary>
         AssignIdentifierToPeer,
+
+        /// <summary>
+        /// Request the bootstrap server to facilitate a WebRTC connection between two peers.
+        /// </summary>
+        RequestWebRTCConnection,
+
+        WebRTCOffer,
+
+        WebRTCAnswer,
+
+        WebRTCIceCandidate
     }
 
     /// <summary>
@@ -359,10 +371,9 @@ namespace P2PNet.Distribution.NetworkTasks
 
             foreach (var entry in entries)
             {
-                TaskTrustMapping[entry.TaskType] = entry.Requirements;
+                TaskTrustMapping[entry.TaskType] = entry.Requirements.ToArray();
             }
-            // add default implementations for any that were not added
-            foreach(var item in Enum.GetValues(typeof(TaskType)))
+            foreach(Enum item in Enum.GetValues(typeof(TaskType)))
             {
                 if (!TaskTrustMapping.ContainsKey((TaskType)item))
                 {
@@ -370,6 +381,7 @@ namespace P2PNet.Distribution.NetworkTasks
                     TaskTrustMapping[(TaskType)item] = new[] { TaskTrustParameter.TrustedPeer, TaskTrustParameter.AuthorityBootstrapServer };
                 }
             }
+
         }
 
         /// <summary>
@@ -412,7 +424,12 @@ namespace P2PNet.Distribution
 
         private static bool CheckTrustedPeer(ref NetworkTask task, NetworkTaskOriginInfo info)
         {
-            return PeerNetwork.TrustedPeerChannels.Any(peer => peer.peer.Identifier.Equals(info.SourceOriginIdentifier, StringComparison.Ordinal));
+            return PeerNetwork.TrustedPeerChannels != null &&
+                   PeerNetwork.TrustedPeerChannels.Any(channel =>
+                       channel != null &&
+                       channel.peer != null &&
+                       !string.IsNullOrEmpty(channel.peer.Identifier) &&
+                       channel.peer.Identifier.Equals(info.SourceOriginIdentifier, StringComparison.Ordinal));
         }
 
         private static bool CheckAuthorityBootstrapServer(ref NetworkTask task, NetworkTaskOriginInfo info)
@@ -436,7 +453,7 @@ namespace P2PNet.Distribution
 
         private static bool CheckTaskParameters(ref NetworkTask task, ref NetworkTaskOriginInfo info)
         {
-            if (!PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings.TaskTrustMapping.TryGetValue(task.TaskType, out var requiredParams))
+            if (!PeerNetwork.TrustPolicies.PeerNetworkTrustPolicy.NetworkTaskTrustSettings.TaskTrustMapping.TryGetValue(task.TaskType, out TaskTrustParameter[] requiredParams))
             {
                 DebugMessage($"Task {task.TaskType} from {info.SourceOriginIdentifier} has no trust mapping.", MessageType.Warning);
                 return false;
@@ -618,6 +635,8 @@ namespace P2PNet.Distribution
         /// Handler for tasks of type AssignIdentifierToPeer.
         /// </summary>
         private static NetworkTaskDelegate AssignIdentifierToPeerHandler { get; set; } = DefaultAssignIdentifierToPeerHandler;
+        
+        private static NetworkTaskDelegate RequestWebRTCConnection { get; set; } = DefaultRequestWebRTCConnectionHandler;
         #endregion
 
         #region Default Implementations
@@ -771,6 +790,11 @@ namespace P2PNet.Distribution
         private static void DefaultAssignIdentifierToPeerHandler(NetworkTask task, NetworkTaskOriginInfo info)
         {
             Console.WriteLine("Default AssignIdentifierToPeerHandler executed.");
+        }
+
+        private static void DefaultRequestWebRTCConnectionHandler(NetworkTask task, NetworkTaskOriginInfo info)
+        {
+            Console.WriteLine("Default RequestWebRTCConnectionTask executed.");
         }
 
         #endregion

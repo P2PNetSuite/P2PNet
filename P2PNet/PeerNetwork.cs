@@ -1,5 +1,6 @@
 ﻿global using P2PNet.Exceptions;
 global using static ConsoleDebugger.ConsoleDebugger;
+using Microsoft.MixedReality.WebRTC;
 using P2PNet.DicoveryChannels.WAN;
 using P2PNet.DiscoveryChannels;
 using P2PNet.Distribution;
@@ -309,6 +310,70 @@ namespace P2PNet
         public static List<BootstrapChannel> ActiveBootstrapChannels = new List<BootstrapChannel>();
         private static List<BootstrapChannel> inactiveBootstrapChannel = new List<BootstrapChannel>();
 
+        /// <summary>
+        /// Gets a list of bootstrap channels that support WebRTC for peer-to-peer communication.
+        /// </summary>
+        /// <remarks>
+        /// This property returns the subset of active bootstrap channels whose <see cref="BootstrapChannelBase.SupportsWebRTC"/> 
+        /// property is set to true. WebRTC support enables advanced real-time communication features, including 
+        /// the establishment of direct or relay-assisted peer-to-peer connections.
+        /// </remarks>
+        public static List<BootstrapChannel> KnownBootstrapChannelsWithWebRTC
+        {
+            get { return ActiveBootstrapChannels.Where(bc => bc.SupportsWebRTC == true).ToList(); }
+        }
+
+        /// <summary>
+        /// Gets a list of bootstrap channels that support UDP-based NAT hole punching.
+        /// </summary>
+        /// <remarks>
+        /// This property returns the active bootstrap channels that have the <see cref="BootstrapChannelBase.SupportsNATHolepunching"/> 
+        /// property enabled. NAT hole punching facilitates direct peer-to-peer communication by leveraging temporary mappings 
+        /// created in NAT devices, helping peers behind NATs establish direct connections.
+        /// </remarks>
+        public static List<BootstrapChannel> KnownBootstrapChannelsWithUDPNATHolepunch
+        {
+            get { return ActiveBootstrapChannels.Where(bc => bc.SupportsNATHolepunching == true).ToList(); }
+        }
+
+        /// <summary>
+        /// Gets a list of bootstrap channels that support TURN (Traversal Using Relays around NAT).
+        /// </summary>
+        /// <remarks>
+        /// This property returns the active bootstrap channels where the <see cref="BootstrapChannelBase.SupportsTURN"/> property 
+        /// is true. TURN is used as a fallback relay mechanism when direct peer-to-peer connections cannot be established 
+        /// due to strict NAT or firewall configurations.
+        /// </remarks>
+        public static List<BootstrapChannel> KnownBootstrapChannelsWithTURN
+        {
+            get { return ActiveBootstrapChannels.Where(bc => bc.SupportsTURN == true).ToList(); }
+        }
+
+        public static List<IceServer> AvailableICEServers
+        {
+            get
+            {
+                List<IceServer> iceServers = new List<IceServer>();
+                foreach (BootstrapChannel channel in ActiveBootstrapChannels)
+                {
+                    if (channel.SupportsTURN == true)
+                    {
+                        // quasi cast to ICE server
+                        var ICEsrvr = new IceServer
+                        {
+                            Urls = new List<string> { channel.BootstrapServerEndpoint.ToString() },
+                            TurnUserName = "user",
+                            TurnPassword = "password"
+                        };
+                        // add to list
+                        iceServers.Add(ICEsrvr);
+                    }
+                }
+                return iceServers;
+            }
+        }
+
+
         private static List<IPAddress> multicast_addresses = new List<IPAddress>();
         #endregion
 
@@ -365,19 +430,19 @@ namespace P2PNet
             // Immediately filter out blocked IPs
             if (PeerNetwork.TrustPolicies.IncomingPeerTrustPolicy.BlockedIPs.Contains(peerIP))
             {
-                DebugMessage($"Blocked IP attempted to connect: {peerIP.ToString()}. Ignoring.", MessageType.Warning);
+               // DebugMessage($"Blocked IP attempted to connect: {peerIP.ToString()}. Ignoring.", MessageType.Warning);
                 client.Dispose();
                 return;
             }
             // Check for existing peer
             if (KnownPeers.Any(p => p.IP.Equals(peerIP)))
             {
-                    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning, Logging.LAN);
+                   // DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
                     client.Dispose();
             }
             else if (InboundConnectingPeers.PeerIsQueued(peerIP.ToString()))
             {
-                    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
+                   // DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
             }
             else
             {
@@ -408,7 +473,7 @@ namespace P2PNet
                 if ((KnownPeers.Any(p => p.IP.Equals(peer.IP))) ||
                     (KnownPeers.Any(p => p.Identifier.Equals(peer.Identifier))))
                 {
-                    DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
+                   // DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
                     return;
                 }
                 else if (peer.IP.ToString() == LocalIPV4Address.ToString() && peer.Port == ListeningPort)
@@ -1332,6 +1397,11 @@ namespace P2PNet
                     set => publicIPv4sources = value;
                 }
 
+                private static TaskTrustMappingEntry bootstrapping_ = new TaskTrustMappingEntry(TaskType.BootstrapInitialization, TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
+                private static TaskTrustMappingEntry blocking_ = new TaskTrustMappingEntry(TaskType.BlockIP, TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
+                private static TaskTrustMappingEntry blocking_remove_ = new TaskTrustMappingEntry(TaskType.BlockAndRemovePeer, TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
+                private static TaskTrustMappingEntry update_identifier_ = new TaskTrustMappingEntry(TaskType.AssignIdentifierToPeer, TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
+                private static TaskTrustMappingEntry messages_ = new TaskTrustMappingEntry(TaskType.SendMessage, TaskTrustParameter.Open);
                 /// <summary>
                 /// Configures the trust settings for executing network tasks within the peer-to-peer network.
                 /// </summary>
@@ -1382,12 +1452,6 @@ namespace P2PNet
                     update_identifier_,
                     messages_
                     );
-                    private static TaskTrustMappingEntry bootstrapping_ = new TaskTrustMappingEntry(TaskType.BootstrapInitialization,       TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
-                        private static TaskTrustMappingEntry blocking_ = new TaskTrustMappingEntry(TaskType.BlockIP,                        TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
-                        private static TaskTrustMappingEntry blocking_remove_ = new TaskTrustMappingEntry(TaskType.BlockAndRemovePeer,      TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
-                        private static TaskTrustMappingEntry update_identifier_ = new TaskTrustMappingEntry(TaskType.AssignIdentifierToPeer,TaskTrustParameter.MustHaveSignedHash, TaskTrustParameter.AuthorityBootstrapServer);
-                    private static TaskTrustMappingEntry messages_ = new TaskTrustMappingEntry(TaskType.SendMessage,                        TaskTrustParameter.Open);
-
 
                 /// <summary>
                 /// Gets or sets the action responsible for automatically setting the peer network identifier 

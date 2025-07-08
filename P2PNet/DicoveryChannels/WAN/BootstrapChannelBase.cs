@@ -1,4 +1,5 @@
-﻿using Org.BouncyCastle.Asn1.Ocsp;
+﻿using Microsoft.MixedReality.WebRTC;
+using Org.BouncyCastle.Asn1.Ocsp;
 using P2PNet.Distribution;
 using P2PNet.Distribution.NetworkTasks;
 using P2PNet.NetworkPackets;
@@ -20,12 +21,44 @@ namespace P2PNet.DicoveryChannels.WAN
         public BootstrapPeer BootstrapServer { get; set; }
         internal Uri BootstrapServerEndpoint => BootstrapServer.Endpoint;
         internal PGPKeyInfo publicKey { get; set; } // store the public key from the server
+        internal IceServer IceServer { get; set; } // store the ICE server info for WebRTC if applicable
 
         /// <summary>
         /// Indicates whether the channel is currently active and has recently communicated.
         /// False indicates prolonged lack of communication (ie timeout) or failed initialization.
         /// </summary>
         public bool IsActive { get; set; } = false; // indicates if the channel is active or not
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the channel supports WebRTC for peer-to-peer communication.
+        /// </summary>
+        /// <remarks>
+        /// When enabled, this property indicates that the channel can utilize WebRTC protocols, which provide features such as real-time communication,
+        /// to establish direct and relay-assisted connections between peers.
+        /// The default value is <c>false</c>.
+        /// </remarks>
+        public bool SupportsWebRTC { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the channel supports TURN (Traversal Using Relays around NAT) as a fallback connectivity option.
+        /// </summary>
+        /// <remarks>
+        /// TURN is used as a relay mechanism when direct peer-to-peer connections are not possible due to strict NAT or firewall settings.
+        /// When this property is set to <c>true</c>, it indicates peers may use TURN servers to relay traffic from this bootstrap channel.
+        /// The default value is <c>false</c>.
+        /// </remarks>
+        public bool SupportsTURN { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the channel supports NAT hole punching.
+        /// </summary>
+        /// <remarks>
+        /// NAT hole punching is a connectivity technique that enables direct communication between peers located behind NATs by creating temporary mappings
+        /// in the NAT device's routing table. Enabling this option signals that the channel can attempt to establish direct connections using this method.
+        /// The default value is <c>false</c>.
+        /// </remarks>
+        public bool SupportsNATHolepunching { get; set; } = false;
+
 
         public string PublicKey => Encoding.UTF8.GetString(publicKey.KeyData); // expose the public key as a string for easy access
 
@@ -206,6 +239,19 @@ namespace P2PNet.DicoveryChannels.WAN
             // process the peer list.
             CollectionSharePacket sharePacket = Deserialize<CollectionSharePacket>(networkTask.TaskData["Peers"]);
             ProcessPeerList(sharePacket);
+            // check if extra srvcs are available
+            if (networkTask.TaskData.ContainsKey("WebRTC"))
+            {
+                this.SupportsWebRTC = bool.Parse(networkTask.TaskData["WebRTC"]);
+            }
+            if (networkTask.TaskData.ContainsKey("TURN"))
+            {
+                this.SupportsTURN = bool.Parse(networkTask.TaskData["TURN"]);
+            }
+            if (networkTask.TaskData.ContainsKey("NATHolepunch"))
+            {
+                this.SupportsNATHolepunching = bool.Parse(networkTask.TaskData["NATHolepunch"]);
+            }
             // finally start heartbeat routine
             StartHeartbeatRoutine();
             // set the channel to active

@@ -3,6 +3,7 @@ using P2PNet.Peers;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.Json.Serialization;
+using P2PNet.Peers.CommProtocols;
 
 namespace P2PBootstrap
 {
@@ -25,6 +26,8 @@ namespace P2PBootstrap
         /// </summary>
         [JsonIgnore]
         public TcpClient Client { get; set; }
+
+        public INetProtocol Protocol { get; set; }
 
         /// <summary>
         /// Gets or sets the network stream associated with the peer.

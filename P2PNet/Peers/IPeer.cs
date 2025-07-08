@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using P2PNet.Peers.CommProtocols;
 
 namespace P2PNet.Peers
 {
@@ -46,6 +47,11 @@ namespace P2PNet.Peers
         /// Gets or sets an identifier for the peer. This can optionally be used to store complementary IDs for whitelisting and blacklisting peers in your network (ie MAC address or other unique identifiers).
         /// </summary>
         public string Identifier { get; set; }
+
+        /// <summary>
+        /// Gets or sets the protocol handler for the peer.
+        /// </summary>
+        public INetProtocol Protocol { get; set; }
     }
 
 }
