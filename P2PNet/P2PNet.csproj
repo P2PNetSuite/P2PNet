@@ -27,7 +27,7 @@
 * Modified `NetworkTaskHandler.cs` to process incoming tasks with origin info -- this uses a new struct NetworkTaskOriginInfo which has several constructor options for passing relavant information needed for the NetworkTaskTrustConfiguration class in the TrustPolicy section named NetworkTaskTrustSettings. To enqueue incoming NetworkTasks, the Enqueue method will need the NetworkTask -and- a NetworkTaskOriginInfo to be passed as params</PackageReleaseNotes>
 	<PackageTags>p2pnet;p2p;peer-to-peer;</PackageTags>
 	<PackageIcon>p2pnet_logo.jpg-HD.png</PackageIcon>
-	<RepositoryUrl>https://github.com/realChrisDeBon/P2PNet</RepositoryUrl>
+	<RepositoryUrl>https://github.com/P2PNetSuite/P2PNet</RepositoryUrl>
 	<NoWarn>$(NoWarn);CS0168,CS0219</NoWarn>
   </PropertyGroup>
 
