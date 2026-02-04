@@ -107,8 +107,8 @@ The **BootstrapChannel** class defines the core routines for communicating with 
        var channel = new BootstrapChannel(options);
        ```  
    - Either A) Call `channel.OpenBootstrapChannel()` to trigger the initial handshake, or B) Call `AddBootstrapChannel(channel)` and when ready to open all bootstrap channels, call `StartBootstrapConnections();`. In authority mode, the server’s public key is validated and the peer list is processed; in trustless mode, the peer list is loaded directly.  
-   - Control the heartbeat routine with `StartHeartbeatRoutine()` / `StopHeartbeatRoutine()`, or replace the `HeartbeatOutHandler` delegate to customize send/retry logic.  
-   - When overriding delegates (e.g., `InitialBootstrapHandler` or `HeartbeatOutHandler`), remember to maintain the essential tasks of each step—handshake, data retrieval, or error checks—to keep the channel stable.
+   - Control the bootstrap channel stream with `StartBootstrapChannelStream()` / `StopBootstrapChannelStream()`, or replace the `HandleIncomingStreamTask` delegate to customize how incoming network tasks are processed.  
+   - When overriding delegates (e.g., `InitialBootstrapHandler` or `HandleIncomingStreamTask`), remember to maintain the essential tasks of each step—handshake, data retrieval, or error checks—to keep the channel stable.
 
 These classes ensure that each node communicates with the bootstrap server in a consistent manner while still allowing extensibility for custom security or operational requirements.
 

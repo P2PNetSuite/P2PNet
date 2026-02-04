@@ -64,6 +64,7 @@ namespace P2PNet
         /// <summary>
         /// Gets or sets the identifier for the peer member in the P2P network.
         /// The ability to set or change the identifier is governed by the <see cref="TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy"/>.
+        /// If no identifier is explicitly set, the MAC address is used as a fallback identifier.
         /// </summary>
         /// <exception cref="UnauthorizedAccessException">
         /// Thrown if an attempt is made to change the identifier when the policy is set to <see cref="TrustPolicies.LocalIdentifierSetPolicyType.StrictLocalOnly"/> or <see cref="TrustPolicies.LocalIdentifierSetPolicyType.StrictRemoteOnly"/>
@@ -71,7 +72,15 @@ namespace P2PNet
         /// </exception>
         public static string Identifier
         {
-            get { return _identifier; }
+            get 
+            { 
+                // fallback to MAC address if identifier is not explicitly set
+                if (string.IsNullOrEmpty(_identifier) && MAC != null)
+                {
+                    return MAC.ToString();
+                }
+                return _identifier; 
+            }
             set // TODO: add additional checks to ensure SET complies with policies (ie we need to add internal bools/flags through out lib that can be checked to signal if setting is allowed or not) 
             { 
                 if((TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy != TrustPolicies.LocalIdentifierSetPolicyType.StrictLocalOnly) && (TrustPolicies.PeerNetworkTrustPolicy.LocalIdentifierSetPolicy != TrustPolicies.LocalIdentifierSetPolicyType.StrictRemoteOnly))

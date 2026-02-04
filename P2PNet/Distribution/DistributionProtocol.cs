@@ -139,18 +139,52 @@ namespace P2PNet.Distribution
             { CommonBootstrapEndpoints.Bootstrap, "/api/Bootstrap/peers" },
             { CommonBootstrapEndpoints.VerifyHash, "/api/Bootstrap/verifyhash" },
             { CommonBootstrapEndpoints.GetPublicIP, "/api/Bootstrap/publicip" },
-            { CommonBootstrapEndpoints.Heartbeat, "/api/Bootstrap/heartbeat" },
-            { CommonBootstrapEndpoints.TurnSignal, "/api/TURN/signal" },
-            { CommonBootstrapEndpoints.TurnPoll, "/api/TURN/poll" }
+            { CommonBootstrapEndpoints.EventStream, "/api/Bootstrap/events" },
+            { CommonBootstrapEndpoints.Signal, "/api/Bootstrap/signal" },
+            { CommonBootstrapEndpoints.TurnConnect, "/api/TURN/connect" },
+            { CommonBootstrapEndpoints.TurnRelay, "/api/TURN/relay" },
+            { CommonBootstrapEndpoints.TurnStream, "/api/TURN/stream" },
+            { CommonBootstrapEndpoints.TurnClose, "/api/TURN/close" }
         };
         public enum CommonBootstrapEndpoints
         {
+            /// <summary>
+            /// Initial bootstrap handshake endpoint for peer registration and peer list retrieval.
+            /// </summary>
             Bootstrap,
+            /// <summary>
+            /// Endpoint for verifying network task hashes with the bootstrap server.
+            /// </summary>
             VerifyHash,
+            /// <summary>
+            /// Endpoint for retrieving the client's public IP address as seen by the bootstrap server.
+            /// </summary>
             GetPublicIP,
-            Heartbeat,
-            TurnSignal,
-            TurnPoll
+            /// <summary>
+            /// Server-Sent Events endpoint for receiving network tasks and events from the bootstrap server.
+            /// Replaces the polling-based heartbeat mechanism.
+            /// </summary>
+            EventStream,
+            /// <summary>
+            /// WebRTC signaling endpoint for routing offers, answers, and ICE candidates between peers.
+            /// </summary>
+            Signal,
+            /// <summary>
+            /// Initiates a TURN relay connection between two peers.
+            /// </summary>
+            TurnConnect,
+            /// <summary>
+            /// Sends data through an active TURN relay connection.
+            /// </summary>
+            TurnRelay,
+            /// <summary>
+            /// Server-Sent Events endpoint for receiving relayed data through a TURN connection.
+            /// </summary>
+            TurnStream,
+            /// <summary>
+            /// Closes an active TURN relay connection.
+            /// </summary>
+            TurnClose
         }
         public static Uri GetEndpointURI(CommonBootstrapEndpoints endpoint, Uri uri)
         {

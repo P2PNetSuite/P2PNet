@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace P2PNet.DicoveryChannels.WAN
 {
@@ -63,46 +64,69 @@ namespace P2PNet.DicoveryChannels.WAN
         public string PublicKey => Encoding.UTF8.GetString(publicKey.KeyData); // expose the public key as a string for easy access
 
         /// <summary>
-        /// Gets or sets the maximum number of consecutive failed outbound heartbeats before the heartbeat routine is stopped.
+        /// Gets or sets the maximum number of consecutive connection failures before the event stream is terminated.
         /// </summary>
         /// <remarks>
-        /// If the number of heartbeat failures reaches this threshold, the <see cref="BootstrapChannelBase.HandleFailedHeartbeat"> delegate is invoked.
-        /// The default implementation of the delegate terminated the timer routine.
+        /// If the number of stream connection failures reaches this threshold, the <see cref="BootstrapChannelBase.HandleStreamConnectionFailure"> delegate is invoked.
         /// The default value is 5.
         /// </remarks>
         public int MaxFailureTimeout { get; set; } = 5;
 
         /// <summary>
-        /// Starts the heartbeat routine by starting the underlying timer.
+        /// Cancellation token source for the bootstrap channel stream connection.
+        /// </summary>
+        protected CancellationTokenSource _streamCts;
+
+        /// <summary>
+        /// HTTP client used for the SSE bootstrap channel stream connection.
+        /// </summary>
+        protected HttpClient _streamClient;
+
+        /// <summary>
+        /// Indicates whether the bootstrap channel stream is currently running.
+        /// </summary>
+        public bool BootstrapChannelStreamRunning { get; protected set; } = false;
+
+        /// <summary>
+        /// Starts the SSE stream connection to receive network tasks from the bootstrap server.
         /// </summary>
         /// <remarks>
-        /// This method initiates the periodic sending of heartbeat messages to the bootstrap server.
-        /// Any exceptions during the timer start are caught and suppressed.
+        /// This method establishes a persistent SSE connection with the bootstrap server for real-time communication.
+        /// Any exceptions during stream initialization are caught and logged.
         /// </remarks>
-        public void StartHeartbeatRoutine()
+        public void StartBootstrapChannelStream()
         {
+            if (BootstrapChannelStreamRunning)
+            {
+                return; // already running
+            }
+
             try
             {
-                _heartbeatTimer.Start();
+                _streamCts = new CancellationTokenSource();
+                Task.Run(() => RunBootstrapStreamLoop(_streamCts.Token));
+                BootstrapChannelStreamRunning = true;
             }
-            catch
+            catch (Exception ex)
             {
-                // Exceptions are suppressed to prevent crashing the application.
+                DebugMessage($"Failed to start bootstrap channel stream: {ex.Message}", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
             }
         }
 
         /// <summary>
-        /// Stops the heartbeat routine by stopping the underlying timer.
+        /// Stops the SSE stream connection.
         /// </summary>
         /// <remarks>
-        /// This method stops the periodic sending of heartbeat messages to the bootstrap server.
-        /// Any exceptions during the timer stop are caught and suppressed.
+        /// This method terminates the persistent SSE connection to the bootstrap server.
+        /// Any exceptions during stream termination are caught and suppressed.
         /// </remarks>
-        public void StopHeartbeatRoutine()
+        public void StopBootstrapChannelStream()
         {
             try
             {
-                _heartbeatTimer.Stop();
+                _streamCts?.Cancel();
+                _streamClient?.Dispose();
+                BootstrapChannelStreamRunning = false;
             }
             catch
             {
@@ -110,18 +134,6 @@ namespace P2PNet.DicoveryChannels.WAN
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether the heartbeat routine is currently running.
-        /// </summary>
-        /// <remarks>
-        /// This property reflects the status of the underlying timer. 
-        /// A value of <c>true</c> indicates that heartbeat messages are actively being sent.
-        /// </remarks>
-        public bool HeartbeatRoutineRunning => _heartbeatTimer.Enabled;
-
-
-
-        protected static Timer _heartbeatTimer;
         private int failureCount { get; set; } = 0;
 
 
@@ -139,14 +151,14 @@ namespace P2PNet.DicoveryChannels.WAN
         public Action<string> InitialBootstrapHandler { get; set; }
 
         /// <summary>
-        /// Gets or sets the delegate that is responsible for sending out or processing an outgoing heartbeat.
+        /// Gets or sets the delegate that handles incoming network tasks from the bootstrap channel stream.
         /// </summary>
         /// <remarks>
-        /// The default behavior for this delegate is to invoke the method that sends an outbound heartbeat to the bootstrap server.
-        /// This delegate is invoked on each timer interval during the heartbeat routine.
-        /// You can override this delegate to customize the heartbeat transmission behavior or to inject additional logic before sending.
+        /// This delegate is invoked for each network task received from the bootstrap server's stream.
+        /// The default implementation queues tasks for processing via the <see cref="NetworkTaskHandler"/>.
+        /// You can override this delegate to customize how incoming tasks are handled.
         /// </remarks>
-        public Action HeartbeatOutHandler { get; set; }
+        public Action<NetworkTask> HandleIncomingStreamTask { get; set; }
 
         /// <summary>
         /// Gets or sets the delegate that handles error response messages from the bootstrap server.
@@ -178,15 +190,15 @@ namespace P2PNet.DicoveryChannels.WAN
         public Func<string, Task<bool>> PacketReturnedErrorResponse { get; set; }
 
         /// <summary>
-        /// Gets or sets the delegate that is invoked to handle the situation when an outbound heartbeat fails.
+        /// Gets or sets the delegate that is invoked to handle the situation when the bootstrap channel stream connection fails.
         /// </summary>
         /// <remarks>
-        /// This delegate is called when the heartbeat routine detects consecutive failures (as tracked by the failure count).
-        /// The default implementation stops the timer if the failure count exceeds <see cref="MaxFailureTimeout"/>.
-        /// You can override this delegate to implement custom logic for handling failed heartbeat attempts,
+        /// This delegate is called when the stream detects consecutive connection failures.
+        /// The default implementation terminates the stream if the failure count exceeds <see cref="MaxFailureTimeout"/>.
+        /// You can override this delegate to implement custom logic for handling failed stream connections,
         /// such as logging additional details, attempting reconnection, or notifying a user interface.
         /// </remarks>
-        public Action HandleFailedHeartbeat { get; set; }
+        public Action HandleStreamConnectionFailure { get; set; }
 
         #endregion
         // ----------------------------
@@ -203,32 +215,22 @@ namespace P2PNet.DicoveryChannels.WAN
         private Func<NetworkTask, Task<bool>> CheckNetworkTaskHashHandle => ValidateNetworkTaskHash;
         private Func<string, Task<bool>> CheckForErrorResponseHandle => IsErrorResponse;
         private Action<string> HandleErrorResponseHandle => ErrorResponse;
-        private Action SendHeartbeatToServer => SendOutgoingHeartbeatToServer;
-        private Action FailedHeartbeatHandler => FailedOutgoingHeartbeat;
+        private Action<NetworkTask> DefaultIncomingStreamTaskHandler => ProcessIncomingChannelTask;
+        private Action StreamConnectionFailureHandler => HandleChannelConnectionFailed;
         #endregion
         // ----------------------------
-
-        private void SendOutgoingHeartbeat(object? sender, System.Timers.ElapsedEventArgs e)
-        {
-            SendHeartbeatToServer.Invoke();
-        }
 
         protected BootstrapChannelBase()
         {
             // Set default delegate implementations if not already overridden
             InitialBootstrapHandler = DefaultInitialBootstrapHandler;
             HandleErrorResponse = HandleErrorResponseHandle;
-            HeartbeatOutHandler = SendHeartbeatToServer;
+            HandleIncomingStreamTask = DefaultIncomingStreamTaskHandler;
             IsValidNetworkHash = CheckNetworkTaskHashHandle;
             PacketReturnedErrorResponse = CheckForErrorResponseHandle;
-            HandleFailedHeartbeat = FailedHeartbeatHandler;
-
-            // setup hearbeat timer
-            _heartbeatTimer = new System.Timers.Timer(8000); // half second
-            _heartbeatTimer.Elapsed += SendOutgoingHeartbeat;
-            _heartbeatTimer.AutoReset = true;
-            _heartbeatTimer.Enabled = false;
+            HandleStreamConnectionFailure = StreamConnectionFailureHandler;
         }
+
         #region Default Delegate Methods
         private void AuthorityModeInitialBootstrap(string packet)
         {
@@ -252,18 +254,19 @@ namespace P2PNet.DicoveryChannels.WAN
             {
                 this.SupportsNATHolepunching = bool.Parse(networkTask.TaskData["NATHolepunch"]);
             }
-            // finally start heartbeat routine
-            StartHeartbeatRoutine();
+            // start the bootstrap channel stream to receive tasks from the bootstrap server
+            StartBootstrapChannelStream();
             // set the channel to active
             IsActive = true;
         }
+
         private void TrustlessModeInitialBootstrap(string packet)
         {
             // trustless mode
             CollectionSharePacket sharePacket = Deserialize<CollectionSharePacket>(packet);
             ProcessPeerList(sharePacket);
-            // finally start heartbeat routine
-            // StartHeartbeatRoutine();   TODO: Trustless mode should not start heartbeat routine until a trustless heartbeat routine can be devised
+            // start bootstrap channel stream for trustless mode as well
+            StartBootstrapChannelStream();
             // set the channel to active
             IsActive = true;
         }
@@ -351,85 +354,116 @@ namespace P2PNet.DicoveryChannels.WAN
             DebugMessage(response, MessageType.Warning, PeerNetwork.Logging.Bootstrap);
         }
 
-        private async void SendOutgoingHeartbeatToServer()
+        /// <summary>
+        /// Main bootstrap channel stream loop that connects to the bootstrap server's SSE endpoint and processes incoming tasks.
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token to stop the stream.</param>
+        private async Task RunBootstrapStreamLoop(CancellationToken cancellationToken)
         {
-            // create a heartbeat packet, then send it to the server
-            DataTransmissionPacket dataTransmissionPacket = CreateHeartbeatPacket();
-            string outgoingPacket = dataTransmissionPacket.ToJsonString();
-            bool flawless = true;
-            try
+            string streamUrl = DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.EventStream, BootstrapServerEndpoint).ToString()
+                + $"?peerId={Uri.EscapeDataString(PeerNetwork.Identifier)}";
+
+            while (!cancellationToken.IsCancellationRequested && failureCount < MaxFailureTimeout)
             {
-                using (HttpClient client = new HttpClient())
+                try
                 {
-                    HttpResponseMessage response = await client.PutAsync(DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.Heartbeat, BootstrapServerEndpoint), new StringContent(outgoingPacket, Encoding.UTF8, "application/json"));
+                    _streamClient = new HttpClient();
+                    _streamClient.Timeout = TimeSpan.FromMinutes(30); // long timeout for SSE
 
-                    // get server response (ideally a DTP with NetworkTask(s))
-                    string responseContent = await response.Content.ReadAsStringAsync();
-                    var responsePacket = Deserialize<DataTransmissionPacket>(responseContent);
+                    using var request = new HttpRequestMessage(HttpMethod.Get, streamUrl);
+                    using var response = await _streamClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                    response.EnsureSuccessStatusCode();
 
-                    if (responsePacket != null)
+                    using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+                    using var reader = new StreamReader(stream);
+
+                    failureCount = 0; // reset on successful connection
+                    DebugMessage($"Connected to bootstrap channel stream at {BootstrapServerEndpoint}", ConsoleColor.Cyan, PeerNetwork.Logging.Bootstrap);
+
+                    while (!reader.EndOfStream && !cancellationToken.IsCancellationRequested)
                     {
-                        // unwrap data, convert to string
-                        byte[] data = UnwrapData(responsePacket);
-                        string response_ = Encoding.UTF8.GetString(data);
+                        var line = await reader.ReadLineAsync();
+                        if (string.IsNullOrWhiteSpace(line))
+                            continue;
 
-                        // turn NetworkTask's data to Dict<str,str>
-                        NetworkTask inboundTask = Deserialize<NetworkTask>(response_);
-
-                        if (inboundTask.TaskType == TaskType.HeartbeatResponse) {
-                            NetworkTaskHandler.EnqueueIncomingNetworkTask(inboundTask, new NetworkTaskOriginInfo(responsePacket, PublicKey));
-                        } else
+                        // SSE format: data: <json>
+                        if (line.StartsWith("data: "))
                         {
-                            // TODO: handle
+                            string taskJson = line.Substring(6);
+                            try
+                            {
+                                NetworkTask task = Deserialize<NetworkTask>(taskJson);
+                                if (task != null)
+                                {
+                                    // skip keep-alive tasks from processing
+                                    if (task.TaskType == TaskType.StreamKeepAlive)
+                                    {
+                                        DebugMessage($"Received keep-alive from {BootstrapServerEndpoint}", ConsoleColor.DarkGray, PeerNetwork.Logging.Bootstrap);
+                                        continue;
+                                    }
+
+                                    HandleIncomingStreamTask?.Invoke(task);
+                                }
+                            }
+                            catch (Exception parseEx)
+                            {
+                                DebugMessage($"Failed to parse SSE event: {parseEx.Message}", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
+                            }
                         }
                     }
-                    else
-                    {
-                        HandleErrorResponse("Bootstrap response was not in the expected format.");
-                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                DebugMessage(ex.ToString(), ConsoleColor.DarkBlue);
-                flawless = false;
-                FailedOutgoingHeartbeat();
-            }
-            finally
-            {
-                if (flawless == true)
+                catch (OperationCanceledException)
                 {
-                    failureCount = 0; // reset failure count on success
-                    DebugMessage($"Bootstrap server {BootstrapServerEndpoint.ToString()} heartbeat successful.", ConsoleColor.Cyan, PeerNetwork.Logging.Bootstrap);
+                    // Expected when cancellation is requested
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    failureCount++;
+                    DebugMessage($"Bootstrap channel stream connection failed ({failureCount}/{MaxFailureTimeout}): {ex.Message}", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
+
+                    if (failureCount >= MaxFailureTimeout)
+                    {
+                        HandleStreamConnectionFailure?.Invoke();
+                        break;
+                    }
+
+                    // wait before reconnecting
+                    await Task.Delay(TimeSpan.FromSeconds(5 * failureCount), cancellationToken);
+                }
+                finally
+                {
+                    _streamClient?.Dispose();
+                    _streamClient = null;
                 }
             }
+
+            BootstrapChannelStreamRunning = false;
+            DebugMessage($"Bootstrap channel stream loop ended for {BootstrapServerEndpoint}", MessageType.General, PeerNetwork.Logging.Bootstrap);
         }
 
-        private void FailedOutgoingHeartbeat()
+        /// <summary>
+        /// Default handler for incoming stream tasks. Queues tasks for processing via the NetworkTaskHandler.
+        /// </summary>
+        /// <param name="task">The incoming network task.</param>
+        private void ProcessIncomingChannelTask(NetworkTask task)
         {
-            failureCount++;
-            if (failureCount >= MaxFailureTimeout)
-            {
-                _heartbeatTimer.Stop();
-                _heartbeatTimer.Enabled = false;
-                HandleErrorResponse($"Bootstrap server {BootstrapServerEndpoint.ToString()} failed to respond to {MaxFailureTimeout} consecutive requests. Ending heartbeat routine.");
-            }
+            NetworkTaskHandler.EnqueueIncomingNetworkTask(task, new NetworkTaskOriginInfo(BootstrapServer, PublicKey));
+            DebugMessage($"Received task {task.TaskType} from {BootstrapServerEndpoint}", ConsoleColor.Cyan, PeerNetwork.Logging.Bootstrap);
+        }
+
+        /// <summary>
+        /// Default handler for bootstrap channel stream connection failures.
+        /// </summary>
+        private void HandleChannelConnectionFailed()
+        {
+            BootstrapChannelStreamRunning = false;
+            IsActive = false;
+            HandleErrorResponse($"Bootstrap server {BootstrapServerEndpoint} failed to respond to {MaxFailureTimeout} consecutive connection attempts. Event stream terminated.");
         }
         #endregion
 
         #region General Helper Methods
-        protected DataTransmissionPacket CreateHeartbeatPacket()
-        {
-            NetworkTask hbTask = new NetworkTask()
-            {
-                TaskType = TaskType.Heartbeat,
-                TaskData = new Dictionary<string, string>()
-            };
-            // send a heartbeat to the server
-            DataTransmissionPacket heartbeatPacket = new DataTransmissionPacket(hbTask);
-            return heartbeatPacket;
-        }
-
         protected DataTransmissionPacket CreateInitialBootstrapPacket()
         {
             IdentifierPacket idPacket = new IdentifierPacket("discovery", PeerNetwork.ListeningPort, PeerNetwork.PublicIPV6Address == null ? PeerNetwork.PublicIPV4Address : PeerNetwork.PublicIPV6Address);
@@ -455,9 +489,8 @@ namespace P2PNet.DicoveryChannels.WAN
 
         public virtual void CloseBootstrapChannel()
         {
-                _heartbeatTimer.Stop();
-                _heartbeatTimer.Enabled = false;
-                IsActive = false;
+            StopBootstrapChannelStream();
+            IsActive = false;
         }
         #endregion
     }

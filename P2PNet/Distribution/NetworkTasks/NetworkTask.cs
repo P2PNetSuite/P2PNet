@@ -269,7 +269,37 @@ namespace P2PNet.Distribution.NetworkTasks
 
         WebRTCAnswer,
 
-        WebRTCIceCandidate
+        WebRTCIceCandidate,
+
+        /// <summary>
+        /// Request to initiate a TURN relay connection through the bootstrap server.
+        /// </summary>
+        TurnConnectionRequest,
+
+        /// <summary>
+        /// Notification that a TURN relay connection has been established.
+        /// </summary>
+        TurnConnectionEstablished,
+
+        /// <summary>
+        /// Notification that a TURN relay connection has been closed.
+        /// </summary>
+        TurnConnectionClosed,
+
+        /// <summary>
+        /// Data payload being relayed through a TURN connection.
+        /// </summary>
+        TurnRelayData,
+
+        /// <summary>
+        /// Server-sent event stream event containing pending tasks for the peer.
+        /// </summary>
+        StreamEvent,
+
+        /// <summary>
+        /// Keep-alive signal for SSE stream connections.
+        /// </summary>
+        StreamKeepAlive
     }
 
     /// <summary>
