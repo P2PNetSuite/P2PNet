@@ -33,6 +33,7 @@ namespace ExampleApplication
             }
 
             PeerNetwork.LoadLocalAddresses();
+            PeerNetwork.Identifier = Guid.NewGuid().ToString();
 
             Uri uri = new Uri("http://p2pbootstrap.fly.dev"); // bootstrap to sample instance of bootstrap container
             BootstrapChannelConnectionOptions options = new BootstrapChannelConnectionOptions(uri, true);

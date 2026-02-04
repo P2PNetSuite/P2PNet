@@ -30,6 +30,7 @@ using System.Security.Cryptography;
 using System.Net;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace P2PBootstrap
 {
@@ -152,7 +153,7 @@ namespace P2PBootstrap
                     // null check
                     if (incomingPacket == null || incomingPacket.Data == null)
                     {
-                        return Results.Problem(Serialize<PureMessagePacket>(new PureMessagePacket("Invalid DataTransmissionPacket received.")), statusCode: 400);
+                        return Results.Text(Serialize<PureMessagePacket>(new PureMessagePacket("Invalid DataTransmissionPacket received.")), "application/json", statusCode: 400);
                     }
 
                     // extract the NetworkTask from the DataTransmissionPacket Data field.
@@ -162,13 +163,13 @@ namespace P2PBootstrap
                     // verify the task type.
                     if (task.TaskType != TaskType.RequestVerifyHashRecord)
                     {
-                        return Results.Problem(Serialize<PureMessagePacket>(new PureMessagePacket("Invalid network task type for this endpoint.")), statusCode: 400);
+                        return Results.Text(Serialize<PureMessagePacket>(new PureMessagePacket("Invalid network task type for this endpoint.")), "application/json", statusCode: 400);
                     }
 
                     // check for the 'Hash' key.
                     if (!task.TaskData.ContainsKey("Hash"))
                     {
-                        return Results.Problem(Serialize<PureMessagePacket>(new PureMessagePacket("Missing 'Hash' key in TaskData.")), statusCode: 400);
+                        return Results.Text(Serialize<PureMessagePacket>(new PureMessagePacket("Missing 'Hash' key in TaskData.")), "application/json", statusCode: 400);
                     }
 
                     string hashValue = task.TaskData["Hash"];
@@ -190,55 +191,36 @@ namespace P2PBootstrap
                 }
             });
 
-            app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.Heartbeat], async Task<IResult> (HttpContext context) =>
+            app.MapGet(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.EventStream], async (HttpContext context, CancellationToken cancellationToken) =>
             {
-                using var reader = new StreamReader(context.Request.Body);
-                string bodyJson = await reader.ReadToEndAsync();
-                var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
-                if (incomingPacket == null || incomingPacket.Data == null)
+                string peerId = context.Request.Query["peerId"];
+                if (string.IsNullOrWhiteSpace(peerId))
                 {
-                    return Results.Content(Serialize<PureMessagePacket>(new PureMessagePacket("Invalid heartbeat packet received.")), "application/json");
+                    return Results.Text("Missing 'peerId' query parameter.", "text/plain", statusCode: 400);
                 }
 
-                // find the respective ClientPeer using the SourceOriginIdentifier
-                if (!ClientPeers.TryGetValue(incomingPacket.SourceOriginIdentifier, out ClientPeer clientPeer))
+                // verify the peer exists
+                if (!ClientPeers.TryGetValue(peerId, out ClientPeer clientPeer))
                 {
-                    return Results.Content(Serialize<PureMessagePacket>(new PureMessagePacket($"ClientPeer with SourceOriginIdentifier '{incomingPacket.SourceOriginIdentifier}' not found.")), "application/json");
-                }
-
-                string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
-                NetworkTask heartbeatTask = Deserialize<NetworkTask>(ntJson);
-                if (heartbeatTask == null || heartbeatTask.TaskType != TaskType.Heartbeat)
-                {
-                    return Results.Content(Serialize<PureMessagePacket>(new PureMessagePacket("Invalid heartbeat network task received.")), "application/json");
+                    return Results.Text($"Peer with identifier '{peerId}' not found.", "text/plain", statusCode: 404);
                 }
 
                 // update the client's last incoming time
                 clientPeer.UpdateTimeIn();
 
-                // outgoing tasks from the client
-                Dictionary<string, string> collectedTasks = new Dictionary<string, string>();
-                int taskCounter = 0;
-                while (clientPeer.OutgoingTasks.Count > 0)
+                // set up SSE response headers
+                context.Response.Headers.Append("Content-Type", "text/event-stream");
+                context.Response.Headers.Append("Cache-Control", "no-cache");
+                context.Response.Headers.Append("Connection", "keep-alive");
+                context.Response.Headers.Append("X-Accel-Buffering", "no");
+
+                await foreach (var sseEvent in GetPeerServerSentEvents(peerId, clientPeer, cancellationToken))
                 {
-                    NetworkTask task = clientPeer.OutgoingTasks.Dequeue();
-                    SignOffOnNetworkTask(ref task);
-                    string taskSerialized = Serialize(task);
-                    collectedTasks.Add($"Task_{taskCounter++}", taskSerialized);
+                    await context.Response.WriteAsync(sseEvent, cancellationToken);
+                    await context.Response.Body.FlushAsync(cancellationToken);
                 }
 
-                // new heartbeatresponse network task containing the collected tasks
-                NetworkTask heartbeatResponseTask = new NetworkTask()
-                {
-                    TaskType = TaskType.HeartbeatResponse,
-                    TaskData = collectedTasks
-                };
-                SignOffOnNetworkTask(ref heartbeatResponseTask);
-
-                // wrap the heartbeat response network task, inside a DataTransmissionPacket
-                DataTransmissionPacket responsePacket = new DataTransmissionPacket(heartbeatResponseTask);
-                string responseJson = responsePacket.ToJsonString();
-                return Results.Content(responseJson, "application/json");
+                return Results.Text(string.Empty, "text/plain", statusCode: 200);
             });
 
             if (GlobalConfig.OptionalEndpoints.ServePublicIP() == true)
@@ -262,7 +244,8 @@ namespace P2PBootstrap
 
             if(GlobalConfig.OptionalServices.TURN() == true)
             {
-                app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.TurnSignal], async Task<IResult> (HttpContext context) =>
+                // WebRTC signaling endpoint - routes WebRTC offers/answers/ICE candidates between peers
+                app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.Signal], async Task<IResult> (HttpContext context) =>
                 {
                     using var reader = new StreamReader(context.Request.Body);
                     string bodyJson = await reader.ReadToEndAsync();
@@ -270,7 +253,7 @@ namespace P2PBootstrap
                     var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
                     if (incomingPacket == null || incomingPacket.Data == null)
                     {
-                        return Results.Problem("Invalid DataTransmissionPacket received.", statusCode: 400);
+                        return Results.Text("Invalid DataTransmissionPacket received.", "text/plain", statusCode: 400);
                     }
 
                     string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
@@ -282,26 +265,28 @@ namespace P2PBootstrap
                          task.TaskType != TaskType.WebRTCAnswer &&
                          task.TaskType != TaskType.WebRTCIceCandidate))
                     {
-                        return Results.Problem("Invalid or unsupported network task type for this endpoint.", statusCode: 400);
+                        return Results.Text("Invalid or unsupported network task type for this endpoint.", "text/plain", statusCode: 400);
                     }
 
                     // Route to recipient
                     if (!task.TaskData.TryGetValue("Recipient", out var recipientId) || string.IsNullOrWhiteSpace(recipientId))
                     {
-                        return Results.Problem("Missing 'Recipient' in TaskData.", statusCode: 400);
+                        return Results.Text("Missing 'Recipient' in TaskData.", "text/plain", statusCode: 400);
                     }
 
                     if (!ClientPeers.TryGetValue(recipientId, out ClientPeer recipientPeer))
                     {
-                        return Results.Problem($"Recipient peer '{recipientId}' not found.", statusCode: 404);
+                        return Results.Text($"Recipient peer '{recipientId}' not found.", "text/plain", statusCode: 404);
                     }
 
-                    recipientPeer.OutgoingTasks.Enqueue(task);
+                    // Route via the TURN service event channel
+                    TURNService.EnqueueTaskForPeer(recipientId, task);
 
-                    return Results.Ok();
+                    return Results.Text("OK", "text/plain");
                 });
 
-                app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.TurnPoll], async Task<IResult> (HttpContext context) =>
+                // TURN connection initiation endpoint
+                app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.TurnConnect], async Task<IResult> (HttpContext context) =>
                 {
                     using var reader = new StreamReader(context.Request.Body);
                     string bodyJson = await reader.ReadToEndAsync();
@@ -309,54 +294,161 @@ namespace P2PBootstrap
                     var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
                     if (incomingPacket == null || incomingPacket.Data == null)
                     {
-                        return Results.Problem("Invalid DataTransmissionPacket received.", statusCode: 400);
+                        return Results.Text("Invalid DataTransmissionPacket received.", "text/plain", statusCode: 400);
                     }
 
                     string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
-                    NetworkTask pollTask = Deserialize<NetworkTask>(ntJson);
+                    NetworkTask connectTask = Deserialize<NetworkTask>(ntJson);
 
-                    // Expect a special polling task type, e.g., TaskType.Heartbeat or a custom TaskType.WebRTCPoll
-                    if (pollTask == null || !pollTask.TaskData.TryGetValue("PeerId", out var peerId) || string.IsNullOrWhiteSpace(peerId))
+                    if (connectTask == null || connectTask.TaskType != TaskType.TurnConnectionRequest)
                     {
-                        return Results.Problem("Missing or invalid 'PeerId' in TaskData.", statusCode: 400);
+                        return Results.Text("Expected TurnConnectionRequest task type.", "text/plain", statusCode: 400);
                     }
 
-                    if (!ClientPeers.TryGetValue(peerId, out ClientPeer clientPeer))
+                    if (!connectTask.TaskData.TryGetValue("InitiatorId", out var initiatorId) ||
+                        !connectTask.TaskData.TryGetValue("TargetId", out var targetId))
                     {
-                        return Results.Problem($"Peer '{peerId}' not found.", statusCode: 404);
+                        return Results.Text("Missing 'InitiatorId' or 'TargetId' in TaskData.", "text/plain", statusCode: 400);
                     }
 
-                    // Collect all pending signaling tasks for this peer
-                    var signalingTasks = new List<NetworkTask>();
-                    var remainingTasks = new Queue<NetworkTask>();
-                    while (clientPeer.OutgoingTasks.Count > 0)
+                    // verify both peers exist
+                    if (!ClientPeers.TryGetValue(initiatorId, out _))
                     {
-                        var task = clientPeer.OutgoingTasks.Dequeue();
-                        if (task.TaskType == TaskType.WebRTCOffer ||
-                            task.TaskType == TaskType.WebRTCAnswer ||
-                            task.TaskType == TaskType.WebRTCIceCandidate)
+                        return Results.Text($"Initiator peer '{initiatorId}' not found.", "text/plain", statusCode: 404);
+                    }
+                    if (!ClientPeers.TryGetValue(targetId, out _))
+                    {
+                        return Results.Text($"Target peer '{targetId}' not found.", "text/plain", statusCode: 404);
+                    }
+
+                    var connection = TURNService.InitiateTurnConnection(initiatorId, targetId);
+                    if (connection == null)
+                    {
+                        return Results.Text("Failed to establish TURN connection.", "text/plain", statusCode: 500);
+                    }
+
+                    // return connection key to initiator
+                    var responseTask = new NetworkTask
+                    {
+                        TaskType = TaskType.TurnConnectionEstablished,
+                        TaskData = new Dictionary<string, string>
                         {
-                            signalingTasks.Add(task);
+                            { "ConnectionKey", $"{initiatorId}|{targetId}".Split('|').OrderBy(x => x).Aggregate((a, b) => $"{a}|{b}") },
+                            { "TargetId", targetId }
                         }
-                        else
-                        {
-                            remainingTasks.Enqueue(task); // preserve non-signaling tasks
-                        }
-                    }
-                    // Restore non-signaling tasks
-                    while (remainingTasks.Count > 0)
-                        clientPeer.OutgoingTasks.Enqueue(remainingTasks.Dequeue());
-
-                    // Wrap the signaling tasks in a DataTransmissionPacket for response
-                    var responseTasks = signalingTasks
-                        .Select(t => Serialize(t))
-                        .ToArray();
-                    var responsePacket = new DataTransmissionPacket()
-                    {
-                        DataType = DataPayloadFormat.MiscData,
-                        Data = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(responseTasks))
                     };
-                    return Results.Content(responsePacket.ToJsonString(), "application/json");
+                    var responsePacket = new DataTransmissionPacket(responseTask);
+                    return Results.Text(responsePacket.ToJsonString(), "application/json");
+                });
+
+                // TURN data relay endpoint
+                app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.TurnRelay], async Task<IResult> (HttpContext context) =>
+                {
+                    using var reader = new StreamReader(context.Request.Body);
+                    string bodyJson = await reader.ReadToEndAsync();
+
+                    var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
+                    if (incomingPacket == null || incomingPacket.Data == null)
+                    {
+                        return Results.Text("Invalid DataTransmissionPacket received.", "text/plain", statusCode: 400);
+                    }
+
+                    string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
+                    NetworkTask relayTask = Deserialize<NetworkTask>(ntJson);
+
+                    if (relayTask == null || relayTask.TaskType != TaskType.TurnRelayData)
+                    {
+                        return Results.Text("Expected TurnRelayData task type.", "text/plain", statusCode: 400);
+                    }
+
+                    if (!relayTask.TaskData.TryGetValue("ConnectionKey", out var connectionKey) ||
+                        !relayTask.TaskData.TryGetValue("SenderId", out var senderId) ||
+                        !relayTask.TaskData.TryGetValue("Data", out var data))
+                    {
+                        return Results.Text("Missing required fields in TaskData.", "text/plain", statusCode: 400);
+                    }
+
+                    bool relayed = TURNService.RelayData(connectionKey, senderId, data);
+                    if (!relayed)
+                    {
+                        return Results.Text("Failed to relay data. Connection may not exist.", "text/plain", statusCode: 404);
+                    }
+
+                    return Results.Text("OK", "text/plain");
+                });
+
+                // TURN stream endpoint - SSE for receiving relayed data
+                app.MapGet(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.TurnStream], async (HttpContext context, CancellationToken cancellationToken) =>
+                {
+                    string connectionKey = context.Request.Query["connectionKey"];
+                    string receiverId = context.Request.Query["receiverId"];
+
+                    if (string.IsNullOrWhiteSpace(connectionKey) || string.IsNullOrWhiteSpace(receiverId))
+                    {
+                        return Results.Text("Missing 'connectionKey' or 'receiverId' query parameters.", "text/plain", statusCode: 400);
+                    }
+
+                    var connection = TURNService.GetConnection(connectionKey);
+                    if (connection == null)
+                    {
+                        return Results.Text("TURN connection not found.", "text/plain", statusCode: 404);
+                    }
+
+                    // verify receiver is part of this connection
+                    if (receiverId != connection.InitiatorId && receiverId != connection.TargetId)
+                    {
+                        return Results.Text("Unauthorized.", "text/plain", statusCode: 401);
+                    }
+
+                    // set up SSE response headers
+                    context.Response.Headers.Append("Content-Type", "text/event-stream");
+                    context.Response.Headers.Append("Cache-Control", "no-cache");
+                    context.Response.Headers.Append("Connection", "keep-alive");
+                    context.Response.Headers.Append("X-Accel-Buffering", "no");
+
+                    await foreach (var data in TURNService.ReadRelayedDataAsync(connectionKey, receiverId, cancellationToken))
+                    {
+                        // format as SSE event with data payload
+                        string sseEvent = $"data: {data}\n\n";
+                        await context.Response.WriteAsync(sseEvent, cancellationToken);
+                        await context.Response.Body.FlushAsync(cancellationToken);
+                    }
+
+                    return Results.Text("OK", "text/plain");
+                });
+
+                // TURN connection close endpoint
+                app.MapPut(DistributionProtocol.BootstrapServerAPIendpoints[CommonBootstrapEndpoints.TurnClose], async Task<IResult> (HttpContext context) =>
+                {
+                    using var reader = new StreamReader(context.Request.Body);
+                    string bodyJson = await reader.ReadToEndAsync();
+
+                    var incomingPacket = Deserialize<DataTransmissionPacket>(bodyJson);
+                    if (incomingPacket == null || incomingPacket.Data == null)
+                    {
+                        return Results.Text("Invalid DataTransmissionPacket received.", "text/plain", statusCode: 400);
+                    }
+
+                    string ntJson = Encoding.UTF8.GetString(UnwrapData(incomingPacket));
+                    NetworkTask closeTask = Deserialize<NetworkTask>(ntJson);
+
+                    if (closeTask == null || closeTask.TaskType != TaskType.TurnConnectionClosed)
+                    {
+                        return Results.Text("Expected TurnConnectionClosed task type.", "text/plain", statusCode: 400);
+                    }
+
+                    if (!closeTask.TaskData.TryGetValue("ConnectionKey", out var connectionKey))
+                    {
+                        return Results.Text("Missing 'ConnectionKey' in TaskData.", "text/plain", statusCode: 400);
+                    }
+
+                    bool closed = TURNService.CloseTurnConnection(connectionKey);
+                    if (!closed)
+                    {
+                        return Results.Text("Failed to close connection. Connection may not exist.", "text/plain", statusCode: 404);
+                    }
+
+                    return Results.Text("OK", "text/plain");
                 });
             }
 
@@ -375,7 +467,7 @@ namespace P2PBootstrap
                 using var reader = new StreamReader(context.Request.Body);
                 var input = await reader.ReadToEndAsync();
                 Parser.InputQueue.Enqueue(input);
-                return Results.Ok();
+                return Results.Text(string.Empty, "text/plain", statusCode: 200);
             });
             // endpoint for managing peers
             app.MapPut("/api/managepeer", async (HttpContext context) =>
@@ -414,7 +506,7 @@ namespace P2PBootstrap
                     return Results.Text($"Action '{actionStr}' is not supported.", "text/plain", statusCode: 400);
                 }
 
-                // Enqueue a network task for each client peer with the provided information
+                // Enqueue a network task for each client peer using the TURN service event channel
                 foreach (ClientPeer clientPeer in ClientPeers)
                 {
                     NetworkTask task = new NetworkTask()
@@ -425,7 +517,7 @@ namespace P2PBootstrap
                             { "TargetPeer", peerAddress }
                         }
                     };
-                    clientPeer.OutgoingTasks.Enqueue(task);
+                    TURNService.EnqueueTaskForPeer(clientPeer.Identifier, task);
                 }
                 return Results.Text($"Peer management task enqueued for action '{actionStr}' on peer '{peerAddress}'.", "text/plain");
             });
@@ -440,9 +532,8 @@ namespace P2PBootstrap
                     _peer.Address = peer.IP.ToString();
                     peers.Add(_peer);
                 }
-                // Use explicit JSON options to avoid source-generation metadata issues
-                var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-                return Results.Json(peers, options);
+                // Use DistributionProtocol.Serialize for AOT compliance
+                return Results.Text(Serialize<CollectionSharePacket>(new CollectionSharePacket(0, peers.Cast<IPeer>().ToList())), "application/json", statusCode: 200);
             });
             #endregion
 
@@ -453,6 +544,62 @@ namespace P2PBootstrap
             app.Run();
         }
 
+        /// <summary>
+        /// Generates server-sent events for a connected peer, streaming any pending network tasks.
+        /// </summary>
+        /// <param name="peerId">The identifier of the peer.</param>
+        /// <param name="clientPeer">The client peer instance.</param>
+        /// <param name="cancellationToken">Cancellation token for the stream.</param>
+        /// <returns>An async enumerable of SSE-formatted strings.</returns>
+        private static async IAsyncEnumerable<string> GetPeerServerSentEvents(
+            string peerId,
+            ClientPeer clientPeer,
+            [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            int keepAliveCounter = 0;
+            const int keepAliveInterval = 30; // send keep-alive every 30 iterations (~15 seconds at 500ms delay)
+
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                // first drain any tasks from the legacy outgoing queue
+                while (clientPeer.OutgoingTasks.Count > 0)
+                {
+                    NetworkTask task = clientPeer.OutgoingTasks.Dequeue();
+                    SignOffOnNetworkTask(ref task);
+                    string taskJson = Serialize(task);
+                    yield return $"data: {taskJson}\n\n";
+                    clientPeer.UpdateTimeIn();
+                }
+
+                // then check the TURN service event channel for this peer
+                var channel = TURNService.GetOrCreatePeerChannel(peerId);
+                while (channel.Reader.TryRead(out var task))
+                {
+                    SignOffOnNetworkTask(ref task);
+                    string taskJson = Serialize(task);
+                    yield return $"data: {taskJson}\n\n";
+                    clientPeer.UpdateTimeIn();
+                }
+
+                // send keep-alive periodically to maintain connection
+                keepAliveCounter++;
+                if (keepAliveCounter >= keepAliveInterval)
+                {
+                    var keepAlive = new NetworkTask
+                    {
+                        TaskType = TaskType.StreamKeepAlive,
+                        TaskData = new Dictionary<string, string>
+                        {
+                            { "Timestamp", DateTime.UtcNow.ToString("o") }
+                        }
+                    };
+                    yield return $"data: {Serialize(keepAlive)}\n\n";
+                    keepAliveCounter = 0;
+                }
+
+                await Task.Delay(500, cancellationToken);
+            }
+        }
 
     }
 }

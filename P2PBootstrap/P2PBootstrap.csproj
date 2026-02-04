@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\P2PBootstrap.TURN\P2PBootstrap.TURN.csproj" />
     <ProjectReference Include="..\P2PNet\P2PNet.csproj" />
   </ItemGroup>
 
