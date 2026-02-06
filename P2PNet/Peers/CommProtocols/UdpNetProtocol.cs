@@ -8,11 +8,30 @@ using System.Threading.Tasks;
 
 namespace P2PNet.Peers.CommProtocols
 {
+    /// <summary>
+    /// Provides a UDP-based network protocol implementation for connectionless peer communication.
+    /// </summary>
     public class UdpNetProtocol : INetProtocol
     {
         private readonly UdpClient _client;
         private readonly IPEndPoint _remoteEndPoint;
+
+        /// <summary>
+        /// Gets the protocol type identifier.
+        /// </summary>
         public NetProtocolType ProtocolType => NetProtocolType.Udp;
+
+        /// <summary>
+        /// Gets a value indicating whether this protocol requires a direct IP address connection.
+        /// UDP connections are direct and require IP connectivity.
+        /// </summary>
+        public bool IsDirectConnection => true;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UdpNetProtocol"/> class.
+        /// </summary>
+        /// <param name="client">The UDP client for this connection.</param>
+        /// <param name="remoteEndPoint">The remote endpoint to communicate with.</param>
         public UdpNetProtocol(UdpClient client, IPEndPoint remoteEndPoint)
         {
             _client = client;

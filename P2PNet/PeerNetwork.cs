@@ -1,12 +1,12 @@
 ﻿global using P2PNet.Exceptions;
 global using static ConsoleDebugger.ConsoleDebugger;
-using Microsoft.MixedReality.WebRTC;
 using P2PNet.DicoveryChannels.WAN;
 using P2PNet.DiscoveryChannels;
 using P2PNet.Distribution;
 using P2PNet.Distribution.NetworkTasks;
 using P2PNet.NetworkPackets;
 using P2PNet.Peers;
+using P2PNet.Peers.CommProtocols;
 using P2PNet.Routines;
 using SharpPcap;
 using SharpPcap.LibPcap;
@@ -358,31 +358,6 @@ namespace P2PNet
             get { return ActiveBootstrapChannels.Where(bc => bc.SupportsTURN == true).ToList(); }
         }
 
-        public static List<IceServer> AvailableICEServers
-        {
-            get
-            {
-                List<IceServer> iceServers = new List<IceServer>();
-                foreach (BootstrapChannel channel in ActiveBootstrapChannels)
-                {
-                    if (channel.SupportsTURN == true)
-                    {
-                        // quasi cast to ICE server
-                        var ICEsrvr = new IceServer
-                        {
-                            Urls = new List<string> { channel.BootstrapServerEndpoint.ToString() },
-                            TurnUserName = "user",
-                            TurnPassword = "password"
-                        };
-                        // add to list
-                        iceServers.Add(ICEsrvr);
-                    }
-                }
-                return iceServers;
-            }
-        }
-
-
         private static List<IPAddress> multicast_addresses = new List<IPAddress>();
         #endregion
 
@@ -473,27 +448,53 @@ namespace P2PNet
         /// <param name="peer">The peer to add.</param>
         /// <param name="client">The TCP client associated with the peer. Default is null.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        /// <remarks></remarks>
+        /// <remarks>
+        /// For peers with relay-based protocols (TURN, WebRTC), the Protocol property must be set before calling this method.
+        /// Direct IP-based connections (TCP, UDP) will attempt to establish a connection automatically.
+        /// </remarks>
         public static async Task AddPeer(IPeer peer, TcpClient client = null)
         {
             // Lock the known peers check
             lock (_peersLock)
             {
-                if ((KnownPeers.Any(p => p.IP.Equals(peer.IP))) ||
-                    (KnownPeers.Any(p => p.Identifier.Equals(peer.Identifier))))
-                {
-                   // DebugMessage("Duplicate connection attempt from existing peer. Ignoring.", MessageType.Warning);
-                    return;
-                }
-                else if (peer.IP.ToString() == LocalIPV4Address.ToString() && peer.Port == ListeningPort)
+                // Check for duplicate by identifier first (works for all peer types)
+                if (!string.IsNullOrEmpty(peer.Identifier) && KnownPeers.Any(p => p.Identifier.Equals(peer.Identifier)))
                 {
                     return;
                 }
-                else if (peer.IP.ToString() == PublicIPV4Address.ToString())
+                
+                // For direct connection peers, also check by IP
+                bool isDirectConnection = peer.Protocol?.IsDirectConnection ?? true;
+                if (isDirectConnection && peer.IP != null)
                 {
-                    return;
+                    if (KnownPeers.Any(p => p.IP != null && p.IP.Equals(peer.IP)))
+                    {
+                        return;
+                    }
+                    else if (peer.IP.ToString() == LocalIPV4Address?.ToString() && peer.Port == ListeningPort)
+                    {
+                        return;
+                    }
+                    else if (PublicIPV4Address != null && peer.IP.ToString() == PublicIPV4Address.ToString())
+                    {
+                        return;
+                    }
                 }
             }
+
+            // Handle relay-based protocols (TURN, WebRTC) - connection already established via Protocol
+            if (peer.Protocol != null && !peer.Protocol.IsDirectConnection)
+            {
+                if (!peer.Protocol.IsConnected)
+                {
+                    DebugMessage($"Relay protocol for peer {peer.Identifier} is not connected.", MessageType.Warning);
+                    return;
+                }
+                await channelize();
+                return;
+            }
+
+            // Handle direct IP-based connections (TCP, UDP)
             if (client == null)
             {
                 try
@@ -548,6 +549,25 @@ namespace P2PNet
                 // Raise  PeerAdded event
                 Task.Run(() => OnPeerAdded(peerChannel));
             }
+        }
+
+        /// <summary>
+        /// Adds a TURN-relayed peer to the network. The peer must have a valid TURN protocol already established.
+        /// </summary>
+        /// <param name="turnPeer">The TURN peer to add.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        public static async Task AddTurnPeer(Peers.TurnPeer turnPeer)
+        {
+            if (turnPeer == null)
+                throw new ArgumentNullException(nameof(turnPeer));
+
+            if (turnPeer.Protocol == null || !turnPeer.Protocol.IsConnected)
+            {
+                DebugMessage($"Cannot add TURN peer {turnPeer.Identifier}: protocol not connected.", MessageType.Warning);
+                return;
+            }
+
+            await AddPeer(turnPeer, null);
         }
 
         /// <summary>
@@ -612,7 +632,25 @@ namespace P2PNet
             {
                 if (!KnownPeers.Contains(newpeer))
                 {
-                    AddPeer(newpeer);
+                    if (newpeer.Protocol.IsDirectConnection == true)
+                    {
+                        AddPeer(newpeer);
+                    }
+                    else
+                    {
+                        switch(newpeer.Protocol.ProtocolType)
+                        {
+                            case NetProtocolType.WebRTC:
+                                throw new NotImplementedException("WebRTC peer addition from CollectionSharePacket is not yet implemented.");
+                                break;
+                            case NetProtocolType.Turn:
+                                throw new NotImplementedException("TURN peer addition from CollectionSharePacket is not yet implemented.");
+                                break;
+                            default:
+                                DebugMessage($"Unsupported protocol type {newpeer.Protocol.ProtocolType} for peer {newpeer.Identifier}. Cannot add peer from CollectionSharePacket.", MessageType.Warning);
+                                break;
+                        }
+                    }
                     x++;
                 }
             }

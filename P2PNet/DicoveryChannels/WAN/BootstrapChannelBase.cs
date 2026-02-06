@@ -1,12 +1,15 @@
-﻿using Microsoft.MixedReality.WebRTC;
-using Org.BouncyCastle.Asn1.Ocsp;
+﻿using Org.BouncyCastle.Asn1.Ocsp;
 using P2PNet.Distribution;
 using P2PNet.Distribution.NetworkTasks;
 using P2PNet.NetworkPackets;
+using P2PNet.Peers;
+using P2PNet.Peers.CommProtocols;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -22,7 +25,6 @@ namespace P2PNet.DicoveryChannels.WAN
         public BootstrapPeer BootstrapServer { get; set; }
         internal Uri BootstrapServerEndpoint => BootstrapServer.Endpoint;
         internal PGPKeyInfo publicKey { get; set; } // store the public key from the server
-        internal IceServer IceServer { get; set; } // store the ICE server info for WebRTC if applicable
 
         /// <summary>
         /// Indicates whether the channel is currently active and has recently communicated.
@@ -135,6 +137,180 @@ namespace P2PNet.DicoveryChannels.WAN
         }
 
         private int failureCount { get; set; } = 0;
+
+        #region TURN Connection Helpers
+        /// <summary>
+        /// HTTP client used for TURN connection requests.
+        /// </summary>
+        protected HttpClient _turnHttpClient;
+
+        /// <summary>
+        /// Dictionary tracking all active TURN connections owned by this bootstrap channel.
+        /// Key is the connection ID, value is the TurnNetProtocol instance.
+        /// </summary>
+        private readonly ConcurrentDictionary<string, TurnNetProtocol> _activeTurnConnections = new();
+
+        /// <summary>
+        /// Gets the HTTP client used for TURN relay operations.
+        /// </summary>
+        /// <returns>The HTTP client configured for TURN operations.</returns>
+        public HttpClient GetTurnHttpClient()
+        {
+            if (_turnHttpClient == null)
+                _turnHttpClient = new HttpClient { Timeout = TimeSpan.FromMinutes(30) };
+            return _turnHttpClient;
+        }
+
+        /// <summary>
+        /// Registers a TURN connection in the active connections dictionary.
+        /// </summary>
+        /// <param name="connectionId">The unique identifier for the TURN connection.</param>
+        /// <param name="protocol">The TURN protocol instance to track.</param>
+        internal void RegisterTurnConnection(string connectionId, TurnNetProtocol protocol)
+        {
+            _activeTurnConnections.TryAdd(connectionId, protocol);
+        }
+
+        /// <summary>
+        /// Unregisters a TURN connection from the active connections dictionary.
+        /// Called when a TURN connection is closed.
+        /// </summary>
+        /// <param name="connectionId">The unique identifier of the TURN connection to unregister.</param>
+        internal void UnregisterTurnConnection(string connectionId)
+        {
+            _activeTurnConnections.TryRemove(connectionId, out _);
+        }
+
+        /// <summary>
+        /// Gets the number of active TURN connections owned by this bootstrap channel.
+        /// </summary>
+        public int ActiveTurnConnectionCount => _activeTurnConnections.Count;
+
+        /// <summary>
+        /// Requests a TURN relay connection to the specified peer through the bootstrap server.
+        /// </summary>
+        /// <param name="targetPeerIdentifier">The identifier of the peer to connect to via TURN relay.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation. 
+        /// The task result contains a <see cref="Peers.TurnPeer"/> if the connection was established, or null if it failed.
+        /// </returns>
+        /// <remarks>
+        /// This method sends a TURN connection request to the bootstrap server, which will notify the target peer
+        /// and establish a relay channel. Both peers can then communicate through the TURN relay.
+        /// </remarks>
+        public async Task<Peers.TurnPeer> RequestTurnConnectionAsync(string targetPeerIdentifier)
+        {
+            if (!SupportsTURN)
+            {
+                DebugMessage("TURN is not supported by this bootstrap server.", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
+                return null;
+            }
+
+            if (string.IsNullOrWhiteSpace(targetPeerIdentifier))
+            {
+                DebugMessage("Target peer identifier cannot be null or empty.", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
+                return null;
+            }
+
+            try
+            {
+                if (_turnHttpClient == null)
+                    _turnHttpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
+
+                var turnConnectUri = DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.TurnConnect, BootstrapServerEndpoint);
+                var requestUri = $"{turnConnectUri}?initiatorId={Uri.EscapeDataString(PeerNetwork.Identifier)}&targetId={Uri.EscapeDataString(targetPeerIdentifier)}";
+
+                using var response = await _turnHttpClient.PostAsync(requestUri, null);
+                
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    DebugMessage($"TURN connection request failed: {response.StatusCode} - {errorContent}", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
+                    return null;
+                }
+
+                var responseContent = await response.Content.ReadAsStringAsync();
+                
+                // Parse the connection ID from response
+                var connectionId = responseContent.Trim().Trim('"');
+                if (string.IsNullOrEmpty(connectionId))
+                {
+                    DebugMessage("TURN connection response did not contain a valid connection ID.", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
+                    return null;
+                }
+
+                // Create the TURN protocol with a reference back to this channel
+                var turnProtocol = new TurnNetProtocol(this, targetPeerIdentifier, connectionId);
+                
+                // Register the connection for lifecycle management
+                RegisterTurnConnection(connectionId, turnProtocol);
+                
+                // Start the continuous stream loops
+                turnProtocol.StartStreamLoops();
+
+                // Create the TURN peer with a reference to this channel
+                var turnPeer = new Peers.TurnPeer(this, targetPeerIdentifier, turnProtocol);
+
+                DebugMessage($"TURN connection established with peer {targetPeerIdentifier} (Connection ID: {connectionId})", ConsoleColor.Green, PeerNetwork.Logging.Bootstrap);
+
+                return turnPeer;
+            }
+            catch (Exception ex)
+            {
+                DebugMessage($"Failed to request TURN connection: {ex.Message}", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Requests a TURN relay connection and automatically adds the peer to the network.
+        /// </summary>
+        /// <param name="targetPeerIdentifier">The identifier of the peer to connect to via TURN relay.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// The task result is true if the connection was established and peer was added, false otherwise.
+        /// </returns>
+        public async Task<bool> ConnectViaTurnAsync(string targetPeerIdentifier)
+        {
+            var turnPeer = await RequestTurnConnectionAsync(targetPeerIdentifier);
+            if (turnPeer == null)
+            {
+                return false;
+            }
+
+            await PeerNetwork.AddTurnPeer(turnPeer);
+            return true;
+        }
+
+        /// <summary>
+        /// Closes an active TURN connection with the specified peer.
+        /// </summary>
+        /// <param name="connectionId">The unique identifier of the TURN connection to close.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        public async Task CloseTurnConnectionAsync(string connectionId)
+        {
+            if (string.IsNullOrWhiteSpace(connectionId))
+            {
+                return;
+            }
+
+            try
+            {
+                if (_turnHttpClient == null)
+                    _turnHttpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+
+                var turnCloseUri = DistributionProtocol.GetEndpointURI(CommonBootstrapEndpoints.TurnClose, BootstrapServerEndpoint);
+                var requestUri = $"{turnCloseUri}?connectionId={Uri.EscapeDataString(connectionId)}&peerId={Uri.EscapeDataString(PeerNetwork.Identifier)}";
+
+                await _turnHttpClient.DeleteAsync(requestUri);
+                DebugMessage($"TURN connection {connectionId} closed.", ConsoleColor.DarkGray, PeerNetwork.Logging.Bootstrap);
+            }
+            catch (Exception ex)
+            {
+                DebugMessage($"Failed to close TURN connection: {ex.Message}", MessageType.Warning, PeerNetwork.Logging.Bootstrap);
+            }
+        }
+        #endregion
 
 
         // ----- public delegates -----
@@ -490,7 +666,30 @@ namespace P2PNet.DicoveryChannels.WAN
         public virtual void CloseBootstrapChannel()
         {
             StopBootstrapChannelStream();
+            CloseAllTurnConnections();
             IsActive = false;
+        }
+
+        /// <summary>
+        /// Closes all active TURN connections owned by this bootstrap channel.
+        /// Called automatically when the bootstrap channel is closed.
+        /// </summary>
+        private void CloseAllTurnConnections()
+        {
+            foreach (var kvp in _activeTurnConnections)
+            {
+                try
+                {
+                    kvp.Value.Dispose();
+                }
+                catch
+                {
+                    // Best effort cleanup
+                }
+            }
+            _activeTurnConnections.Clear();
+            _turnHttpClient?.Dispose();
+            _turnHttpClient = null;
         }
         #endregion
     }
