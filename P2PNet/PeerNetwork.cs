@@ -632,7 +632,7 @@ namespace P2PNet
             {
                 if (!KnownPeers.Contains(newpeer))
                 {
-                    if (newpeer.Protocol.IsDirectConnection == true)
+                    if (newpeer.Protocol?.IsDirectConnection ?? true)
                     {
                         AddPeer(newpeer);
                     }

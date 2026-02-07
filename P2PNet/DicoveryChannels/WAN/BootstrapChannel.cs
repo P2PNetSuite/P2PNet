@@ -98,7 +98,7 @@ namespace P2PNet.DicoveryChannels.WAN
                 if (responsePacket != null)
                 {
                     string dataout = Encoding.UTF8.GetString(UnwrapData(responsePacket));
-                    if (this.BootstrapServer.Identifier == string.Empty) { this.BootstrapServer.Identifier = responsePacket.SourceOriginIdentifier; } // set identifier from response packet
+                    if (string.IsNullOrEmpty(this.BootstrapServer.Identifier)) { this.BootstrapServer.Identifier = responsePacket.SourceOriginIdentifier; } // set identifier from response packet
 
                     PeerNetwork.KnownPeers.Add(BootstrapServer);
                     InitialBootstrapHandler.Invoke(dataout);
