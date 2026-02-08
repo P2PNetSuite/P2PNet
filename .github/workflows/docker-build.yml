@@ -1,12 +1,7 @@
 name: Build and Publish Docker Image
 
 on:
-  push:
-    paths:
-      - 'P2PBootstrap/**'
-  pull_request:
-    paths:
-      - 'P2PBootstrap/**'
+  workflow_dispatch:
 
 jobs:
   dockerbuild:
